@@ -33,7 +33,7 @@
                                 <div class="row invoice-info">
                                     <div class="col-sm-4 invoice-col">
                                         Nama : <strong><?= $bks_wisuda->nama; ?></strong><br>
-                                        Email : <strong><?= $bks_wisuda->email; ?></strong>
+                                        <!-- Email : <strong><?= $bks_wisuda->email; ?></strong> -->
                                     </div>
                                     <div class="col-sm-4 invoice-col">
                                         <b>Status Pendaftaran</b> :

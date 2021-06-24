@@ -9,9 +9,13 @@ class Bimbingan_model extends CI_Model
     {
         return $this->db->get_where($this->_table, ['id_mahasiswabimbingan' => $id]);
     }
+    // public function getchatmahasiswa($id) 
+    // {
+    //     return $this->db->get_where('user', ["id_user" => $id])->row(); 
+    // }
     public function getchatmahasiswa($id)
     {
-        return $this->db->get_where('user', ["id_user" => $id])->row();
+        return $this->db->get_where('mahasiswa', ["nim" => $id])->row();
     }
     public function getPengirim($level) // level
     {
@@ -24,6 +28,6 @@ class Bimbingan_model extends CI_Model
     }
     public function getisichat()
     {
-        return $this->db->get_where('user', ["id_dosen" => 2])->result();
+        return $this->db->get_where('dosen', ["id_dosen" => 2])->result();
     }
 }

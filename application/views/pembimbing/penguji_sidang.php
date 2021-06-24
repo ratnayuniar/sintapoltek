@@ -43,7 +43,8 @@
                                     <tbody>
                                         <?php
                                         $no = 1;
-                                        foreach ($query->result() as $row) {
+                                        $id_prodi = $this->session->userdata('id_prodi');
+                                        foreach ($this->m_penguji_sidang->tampil_data($id_prodi)->result() as $row) {
                                             $data['user'] = $this->m_penguji_sidang->getmahasiswabyid($row->nim);
                                             $data['dosen1'] = $this->m_penguji_sidang->getdosen1($row->penguji1_sidang);
                                             $data['dosen2'] = $this->m_penguji_sidang->getdosen2($row->penguji2_sidang);
@@ -88,7 +89,7 @@
                             <label class="col-md-5 control-label">Mahasiswa</label>
                             <div class="col-md-9">
                                 <select class="form-control" data-live-search="true" data-style="btn-white" onclick="choose()" id="nim" name="nim" required>
-                                    <option>-- Pilih Mahasiswa --</option>
+                                    <option value="">-- Pilih Mahasiswa --</option>
                                     <?php foreach ($mahasiswa->result() as $row) : ?>
                                         <option value="<?php echo $row->nim; ?>"><?php echo $row->nama; ?></option>
                                     <?php endforeach; ?>
@@ -230,8 +231,6 @@
             document.getElementById('penguji3_sidang').value = "";
         }
     </script>
-
-
     <!-- USER DOSEN -->
 <?php } else if (($this->session->userdata('level') == 3) || ($this->session->userdata('level') == 4)) { ?>
     <div class="content-wrapper">

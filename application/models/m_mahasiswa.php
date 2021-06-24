@@ -5,8 +5,8 @@ class M_mahasiswa extends CI_Model
 	function tampilmahasiswa()
 	{
 		$this->db->select('*');
-		$this->db->from('user');
-		$this->db->join('mahasiswa', 'mahasiswa.nim=user.nim');
+		$this->db->from('mahasiswa');
+		// $this->db->join('mahasiswa', 'mahasiswa.nim=user.nim');
 		$query = $this->db->get();
 		return $query;
 	}
@@ -20,6 +20,7 @@ class M_mahasiswa extends CI_Model
 		// return $query;
 		$this->db->select('*');
 		$this->db->from('mahasiswa');
+		$this->db->where('mahasiswa.id_prodi', $this->session->userdata('id_prodi'));
 		// $this->db->join('user', 'user.nim=mahasiswa.nim');
 		$query = $this->db->get();
 		return $query;
@@ -29,7 +30,7 @@ class M_mahasiswa extends CI_Model
 	// 	$this->db->select('*');
 	// 	$this->db->from('user');
 	// 	$this->db->where_in('level', ['3','4']);
-	// 	$this->db->join('dosen', 'dosen.id_dosen=user.id_dosen');
+	// 	$this->db->join('dosen', 'dosen.nim=user.nim');
 	// 	$query = $this->db->get();
 	// 	return $query;
 	// }
@@ -73,8 +74,9 @@ class M_mahasiswa extends CI_Model
 			'ttl' => $this->input->post('ttl'),
 			'angkatan' =>  $this->input->post('angkatan'),
 			'id_prodi' =>  $this->input->post('id_prodi'),
-			'id_jurusan' =>  $this->input->post('id_jurusan'),
+			// 'id_jurusan' =>  $this->input->post('id_jurusan'),
 			'level' => 2,
+			'aktif' => 1,
 		);
 		// print_r($data);
 		// exit();
@@ -100,8 +102,9 @@ class M_mahasiswa extends CI_Model
 			'ttl' => $this->input->post('ttl'),
 			'angkatan' =>  $this->input->post('angkatan'),
 			'id_prodi' =>  $this->input->post('id_prodi'),
-			'id_jurusan' =>  $this->input->post('id_jurusan'),
+			// 'id_jurusan' =>  $this->input->post('id_jurusan'),
 			'level' => 2,
+			'aktif' => 1,
 		);
 		$this->db->where(array('nim' => $nim));
 		$this->db->update('mahasiswa', $data);
@@ -136,6 +139,18 @@ class M_mahasiswa extends CI_Model
 	{
 		$this->db->where($where);
 		$this->db->delete($table);
+	}
+
+	function delete($nim)
+	{
+		$this->db->where('nim', $nim);
+		$this->db->delete('mahasiswa');
+	}
+
+	function get_nim($nim)
+	{
+		$this->db->where('nim', $nim);
+		return $this->db->get('mahasiswa');
 	}
 
 	// function edit_barang($nim, $nama, $prodi, $jurusan)

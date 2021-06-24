@@ -2,15 +2,19 @@
 class M_penguji extends CI_Model
 {
 
-    function tampil_data()
+    function tampil_data($id_prodi)
     {
 
         $this->db->select('*');
         $this->db->where('penguji1_sempro is NOT NULL', NULL, FALSE);
         $this->db->where('penguji2_sempro is NOT NULL', NULL, FALSE);
         $this->db->where('penguji3_sempro is NOT NULL', NULL, FALSE);
+        $this->db->join('mahasiswa', 'mahasiswa.nim=master_ta.nim', 'left');
+        $this->db->where(array('mahasiswa.id_prodi' => $id_prodi));
         $query = $this->db->get('master_ta');
         return $query;
+
+
         // return $this->db->get('master_ta');
         // return $this->db->query("SELECT * FROM dosen, penguji WHERE dosen.id_dosen=penguji.penguji1");
         // return $this->db->query("SELECT * FROM dosen, penguji WHERE dosen.id_dosen=penguji.id_penguji2");
@@ -54,7 +58,7 @@ class M_penguji extends CI_Model
         $this->db->where('penguji1_sempro is NOT NULL', NULL, FALSE);
         $this->db->where('penguji2_sempro is NOT NULL', NULL, FALSE);
         $this->db->where('penguji3_sempro is NOT NULL', NULL, FALSE);
-        $this->db->where('master_ta.nim', $this->session->userdata('nim'));
+        $this->db->where('master_ta.nim', $this->session->userdata('email'));
         $query = $this->db->get();
         return $query;
     }
@@ -149,15 +153,17 @@ class M_penguji extends CI_Model
         return $this->db->get_where('mahasiswa', $query);
     }
 
-    function ubah_data($nim)
+
+
+    function ubah_data($id_master_ta)
     {
         $data = array(
-            // 'nim' => $this->input->post('nim'),
+
             'penguji1_sempro' => $this->input->post('penguji1_sempro'),
             'penguji2_sempro' => $this->input->post('penguji2_sempro'),
             'penguji3_sempro' => $this->input->post('penguji3_sempro')
         );
-        $this->db->where(array('nim' => $nim));
+        $this->db->where(array('id_master_ta' => $id_master_ta));
         $this->db->update('master_ta', $data);
         redirect('/penguji');
     }

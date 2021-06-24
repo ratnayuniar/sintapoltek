@@ -38,7 +38,8 @@
                                     <tbody>
                                         <?php
                                         $no = 1;
-                                        foreach ($bks_wisuda_user->result() as $row) { ?>
+                                        $id_prodi = $this->session->userdata('id_prodi');
+                                        foreach ($this->m_bks_wisuda->bks_wisuda_admin($id_prodi)->result() as $row) { ?>
                                             <tr>
                                                 <td><?= $no++ ?></td>
                                                 <td><?= $row->nim ?></td>
@@ -160,7 +161,7 @@
                                                     </td>
                                                     <td class="text-center" width="160px">
                                                         <a href="<?php echo base_url('bks_wisuda/delete_users/' . $row->id_bks_wisuda) ?>" id="btn-hapus" data-toggle="tooltip" data-placement="bottom" title="Hapus Mahasiswa" class="btn btn-sm btn-danger btn-xs"><i class="fa fa-trash"></i> Delete</a>
-                                                        <a href="<?= base_url('bks_wisuda/detail_bks_wisuda/' . $row->id_bks_wisuda) ?>" class="on-default edit-row btn btn-info pull-right btn-xs"><i class="fa fa-search"></i> Detail </a>
+                                                        <!-- <a href="<?= base_url('bks_wisuda/detail_bks_wisuda/' . $row->id_bks_wisuda) ?>" class="on-default edit-row btn btn-info pull-right btn-xs"><i class="fa fa-search"></i> Detail </a> -->
                                                     </td>
                                                 </tr>
                                             <?php } ?>
@@ -235,8 +236,8 @@
     <script type="text/javascript">
         function ResetInput(id_bks_wisuda, nim, file_ta, jurnal, lap_ta_prodi, aplikasi, ppt, video, foto_ijazah, foto_wisuda) {
             document.getElementById('id_bks_wisuda').value = "";
-            document.getElementById('nim').value = <?php echo $this->session->userdata('nim'); ?>;
-            document.getElementById('nim2').value = <?php echo $this->session->userdata('nim'); ?>;
+            document.getElementById('nim').value = <?php echo $this->session->userdata('email'); ?>;
+            document.getElementById('nim2').value = <?php echo $this->session->userdata('email'); ?>;
             document.getElementById('file_ta').value = "";
             document.getElementById('jenis').value = "";
             document.getElementById('lap_ta_prodi').value = "";

@@ -23,8 +23,7 @@ class Nilai_sidang extends CI_Controller
 		$data['dosen'] = $this->m_mahasiswa->getdosen();
 		$data['query'] = $this->m_nilai_sidang->tampil_data();
 		$data['title'] = 'SINTA PNM';
-		$data['user'] = $this->db->get_where('user', ['email' =>
-		$this->session->userdata('email')])->row_array();
+
 
 		$this->load->view('templates/header', $data);
 		$this->load->view('templates/sidebar', $data);
@@ -32,16 +31,13 @@ class Nilai_sidang extends CI_Controller
 		$this->load->view('templates/footer', $data);
 	}
 
-	function detail_nilai_sidang($id_mahasiswa)
+	function detail_nilai_sidang($nim)
 	{
-		$data['nilai_sidang'] = $this->m_nilai_sidang->get_nim($id_mahasiswa);
+		$data['nilai_sidang'] = $this->m_nilai_sidang->get_nim($nim);
 
-
-		$data['user'] = $this->db->get_where('user', ['email' =>
-		$this->session->userdata('email')])->row_array();
-
+		$data['id'] = $nim;
 		if ($data['nilai_sidang']) {
-			$data['title'] = 'Detail Berkas' . $data['nilai_sidang']->id_mahasiswa;
+			$data['title'] = 'Detail Berkas' . $data['nilai_sidang']->nim;
 			$this->load->view('templates/header', $data);
 			$this->load->view('templates/sidebar', $data);
 			$this->load->view('nilai/detail_nilai_sidang', $data);
@@ -49,11 +45,26 @@ class Nilai_sidang extends CI_Controller
 		}
 	}
 
+	function detail_nilai_seminar($nim)
+	{
+		$data['nilai_sempro'] = $this->m_nilai_seminar->get_nim($nim);
+
+		$data['id'] = $nim;
+		if ($data['nilai_sempro']) {
+			$data['title'] = 'Detail Berkas' . $data['nilai_sempro']->nim;
+			$this->load->view('templates/header', $data);
+			$this->load->view('templates/sidebar', $data);
+			$this->load->view('nilai/detail_nilai_seminar', $data);
+			$this->load->view('templates/footer', $data);
+		}
+	}
+
+
 	function detail_nilai_sidang2()
 	{
 		$data['title'] = 'SINTA PNM';
-		$data['id_mahasiswa'] = $this->input->get('id');
-		$data['query'] = $this->m_nilai_sidang->tampil_data2($data['id_mahasiswa']);
+		$data['nim'] = $this->input->get('id');
+		$data['query'] = $this->m_nilai_sidang->tampil_data2($data['nim']);
 		$data['query3'] = $this->m_penguji_sidang->bimbingan_dosen();
 
 		$this->load->view('templates/header', $data);

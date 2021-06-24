@@ -6,9 +6,9 @@ class M_verif_keuangan extends CI_Model
     {
         // return $this->db->query("SELECT * FROM jurusan, mahasiswa,prodi WHERE jurusan.id_jurusan=mahasiswa.id_jurusan AND prodi.id_prodi=mahasiswa.id_prodi");
         // $this->db->join('jurusan', 'mahasiswa.id_jurusan = jurusan.id_jurusan', 'left');
-        // $this->db->join('prodi', 'mahasiswa.id_prodi = prodi.id_prodi', 'left');
+        $this->db->join('mahasiswa', 'mahasiswa.nim = bks_wisuda.nim', 'left');
         // $this->db->where('mahasiswa.id_prodi', $this->session->userdata('id_prodi'));
-        return $this->db->get('mahasiswa');
+        return $this->db->get('bks_wisuda');
     }
 
     function insert($data)
@@ -19,7 +19,7 @@ class M_verif_keuangan extends CI_Model
     function update($id, $data)
     {
         $this->db->where('nim', $id);
-        $this->db->update('mahasiswa', $data);
+        $this->db->update('bks_wisuda', $data);
     }
 
     function keuangan_user()

@@ -45,15 +45,16 @@
 											<td>" . $no . "</td>
 											<td>" . $row->nip . "</td>
 											<td>" . $row->nama . "</td>
-											<td>" . $row->no_hp . "</td>
-											<td><a href ='#' class='btn btn-sm btn-primary btn-xs' data-toggle='modal' data-target='#custom-width-modal' onClick=\"SetInput('" . $row->id_dosen . "','" . $row->nip . "','" . $row->nama . "','" . $row->no_hp . "')\"><i class ='fa fa-edit'></i> Edit</a>
-													<a href='" . base_url('dosen/delete2/' . $row->id_dosen) . "' id='btn-hapus' class='btn btn-sm btn-danger btn-xs' ><i class='fa fa-trash'></i> Hapus</a>
+											<td>" . $row->hp . "</td>
+											<td>
+                      <a href ='#' class='btn btn-sm btn-primary btn-xs' data-toggle='modal' data-target='#custom-width-modal' onClick=\"SetInput('" . $row->id_dosen . "','" . $row->nip . "','" . $row->nama . "','" . $row->hp . "','" . $row->id_prodi . "')\"><i class ='fa fa-edit'></i> Edit</a>
+											<a href='" . base_url('dosen/delete2/' . $row->id_dosen) . "' id='btn-hapus' class='btn btn-sm btn-danger btn-xs' ><i class='fa fa-trash'></i> Hapus</a>
                       </td>	
 									</tr>";
                       $no++;
                     }
                     ?>
-                    <!-- <a href ='#' id='btn-hapus' class='btn btn-sm btn-danger btn-xs' data-toggle='modal' data-target='#delete-modal'onClick=\"SetInputs('" . $row->id_dosen . "','" . $row->nip . "','" . $row->nama . "','" . $row->email . "','" . $row->no_hp . "')\"><i class ='fa fa-trash'></i> Hapus</a> -->
+                    <!-- <a href ='#' id='btn-hapus' class='btn btn-sm btn-danger btn-xs' data-toggle='modal' data-target='#delete-modal'onClick=\"SetInputs('" . $row->id_dosen . "','" . $row->nip . "','" . $row->nama . "','" . $row->email . "','" . $row->hp . "')\"><i class ='fa fa-trash'></i> Hapus</a> -->
                   </tbody>
                 </table>
               </div>
@@ -92,9 +93,24 @@
           <div class="form-group">
             <label class="col-md-3 control-label">No HP</label>
             <div class="col-md-9">
-              <input type="text" class="form-control" id="no_hp" name="no_hp" required>
+              <input type="text" class="form-control" id="hp" name="hp" required>
             </div>
           </div>
+          <div class="form-group">
+            <label class="col-md-5 control-label">Program Studi</label>
+            <div class="col-md-9">
+              <select class="form-control" data-live-search="true" data-style="btn-white" id="id_prodi" name="id_prodi" required>
+                <option value="">-- Pilih Program Studi --</option>
+                <?php
+                $query = $this->m_prodi2->tampil_data();
+                foreach ($query->result() as $row) {
+                  echo "<option value='" . $row->id_prodi . "'>" . $row->nama_prodi . "</option>";
+                }
+                ?>
+              </select>
+            </div>
+          </div>
+
           <div class="modal-footer justify-content-between">
             <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
             <button type="submit" class="btn btn-primary">Simpan</button>
@@ -132,24 +148,27 @@
 
 
 <script type="text/javascript">
-  function SetInput(id_dosen, nip, nama, no_hp) {
+  function SetInput(id_dosen, nip, nama, hp, id_prodi) {
     document.getElementById('id_dosen').value = id_dosen;
     document.getElementById('nip').value = nip;
     document.getElementById('nama').value = nama;
-    document.getElementById('no_hp').value = no_hp;
+    document.getElementById('hp').value = hp;
+    document.getElementById('id_prodi').value = id_prodi;
   }
 
-  function SetInputs(id_dosen, nip, nama, no_hp) {
+  function SetInputs(id_dosen, nip, nama, hp, id_prodi) {
     document.getElementById('id_dosen2').value = id_dosen;
     document.getElementById('nip2').value = nip;
     document.getElementById('nama2').value = nama;
-    document.getElementById('no_hp2').value = no_hp;
+    document.getElementById('hp2').value = hp;
+    document.getElementById('id_prodi2').value = id_prodi;
   }
 
-  function ResetInput(id_dosen, nip, nama, no_hp) {
+  function ResetInput(id_dosen, nip, nama, hp, id_prodi) {
     document.getElementById('id_dosen').value = "";
     document.getElementById('nip').value = "";
     document.getElementById('nama').value = "";
-    document.getElementById('no_hp').value = "";
+    document.getElementById('hp').value = "";
+    document.getElementById('id_prodi').value = id_prodi;
   }
 </script>

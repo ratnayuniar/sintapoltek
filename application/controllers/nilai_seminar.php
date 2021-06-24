@@ -23,8 +23,6 @@ class Nilai_seminar extends CI_Controller
 		$data['dosen'] = $this->m_mahasiswa->getdosen();
 		$data['query'] = $this->m_nilai_seminar->tampil_data();
 		$data['title'] = 'SINTA PNM';
-		$data['user'] = $this->db->get_where('user', ['email' =>
-		$this->session->userdata('email')])->row_array();
 
 		$this->load->view('templates/header', $data);
 		$this->load->view('templates/sidebar', $data);
@@ -32,14 +30,13 @@ class Nilai_seminar extends CI_Controller
 		$this->load->view('templates/footer', $data);
 	}
 
-	function detail_nilai_seminar($id_mahasiswa)
+	function detail_nilai_seminar($nim)
 	{
-		$data['nilai_seminar'] = $this->m_nilai_seminar->get_nim($id_mahasiswa);
-		$data['user'] = $this->db->get_where('user', ['email' =>
-		$this->session->userdata('email')])->row_array();
-		$data['id'] = $id_mahasiswa;
-		if ($data['nilai_seminar']) {
-			$data['title'] = 'Detail Berkas' . $data['nilai_seminar']->id_mahasiswa;
+		$data['nilai_sempro'] = $this->m_nilai_seminar->get_nim($nim);
+
+		$data['id'] = $nim;
+		if ($data['nilai_sempro']) {
+			$data['title'] = 'Detail Berkas' . $data['nilai_sempro']->nim;
 			$this->load->view('templates/header', $data);
 			$this->load->view('templates/sidebar', $data);
 			$this->load->view('nilai/detail_nilai_seminar', $data);

@@ -33,7 +33,7 @@
                                 <div class="row invoice-info">
                                     <div class="col-sm-4 invoice-col">
                                         Nama : <strong><?= $row->nama; ?></strong><br>
-                                        Email : <strong><?= $row->email; ?></strong>
+                                        <!-- Email : <strong><?= $row->email; ?></strong> -->
                                     </div>
                                     <div class="col-sm-4 invoice-col">
                                         <b>Status Pendaftaran</b> :
@@ -140,7 +140,7 @@
         <section class="content">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-12"> 
+                    <div class="col-12">
                         <?php
                         foreach ($bks_keterampilan->result() as $row) { ?>
                             <div class="invoice p-3 mb-3">

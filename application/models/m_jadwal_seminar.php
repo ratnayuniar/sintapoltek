@@ -22,7 +22,7 @@ class M_jadwal_seminar extends CI_Model
 		$this->db->join('mahasiswa', 'mahasiswa.nim=master_ta.nim', 'left');
 		// $this->db->where('jenis_jadwal', 'seminar');
 		$this->db->where('jadwal_seminar is NOT NULL', NULL, FALSE);
-		$this->db->where('master_ta.nim', $this->session->userdata('nim'));
+		$this->db->where('master_ta.nim', $this->session->userdata('email'));
 		return $this->db->get('master_ta');
 	}
 

@@ -21,7 +21,7 @@ class M_jadwal_sidang extends CI_Model
 		$this->db->select('*');
 		$this->db->join('mahasiswa', 'mahasiswa.nim=master_ta.nim', 'left');
 		// $this->db->where('jenis_jadwal', 'seminar');
-		$this->db->where('master_ta.nim', $this->session->userdata('nim'));
+		$this->db->where('master_ta.nim', $this->session->userdata('email'));
 		$this->db->where('jadwal_sidang is NOT NULL', NULL, FALSE);
 		return $this->db->get('master_ta');
 	}

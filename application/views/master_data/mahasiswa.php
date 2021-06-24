@@ -46,8 +46,8 @@
 											<td>" . $row->nim . "</td>
 											<td>" . $row->nama . "</td>
 											<td>
-                      <a href ='#' class ='btn btn-sm btn-primary btn-xs' data-toggle='modal' data-target='#custom-width-modal' onClick=\"SetInput('" . $row->nim . "','" . $row->nama . "','" . $row->alamat . "','" . $row->hp . "','" . $row->ttl . "')\"><i class ='fa fa-edit'></i>  Edit</a>
-													<a href ='#' class ='btn btn-sm btn-danger btn-xs' data-toggle='modal' data-target='#delete-modal'onClick=\"SetInputs('" . $row->nim . "','" . $row->nama . "','" . $row->alamat . "','" . $row->hp . "','" . $row->ttl . "')\"><i class ='fa fa-trash'></i>  Hapus</a>
+                      <a href ='#' class ='btn btn-sm btn-primary btn-xs' data-toggle='modal' data-target='#custom-width-modal' onClick=\"SetInput('" . $row->nim . "','" . $row->nama . "','" . $row->alamat . "','" . $row->hp . "','" . $row->ttl . "','" . $row->id_prodi . "')\"><i class ='fa fa-edit'></i>  Edit</a>
+                      <a href='" . base_url('mahasiswa/delete2/' . $row->nim) . "' id='btn-hapus' class='btn btn-sm btn-danger btn-xs' ><i class='fa fa-trash'></i> Hapus</a>
 											</td>
 									  </tr>";
                     $no++;
@@ -93,7 +93,7 @@
           <div class="form-group">
             <label class="col-md-5 control-label">Alamat</label>
             <div class="col-md-9">
-              <input type="text" class="form-control" id="alamat" name="alamat" required>
+              <textarea type="text" class="form-control" rows="3" id="alamat" name="alamat" required></textarea>
             </div>
           </div>
           <div class="form-group">
@@ -122,7 +122,7 @@
               </select>
             </div>
           </div>
-          <div class="form-group">
+          <!-- <div class="form-group">
             <label class="col-md-3 control-label">Jurusan</label>
             <div class="col-md-9">
               <select class="form-control" data-live-search="true" data-style="btn-white" id="id_jurusan" name="id_jurusan" required>
@@ -135,7 +135,7 @@
                 ?>
               </select>
             </div>
-          </div>
+          </div> -->
           <div class="modal-footer justify-content-between">
             <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
             <button type="submit" class="btn btn-primary">Simpan</button>
@@ -173,15 +173,13 @@
 
 
 <script type="text/javascript">
-  function SetInput(id_nim, nim, nama, alamat, hp, ttl, id_jurusan, id_prodi) {
-    document.getElementById('id_nim').value = id_nim;
+  function SetInput(nim, nama, alamat, hp, ttl, id_prodi) {
     document.getElementById('nim').value = nim;
     document.getElementById('nama').value = nama;
     document.getElementById('alamat').value = alamat;
     document.getElementById('hp').value = hp;
     document.getElementById('ttl').value = ttl;
     document.getElementById('id_prodi').value = id_prodi;
-    document.getElementById('id_jurusan').value = id_jurusan;
   }
 
   function SetInputs(id_nim, nim, alamat, hp, ttl, nama, id_prodi, id_jurusan) {

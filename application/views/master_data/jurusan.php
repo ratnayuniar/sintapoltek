@@ -43,7 +43,6 @@
                     foreach ($query->result() as $row) {
                       echo "<tr>
 											<td>" . $no . "</td>
-											
 											<td>" . $row->nama_jurusan . "</td>
 											<td> 
                           <a href ='#' class ='btn btn-sm btn-primary btn-xs' data-toggle='modal' data-target='#custom-width-modal' onClick=\"SetInput('" . $row->id_jurusan . "','" . $row->nama_jurusan . "')\"><i class ='fa fa-edit'></i> Edit</a>

@@ -25,14 +25,14 @@
                                 <h3 class="card-title">Data Bahasa Internasional</h3>
                             </div>
                             <div class="card-body">
-                             <table id="example1" class="table table-bordered table-striped">
+                                <table id="example1" class="table table-bordered table-striped">
                                     <thead>
                                         <tr>
                                             <th>No</th>
                                             <th>NIM</th>
                                             <th>Nama</th>
                                             <th>Jumlah</th>
-                                            <th>Aksi</th> 
+                                            <th>Aksi</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -133,14 +133,14 @@
                                                     <td><?= $row->nim ?></td>
                                                     <td><?= $row->nama ?></td>
                                                     <td class="text-center" width="160px">
-                                                    <?php if ($row->status == '0') {
-                                                    echo '<span class="badge badge-warning">Menunggu</span>';
-                                                    } else if ($row->status == '1') {
-                                                        echo '<span class="badge badge-info">Valid</span>';
-                                                    } else {
-                                                        echo '<span class="badge badge-danger">Tidak Valid</span>';
-                                                    }
-                                                    ?>
+                                                        <?php if ($row->status == '0') {
+                                                            echo '<span class="badge badge-warning">Menunggu</span>';
+                                                        } else if ($row->status == '1') {
+                                                            echo '<span class="badge badge-info">Valid</span>';
+                                                        } else {
+                                                            echo '<span class="badge badge-danger">Tidak Valid</span>';
+                                                        }
+                                                        ?>
                                                     </td>
                                                     <td class="text-center" width="160px">
                                                         <a href="<?php echo base_url('bks_bahasa/delete_users/' . $row->id_bks_bhs) ?>" id="btn-hapus" data-toggle="tooltip" data-placement="bottom" title="Hapus Mahasiswa" class="btn btn-sm btn-danger btn-xs"><i class="fa fa-trash"></i> Delete</a>
@@ -211,8 +211,8 @@
     <script type="text/javascript">
         function ResetInput(id_bks_bhs, nim, periode, tahun, nama_bhs, skor, sk_bahasa) {
             document.getElementById('id_bks_bhs').value = "";
-            document.getElementById('nim').value = <?php echo $this->session->userdata('nim'); ?>;
-            document.getElementById('nim2').value = <?php echo $this->session->userdata('nim'); ?>;
+            document.getElementById('nim').value = <?php echo $this->session->userdata('email'); ?>;
+            document.getElementById('nim2').value = <?php echo $this->session->userdata('email'); ?>;
             document.getElementById('periode').value = "2020/2021 Genap";
             document.getElementById('tahun').value = "2021";
             document.getElementById('nama_bhs').value = "";

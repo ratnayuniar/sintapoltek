@@ -42,9 +42,9 @@
                     <?php
                     $no = 1;
                     foreach ($query->result() as $row) {
-                      $data['user'] = $this->m_nilai_sidang->getmahasiswabyid($row->id_mahasiswa);
+                      $data['user'] = $this->m_penguji_sidang->getmahasiswabyid($row->nim);
                       $this->db->select('AVG(rata) as rata, sum(nilai_akhir) as nilaiakhir');
-                      $this->db->where('id_mahasiswa', $row->id_mahasiswa);
+                      $this->db->where('nim', $row->nim);
                       $result = $this->db->get('nilai_sidang')->row();
                       $rata = number_format($result->rata, 1, '.', '');
                     ?>
@@ -231,10 +231,10 @@
                     <?php
                     $no = 1;
                     foreach ($query3->result() as $row) {
-                      $data['user'] = $this->m_penguji_sidang->getmahasiswabyid($row->id_mahasiswa);
-                      $data['dosen1'] = $this->m_penguji_sidang->getdosen1($row->penguji1);
-                      $data['dosen2'] = $this->m_penguji_sidang->getdosen2($row->penguji2);
-                      $data['dosen3'] = $this->m_penguji_sidang->getdosen2($row->penguji3);
+                      $data['user'] = $this->m_penguji_sidang->getmahasiswabyid($row->nim);
+                      $data['dosen1'] = $this->m_penguji_sidang->getdosen1($row->penguji1_sidang);
+                      $data['dosen2'] = $this->m_penguji_sidang->getdosen2($row->penguji2_sidang);
+                      $data['dosen3'] = $this->m_penguji_sidang->getdosen2($row->penguji3_sidang);
                       echo
                       "<tr>
 											<td>" . $no . "</td>
@@ -243,7 +243,7 @@
 											<td>" . $data['dosen2']->nama . "</td>
 											<td>" . $data['dosen3']->nama . "</td>
                       <td>
-                      <a href='" . base_url('nilai_sidang/detail_nilai_sidang2?id=' . $row->id_mahasiswa) . "' class='on-default edit-row btn btn-primary' ><i class='fa fa-search'></i> Input Nilai</a>
+                      <a href='" . base_url('nilai_sidang/detail_nilai_sidang2?id=' . $row->nim) . "' class='on-default edit-row btn btn-primary' ><i class='fa fa-search'></i> Input Nilai</a>
                       </td>
 											</tr>";
                       $no++;

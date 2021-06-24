@@ -44,7 +44,8 @@
                                     <tbody>
                                         <?php
                                         $no = 1;
-                                        foreach ($query->result() as $row) {
+                                        $id_prodi = $this->session->userdata('id_prodi');
+                                        foreach ($this->m_penguji->tampil_data($id_prodi)->result() as $row) {
                                             $data['user'] = $this->m_penguji->getmahasiswabyid($row->nim);
                                             $data['dosen1'] = $this->m_penguji->getdosen1($row->penguji1_sempro);
                                             $data['dosen2'] = $this->m_penguji->getdosen2($row->penguji2_sempro);
@@ -59,6 +60,7 @@
 											<td>" . $data['dosen3']->nama . "</td>
 											<td><a href ='#' class ='btn btn-sm btn-primary btn-xs' data-toggle='modal' data-target='#custom-width-modal' onClick=\"SetInput('" . $row->id_master_ta . "','" . $row->nim . "','" . $row->penguji1_sempro . "','" . $row->penguji2_sempro . "','" . $row->penguji3_sempro . "')\"><i class ='fa fa-edit'></i> Edit</a>
 												<a href ='#' class ='btn btn-sm btn-danger btn-xs' data-toggle='modal' data-target='#delete-modal'onClick=\"SetInputs('" . $row->id_master_ta . "','" . $row->nim . "','" . $row->penguji1_sempro . "','" . $row->penguji2_sempro . "','" . $row->penguji3_sempro . "')\"><i class ='fa fa-trash'></i> Hapus</a>
+                                                
 											</td>
 									    </tr>";
                                             $no++;
@@ -101,7 +103,7 @@
                         <div class="form-group">
                             <label class="col-md-5 control-label">Dosen penguji 1</label>
                             <div class="col-md-9">
-                                <select class="form-control" data-live-search="true" data-style="btn-white" onclick="choose()" id="nama" name="" required>
+                                <select class="form-control" data-live-search="true" data-style="btn-white" onclick="choose()" id="penguji1_sempro" name="" required>
                                     <option value="">-- Pilih Dosen penguji 1 --</option>
                                     <?php foreach ($dosen->result() as $row) : ?>
                                         <option value="<?php echo $row->id_dosen; ?>"><?php echo $row->nama; ?></option>
@@ -117,7 +119,7 @@
                         <div class="form-group">
                             <label class="col-md-5 control-label">Dosen penguji 2</label>
                             <div class="col-md-9">
-                                <select class="form-control" data-live-search="true" data-style="btn-white" onclick="pilih()" id="nama2" name="" required>
+                                <select class="form-control" data-live-search="true" data-style="btn-white" onclick="pilih()" id="penguji2_sempro" name="" required>
                                     <option value="">-- Pilih Dosen penguji 2 --</option>
                                     <?php foreach ($dosen->result() as $row) : ?>
                                         <option value="<?php echo $row->id_dosen; ?>"><?php echo $row->nama; ?></option>
@@ -133,7 +135,7 @@
                         <div class="form-group">
                             <label class="col-md-5 control-label">Dosen penguji 3</label>
                             <div class="col-md-9">
-                                <select class="form-control" data-live-search="true" data-style="btn-white" onclick="pilih2()" id="nama3" name="" required>
+                                <select class="form-control" data-live-search="true" data-style="btn-white" onclick="pilih2()" id="penguji3_sempro" name="" required>
                                     <option value="">-- Pilih Dosen penguji 3 --</option>
                                     <?php foreach ($dosen->result() as $row) : ?>
                                         <option value="<?php echo $row->id_dosen; ?>"><?php echo $row->nama; ?></option>
@@ -184,7 +186,7 @@
 
     <script type="text/javascript">
         function choose() {
-            var zoo = document.getElementById('nama').value;
+            var zoo = document.getElementById('penguji1_sempro').value;
             document.getElementById('output').value = zoo;
             var zoo2 = document.getElementById('id_dosen').value;
             document.getElementById('output_id').value = zoo2;
@@ -193,14 +195,14 @@
 
     <script type="text/javascript">
         function pilih() {
-            var zoo = document.getElementById('nama2').value;
+            var zoo = document.getElementById('penguji2_sempro').value;
             document.getElementById('hasil').value = zoo;
         }
     </script>
 
     <script type="text/javascript">
         function pilih2() {
-            var zoo = document.getElementById('nama3').value;
+            var zoo = document.getElementById('penguji3_sempro').value;
             document.getElementById('hasil3').value = zoo;
         }
     </script>
@@ -212,6 +214,14 @@
             document.getElementById('penguji1_sempro').value = penguji1_sempro;
             document.getElementById('penguji2_sempro').value = penguji2_sempro;
             document.getElementById('penguji3_sempro').value = penguji3_sempro;
+        }
+
+        function SetInput2(id_master_ta, nim, penguji1_sempro, penguji2_sempro, penguji3_sempro) {
+            document.getElementById('id_master_ta').value = id_master_ta;
+            document.getElementById('nim').value = nim;
+            document.getElementById('penguji1_sempro').value = "";
+            document.getElementById('penguji2_sempro').value = "";
+            document.getElementById('penguji3_sempro').value = "";
         }
 
         function SetInputs(id_master_ta, nim, penguji1_sempro, penguji2_sempro, penguji3_sempro) {

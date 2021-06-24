@@ -15,12 +15,13 @@ class M_dosen extends CI_Model
 		// $this->db->join('jurusan', 'jurusan.id_jurusan = user.id_jurusan', 'left');
 		// $this->db->join('dosen', 'dosen.id_dosen = user.id_dosen', 'left');
 
-		// return $this->db->get('user');
+		// return $this->db->get('user'); 
 
 		$this->db->select('*');
-
+		$this->db->order_by('level');
 		$this->db->from('dosen');
 		$this->db->where_in('level', ['3', '4']);
+		$this->db->where('dosen.id_prodi', $this->session->userdata('id_prodi'));
 		// $this->db->join('user', 'user.nim=mahasiswa.nim');
 		$query = $this->db->get();
 		return $query;
@@ -37,7 +38,8 @@ class M_dosen extends CI_Model
 		$data = array(
 			'nip' => $this->input->post('nip'),
 			'nama' => $this->input->post('nama'),
-			'no_hp' => $this->input->post('no_hp'),
+			'hp' => $this->input->post('hp'),
+			'id_prodi' => $this->input->post('id_prodi'),
 			'level' => 3,
 			// 'id_prodi' => $this->session->userdata('id_prodi'),
 		);
@@ -56,7 +58,8 @@ class M_dosen extends CI_Model
 		$data = array(
 			'nip' => $this->input->post('nip'),
 			'nama' => $this->input->post('nama'),
-			'no_hp' => $this->input->post('no_hp'),
+			'hp' => $this->input->post('hp'),
+			'id_prodi' => $this->input->post('id_prodi'),
 			'level' => 3,
 		);
 		$this->db->where(array('id_dosen' => $id_dosen));

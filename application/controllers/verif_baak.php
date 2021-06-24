@@ -25,8 +25,8 @@ class Verif_baak extends CI_Controller
         $data['title'] = 'SINTA PNM';
         $data['data'] = $this->db->get('bks_wisuda')->result();
 
-        $data['user'] = $this->db->get_where('user', ['email' =>
-        $this->session->userdata('email')])->row_array();
+        // $data['user'] = $this->db->get_where('user', ['email' =>
+        // $this->session->userdata('email')])->row_array();
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
@@ -39,7 +39,7 @@ class Verif_baak extends CI_Controller
         $id_perpus = $this->input->post('id_perpus');
 
         if (empty($id_perpus)) $this->m_verif_baak->tambah_data();
-        else $this->m_verif_baak->ubah_data($id_perpus); 
+        else $this->m_verif_baak->ubah_data($id_perpus);
     }
 
     function save_belum($id)
@@ -92,8 +92,8 @@ class Verif_baak extends CI_Controller
     {
         $data['bks_wisuda'] = $this->m_bks_wisuda->get_nim($nim);
 
-        $data['user'] = $this->db->get_where('user', ['email' =>
-        $this->session->userdata('email')])->row_array();
+        // $data['user'] = $this->db->get_where('user', ['email' =>
+        // $this->session->userdata('email')])->row_array();
 
         if ($data['bks_wisuda']) {
             $data['title'] = 'Detail Berkas' . $data['bks_wisuda']->nim;

@@ -9,7 +9,7 @@ class M_topik extends CI_Model
 
     function topik_user()
     {
-        $this->db->where('topik.nim', $this->session->userdata('nim'));
+        $this->db->where('topik.nim', $this->session->userdata('email'));
         // $this->db->or_where('topik.id_prodi', $this->session->userdata('id_prodi'));
         $this->db->join('mahasiswa', 'topik.nim = mahasiswa.nim', 'left');
         return $this->db->get('topik');
@@ -18,7 +18,7 @@ class M_topik extends CI_Model
     function topik_dosen()
     {
         // $this->db->where('topik.nim', $this->session->userdata('nim'));
-        $this->db->or_where('topik.id_prodi', $this->session->userdata('id_prodi'));
+        // $this->db->or_where('topik.id_prodi', $this->session->userdata('id_prodi'));
         $this->db->join('mahasiswa', 'topik.nim = mahasiswa.nim', 'left');
         return $this->db->get('topik');
     }
@@ -32,7 +32,7 @@ class M_topik extends CI_Model
             'lokasi' => $this->input->post('lokasi'),
             'status' => 0,
             // 'id_user' => $this->session->userdata('id_user'),
-            'id_prodi' => $this->session->userdata('id_prodi'),
+            // 'id_prodi' => $this->session->userdata('id_prodi'),
             'deskripsi' => $this->input->post('deskripsi'),
         );
 
@@ -68,10 +68,10 @@ class M_topik extends CI_Model
 
     function get_nim($id_topik)
     {
-        $this->db->join('user', 'topik.nim = user.nim', 'left');
+        // $this->db->join('user', 'topik.nim = user.nim', 'left');
         $this->db->join('mahasiswa', 'topik.nim = mahasiswa.nim', 'left');
-        $this->db->join('prodi', 'user.id_prodi = prodi.id_prodi', 'left');
-        $this->db->join('jurusan', 'user.id_jurusan = jurusan.id_jurusan', 'left');
+        $this->db->join('prodi', 'mahasiswa.id_prodi = prodi.id_prodi', 'left');
+        $this->db->join('jurusan', 'mahasiswa.id_jurusan = jurusan.id_jurusan', 'left');
         // $this->db->join('detail_topik', 'topik.id_topik = detail_topik.topik_id', 'left');
         $this->db->where('id_topik', $id_topik);
 

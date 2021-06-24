@@ -17,13 +17,10 @@ class Bks_sidang extends CI_Controller
 		$data['query'] = $this->m_bks_sidang->tampil_data();
 
 		$data['bks_sidang_user'] = $this->m_bks_sidang->bks_sidang_user();
-		$data['bks_sidang_admin'] = $this->m_bks_sidang->bks_sidang_admin();
+		// $data['bks_sidang_admin'] = $this->m_bks_sidang->bks_sidang_admin();
 
 		$data['title'] = 'SINTA PNM';
-		$data['data'] = $this->db->get('bks_sidang')->result();
-
-		$data['user'] = $this->db->get_where('user', ['email' =>
-		$this->session->userdata('email')])->row_array();
+		$data['data'] = $this->db->get('seminar_ta')->result();
 
 		$this->load->view('templates/header', $data);
 		$this->load->view('templates/sidebar', $data);
@@ -52,9 +49,6 @@ class Bks_sidang extends CI_Controller
 	function detail_bks_sidang($nim)
 	{
 		$data['bks_sidang'] = $this->m_bks_sidang->get_nim($nim);
-
-		$data['user'] = $this->db->get_where('user', ['email' =>
-		$this->session->userdata('email')])->row_array();
 
 		if ($data['bks_sidang']) {
 			$data['title'] = 'Detail Berkas' . $data['bks_sidang']->nim;
@@ -111,19 +105,18 @@ class Bks_sidang extends CI_Controller
 				$nim = $this->input->post('nim', TRUE);
 				$data = [
 					'nim' => $nim,
+					'id_nilai_ta' => null,
 					'proposal' => $proposal,
 					'pkkmb' => $pkkmb,
 					'pengesahan' => $pengesahan,
 					'monitoring' => $monitoring,
 					'persetujuan' => $persetujuan,
 					'status' => 0,
-					// 'id_user' => $this->session->userdata('id_user'), 
-					'id_prodi' => $this->session->userdata('id_prodi'),
 				];
 				// print_r($data);
 				// exit();
 				// var_dump($data);
-				$insert = $this->db->insert('bks_sidang', $data);
+				$insert = $this->db->insert('seminar_ta', $data);
 				if ($insert) {
 					$this->session->set_flashdata('pesan', 'disimpan');
 					redirect('bks_sidang');
@@ -151,86 +144,5 @@ class Bks_sidang extends CI_Controller
 			$this->session->set_flashdata('pesan', 'dihapus');
 		}
 		redirect('bks_sidang');
-	}
-
-	public function update_berkas()
-	{
-		$this->form_validation->set_rules('nim', 'nim', 'required');
-		$this->form_validation->set_error_delimiters('', '');
-		$this->load->library('upload');
-		$path = './assets/berkas/sidang/';
-		$config['upload_path'] = $path;
-		$config['allowed_types'] = 'gif|jpg|png|jpeg';
-		$config['max_size']     = '2048';
-		$config['max_width'] = '1024';
-		$config['max_height'] = '768';
-		$nama_file = "gambar_" . time();
-		$config['file_name'] = $nama_file;
-		$this->upload->initialize($config);
-
-		$id_bks_sidang = $this->input->post('id_bks_sidang');
-		$gambar_lama = $this->input->post('ganti_gambar');
-
-		if ($_FILES['berita_acara']['name']) {
-			$field_name = "berita_acara";
-			if ($this->form_validation->run() &&  $this->upload->do_upload($field_name)) {
-				$nim = $this->input->post('nim'); //sesuaikan nama fiednya denagn inputan ok
-
-				$gambar = $this->upload->data();
-				$user = ([
-					'nim' => $nim,
-					'status' => 0,
-					'berita_acara' => $gambar['file_name']
-				]);
-				$data = array_merge($user);
-
-				@unlink($path . $gambar_lama);
-				$where = array('id_bks_sidang' => $id_bks_sidang);
-				if ($this->m_bks_sidang->update_users($data, $where) == TRUE) {
-					$this->session->set_flashdata('pesan', 'di edit');
-					redirect('bks_sidang');
-				} else {
-					$this->index();
-				}
-			} else {
-				$this->index();
-			}
-		}
-
-		if ($_FILES['persetujuan']['name']) {
-			$field_name = "persetujuan";
-			if ($this->form_validation->run() &&  $this->upload->do_upload($field_name)) {
-				$nim = $this->input->post('nim'); //sesuaikan nama fiednya denagn inputan ok
-
-				$gambar = $this->upload->data();
-				$user = ([
-					'nim' => $nim,
-					'status' => 0,
-					'persetujuan' => $gambar['file_name']
-				]);
-				$data = array_merge($user);
-
-				@unlink($path . $gambar_lama);
-				$where = array('id_bks_sidang' => $id_bks_sidang);
-				if ($this->m_bks_sidang->update_users($data, $where) == TRUE) {
-					$this->session->set_flashdata('pesan', 'di edit');
-					redirect('bks_sidang');
-				} else {
-					$this->index();
-				}
-			} else {
-				$this->index();
-			}
-		}
-	}
-
-	public function ambil_id_berkas($id_bks_sidang)
-	{
-		$title = "edit data";
-		$data = $this->m_bks_sidang->ambil_id_users($id_bks_sidang);
-		$this->load->view('templates/header');
-		$this->load->view('templates/sidebar');
-		$this->load->view('berkas/edit_bks_sidang', ['data' => $data, 'title' => $title]);
-		$this->load->view('templates/footer');
 	}
 }

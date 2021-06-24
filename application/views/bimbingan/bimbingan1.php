@@ -5,12 +5,12 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Lembar Bimbingan Minggu 1 - 4</h1>
+                        <h1>Lembar Bimbingan</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="<?php echo base_url('beranda'); ?>">Beranda</a></li>
-                            <li class="breadcrumb-item active">Lembar Bimbingan Minggu 1 - 4</li>
+                            <li class="breadcrumb-item active">Lembar Bimbingan</li>
                         </ol>
                     </div>
                 </div>
@@ -28,7 +28,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">Lembar Bimbingan Minggu 1 - 4</h3>
+                            <h3 class="card-title">Lembar Bimbingan</h3>
                         </div>
                         <div class="card-body">
                             <table id="example1" class="table table-bordered table-striped">
@@ -36,12 +36,12 @@
                                     <tr>
                                         <th>No</th>
                                         <th>NIM</th>
-                                        <th>Nama</th>
-                                        <th>Nama Dosen</th>
+                                        <th>Nama Mahasiswa</th>
+                                        <!-- <th>Nama Dosen</th> -->
                                         <th>Tanggal</th>
                                         <th>Status</th>
                                         <th>Konfirmasi</th>
-                                        <th>Aksi</th>
+                                        <!-- <th>Aksi</th> -->
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -53,7 +53,7 @@
                                             <td><?= $no++ ?></td>
                                             <td><?= $row->nim ?></td>
                                             <td><?= $row->nama ?></td>
-                                            <td><?= $row->nama ?></td>
+                                            <!-- <td><?= $row->nama ?></td> -->
                                             <td><?= $row->tanggal ?></td>
                                             <td>
                                                 <?php if ($row->status == '0') {
@@ -101,10 +101,10 @@
                                                 }
                                                 ?>
                                             </td>
-                                            <td>
+                                            <!-- <td>
                                                 <a href="<?= base_url('bimbingan1/detail_bimbingan/' . $row->id_bimbingan) ?>" class="btn btn-primary btn-sm">
                                                     <i class="fa fa-search"></i>
-                                            </td>
+                                            </td> -->
                                         </tr>
                                     <?php
                                         $no++;
@@ -247,12 +247,12 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Lembar Bimbingan Minggu 1 - 4</h1>
+                        <h1>Lembar Bimbingan</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="<?php echo base_url('beranda'); ?>">Beranda</a></li>
-                            <li class="breadcrumb-item active">Lembar Bimbingan Minggu 1-4</li>
+                            <li class="breadcrumb-item active">Lembar Bimbingan</li>
                         </ol>
                     </div>
                 </div>
@@ -291,7 +291,7 @@
                                                 echo
                                                 " 
 											<input type='text' class='form-control' id='dosen' readonly name='dosen' placeholder='Nama Dosen' value='" . $data['dosen1']->nama . "'></td>
-											<input type='text' class='form-control' id='id_dosen' readonly name='id_dosen' placeholder='Nama Dosen' value='" . $data['dosen1']->id_dosen . "'></td>
+											<input type='hidden' class='form-control' id='id_dosen' readonly name='id_dosen' placeholder='Nama Dosen' value='" . $data['dosen1']->id_dosen . "'></td>
 											";
                                             }
                                             ?>
@@ -321,11 +321,12 @@
                     <div class="col-12">
                         <div style="text-align:right;margin-bottom: 10px ">
                             <a href="#" class="on-default edit-row btn btn-success pull-right" data-toggle="modal" pull="right" data-target="#custom-width-modal" onclick="ResetInput()"><i class="fa fa-plus"></i> Ajukan Lembar Bimbingan</a><br><br>
+
                             <a href="<?= site_url('bimbingan1/cetak_kartu') ?>" type="button" class="btn btn-primary">Print</a>
                         </div>
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">Ajukan Lembar Bimbingan Minggu 1 - 4</h3>
+                                <h3 class="card-title">Ajukan Lembar Bimbingan</h3>
                             </div>
                             <div class="card-body">
                                 <table id="example1" class="table table-bordered table-striped">
@@ -333,11 +334,12 @@
                                         <tr>
                                             <th>No</th>
                                             <th>NIM</th>
-                                            <th>Nama</th>
-                                            <th>Dosen</th>
+                                            <th>Nama Dosen</th>
+                                            <!-- <th>Dosen</th> -->
                                             <th>Tanggal</th>
                                             <th>Status</th>
                                             <th>Aksi</th>
+
                                         </tr>
                                     </thead>
 
@@ -345,7 +347,7 @@
                                     <tbody>
                                         <?php
                                         $no = 1;
-                                        print_r($bimbingan_user->row());
+                                        // print_r($bimbingan_user->row());
                                         //exit();
                                         foreach ($bimbingan_user->result() as $row) { ?>
 
@@ -353,8 +355,9 @@
                                                 <td><?= $no++ ?></td>
                                                 <td><?= $row->nim  ?></td>
                                                 <td><?= $row->nama ?></td>
-                                                <td><?= $row->nama ?></td>
+                                                <!-- <td><?= $row->nama ?></td> -->
                                                 <td><?= $row->tanggal ?></td>
+
                                                 <td>
                                                     <?php if ($row->status == '0') {
                                                         echo '<span class="badge badge-warning">Menunggu</span>';
@@ -368,13 +371,17 @@
                                                     ?>
                                                 </td>
                                                 <td>
+                                                    <a href="https://wa.me/<?= $row->hp ?>" target="_blank" class="btn btn-info btn-sm"> <i class="fa fa-comment-dots"></i> Kirim Pesan</a>
+                                                </td>
+
+                                                <!-- <td>
                                                     <a href="<?= base_url('bimbingan1/detail_bimbingan/' . $row->id_bimbingan) ?>" class="btn btn-primary btn-sm">
                                                         <i class="fa fa-search"></i>
                                                         <a onclick="return confirm('Yakin akan hapus?');" href="<?= base_url('bimbingan1/delete_bimbingan/' . $row->id_bimbingan) ?>" class="btn btn-danger btn-sm">
                                                             <i class="fa fa-trash"></i>
                                                         </a>
 
-                                                </td>
+                                                </td> -->
                                             </tr>
                                         <?php } ?>
                                     </tbody>
@@ -457,8 +464,8 @@
 
         function ResetInput(id_bimbingan, nim, bidang, judul, lokasi, deskripsi) {
             document.getElementById('id_bimbingan').value = "";
-            document.getElementById('nim').value = <?php echo $this->session->userdata('nim'); ?>;
-            document.getElementById('nim2').value = <?php echo $this->session->userdata('nim'); ?>;
+            document.getElementById('nim').value = <?php echo $this->session->userdata('email'); ?>;
+            document.getElementById('nim2').value = <?php echo $this->session->userdata('email'); ?>;
             document.getElementById('bidang').value = "";
             document.getElementById('judul').value = "";
             document.getElementById('lokasi').value = "";

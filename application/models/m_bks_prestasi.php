@@ -12,17 +12,18 @@ class M_bks_prestasi extends CI_Model
     {
         $this->db->select('*');
         $this->db->join('mahasiswa', 'mahasiswa.nim=bks_prestasi.nim', 'left');
-        $this->db->where('bks_prestasi.nim', $this->session->userdata('nim'));
-        $this->db->or_where('bks_prestasi.id_prodi', $this->session->userdata('id_prodi'));
+        $this->db->where('bks_prestasi.nim', $this->session->userdata('email'));
+        // $this->db->or_where('bks_prestasi.id_prodi', $this->session->userdata('id_prodi'));
         return $this->db->get('bks_prestasi');
     }
 
-    function bks_prestasi_admin()
+    function bks_prestasi_admin($id_prodi)
     {
 
 
         $this->db->select("mahasiswa.nama, mahasiswa.nim, bks_prestasi.nim,bks_prestasi.status,bks_prestasi.id_bks_prestasi, COUNT(*) AS jumlah")->group_by('bks_prestasi.nim');
         $this->db->join('mahasiswa', 'mahasiswa.nim=bks_prestasi.nim', 'left');
+        $this->db->where(array('mahasiswa.id_prodi' => $id_prodi));
         return $this->db->get('bks_prestasi');
         // return $this->db->query("SELECT * FROM mahasiswa, bks_prestasi WHERE mahasiswa.nim=bks_prestasi.nim");
     }
@@ -40,7 +41,7 @@ class M_bks_prestasi extends CI_Model
 
     function get_nim($nim)
     {
-        $this->db->join('user', 'user.nim = bks_prestasi.nim', 'left');
+        // $this->db->join('user', 'user.nim = bks_prestasi.nim', 'left');
         $this->db->join('mahasiswa', 'bks_prestasi.nim = mahasiswa.nim', 'left');
         $this->db->where('bks_prestasi.nim', $nim);
 

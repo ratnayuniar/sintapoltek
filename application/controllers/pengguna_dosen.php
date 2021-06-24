@@ -16,8 +16,7 @@ class Pengguna_dosen extends CI_Controller
         $data['pengguna_dosen'] = $this->m_pengguna_dosen->tampil_data_dosen();
 
         $data['title'] = 'SINTA PNM';
-        $data['user'] = $this->db->get_where('user', ['email' =>
-        $this->session->userdata('email')])->row_array();
+
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);

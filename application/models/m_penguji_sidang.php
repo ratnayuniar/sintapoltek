@@ -2,12 +2,14 @@
 class M_penguji_sidang extends CI_Model
 {
 
-    function tampil_data()
+    function tampil_data($id_prodi)
     {
         $this->db->select('*');
         $this->db->where('penguji1_sidang is NOT NULL', NULL, FALSE);
         $this->db->where('penguji2_sidang is NOT NULL', NULL, FALSE);
         $this->db->where('penguji3_sidang is NOT NULL', NULL, FALSE);
+        $this->db->join('mahasiswa', 'mahasiswa.nim=master_ta.nim', 'left');
+        $this->db->where(array('mahasiswa.id_prodi' => $id_prodi));
         $query = $this->db->get('master_ta');
         return $query;
         // return $this->db->query("SELECT * FROM dosen, penguji WHERE dosen.id_dosen=penguji.penguji1");
@@ -51,7 +53,7 @@ class M_penguji_sidang extends CI_Model
         $this->db->where('penguji1_sidang is NOT NULL', NULL, FALSE);
         $this->db->where('penguji2_sidang is NOT NULL', NULL, FALSE);
         $this->db->where('penguji3_sidang is NOT NULL', NULL, FALSE);
-        $this->db->where('master_ta.nim', $this->session->userdata('nim'));
+        $this->db->where('master_ta.nim', $this->session->userdata('email'));
         $query = $this->db->get();
         return $query;
     }

@@ -16,8 +16,7 @@ class Pengguna_mahasiswa extends CI_Controller
         $data['mahasiswa'] = $this->m_pengguna_mahasiswa->tampil_data_mhs();
 
         $data['title'] = 'SINTA PNM';
-        $data['user'] = $this->db->get_where('user', ['email' =>
-        $this->session->userdata('email')])->row_array();
+
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);

@@ -4,18 +4,19 @@ class M_nilai_seminar extends CI_Model
 	public function getmahasiswabyid($id)
 	{
 		$this->db->select('*');
-		$this->db->from('user');
+		$this->db->from('mahasiswa', $id);
+
 
 		// $this->db->join('dosen', 'dosen.id_dosen=user.id_dosen');
-		$this->db->where("user.id_user", $id);
-		$this->db->join('mahasiswa', 'mahasiswa.nim=user.nim');
+		// $this->db->where("user.id_user", $id);
+		// $this->db->join('mahasiswa', 'mahasiswa.nim=user.nim');
 		$query = $this->db->get()->row();
 		return $query;
 	}
 	function tambah_data()
 	{
 		$data = array(
-			'id_mahasiswa' => $this->input->post('id_mahasiswa'),
+			'nim' => $this->input->post('nim'),
 			'perumusan' => $this->input->post('perumusan'),
 			'teori' => $this->input->post('teori'),
 			'pemecahan' => $this->input->post('pemecahan'),
@@ -40,30 +41,36 @@ class M_nilai_seminar extends CI_Model
 		);
 
 		$this->db->select('*');
-		$this->db->from('nilai_seminar');
-		$this->db->where(['id_dosen' => $this->session->userdata('id_dosen'), 'id_mahasiswa' => $this->input->post('id_mahasiswa')]);
-		$query = $this->db->get()->row();
-		if (isset($query)) {
+		$this->db->from('nilai_sempro');
+		$this->db->where(['id_dosen' => $this->session->userdata('id_dosen'), 'nim' => $this->input->post('nim')]);
+		$query = $this->db->get()->row_array();
+		if (!$query) {
 			$this->db->set($dataupdate);
-			$this->db->where(['id_dosen' => $this->session->userdata('id_dosen'), 'id_mahasiswa' => $this->input->post('id_mahasiswa')]);
-			$this->db->update('nilai_seminar');
+			$this->db->where(['id_dosen' => $this->session->userdata('id_dosen'), 'nim' => $this->input->post('nim')]);
+			$this->db->update('nilai_sempro');
 		} else {
-			$this->db->insert('nilai_seminar', $data);
-		}
+			$this->db->insert('nilai_sempro', $data);
 
+			$idjumlah = $query['id_nilai_sempro'];
+			$data = array(
+				'id_nilai_sempro'	=> $idjumlah
+			);
+
+			//$this->db->insert('seminar_proposal', $data);
+		}
 		redirect('/nilai_seminar');
 	}
 
 	function tampil_data()
 	{
 
-		return $this->db->query("(SELECT * FROM seminar_proposal GROUP BY nim) ");
+		return $this->db->query("(SELECT * FROM nilai_sempro GROUP BY nim) ");
 		// $this->db->query("SELECT * FROM user, nilai_seminar WHERE user.id_user=nilai_seminar.id_mahasiswa");
 	}
 	function jumlahnilai($id_mahasiswa)
 	{
 		$this->db->select("AVG(rata) rata,sum(nilai_akhir) nilaiakhir where id_mahasiswa = $id_mahasiswa");
-		$result = $this->db->get('nilai_seminar')->row();
+		$result = $this->db->get('nilai_sempro')->row();
 	}
 
 	function checkDuplicate()
@@ -74,19 +81,19 @@ class M_nilai_seminar extends CI_Model
 		// HAVING COUNT(*) > 1 
 	}
 
-	function get_nim($id_nilai_seminar)
+	function get_nim($id_nilai_sempro)
 	{
-		$this->db->join('user', 'nilai_seminar.id_mahasiswa = user.id_user', 'left');
-		$this->db->where('id_nilai_seminar', $id_nilai_seminar);
+		$this->db->join('mahasiswa', 'nilai_sempro.nim = mahasiswa.nim', 'left');
+		$this->db->where('id_nilai_sempro', $id_nilai_sempro);
 
-		return $this->db->get('nilai_seminar')->row();
+		return $this->db->get('nilai_sempro')->row();
 	}
 
-	function tampil_data2($id_nilai_seminar)
+	function tampil_data2($id_nilai_sempro)
 	{
-		$this->db->join('user', 'nilai_seminar.id_mahasiswa = user.id_user', 'left');
-		$this->db->where('id_nilai_seminar', $id_nilai_seminar);
+		$this->db->join('mahasiswa', 'nilai_sempro.nim = mahasiswa.nim', 'left');
+		$this->db->where('id_nilai_sempro', $id_nilai_sempro);
 
-		return $this->db->get('nilai_seminar')->row();
+		return $this->db->get('nilai_sempro')->row();
 	}
 }

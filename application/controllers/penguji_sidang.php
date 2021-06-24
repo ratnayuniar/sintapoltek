@@ -16,17 +16,9 @@ class Penguji_sidang extends CI_Controller
     {
         $data['query3'] = $this->m_penguji_sidang->bimbingan_dosen();
         $data['query2'] = $this->m_penguji_sidang->bimbingan_mhs();
-        $data['mahasiswa'] = $this->m_mahasiswa->tampilmahasiswa();
+        $data['mahasiswa'] = $this->m_mahasiswa->getmahasiswa();
         $data['dosen'] = $this->m_mahasiswa->getdosen();
-
-        //lama
-        $data['query'] = $this->m_penguji_sidang->tampil_data();
-        // $data['penguji_user'] = $this->m_penguji_sidang->penguji_user();
-        // $data['dosen_user'] = $this->m_penguji_sidang->dosen_user();
         $data['title'] = 'SINTA PNM';
-
-        $data['user'] = $this->db->get_where('user', ['email' =>
-        $this->session->userdata('email')])->row_array();
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
@@ -47,8 +39,6 @@ class Penguji_sidang extends CI_Controller
         $id_penguji_sidang = $this->input->post('id_penguji_sidang2');
         $this->m_penguji_sidang->hapus_data($id_penguji_sidang);
     }
-
-
 
     function delete_penguji($id)
     {

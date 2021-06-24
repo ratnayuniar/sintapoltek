@@ -19,8 +19,7 @@ class Mahasiswa extends CI_Controller
 		$data['mahasiswa'] = $this->m_mahasiswa->getmahasiswa();
 
 		$data['title'] = 'SINTA PNM';
-		$data['user'] = $this->db->get_where('user', ['email' =>
-		$this->session->userdata('email')])->row_array();
+
 
 		$this->load->view('templates/header', $data);
 		$this->load->view('templates/sidebar', $data);
@@ -39,10 +38,23 @@ class Mahasiswa extends CI_Controller
 			$this->m_mahasiswa->ubah_data($id_nim);
 	}
 
-
-	public function delete()
+	function delete2($nim)
 	{
-		$id_nim = $this->input->post('id_nim2');
-		$this->m_mahasiswa->hapus_data($id_nim);
+		$delete = $this->m_mahasiswa->get_nim($nim);
+		if ($delete) {
+			$this->m_mahasiswa->delete($nim);
+			$this->session->set_flashdata('pesan', 'Data Berhasil di Hapus');
+			redirect('mahasiswa', 'refresh');
+		} else {
+			$this->session->set_flashdata('pesan', 'Data Tidak ada');
+			redirect('mahasiswa', 'refresh');
+		}
 	}
+
+	// public function delete()
+	// {
+	// 	$id_nim = $this->input->post('id_nim2');
+	// 	$this->m_mahasiswa->hapus_data($id_nim);
+	// }
+
 }

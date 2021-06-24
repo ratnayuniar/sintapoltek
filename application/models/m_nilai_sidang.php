@@ -4,16 +4,16 @@ class M_nilai_sidang extends CI_Model
 	public function getmahasiswabyid($id)
 	{
 		$this->db->select('*');
-		$this->db->from('user');
-		$this->db->where("user.id_user", $id);
-		$this->db->join('mahasiswa', 'mahasiswa.nim=user.nim');
+		$this->db->from('mahasiswa');
+		// $this->db->where("user.id_user", $id);
+		// $this->db->join('mahasiswa', 'mahasiswa.nim=user.nim');
 		$query = $this->db->get()->row();
 		return $query;
 	}
 	function tambah_data()
 	{
 		$data = array(
-			'id_mahasiswa' => $this->input->post('id_mahasiswa'),
+			'nim' => $this->input->post('nim'),
 			'perumusan' => $this->input->post('perumusan'),
 			'teori' => $this->input->post('teori'),
 			'pemecahan' => $this->input->post('pemecahan'),
@@ -41,11 +41,11 @@ class M_nilai_sidang extends CI_Model
 
 		$this->db->select('*');
 		$this->db->from('nilai_sidang');
-		$this->db->where(['id_dosen' => $this->session->userdata('id_dosen'), 'id_mahasiswa' => $this->input->post('id_mahasiswa')]);
+		$this->db->where(['id_dosen' => $this->session->userdata('id_dosen'), 'nim' => $this->input->post('nim')]);
 		$query = $this->db->get()->row();
 		if (isset($query)) {
 			$this->db->set($dataupdate);
-			$this->db->where(['id_dosen' => $this->session->userdata('id_dosen'), 'id_mahasiswa' => $this->input->post('id_mahasiswa')]);
+			$this->db->where(['id_dosen' => $this->session->userdata('id_dosen'), 'nim' => $this->input->post('nim')]);
 			$this->db->update('nilai_sidang');
 		} else {
 			$this->db->insert('nilai_sidang', $data);
@@ -68,10 +68,10 @@ class M_nilai_sidang extends CI_Model
 		// return $this->db->get('nilai_sidang');
 
 		$this->db->select("*, COUNT(*) as jumlah");
-		$this->db->join('user', 'user.id_user=seminar_ta.nim', 'left');
-		$this->db->group_by('seminar_ta.nim');
+		// $this->db->join('user', 'user.id_user=seminar_ta.nim', 'left');
+		$this->db->group_by('nilai_sidang.nim');
 		//$this->db->having("jumlah > 1", null, false);
-		return $this->db->get('seminar_ta');
+		return $this->db->get('nilai_sidang');
 	}
 
 	function checkDuplicate()
@@ -84,15 +84,16 @@ class M_nilai_sidang extends CI_Model
 
 	function get_nim($id_nilai_sidang)
 	{
-		$this->db->join('user', 'nilai_sidang.id_mahasiswa = user.id_user', 'left');
+		$this->db->join('mahasiswa', 'nilai_sidang.nim = mahasiswa.nim', 'left');
 		$this->db->where('id_nilai_sidang', $id_nilai_sidang);
 
 		return $this->db->get('nilai_sidang')->row();
 	}
 
+
 	function tampil_data2($id_nilai_sidang)
 	{
-		$this->db->join('user', 'nilai_sidang.id_mahasiswa = user.id_user', 'left');
+		$this->db->join('mahasiswa', 'nilai_sidang.nim = mahasiswa.nim', 'left');
 		$this->db->where('id_nilai_sidang', $id_nilai_sidang);
 
 		return $this->db->get('nilai_sidang')->row();

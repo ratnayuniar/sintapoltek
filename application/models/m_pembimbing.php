@@ -2,8 +2,11 @@
 class M_pembimbing extends CI_Model
 {
 
-    function tampil_data()
+    function tampil_data($id_prodi)
     {
+
+        $this->db->join('mahasiswa', 'mahasiswa.nim=master_ta.nim', 'left');
+        $this->db->where(array('mahasiswa.id_prodi' => $id_prodi));
         return $this->db->get('master_ta');
     }
     function listbimbingandosen()
@@ -15,8 +18,16 @@ class M_pembimbing extends CI_Model
         // $this->db->where("pembimbing.pembimbing1", $id)->or_where("pembimbing.pembimbing2", $id);
         // $query = $this->db->get();
         // return $query;
-
+        $id = $this->session->userdata('id_dosen');
+        $this->db->select('*');
+        $this->db->from('master_ta');
+        // $this->db->join('user', 'user.nim=master_ta.nim');
+        $this->db->join('dosen', 'dosen.id_dosen=master_ta.pembimbing1');
+        $this->db->where("master_ta.pembimbing1", $id)->or_where("master_ta.pembimbing2", $id);
+        $query = $this->db->get();
+        return $query;
     }
+
     public function getmahasiswabyid($id)
     {
         // return $this->db->get_where('user', ["id_user" => $id])->row();
@@ -30,17 +41,43 @@ class M_pembimbing extends CI_Model
         return $query;
     }
 
-    // public function getdosenbyid($id)
-    // {
-    //     // return $this->db->get_where('user', ["id_user" => $id])->row();
-    //     $this->db->select('*');
-    //     $this->db->from('user');
-    //     // $this->db->join('mahasiswa', 'mahasiswa.nim=user.nim');
-    //     $this->db->join('dosen', 'dosen.id_dosen=user.id_dosen');
-    //     $this->db->where("user.id_user", $id);
-    //     $query = $this->db->get()->row();
-    //     return $query;
-    // }
+    public function getmahasiswabyid2($id)
+    {
+        // return $this->db->get_where('user', ["id_user" => $id])->row();
+        // $this->db->select('*');
+        // $this->db->from('user');
+        // $this->db->join('mahasiswa', 'mahasiswa.nim=user.nim');
+        // $this->db->join('dosen', 'dosen.id_dosen=user.id_dosen');
+        // $this->db->where("mahasiswa.nim", $id);
+        // $this->db->or_where("user.id_user", $id);
+        // $query = $this->db->get()->row();
+        // return $query;
+        $this->db->select('*');
+        $this->db->from('mahasiswa');
+        $this->db->where("mahasiswa.nim", $id);
+        $query = $this->db->get()->row();
+        return $query;
+    }
+
+
+    public function getdosenbyid($id)
+    {
+        // return $this->db->get_where('user', ["id_user" => $id])->row();
+        // $this->db->select('*');
+        // $this->db->from('user');
+        // // $this->db->join('mahasiswa', 'mahasiswa.nim=user.nim');
+        // $this->db->join('dosen', 'dosen.id_dosen=user.id_dosen');
+        // $this->db->where("user.id_user", $id);
+        // $query = $this->db->get()->row();
+        // return $query;
+        $this->db->select('*');
+        $this->db->from('dosen');
+        // $this->db->join('mahasiswa', 'mahasiswa.nim=user.nim');
+        // $this->db->join('dosen', 'dosen.id_dosen=user.id_dosen');
+        $this->db->where("dosen.id_dosen", $id);
+        $query = $this->db->get()->row();
+        return $query;
+    }
     // function ceksudahnilai($id)
     // {
     //     $this->db->select('*');
@@ -54,16 +91,21 @@ class M_pembimbing extends CI_Model
     //     return $query;
     // }
 
-    // public function getbyid($id)
-    // {
-    //     // return $this->db->get_where('user', ["id_user" => $id])->row();
-    //     $this->db->select('*');
-    //     $this->db->from('user');
-    //     $this->db->join('dosen', 'dosen.id_dosen=user.id_dosen');
-    //     $this->db->where("user.id_user", $id);
-    //     $query = $this->db->get()->row();
-    //     return $query;
-    // }
+    public function getbyid($id)
+    {
+        // return $this->db->get_where('user', ["id_user" => $id])->row();
+        // $this->db->select('*');
+        // $this->db->from('user');
+        // $this->db->join('dosen', 'dosen.id_dosen=user.id_dosen');
+        // $this->db->where("user.id_user", $id);
+        // $query = $this->db->get()->row();
+        // return $query;
+        $this->db->select('*');
+        $this->db->from('dosen');
+        $this->db->where("dosen.id_dosen", $id);
+        $query = $this->db->get()->row();
+        return $query;
+    }
     public function getdosen1($id)
     {
         return $this->db->get_where('dosen', ["id_dosen" => $id])->row();
@@ -102,7 +144,7 @@ class M_pembimbing extends CI_Model
         $this->db->select('*');
         $this->db->from('master_ta');
         $this->db->join('mahasiswa', 'mahasiswa.nim=master_ta.nim');
-        $this->db->where('master_ta.nim', $this->session->userdata('nim'));
+        $this->db->where('master_ta.nim', $this->session->userdata('email'));
         $query = $this->db->get();
         return $query;
     }

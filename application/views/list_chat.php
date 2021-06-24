@@ -39,7 +39,7 @@
 
                                     $no = 1;
                                     foreach ($query->result() as $row) :
-                                        $data['user'] = $this->m_pembimbing->getmahasiswabyid($row->id_mahasiswa);
+                                        $data['user'] = $this->m_pembimbing->getmahasiswabyid2($row->nim);
                                         $data['dosen1'] = $this->m_pembimbing->getdosen1($row->pembimbing1);
                                         $data['dosen2'] = $this->m_pembimbing->getdosen2($row->pembimbing2);
                                     ?>
@@ -48,7 +48,7 @@
                                             <td><?php echo $data['user']->nama; ?></td>
                                             <td><?php echo $data['dosen1']->nama; ?></td>
                                             <td><?php echo $data['dosen2']->nama; ?></td>
-                                            <td><a href='<?php echo site_url('bimbingandosen/reply/' . $row->id_mahasiswa); ?>' class='on-default edit-row btn btn-primary'>Masuk Diskusi</a>
+                                            <td><a href='<?php echo site_url('bimbingandosen/reply/' . $row->nim); ?>' class='on-default edit-row btn btn-primary'>Masuk Diskusi</a>
                                             </td>
                                         </tr>
                                     <?php

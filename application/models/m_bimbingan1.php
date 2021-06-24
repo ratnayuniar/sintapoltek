@@ -14,7 +14,6 @@ class M_bimbingan1 extends CI_Model
         $this->db->join('user', 'bimbingan.nim = user.nim', 'left');
         $this->db->join('prodi', 'user.id_prodi = prodi.id_prodi', 'left');
         $this->db->join('jurusan', 'user.id_jurusan = jurusan.id_jurusan', 'left');
-        // $this->db->join('detail_bimbingan', 'bimbingan.id_bimbingan = detail_bimbingan.bimbingan_id', 'left');
         $this->db->join('mahasiswa', 'bimbingan.nim = mahasiswa.nim', 'left');
         $this->db->where('bimbingan.id_bimbingan', $id_bimbingan);
 
@@ -59,107 +58,29 @@ class M_bimbingan1 extends CI_Model
 
     function bimbingan_user_dosen()
     {
-        // $this->db->join('detail_bimbingan', 'bimbingan.id_bimbingan = detail_bimbingan.bimbingan_id', 'left');
         $this->db->join('mahasiswa', 'bimbingan.nim = mahasiswa.nim', 'left');
-        // $this->db->where('minggu', 14);
         $this->db->where('status_dosen', 1);
         $this->db->where('bimbingan.id_dosen', $this->session->userdata('id_dosen'));
 
         return $this->db->get('bimbingan');
     }
-
-    function bimbingan_user58_dosen()
-    {
-        // $this->db->join('detail_bimbingan', 'bimbingan.id_bimbingan = detail_bimbingan.bimbingan_id', 'left');
-        $this->db->join('mahasiswa', 'bimbingan.nim = mahasiswa.nim', 'left');
-        $this->db->where('minggu', 58);
-        $this->db->where('status_dosen', 1);
-        $this->db->where('bimbingan.id_dosen', $this->session->userdata('id_dosen'));
-
-        return $this->db->get('bimbingan');
-    }
-
-    function bimbingan_user912_dosen()
-    {
-        // $this->db->join('detail_bimbingan', 'bimbingan.id_bimbingan = detail_bimbingan.bimbingan_id', 'left');
-        $this->db->join('mahasiswa', 'bimbingan.nim = mahasiswa.nim', 'left');
-        $this->db->where('minggu', 912);
-        $this->db->where('status_dosen', 1);
-        $this->db->where('bimbingan.id_dosen', $this->session->userdata('id_dosen'));
-
-        return $this->db->get('bimbingan');
-    }
-
-    function bimbingan_user1316_dosen()
-    {
-        // $this->db->join('detail_bimbingan', 'bimbingan.id_bimbingan = detail_bimbingan.bimbingan_id', 'left');
-        $this->db->join('mahasiswa', 'bimbingan.nim = mahasiswa.nim', 'left');
-        $this->db->where('minggu', 1316);
-        $this->db->where('status_dosen', 1);
-        $this->db->where('bimbingan.id_dosen', $this->session->userdata('id_dosen'));
-
-        return $this->db->get('bimbingan');
-    }
-
     function bimbingan_user()
     {
 
         $this->db->join('mahasiswa', 'bimbingan.nim = mahasiswa.nim', 'left');
         $this->db->join('dosen', 'bimbingan.id_dosen = dosen.id_dosen', 'left');
         $this->db->where('status_dosen', 1);
-        $this->db->where('bimbingan.nim', $this->session->userdata('nim'));
+        $this->db->where('bimbingan.nim', $this->session->userdata('email'));
         $this->db->or_where('bimbingan.id_dosen', $this->session->userdata('id_dosen'));
-
-
-        return $this->db->get('bimbingan');
-    }
-
-    function bimbingan_user58()
-    {
-        // $this->db->join('detail_bimbingan', 'bimbingan.id_bimbingan = detail_bimbingan.bimbingan_id', 'left');
-        $this->db->join('mahasiswa', 'bimbingan.nim = mahasiswa.nim', 'left');
-        $this->db->where('minggu', 58);
-        $this->db->where('status_dosen', 1);
-        $this->db->where('bimbingan.nim', $this->session->userdata('nim'));
-        $this->db->or_where('bimbingan.id_dosen', $this->session->userdata('id_user'));
-
-        return $this->db->get('bimbingan');
-    }
-
-    function bimbingan_user912()
-    {
-        // $this->db->join('detail_bimbingan', 'bimbingan.id_bimbingan = detail_bimbingan.bimbingan_id', 'left');
-        $this->db->join('mahasiswa', 'bimbingan.nim = mahasiswa.nim', 'left');
-        $this->db->where('bimbingan.nim', $this->session->userdata('nim'));
-        $this->db->where('status_dosen', 1);
-        $this->db->where('minggu', 912);
-        $this->db->or_where('bimbingan.id_dosen', $this->session->userdata('id_user'));
-
-        return $this->db->get('bimbingan');
-    }
-
-    function bimbingan_user1316()
-    {
-        // $this->db->join('detail_bimbingan', 'bimbingan.id_bimbingan = detail_bimbingan.bimbingan_id', 'left');
-        $this->db->join('mahasiswa', 'bimbingan.nim = mahasiswa.nim', 'left');
-        $this->db->where('bimbingan.nim', $this->session->userdata('nim'));
-        $this->db->where('minggu', 1316);
-        $this->db->where('status_dosen', 1);
 
         return $this->db->get('bimbingan');
     }
 
     function get_dosen()
     {
-        // $this->db->join('mahasiswa', 'user.nim = mahasiswa.nim', 'left');
-        // $this->db->join('prodi', 'user.id_prodi = prodi.id_prodi', 'left');
-        // $this->db->join('user', 'bimbingan.id_dosen = user.id_dosen', 'left');
         $this->db->join('dosen', 'bimbingan.id_dosen = dosen.id_dosen', 'left');
         $this->db->where('status_dosen', 1);
-
-        // $this->db->join('dosen', 'bimbingan.id_dosen = dosen.id_dosen', 'left');
-
-        $this->db->where('bimbingan.nim', $this->session->userdata('nim'));
+        $this->db->where('bimbingan.nim', $this->session->userdata('email'));
 
         $query = $this->db->get('bimbingan');
         return $query->row();
@@ -172,17 +93,8 @@ class M_bimbingan1 extends CI_Model
 
     function get_mahasiswa()
     {
-        // $this->db->join('mahasiswa', 'user.nim = mahasiswa.nim', 'left');
-        // $this->db->join('prodi', 'user.id_prodi = prodi.id_prodi', 'left');
-        // // $this->db->join('bimbingan', 'user.id_bimbingan = bimbingan.id_bimbingan', 'left');
-        // $this->db->where('user.id_user', $this->session->userdata('id_user'));
-
-        // $query = $this->db->get('user');
-        // return $query->row();
-        // $this->db->join('mahasiswa', 'user.nim = mahasiswa.nim', 'left');
         $this->db->join('prodi', 'mahasiswa.id_prodi = prodi.id_prodi', 'left');
-        // $this->db->join('bimbingan', 'user.id_bimbingan = bimbingan.id_bimbingan', 'left');
-        $this->db->where('mahasiswa.nim', $this->session->userdata('nim'));
+        $this->db->where('mahasiswa.nim', $this->session->userdata('email'));
 
         $query = $this->db->get('mahasiswa');
         return $query->row();
@@ -192,13 +104,10 @@ class M_bimbingan1 extends CI_Model
     {
         $data = array(
             'nim' => $this->input->post('nim'),
-            // 'dosen' => $this->input->post('dosen'),
             'id_dosen' => $this->input->post('id_dosen'),
             'masalah' => $this->input->post('masalah'),
             'tanggal' => $this->input->post('tanggal'),
             'status' => 0,
-            // 'id_user' => $this->session->userdata('id_user'),
-            // 'minggu' => 14,
             'status_dosen' => 1,
 
         );
@@ -206,70 +115,8 @@ class M_bimbingan1 extends CI_Model
         $this->db->insert('bimbingan', $data);
         $this->session->set_flashdata('message', '<div class="alert alert-info">Data Berhasil Di Simpan</div>');
 
-        redirect('/bimbingan1/minggu14');
+        redirect('/bimbingan1');
     }
-
-    function tambah_data58()
-    {
-        $data = array(
-            'nim' => $this->input->post('nim'),
-            'dosen' => $this->input->post('dosen'),
-            'id_dosen' => $this->input->post('id_dosen'),
-            'masalah' => $this->input->post('masalah'),
-            'tanggal' => $this->input->post('tanggal'),
-            'status' => 0,
-            // 'id_user' => $this->session->userdata('id_user'),
-            'minggu' => 58,
-            'status_dosen' => 1,
-        );
-
-        $this->db->insert('bimbingan', $data);
-        $this->session->set_flashdata('message', '<div class="alert alert-info">Data Berhasil Di Simpan</div>');
-
-        redirect('/bimbingan1/minggu58');
-    }
-
-    function tambah_data912()
-    {
-        $data = array(
-            'nim' => $this->input->post('nim'),
-            'dosen' => $this->input->post('dosen'),
-            'id_dosen' => $this->input->post('id_dosen'),
-            'masalah' => $this->input->post('masalah'),
-            'tanggal' => $this->input->post('tanggal'),
-            'status' => 0,
-            // 'id_user' => $this->session->userdata('id_user'),
-            'minggu' => 912,
-            'status_dosen' => 1,
-        );
-
-        $this->db->insert('bimbingan', $data);
-        $this->session->set_flashdata('message', '<div class="alert alert-info">Data Berhasil Di Simpan</div>');
-
-        redirect('/bimbingan1/minggu912');
-    }
-
-    function tambah_data1316()
-    {
-        $data = array(
-            'nim' => $this->input->post('nim'),
-            'dosen' => $this->input->post('dosen'),
-            'id_dosen' => $this->input->post('id_dosen'),
-            'masalah' => $this->input->post('masalah'),
-            'tanggal' => $this->input->post('tanggal'),
-            'status' => 0,
-            // 'id_user' => $this->session->userdata('id_user'),
-            'minggu' => 1316,
-            'status_dosen' => 1,
-        );
-
-        $this->db->insert('bimbingan', $data);
-        $this->session->set_flashdata('message', '<div class="alert alert-info">Data Berhasil Di Simpan</div>');
-
-        redirect('/bimbingan1/minggu1316');
-    }
-
-
     function ubah_data($id_bimbingan)
     {
         $data = array(
@@ -292,16 +139,11 @@ class M_bimbingan1 extends CI_Model
         redirect('/bimbingan');
     }
 
-
-
-
-
     function get_id_user($id_user)
     {
         $this->db->join('user', 'bimbingan.id_user = user.id_user', 'left');
         $this->db->join('prodi', 'user.id_prodi = prodi.id_prodi', 'left');
         $this->db->join('jurusan', 'user.id_jurusan = jurusan.id_jurusan', 'left');
-
         $this->db->where('id_user', $id_user);
 
         return $this->db->get('bimbingan')->row();

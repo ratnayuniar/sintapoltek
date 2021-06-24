@@ -29,7 +29,7 @@ class Bimbingandosen extends CI_Controller
         if ($this->form_validation->run()) {
 
             $data_pesan = array(
-                'pengirim' => $this->session->userdata('level'),
+                'id_pengirim' => $this->session->userdata('level'),
                 'isi_pesan' => $this->input->post('isi_pesan'),
                 'id_mahasiswabimbingan' => $this->session->userdata('id_user'),
             );
@@ -37,7 +37,7 @@ class Bimbingandosen extends CI_Controller
             if (!empty($file['foto']["name"])) {
                 $filename = $file['foto']["name"];
 
-                $config['upload_path']   = './upload/user/';
+                $config['upload_path']   = './assets/berkas/bimbingan/';
                 $config['allowed_types'] = 'gif|jpg|png|pdf|doc|docx';
                 $config['file_name']      = $filename;
 
@@ -66,7 +66,7 @@ class Bimbingandosen extends CI_Controller
 
     public function reply($id_mahasiswabimbingan = null)
     {
-        $id = $this->session->userdata('id_user');
+        $id = $this->session->userdata('id_dosen');
         $data['title'] = 'SINTA PNM';
         $data['user'] = $this->bimbingan_model->getId($id_mahasiswabimbingan)->row();
         $data['pesans'] = $this->bimbingan_model->getId($id_mahasiswabimbingan)->result(); // tampilkan data pesan        
@@ -76,7 +76,6 @@ class Bimbingandosen extends CI_Controller
         if ($this->form_validation->run()) {
 
             $data_pesan = array(
-                'pengirim' => $id,
                 'id_pengirim' => $id,
                 'isi_pesan' => $this->input->post('isi_pesan'),
                 'id_mahasiswabimbingan' => $id_mahasiswabimbingan,
@@ -85,7 +84,7 @@ class Bimbingandosen extends CI_Controller
             $file = $_FILES;
             if (!empty($file['file']["name"])) {
                 $filename = $file['file']["name"];
-                $config['upload_path']   = './upload/user/';
+                $config['upload_path']   = './assets/berkas/bimbingan/';
                 $config['allowed_types'] = 'gif|jpg|png|pdf|doc|docx';
                 $config['file_name']      = $filename;
 

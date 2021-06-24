@@ -7,8 +7,8 @@ class M_verif_lab extends CI_Model
         // return $this->db->query("SELECT * FROM jurusan, mahasiswa,prodi WHERE jurusan.id_jurusan=mahasiswa.id_jurusan AND prodi.id_prodi=mahasiswa.id_prodi");
         // return $this->db->query("SELECT * FROM jurusan, user,prodi WHERE jurusan.id_jurusan=user.id_jurusan AND prodi.id_prodi=user.id_prodi");
         // $this->db->join('jurusan', 'mahasiswa.id_jurusan = jurusan.id_jurusan', 'left');
-        // $this->db->join('prodi', 'mahasiswa.id_prodi = prodi.id_prodi', 'left');
-        return $this->db->get('mahasiswa');
+        $this->db->join('mahasiswa', 'mahasiswa.nim = bks_wisuda.nim', 'left');
+        return $this->db->get('bks_wisuda');
     }
 
     function tampil2()
@@ -27,7 +27,7 @@ class M_verif_lab extends CI_Model
     function update($id, $data)
     {
         $this->db->where('nim', $id);
-        $this->db->update('mahasiswa', $data);
+        $this->db->update('bks_wisuda', $data);
     }
 
     function get_nim($id_perpus)

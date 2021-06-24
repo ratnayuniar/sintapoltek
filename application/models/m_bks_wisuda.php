@@ -4,7 +4,7 @@ class M_bks_wisuda extends CI_Model
 
     function tampil_data()
     {
-        // return $this->db->get('bks_wisuda');
+        // return $this->db->get('bks_wisuda'); 
         return $this->db->query("SELECT * FROM mahasiswa, bks_wisuda WHERE mahasiswa.nim=bks_wisuda.nim");
     }
 
@@ -12,8 +12,18 @@ class M_bks_wisuda extends CI_Model
     {
         $this->db->select('*');
         $this->db->join('mahasiswa', 'mahasiswa.nim=bks_wisuda.nim', 'left');
-        $this->db->where('bks_wisuda.nim', $this->session->userdata('nim'));
-        $this->db->or_where('bks_wisuda.id_prodi', $this->session->userdata('id_prodi'));
+        $this->db->join('prodi', 'prodi.id_prodi=mahasiswa.id_prodi', 'left');
+        $this->db->where('bks_wisuda.nim', $this->session->userdata('email'));
+        $this->db->or_where('bks_wisuda.nim', $this->session->userdata('id_prodi'));
+        return $this->db->get('bks_wisuda');
+    }
+
+    function bks_wisuda_admin($id_prodi)
+    {
+        $this->db->select('*');
+        $this->db->join('mahasiswa', 'mahasiswa.nim=bks_wisuda.nim', 'left');
+        $this->db->join('prodi', 'prodi.id_prodi=mahasiswa.id_prodi', 'left');
+        $this->db->where(array('mahasiswa.id_prodi' => $id_prodi));
         return $this->db->get('bks_wisuda');
     }
 
@@ -30,8 +40,8 @@ class M_bks_wisuda extends CI_Model
 
     function get_nim($id_bks_wisuda)
     {
-        $this->db->join('user', 'bks_wisuda.nim = user.nim', 'left');
-        $this->db->join('mahasiswa', 'mahasiswa.nim = user.nim', 'left');
+        // $this->db->join('user', 'bks_wisuda.nim = user.nim', 'left');
+        $this->db->join('mahasiswa', 'mahasiswa.nim = bks_wisuda.nim', 'left');
         $this->db->where('id_bks_wisuda', $id_bks_wisuda);
 
         return $this->db->get('bks_wisuda')->row();

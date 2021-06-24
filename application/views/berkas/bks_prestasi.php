@@ -38,7 +38,8 @@
                                     <tbody>
                                         <?php
                                         $no = 1;
-                                        foreach ($bks_prestasi_admin->result() as $row) { ?>
+                                        $id_prodi = $this->session->userdata('id_prodi');
+                                        foreach ($this->m_bks_prestasi->bks_prestasi_admin($id_prodi)->result() as $row) { ?>
                                             <tr>
                                                 <td><?= $no++ ?></td>
                                                 <td><?= $row->nim ?></td>
@@ -199,9 +200,7 @@
         }
     </script>
 <?php } else { ?>
-
     <!-- PUNYA MAHASISWA -->
-
     <div class="content-wrapper">
         <section class="content-header">
             <div class="container-fluid">
@@ -251,14 +250,14 @@
                                                     <td><?= $row->nim ?></td>
                                                     <td><?= $row->nama ?></td>
                                                     <td class="text-center" width="160px">
-                                                    <?php if ($row->status == '0') {
-                                                    echo '<span class="badge badge-warning">Menunggu</span>';
-                                                    } else if ($row->status == '1') {
-                                                    echo '<span class="badge badge-info">Valid</span>';
-                                                    } else {
-                                                    echo '<span class="badge badge-danger">Tidak Valid</span>';
-                                                    }
-                                                    ?>
+                                                        <?php if ($row->status == '0') {
+                                                            echo '<span class="badge badge-warning">Menunggu</span>';
+                                                        } else if ($row->status == '1') {
+                                                            echo '<span class="badge badge-info">Valid</span>';
+                                                        } else {
+                                                            echo '<span class="badge badge-danger">Tidak Valid</span>';
+                                                        }
+                                                        ?>
                                                     </td>
                                                     <td class="text-center" width="160px">
                                                         <a href="<?php echo base_url('bks_prestasi/delete_users/' . $row->id_bks_prestasi) ?>" id="btn-hapus" data-toggle="tooltip" data-placement="bottom" title="Hapus Mahasiswa" class="btn btn-sm btn-danger btn-xs"><i class="fa fa-trash"></i> Delete</a>
@@ -383,8 +382,8 @@
     <script type="text/javascript">
         function ResetInput(id_bks_prestasi, nim, nama_lomba, tahun, juara, tingkat, jenis, piagam) {
             document.getElementById('id_bks_prestasi').value = "";
-            document.getElementById('nim').value = <?php echo $this->session->userdata('nim'); ?>;
-            document.getElementById('nim2').value = <?php echo $this->session->userdata('nim'); ?>;
+            document.getElementById('nim').value = <?php echo $this->session->userdata('email'); ?>;
+            document.getElementById('nim2').value = <?php echo $this->session->userdata('email'); ?>;
             document.getElementById('nama_lomba').value = "";
             document.getElementById('tahun').value = "";
             document.getElementById('juara').value = "";

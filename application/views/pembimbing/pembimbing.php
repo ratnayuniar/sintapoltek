@@ -40,7 +40,9 @@
                                     <tbody>
                                         <?php
                                         $no = 1;
-                                        foreach ($query->result() as $row) {
+                                        $id_prodi = $this->session->userdata('id_prodi');
+                                        foreach ($this->m_pembimbing->tampil_data($id_prodi)->result() as $row) {
+                                            // foreach ($query->result() as $row) {
                                             $data['user'] = $this->m_pembimbing->getmahasiswabyid($row->nim);
                                             $data['dosen1'] = $this->m_pembimbing->getdosen1($row->pembimbing1);
                                             $data['dosen2'] = $this->m_pembimbing->getdosen2($row->pembimbing2);
@@ -94,7 +96,7 @@
                         <div class="form-group">
                             <label class="col-md-5 control-label">Dosen Pembimbing 1</label>
                             <div class="col-md-9">
-                                <select class="form-control" data-live-search="true" data-style="btn-white" onclick="choose()" id="nama" name="pembimbing1" required>
+                                <select class="form-control" data-live-search="true" data-style="btn-white" onclick="choose()" id="pembimbing1" name="pembimbing1" required>
                                     <option value="">-- Pilih Dosen Pembimbing 1 --</option>
                                     <?php foreach ($dosen->result() as $row) : ?>
                                         <option value="<?php echo $row->id_dosen; ?>" required><?php echo $row->nama; ?></option>
@@ -110,7 +112,7 @@
                         <div class="form-group">
                             <label class="col-md-5 control-label">Dosen Pembimbing 2</label>
                             <div class="col-md-9">
-                                <select class="form-control" data-live-search="true" data-style="btn-white" onclick="pilih()" id="nama2" name="pembimbing2" required>
+                                <select class="form-control" data-live-search="true" data-style="btn-white" onclick="pilih()" id="pembimbing2" name="pembimbing2" required>
                                     <option value="">-- Pilih Dosen Pembimbing 2 --</option>
                                     <?php foreach ($dosen->result() as $row) : ?>
                                         <option value="<?php echo $row->id_dosen; ?>"><?php echo $row->nama; ?></option>
@@ -160,14 +162,14 @@
 
     <script type="text/javascript">
         function choose() {
-            var data = document.getElementById('nama').value;
+            var data = document.getElementById('pembimbing1').value;
             document.getElementById('output').value = data;
         }
     </script>
 
     <script type="text/javascript">
         function pilih() {
-            var data = document.getElementById('nama2').value;
+            var data = document.getElementById('pembimbing2').value;
             document.getElementById('hasil').value = data;
         }
     </script>

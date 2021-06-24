@@ -37,7 +37,8 @@
                                     <tbody>
                                         <?php
                                         $no = 1;
-                                        foreach ($bks_keterampilan_admin->result() as $row) { ?>
+                                        $id_prodi = $this->session->userdata('id_prodi');
+                                        foreach ($this->m_bks_keterampilan->bks_keterampilan_admin($id_prodi)->result() as $row) { ?>
                                             <tr>
                                                 <td><?= $no++ ?></td>
                                                 <td><?= $row->nim ?></td>
@@ -226,8 +227,8 @@
     <script type="text/javascript">
         function ResetInput(id_bks_ket, nim, nama_ket, jenis, tingkat, sk_ket) {
             document.getElementById('id_bks_ket').value = "";
-            document.getElementById('nim').value = <?php echo $this->session->userdata('nim'); ?>;
-            document.getElementById('nim2').value = <?php echo $this->session->userdata('nim'); ?>;
+            document.getElementById('nim').value = <?php echo $this->session->userdata('email'); ?>;
+            document.getElementById('nim2').value = <?php echo $this->session->userdata('email'); ?>;
             document.getElementById('nama_ket').value = "";
             document.getElementById('jenis').value = "";
             document.getElementById('tingkat').value = "";

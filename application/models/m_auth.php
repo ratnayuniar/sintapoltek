@@ -37,4 +37,16 @@ class M_auth extends CI_Model
         $this->db->where('id_dosen', $id);
         return $this->db->get('dosen')->row();
     }
+
+    function auth_dosen($email, $password)
+    {
+        $sql = $this->db->query("SELECT * FROM dosen WHERE email = '$email' AND password = md5('$password') LIMIT 1");
+        return $sql;
+    }
+
+    function auth_mahasiswa($email, $password)
+    {
+        $sql = $this->db->query("SELECT * FROM mahasiswa WHERE nim = '$email' AND password = md5('$password') LIMIT 1");
+        return $sql;
+    }
 }

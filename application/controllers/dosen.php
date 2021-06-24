@@ -8,6 +8,7 @@ class Dosen extends CI_Controller
 	{
 		parent::__construct();
 		$this->load->model('m_dosen');
+		$this->load->model('m_prodi2');
 		$this->load->helper('url');
 	}
 
@@ -16,8 +17,6 @@ class Dosen extends CI_Controller
 		$data['query'] = $this->m_dosen->tampil_data();
 		$data['dosen'] = $this->m_dosen->getdosen();
 		$data['title'] = 'SINTA PNM';
-		$data['user'] = $this->db->get_where('user', ['email' =>
-		$this->session->userdata('email')])->row_array();
 
 		$this->load->view('templates/header', $data);
 		$this->load->view('templates/sidebar', $data);
@@ -33,12 +32,6 @@ class Dosen extends CI_Controller
 		else $this->m_dosen->ubah_data($id_dosen);
 	}
 
-	public function delete()
-	{
-		$id_dosen = $this->input->post('id_dosen2');
-		$this->m_dosen->hapus_data($id_dosen);
-	}
-
 	function delete2($id_dosen)
 	{
 		$delete = $this->m_dosen->get_id_dosen($id_dosen);
@@ -51,4 +44,10 @@ class Dosen extends CI_Controller
 			redirect('dosen', 'refresh');
 		}
 	}
+
+	// public function delete()
+	// {
+	// 	$id_dosen = $this->input->post('id_dosen2');
+	// 	$this->m_dosen->hapus_data($id_dosen);
+	// }
 }

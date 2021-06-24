@@ -5,14 +5,18 @@ class Bimbingan extends CI_Controller
 {
     function __construct()
     {
+
         parent::__construct();
         $this->load->model('bimbingan_model');
         $this->load->model('m_pembimbing');
+        if ($this->session->userdata('level') !== '2') {
+            redirect('auth/logout', 'refresh');
+        }
     }
 
     public function index()
     {
-        $id = $this->session->userdata('id_user');
+        $id = $this->session->userdata('email');
         $data['pesans'] = $this->bimbingan_model->getId($id)->result();
 
         $this->form_validation->set_rules('isi_pesan', 'Isi pesan', 'required');
@@ -20,7 +24,6 @@ class Bimbingan extends CI_Controller
         if ($this->form_validation->run()) {
 
             $data_pesan = array(
-                'pengirim' => $id,
                 'id_pengirim' => $id,
                 'isi_pesan' => $this->input->post('isi_pesan'),
                 'id_mahasiswabimbingan' => $id,
@@ -28,7 +31,7 @@ class Bimbingan extends CI_Controller
             $file = $_FILES;
             if (!empty($file['file']["name"])) {
                 $filename = $file['file']["name"];
-                $config['upload_path']   = './assets/berkas/bahasa/';
+                $config['upload_path']   = './assets/berkas/bimbingan/';
                 $config['allowed_types'] = 'gif|jpg|png|pdf|doc|docx';
                 $config['file_name']      = $filename;
 
@@ -48,13 +51,8 @@ class Bimbingan extends CI_Controller
 
             redirect(base_url('bimbingan'), 'refresh');
         }
-
-
-        check_not_login();
-        $data['title'] = 'Bimbingan';
-        $data['user'] = $this->db->get_where('user', ['email' =>
-        $this->session->userdata('email')])->row_array();
-
+        // check_not_login();
+        $data['title'] = 'Bimbingann';
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('bimbingan', $data);

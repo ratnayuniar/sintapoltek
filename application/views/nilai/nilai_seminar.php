@@ -42,10 +42,10 @@
                     <?php
                     $no = 1;
                     foreach ($query->result() as $row) {
-                      $data['user'] = $this->m_nilai_seminar->getmahasiswabyid($row->id_mahasiswa);
+                      $data['user'] = $this->m_penguji->getmahasiswabyid($row->nim);
                       $this->db->select('AVG(rata) as rata, sum(nilai_akhir) as nilaiakhir');
-                      $this->db->where('id_mahasiswa', $row->id_mahasiswa);
-                      $result = $this->db->get('nilai_seminar')->row();
+                      $this->db->where('nim', $row->nim);
+                      $result = $this->db->get('nilai_sempro')->row();
                       $rata = number_format($result->rata, 1, '.', '');
                     ?>
                       <tr>
@@ -54,7 +54,7 @@
                         <td><?= $rata ?></td>
                         <td><?= $result->nilaiakhir ?></td>
                         <td>
-                          <a href="<?= base_url('nilai_seminar/detail_nilai_seminar/' . $row->id_nilai_seminar) ?>" class="on-default edit-row btn btn-info pull-right btn-xs"><i class="fa fa-search"></i> Detail </a>
+                          <a href="<?= base_url('nilai_seminar/detail_nilai_seminar/' . $row->id_nilai_sempro) ?>" class="on-default edit-row btn btn-info pull-right btn-xs"><i class="fa fa-search"></i> Detail </a>
                         </td>
                       </tr>
                     <?php } ?>
@@ -160,33 +160,6 @@
       </div>
     </div>
   </div>
-
-
-  <script type="text/javascript">
-    function SetInput(id_mhs, nim, nama, prodi, jurusan) {
-      document.getElementById('id_mhs').value = id_mhs;
-      document.getElementById('nim').value = nim;
-      document.getElementById('nama').value = nama;
-      document.getElementById('prodi').value = prodi;
-      document.getElementById('jurusan').value = jurusan;
-    }
-
-    function SetInputs(id_mhs, nim, nama, prodi, jurusan) {
-      document.getElementById('id_mhs2').value = id_mhs;
-      document.getElementById('nim2').value = nim;
-      document.getElementById('nama2').value = nama;
-      document.getElementById('prodi2').value = prodi;
-      document.getElementById('jurusan2').value = jurusan;
-    }
-
-    function ResetInput(id_mhs, nim, nama, prodi, jurusan) {
-      document.getElementById('id_mhs').value = "";
-      document.getElementById('nim').value = "";
-      document.getElementById('nama').value = "";
-      document.getElementById('prodi').value = "";
-      document.getElementById('jurusan').value = "";
-    }
-  </script>
 <?php } else if (($this->session->userdata('level') == 3) || ($this->session->userdata('level') == 4)) { ?>
   <div class="content-wrapper">
     <section class="content-header">

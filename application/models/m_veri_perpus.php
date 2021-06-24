@@ -5,7 +5,9 @@ class M_veri_perpus extends CI_Model
     function tampil_data()
     {
         // return $this->db->query("SELECT * FROM jurusan, mahasiswa,prodi WHERE jurusan.id_jurusan=mahasiswa.id_jurusan AND prodi.id_prodi=mahasiswa.id_prodi");
-        return $this->db->get('mahasiswa');
+        $this->db->join('mahasiswa', 'mahasiswa.nim = bks_wisuda.nim', 'left');
+
+        return $this->db->get('bks_wisuda');
     }
 
     function tampil2()
@@ -24,7 +26,7 @@ class M_veri_perpus extends CI_Model
     function update($id, $data)
     {
         $this->db->where('nim', $id);
-        $this->db->update('mahasiswa', $data);
+        $this->db->update('bks_wisuda', $data);
     }
 
     function get_nim($id_perpus)

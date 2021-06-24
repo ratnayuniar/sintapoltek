@@ -17,13 +17,10 @@ class Bks_prestasi extends CI_Controller
         $data['query'] = $this->m_bks_prestasi->tampil_data();
 
         $data['bks_prestasi_user'] = $this->m_bks_prestasi->bks_prestasi_user();
-        $data['bks_prestasi_admin'] = $this->m_bks_prestasi->bks_prestasi_admin();
+        // $data['bks_prestasi_admin'] = $this->m_bks_prestasi->bks_prestasi_admin();
 
         $data['title'] = 'SINTA PNM';
         $data['data'] = $this->db->get('bks_prestasi')->result();
-
-        $data['user'] = $this->db->get_where('user', ['email' =>
-        $this->session->userdata('email')])->row_array();
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
@@ -43,18 +40,9 @@ class Bks_prestasi extends CI_Controller
         redirect('bks_prestasi', 'refresh');
     }
 
-    function save_bks_lengkap($id)
-    {
-        $this->m_bks_prestasi->update($id, ['status' => 3]);
-        redirect('bks_prestasi', 'refresh');
-    }
-
     function detail_bks_prestasi($nim)
     {
         $data['bks_prestasi'] = $this->m_bks_prestasi->get_nim($nim);
-
-        $data['user'] = $this->db->get_where('user', ['email' =>
-        $this->session->userdata('email')])->row_array();
 
         if ($data['bks_prestasi']) {
             $data['title'] = 'SINTA PNM';
@@ -104,7 +92,6 @@ class Bks_prestasi extends CI_Controller
                     'jenis' => $jenis,
                     'piagam' => $piagam,
                     'status' => 0,
-                    'id_prodi' => $this->session->userdata('id_prodi')
                 ];
                 // print_r($data);
                 // exit();
@@ -137,86 +124,5 @@ class Bks_prestasi extends CI_Controller
             $this->session->set_flashdata('pesan', 'dihapus');
         }
         redirect('bks_prestasi');
-    }
-
-    public function update_users()
-    {
-        $this->form_validation->set_rules('nim', 'nim', 'required');
-        $this->form_validation->set_error_delimiters('', '');
-        $this->load->library('upload');
-        $path = './assets/berkas/wisuda/';
-        $config['upload_path'] = $path;
-        $config['allowed_types'] = 'gif|jpg|png|jpeg';
-        $config['max_size']     = '2048';
-        $config['max_width'] = '1024';
-        $config['max_height'] = '768';
-        $nama_file = "gambar_" . time();
-        $config['file_name'] = $nama_file;
-        $this->upload->initialize($config);
-
-        $id_bks_prestasi = $this->input->post('id_bks_prestasi');
-        $gambar_lama = $this->input->post('ganti_gambar');
-
-        if ($_FILES['berita_acara']['name']) {
-            $field_name = "berita_acara";
-            if ($this->form_validation->run() &&  $this->upload->do_upload($field_name)) {
-                $nim = $this->input->post('nim'); //sesuaikan nama fiednya denagn inputan ok
-
-                $gambar = $this->upload->data();
-                $user = ([
-                    'nim' => $nim,
-                    'status' => 0,
-                    'berita_acara' => $gambar['file_name']
-                ]);
-                $data = array_merge($user);
-
-                @unlink($path . $gambar_lama);
-                $where = array('id_bks_prestasi' => $id_bks_prestasi);
-                if ($this->m_bks_prestasi->update_users($data, $where) == TRUE) {
-                    $this->session->set_flashdata('pesan', 'di edit');
-                    redirect('bks_prestasi');
-                } else {
-                    $this->index();
-                }
-            } else {
-                $this->index();
-            }
-        }
-
-        if ($_FILES['persetujuan']['name']) {
-            $field_name = "persetujuan";
-            if ($this->form_validation->run() &&  $this->upload->do_upload($field_name)) {
-                $nim = $this->input->post('nim'); //sesuaikan nama fiednya denagn inputan ok
-
-                $gambar = $this->upload->data();
-                $user = ([
-                    'nim' => $nim,
-                    'status' => 0,
-                    'persetujuan' => $gambar['file_name']
-                ]);
-                $data = array_merge($user);
-
-                @unlink($path . $gambar_lama);
-                $where = array('id_bks_prestasi' => $id_bks_prestasi);
-                if ($this->m_bks_prestasi->update_users($data, $where) == TRUE) {
-                    $this->session->set_flashdata('pesan', 'di edit');
-                    redirect('bks_prestasi');
-                } else {
-                    $this->index();
-                }
-            } else {
-                $this->index();
-            }
-        }
-    }
-
-    public function ambil_id_user($id_bks_prestasi)
-    {
-        $title = "edit data";
-        $data = $this->m_bks_prestasi->ambil_id_users($id_bks_prestasi);
-        $this->load->view('templates/header');
-        $this->load->view('templates/sidebar');
-        $this->load->view('berkas/edit_bks_prestasi', ['data' => $data, 'title' => $title]);
-        $this->load->view('templates/footer');
     }
 }

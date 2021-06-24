@@ -7,8 +7,8 @@ if (empty($this->session->set_userdata('email'))) {
                 <img src="<?= base_url('admin/dist/img/logosinta2.png') ?>" width="200px" class="brand-image img-square " alt="User Image"><br>
             </div>
             <div class="card-body">
-                <?= $this->session->flashdata('message'); ?>
-                <form action="<?= base_url('auth/proses_login'); ?>" method="post">
+                <?= $this->session->flashdata('msg'); ?>
+                <form action="<?= base_url('auth/proses_login2'); ?>" method="post">
                     <div class="input-group mb-3">
                         <input type="text" name="email" id="email" class="form-control" placeholder="Email" value="<?= set_value('email'); ?>">
                         <div class="input-group-append">

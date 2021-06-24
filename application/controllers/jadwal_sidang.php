@@ -19,8 +19,6 @@ class Jadwal_sidang extends CI_Controller
 		$data['jadwal_sidang_user'] = $this->m_jadwal_sidang->jadwal_sidang_user();
 		$data['mahasiswa'] = $this->m_mahasiswa->getmahasiswa();
 		$data['title'] = 'SINTA PNM';
-		$data['user'] = $this->db->get_where('user', ['email' =>
-		$this->session->userdata('email')])->row_array();
 
 		$this->load->view('templates/header', $data);
 		$this->load->view('templates/sidebar', $data);
@@ -36,12 +34,6 @@ class Jadwal_sidang extends CI_Controller
 		else $this->m_jadwal_sidang->ubah_data($nim);
 	}
 
-	public function delete()
-	{
-		$id_jadwal = $this->input->post('id_jadwal2');
-		$this->m_jadwal_sidang->hapus_data($id_jadwal);
-	}
-
 	function delete2($id_jadwal)
 	{
 		$delete = $this->m_jadwal_sidang->get_id_jadwal($id_jadwal);
@@ -54,4 +46,10 @@ class Jadwal_sidang extends CI_Controller
 			redirect('jadwal_sidang', 'refresh');
 		}
 	}
+
+	// public function delete()
+	// {
+	// 	$id_jadwal = $this->input->post('id_jadwal2');
+	// 	$this->m_jadwal_sidang->hapus_data($id_jadwal);
+	// }
 }

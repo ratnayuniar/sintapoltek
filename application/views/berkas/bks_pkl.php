@@ -38,7 +38,8 @@
                   <tbody>
                     <?php
                     $no = 1;
-                    foreach ($bks_pkl_admin->result() as $row) { ?>
+                    $id_prodi = $this->session->userdata('id_prodi');
+                    foreach ($this->m_bks_pkl->bks_pkl_admin($id_prodi)->result() as $row) { ?>
                       <tr>
                         <td><?= $no++ ?></td>
                         <td><?= $row->nim ?></td>
@@ -136,19 +137,19 @@
                           <td><?= $row->nim ?></td>
                           <td><?= $row->nama ?></td>
                           <td class="text-center" width="160px">
-                          <?php if ($row->status == '0') {
-                          echo '<span class="badge badge-warning">Menunggu</span>';
-                          } else if ($row->status == '1') {
-                          echo '<span class="badge badge-info">Valid</span>';
-                          } else {
-                          echo '<span class="badge badge-danger">Tidak Valid</span>';
-                          }
-                          ?>
+                            <?php if ($row->status == '0') {
+                              echo '<span class="badge badge-warning">Menunggu</span>';
+                            } else if ($row->status == '1') {
+                              echo '<span class="badge badge-info">Valid</span>';
+                            } else {
+                              echo '<span class="badge badge-danger">Tidak Valid</span>';
+                            }
+                            ?>
                           </td>
                           <td class="text-center" width="160px">
                             <a href="<?php echo base_url('bks_pkl/delete_users/' . $row->id_bks_pkl) ?>" id="btn-hapus" data-toggle="tooltip" data-placement="bottom" title="Hapus Mahasiswa" class="btn btn-sm btn-danger btn-xs"><i class="fa fa-trash"></i> Delete</a>
                             <!-- <a href="<?= base_url('bks_pkl/detail_bks_pkl/' . $row->id_bks_pkl) ?>" class="on-default edit-row btn btn-info pull-right btn-xs"><i class="fa fa-search"></i> Detail </a> -->
-                          </td> 
+                          </td>
                         </tr>
                       <?php } ?>
                     </tbody>
@@ -269,8 +270,8 @@
   <script type="text/javascript">
     function ResetInput(id_bks_pkl, nim, judul, tempat, provinsi, kota, tanggal, ringkasan, sk_pkl, laporan) {
       document.getElementById('id_bks_pkl').value = "";
-      document.getElementById('nim').value = <?php echo $this->session->userdata('nim'); ?>;
-      document.getElementById('nim2').value = <?php echo $this->session->userdata('nim'); ?>;
+      document.getElementById('nim').value = <?php echo $this->session->userdata('email'); ?>;
+      document.getElementById('nim2').value = <?php echo $this->session->userdata('email'); ?>;
       document.getElementById('judul').value = "";
       document.getElementById('tempat').value = "";
       document.getElementById('provinsi').value = "";

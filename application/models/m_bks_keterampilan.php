@@ -6,18 +6,16 @@ class M_bks_keterampilan extends CI_Model
     {
         $this->db->select('*');
         $this->db->join('mahasiswa', 'mahasiswa.nim=bks_keterampilan.nim', 'left');
-        $this->db->where('bks_keterampilan.nim', $this->session->userdata('nim'));
+        $this->db->where('bks_keterampilan.nim', $this->session->userdata('email'));
         return $this->db->get('bks_keterampilan');
     }
 
-    function bks_keterampilan_admin()
+    function bks_keterampilan_admin($id_prodi)
     {
         $this->db->select("mahasiswa.nama, mahasiswa.nim, bks_keterampilan.nim,bks_keterampilan.status,bks_keterampilan.id_bks_ket, COUNT(*) AS jumlah")->group_by('bks_keterampilan.nim');
         $this->db->join('mahasiswa', 'mahasiswa.nim=bks_keterampilan.nim', 'left');
+        $this->db->where(array('mahasiswa.id_prodi' => $id_prodi));
         return $this->db->get('bks_keterampilan');
-
-        //return $this->db->query("SELECT nim,status,id_bks_ket, COUNT(*) AS jumlah FROM bks_keterampilan AS jumlah GROUP BY nim ");
-        // return $this->db->query("SELECT * FROM mahasiswa, bks_keterampilan WHERE mahasiswa.nim=bks_keterampilan.nim");
     }
 
     function update($id, $data)
@@ -28,7 +26,6 @@ class M_bks_keterampilan extends CI_Model
 
     function get_nim($nim)
     {
-        $this->db->join('user', 'user.nim = bks_keterampilan.nim', 'left');
         $this->db->join('mahasiswa', 'bks_keterampilan.nim = mahasiswa.nim', 'left');
         $this->db->where('bks_keterampilan.nim', $nim);
 
@@ -61,30 +58,4 @@ class M_bks_keterampilan extends CI_Model
         $this->db->delete('bks_keterampilan');
         return TRUE;
     }
-
-    // public function ambil_id_users($id_bks_ket)
-    // {
-    //     $data = $this->db->where(['id_bks_ket' => $id_bks_ket])
-    //         ->get("bks_keterampilan");
-    //     if ($data->num_rows() > 0) {
-    //         return $data->row();
-    //     }
-    // }
-
-    // function tampil_data()
-    // {
-    //     return $this->db->query("SELECT * FROM mahasiswa, bks_keterampilan WHERE mahasiswa.nim=bks_keterampilan.nim");
-    // }
-
-    // function insert($data)
-    // {
-    //     return $this->db->insert('bks_keterampilan', $data);
-    // }
-
-    // public function update_users($data, $where)
-    // {
-    //     $this->db->where($where);
-    //     $this->db->update('bks_keterampilan', $data);
-    //     return TRUE;
-    // }
 }

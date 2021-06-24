@@ -5,70 +5,50 @@ class M_bks_seminar extends CI_Model
 	function tampil_data()
 	{
 		// return $this->db->get('bks_seminar');
-		return $this->db->query("SELECT * FROM mahasiswa, bks_seminar WHERE mahasiswa.nim=bks_seminar.nim");
+		return $this->db->query("SELECT * FROM mahasiswa, seminar_proposal WHERE mahasiswa.nim=seminar_proposal.nim");
 	}
 
 	function bks_seminar_user()
 	{
 		$this->db->select('*');
-		$this->db->join('mahasiswa', 'mahasiswa.nim=bks_seminar.nim', 'left');
-		$this->db->where('bks_seminar.nim', $this->session->userdata('nim'));
-		return $this->db->get('bks_seminar');
+		$this->db->join('mahasiswa', 'mahasiswa.nim=seminar_proposal.nim', 'left');
+		$this->db->where('seminar_proposal.nim', $this->session->userdata('email'));
+		return $this->db->get('seminar_proposal');
 	}
 
-	function bks_seminar_admin()
+	function bks_seminar_admin($id_prodi)
 	{
 		$this->db->select('*');
-		$this->db->join('mahasiswa', 'mahasiswa.nim=bks_seminar.nim', 'left');
-		$this->db->where('bks_seminar.id_prodi', $this->session->userdata('id_prodi'));
-		return $this->db->get('bks_seminar');
+		$this->db->join('mahasiswa', 'mahasiswa.nim=seminar_proposal.nim', 'left');
+		$this->db->where(array('mahasiswa.id_prodi' => $id_prodi));
+		// $this->db->where('seminar_proposal.id_prodi', $this->session->userdata('id_prodi'));
+		return $this->db->get('seminar_proposal');
 	}
 
 	function insert($data)
 	{
-		return $this->db->insert('bks_seminar', $data);
+		return $this->db->insert('seminar_proposal', $data);
 	}
 
 	function update($id, $data)
 	{
-		$this->db->where('id_bks_seminar', $id);
-		$this->db->update('bks_seminar', $data);
+		$this->db->where('id_seminar_proposal', $id);
+		$this->db->update('seminar_proposal', $data);
 	}
 
-	function get_nim($id_bks_seminar)
+	function get_nim($id_seminar_proposal)
 	{
-		$this->db->join('user', 'bks_seminar.nim = user.nim', 'left');
-		$this->db->join('mahasiswa', 'mahasiswa.nim = user.nim', 'left');
-		$this->db->join('prodi', 'user.id_prodi = prodi.id_prodi', 'left');
-		$this->db->where('id_bks_seminar', $id_bks_seminar);
+		// $this->db->join('user', 'bks_seminar.nim = user.nim', 'left');
+		$this->db->join('mahasiswa', 'mahasiswa.nim = seminar_proposal.nim', 'left');
+		// $this->db->join('prodi', 'user.id_prodi = prodi.id_prodi', 'left');
+		$this->db->where('id_seminar_proposal', $id_seminar_proposal);
 
-		return $this->db->get('bks_seminar')->row();
+		return $this->db->get('seminar_proposal')->row();
 	}
 
-	function cari_data($data_kode)
+	public function ambil_id_mahasiswa($id_seminar_proposal)
 	{
-		$this->db->where($data_kode);
-		$hasil = $this->db->get('bks_seminar')->result();
-		return $hasil;
-	}
-
-	public function proses_edit_data()
-	{
-		// $id_bks_seminar = $this->input->post('id_bks_seminar', true);
-		$data = [
-			"nim" => $this->input->post('nim'),
-			"berita_acara" => $this->input->post('berita_acara'),
-		];
-		// $this->db->set('data', $data);
-		// $this->db->where('id_bks_seminar', $id_bks_seminar);
-		// $this->db->update('bks_seminar', $data);
-		$this->db->where('id_bks_seminar', $this->input->post('id_bks_seminar'));
-		$this->db->update('bks_seminar', $data['id_bks_seminar']);
-	}
-
-	public function ambil_id_mahasiswa($id_bks_seminar)
-	{
-		return $this->db->get_where('bks_seminar', ['id_bks_seminar' => $id_bks_seminar])
+		return $this->db->get_where('seminar_proposal', ['id_seminar_proposal' => $id_seminar_proposal])
 			->row_array();
 	}
 
@@ -76,14 +56,6 @@ class M_bks_seminar extends CI_Model
 	{
 		$this->db->where($data_kode);
 		$this->db->update('bks_seminar', $data_buku);
-	}
-
-	public function add2($post)
-	{
-		$params = [
-			'nim' => $post['nim'],
-		];
-		$this->db->insert('bks_seminar', $params);
 	}
 
 	public function hapusFile($id_bks_seminar)
@@ -136,9 +108,37 @@ class M_bks_seminar extends CI_Model
 		}
 	}
 
-	public function M_EditMahasiswa($data, $id_bks_seminar)
-	{
-		$this->db->where('id_bks_seminar', $id_bks_seminar);
-		$this->db->update('bks_seminar', $data);
-	}
+	// public function M_EditMahasiswa($data, $id_bks_seminar)
+	// {
+	// 	$this->db->where('id_bks_seminar', $id_bks_seminar);
+	// 	$this->db->update('bks_seminar', $data);
+	// }
+
+	// function cari_data($data_kode)
+	// {
+	// 	$this->db->where($data_kode);
+	// 	$hasil = $this->db->get('bks_seminar')->result();
+	// 	return $hasil;
+	// }
+
+	// public function proses_edit_data()
+	// {
+	// 	// $id_bks_seminar = $this->input->post('id_bks_seminar', true);
+	// 	$data = [
+	// 		"nim" => $this->input->post('nim'),
+	// 		"berita_acara" => $this->input->post('berita_acara'),
+	// 	];
+	// 	// $this->db->set('data', $data);
+	// 	// $this->db->where('id_bks_seminar', $id_bks_seminar);
+	// 	// $this->db->update('bks_seminar', $data);
+	// 	$this->db->where('id_bks_seminar', $this->input->post('id_bks_seminar'));
+	// 	$this->db->update('bks_seminar', $data['id_bks_seminar']);
+	// }
+	// public function add2($post)
+	// {
+	// 	$params = [
+	// 		'nim' => $post['nim'],
+	// 	];
+	// 	$this->db->insert('bks_seminar', $params);
+	// 
 }

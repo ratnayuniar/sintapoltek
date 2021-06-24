@@ -36,7 +36,7 @@
                                     <address>
                                         <!-- Program Studi : <?= $this->session->userdata('nama_prodi'); ?><br>
                                         Jurusan : <?= $this->session->userdata('nama_jurusan'); ?><br> -->
-                                        Email : <?= $bks_wisuda->email; ?>
+                                        <!-- Email : <?= $bks_wisuda->email; ?> -->
                                     </address>
                                 </div>
                                 <div class="col-sm-4 invoice-col">

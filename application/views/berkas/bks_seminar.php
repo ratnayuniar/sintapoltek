@@ -39,7 +39,8 @@
                   <tbody>
                     <?php
                     $no = 1;
-                    foreach ($bks_seminar_admin->result() as $row) { ?>
+                    $id_prodi = $this->session->userdata('id_prodi');
+                    foreach ($this->m_bks_seminar->bks_seminar_admin($id_prodi)->result() as $row) { ?>
                       <tr>
                         <td><?= $no++ ?></td>
                         <td><?= $row->nim ?></td>
@@ -56,12 +57,12 @@
                               ?>
                         </td>
                         <td>
-                          <a href="<?php echo site_url('bks_seminar/save_bks_belum/' . $row->id_bks_seminar); ?>" id="btn-konfirmasi" class="btn btn-xs btn-danger">Belum</a>
-                          <a href="<?php echo site_url('bks_seminar/save_bks_kurang/' . $row->id_bks_seminar); ?>" id="btn-konfirmasi" class="btn btn-xs btn-success">Kurang</a>
-                          <a href="<?php echo site_url('bks_seminar/save_bks_lengkap/' . $row->id_bks_seminar); ?>" id="btn-konfirmasi" class="btn btn-xs btn-primary">Lengkap</a>
+                          <a href="<?php echo site_url('bks_seminar/save_bks_belum/' . $row->id_seminar_proposal); ?>" id="btn-konfirmasi" class="btn btn-xs btn-danger">Belum</a>
+                          <a href="<?php echo site_url('bks_seminar/save_bks_kurang/' . $row->id_seminar_proposal); ?>" id="btn-konfirmasi" class="btn btn-xs btn-success">Kurang</a>
+                          <a href="<?php echo site_url('bks_seminar/save_bks_lengkap/' . $row->id_seminar_proposal); ?>" id="btn-konfirmasi" class="btn btn-xs btn-primary">Lengkap</a>
                         </td>
                         <td>
-                          <a href="<?= base_url('bks_seminar/detail_bks_seminar/' . $row->id_bks_seminar) ?>" class="btn btn-primary btn-xs"><i class="fa fa-search"></i> Detail</a>
+                          <a href="<?= base_url('bks_seminar/detail_bks_seminar/' . $row->id_seminar_proposal) ?>" class="btn btn-primary btn-xs"><i class="fa fa-search"></i> Detail</a>
                         </td>
                       </tr>
                     <?php } ?>
@@ -161,8 +162,8 @@
                           ?>
                         </td>
                         <td class="text-center" width="160px">
-                          <a href="<?php echo base_url('bks_seminar/delete_users/' . $row->id_bks_seminar) ?>" id="btn-hapus" data-toggle="tooltip" data-placement="bottom" title="Hapus Mahasiswa" class="btn btn-sm btn-danger btn-xs"><i class="fa fa-trash"></i> Delete</a>
-                          <a href="<?= base_url('bks_seminar/detail_bks_seminar/' . $row->id_bks_seminar) ?>" class="on-default edit-row btn btn-info pull-right btn-xs"><i class="fa fa-search"></i> Detail </a>
+                          <a href="<?php echo base_url('bks_seminar/delete_users/' . $row->id_seminar_proposal) ?>" id="btn-hapus" data-toggle="tooltip" data-placement="bottom" title="Hapus Mahasiswa" class="btn btn-sm btn-danger btn-xs"><i class="fa fa-trash"></i> Delete</a>
+                          <a href="<?= base_url('bks_seminar/detail_bks_seminar/' . $row->id_seminar_proposal) ?>" class="on-default edit-row btn btn-info pull-right btn-xs"><i class="fa fa-search"></i> Detail </a>
                         </td>
                       </tr>
                     <?php } ?>
@@ -187,7 +188,7 @@
         <form action="<?= base_url('bks_seminar/create') ?>" method="post" class="form-horizontal" role="form" enctype="multipart/form-data">
           <div class="card-body">
             <div class="form-group">
-              <input type="hidden" id="id_bks_seminar" name="id_bks_seminar">
+              <input type="hidden" id="id_seminar_proposal" name="id_seminar_proposal">
 
               <label for="exampleInputjudul1">NIM</label>
               <input type="hidden" class="form-control" id="nim" name="nim" placeholder="NIM">
@@ -222,10 +223,10 @@
     </div>
   </div>
   <script type="text/javascript">
-    function ResetInput(id_bks_seminar, nim, berita_acara, persetujuan, proposal, presentasi, monitoring) {
-      document.getElementById('id_bks_seminar').value = "";
-      document.getElementById('nim').value = <?php echo $this->session->userdata('nim'); ?>;
-      document.getElementById('nim2').value = <?php echo $this->session->userdata('nim'); ?>;
+    function ResetInput(id_seminar_proposal, nim, berita_acara, persetujuan, proposal, presentasi, monitoring) {
+      document.getElementById('id_seminar_proposal').value = "";
+      document.getElementById('nim').value = <?php echo $this->session->userdata('email'); ?>;
+      document.getElementById('nim2').value = <?php echo $this->session->userdata('email'); ?>;
       document.getElementById('berita_acara').value = "";
       document.getElementById('persetujuan').value = "";
       document.getElementById('proposal').value = "";

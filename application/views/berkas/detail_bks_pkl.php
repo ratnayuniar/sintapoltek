@@ -33,7 +33,7 @@
                                 <div class="row invoice-info">
                                     <div class="col-sm-4 invoice-col">
                                         Nama : <strong><?= $row->nama; ?></strong><br>
-                                        Email : <strong><?= $row->email; ?></strong>
+                                        <!-- Email : <strong><?= $row->email; ?></strong> -->
                                     </div>
                                     <div class="col-sm-4 invoice-col">
                                         <b>Status Pendaftaran</b> :
@@ -171,109 +171,109 @@
         </section>
         <section class="content">
             <div class="container-fluid">
-            <div class="col-12">
-                        <?php
-                        foreach ($bks_pkl->result() as $row) { ?>
-                            <div class="invoice p-3 mb-3">
-                                <div class="row">
-                                    <div class="col-12">
-                                        <h4>
-                                            <i class="fas fa-file"></i> Detail Data Keterampilan
-                                        </h4>
-                                    </div>
-                                </div>
-                                <div class="row invoice-info">
-                                    <div class="col-sm-4 invoice-col">
-                                        Nama : <strong><?= $row->nama; ?></strong><br>
-                                        Email : <strong><?= $row->email; ?></strong>
-                                    </div>
-                                    <div class="col-sm-4 invoice-col">
-                                        <b>Status Pendaftaran</b> :
-                                        <?php if ($row->status == '0') {
-                                            echo '<span class="badge badge-warning">Menunggu</span>';
-                                        } else if ($row->status == '1') {
-                                            echo '<span class="badge badge-info">Valid</span>';
-                                        } else {
-                                            echo '<span class="badge badge-danger">Tidak Valid</span>';
-                                        }
-                                        ?><br>
-                                        <!-- <b>Aksi</b> :
-                                        <a href="<?php echo site_url('bks_pkl/save_bks_valid/' . $row->id_bks_pkl); ?>" id="btn-konfirmasi" class="btn btn-xs btn-success">Valid</a>
-                                        <a href="<?php echo site_url('bks_pkl/save_bks_tidakvalid/' . $row->id_bks_pkl); ?>" id="btn-konfirmasi" class="btn btn-xs btn-danger">Tidak Valid</a> -->
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-12">
-                                        <br>
-                                        <div class="row">
-                                            <div class="col-12">
-                                                <h4>
-                                                    <i class="fas fa-check-circle"></i> Judul<br>
-                                                    <input type="text" class="form-control col-sm-8" value="<?= $row->judul; ?>" readonly><br>
-                                                </h4>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-12">
-                                                <h4>
-                                                    <i class="fas fa-check-circle"></i> Tempat<br>
-                                                    <input type="text" class="form-control col-sm-8" value="<?= $row->tempat; ?>" readonly><br>
-                                                </h4>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-12">
-                                                <h4>
-                                                    <i class="fas fa-check-circle"></i> Provinsi<br>
-                                                    <input type="text" class="form-control col-sm-8" value="<?= $row->provinsi; ?>" readonly><br>
-                                                </h4>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-12">
-                                                <h4>
-                                                    <i class="fas fa-check-circle"></i> Kota / Kabupaten<br>
-                                                    <input type="text" class="form-control col-sm-8" value="<?= $row->kota; ?>" readonly><br>
-                                                </h4>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-12">
-                                                <h4>
-                                                    <i class="fas fa-check-circle"></i> Tanggal<br>
-                                                    <input type="text" class="form-control col-sm-8" value="<?= $row->tanggal; ?>" readonly><br>
-                                                </h4>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-12">
-                                                <h4>
-                                                    <i class="fas fa-check-circle"></i> Ringkasan<br>
-                                                    <input type="text" class="form-control col-sm-8" value="<?= $row->ringkasan; ?>" readonly><br>
-                                                </h4>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-12">
-                                                <h4>
-                                                    <i class="fas fa-check-circle"></i> Surat Keterangan
-                                                </h4>
-                                            </div>
-                                        </div>
-                                        <iframe type="application/pdf" src="<?php echo base_url('assets/berkas/magang/' . $row->sk_pkl); ?>" width="100%" height="600"></iframe><br>
-                                        <div class="row">
-                                            <div class="col-12">
-                                                <h4>
-                                                    <i class="fas fa-check-circle"></i> Laporan
-                                                </h4>
-                                            </div>
-                                        </div>
-                                        <iframe type="application/pdf" src="<?php echo base_url('assets/berkas/magang/' . $row->laporan); ?>" width="100%" height="600"></iframe><br><br>
-                                    </div>
+                <div class="col-12">
+                    <?php
+                    foreach ($bks_pkl->result() as $row) { ?>
+                        <div class="invoice p-3 mb-3">
+                            <div class="row">
+                                <div class="col-12">
+                                    <h4>
+                                        <i class="fas fa-file"></i> Detail Data Keterampilan
+                                    </h4>
                                 </div>
                             </div>
-                        <?php } ?>
-                    </div>
+                            <div class="row invoice-info">
+                                <div class="col-sm-4 invoice-col">
+                                    Nama : <strong><?= $row->nama; ?></strong><br>
+                                    Email : <strong><?= $row->email; ?></strong>
+                                </div>
+                                <div class="col-sm-4 invoice-col">
+                                    <b>Status Pendaftaran</b> :
+                                    <?php if ($row->status == '0') {
+                                        echo '<span class="badge badge-warning">Menunggu</span>';
+                                    } else if ($row->status == '1') {
+                                        echo '<span class="badge badge-info">Valid</span>';
+                                    } else {
+                                        echo '<span class="badge badge-danger">Tidak Valid</span>';
+                                    }
+                                    ?><br>
+                                    <!-- <b>Aksi</b> :
+                                        <a href="<?php echo site_url('bks_pkl/save_bks_valid/' . $row->id_bks_pkl); ?>" id="btn-konfirmasi" class="btn btn-xs btn-success">Valid</a>
+                                        <a href="<?php echo site_url('bks_pkl/save_bks_tidakvalid/' . $row->id_bks_pkl); ?>" id="btn-konfirmasi" class="btn btn-xs btn-danger">Tidak Valid</a> -->
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <br>
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <h4>
+                                                <i class="fas fa-check-circle"></i> Judul<br>
+                                                <input type="text" class="form-control col-sm-8" value="<?= $row->judul; ?>" readonly><br>
+                                            </h4>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <h4>
+                                                <i class="fas fa-check-circle"></i> Tempat<br>
+                                                <input type="text" class="form-control col-sm-8" value="<?= $row->tempat; ?>" readonly><br>
+                                            </h4>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <h4>
+                                                <i class="fas fa-check-circle"></i> Provinsi<br>
+                                                <input type="text" class="form-control col-sm-8" value="<?= $row->provinsi; ?>" readonly><br>
+                                            </h4>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <h4>
+                                                <i class="fas fa-check-circle"></i> Kota / Kabupaten<br>
+                                                <input type="text" class="form-control col-sm-8" value="<?= $row->kota; ?>" readonly><br>
+                                            </h4>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <h4>
+                                                <i class="fas fa-check-circle"></i> Tanggal<br>
+                                                <input type="text" class="form-control col-sm-8" value="<?= $row->tanggal; ?>" readonly><br>
+                                            </h4>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <h4>
+                                                <i class="fas fa-check-circle"></i> Ringkasan<br>
+                                                <input type="text" class="form-control col-sm-8" value="<?= $row->ringkasan; ?>" readonly><br>
+                                            </h4>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <h4>
+                                                <i class="fas fa-check-circle"></i> Surat Keterangan
+                                            </h4>
+                                        </div>
+                                    </div>
+                                    <iframe type="application/pdf" src="<?php echo base_url('assets/berkas/magang/' . $row->sk_pkl); ?>" width="100%" height="600"></iframe><br>
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <h4>
+                                                <i class="fas fa-check-circle"></i> Laporan
+                                            </h4>
+                                        </div>
+                                    </div>
+                                    <iframe type="application/pdf" src="<?php echo base_url('assets/berkas/magang/' . $row->laporan); ?>" width="100%" height="600"></iframe><br><br>
+                                </div>
+                            </div>
+                        </div>
+                    <?php } ?>
+                </div>
             </div>
         </section>
     </div>

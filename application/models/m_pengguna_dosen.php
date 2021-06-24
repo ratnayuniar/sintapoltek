@@ -4,8 +4,10 @@ class M_pengguna_dosen extends CI_Model
     function tampil_data_dosen()
     {
         $this->db->where_in('level', ['3', '4', '1']);
-        $this->db->join('dosen', 'dosen.id_dosen = user.id_dosen', 'left');
-        // $this->db->where('user.id_prodi', $this->session->userdata('id_prodi'));
-        return $this->db->get('user');
+        $this->db->order_by('level', 'desc');
+
+        // $this->db->join('dosen', 'dosen.id_dosen = user.id_dosen', 'left');
+        $this->db->where('dosen.id_prodi', $this->session->userdata('id_prodi'));
+        return $this->db->get('dosen');
     }
 }

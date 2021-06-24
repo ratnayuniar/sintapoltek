@@ -21,10 +21,10 @@ class Topik extends CI_Controller
 
 
 		$data['title'] = 'SINTA PNM';
-		$data['user'] = $this->db->get_where(
-			'user',
-			['email' => $this->session->userdata('email')],
-		)->row_array();
+		// $data['user'] = $this->db->get_where(
+		// 	'user',
+		// 	['email' => $this->session->userdata('email')],
+		// )->row_array();
 
 
 		$this->load->view('templates/header', $data);

@@ -18,16 +18,9 @@ class Veri_perpus extends CI_Controller
     public function index()
     {
         $data['query'] = $this->m_veri_perpus->tampil_data();
-        // $data['query2'] = $this->m_veri_perpus->tampil2();
-
-
-        // $data['bks_seminar_user'] = $this->m_veri_perpus->bks_seminar_user();
-
         $data['title'] = 'SINTA PNM';
         $data['data'] = $this->db->get('bks_wisuda')->result();
 
-        $data['user'] = $this->db->get_where('user', ['email' =>
-        $this->session->userdata('email')])->row_array();
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);

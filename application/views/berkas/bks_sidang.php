@@ -39,7 +39,8 @@
                   <tbody>
                     <?php
                     $no = 1;
-                    foreach ($bks_sidang_admin->result() as $row) { ?>
+                    $id_prodi = $this->session->userdata('id_prodi');
+                    foreach ($this->m_bks_sidang->bks_sidang_admin($id_prodi)->result() as $row) { ?>
                       <tr>
                         <td><?= $no++ ?></td>
                         <td><?= $row->nim ?></td>
@@ -56,11 +57,11 @@
                               ?>
                         </td>
                         <td>
-                          <a href="<?php echo site_url('bks_sidang/save_bks_belum/' . $row->id_bks_sidang); ?>" id="btn-konfirmasi" class="btn btn-xs btn-danger">Belum</a>
-                          <a href="<?php echo site_url('bks_sidang/save_bks_kurang/' . $row->id_bks_sidang); ?>" id="btn-konfirmasi" class="btn btn-xs btn-success">Kurang</a>
-                          <a href="<?php echo site_url('bks_sidang/save_bks_lengkap/' . $row->id_bks_sidang); ?>" id="btn-konfirmasi" class="btn btn-xs btn-primary">Lengkap</a>
+                          <a href="<?php echo site_url('bks_sidang/save_bks_belum/' . $row->id_seminar_ta); ?>" id="btn-konfirmasi" class="btn btn-xs btn-danger">Belum</a>
+                          <a href="<?php echo site_url('bks_sidang/save_bks_kurang/' . $row->id_seminar_ta); ?>" id="btn-konfirmasi" class="btn btn-xs btn-success">Kurang</a>
+                          <a href="<?php echo site_url('bks_sidang/save_bks_lengkap/' . $row->id_seminar_ta); ?>" id="btn-konfirmasi" class="btn btn-xs btn-primary">Lengkap</a>
                         </td>
-                        <td><a href="<?= base_url('bks_sidang/detail_bks_sidang/' . $row->id_bks_sidang) ?>" class="btn btn-primary btn-sm">
+                        <td><a href="<?= base_url('bks_sidang/detail_bks_sidang/' . $row->id_seminar_ta) ?>" class="btn btn-primary btn-sm">
                             <i class="fa fa-search"></i></td>
                       </tr>
                     <?php } ?>
@@ -160,8 +161,8 @@
                             ?>
                           </td>
                           <td class="text-center" width="160px">
-                            <a href="<?php echo base_url('bks_sidang/delete_berkas/' . $row->id_bks_sidang) ?>" id="btn-hapus" data-toggle="tooltip" data-placement="bottom" title="Hapus Mahasiswa" class="btn btn-sm btn-danger btn-xs"><i class="fa fa-trash"></i> Delete</a>
-                            <a href="<?= base_url('bks_sidang/detail_bks_sidang/' . $row->id_bks_sidang) ?>" class="on-default edit-row btn btn-info pull-right btn-xs"><i class="fa fa-search"></i> Detail </a>
+                            <a href="<?php echo base_url('bks_sidang/delete_berkas/' . $row->id_seminar_ta) ?>" id="btn-hapus" data-toggle="tooltip" data-placement="bottom" title="Hapus Mahasiswa" class="btn btn-sm btn-danger btn-xs"><i class="fa fa-trash"></i> Delete</a>
+                            <!-- <a href="<?= base_url('bks_sidang/detail_bks_sidang/' . $row->id_seminar_ta) ?>" class="on-default edit-row btn btn-info pull-right btn-xs"><i class="fa fa-search"></i> Detail </a> -->
                         </tr>
                       <?php } ?>
                     </tbody>
@@ -186,7 +187,7 @@
         <form action="<?= base_url('bks_sidang/create') ?>" method="post" class="form-horizontal" role="form" enctype="multipart/form-data">
           <div class="card-body">
             <div class="form-group">
-              <input type="hidden" id="id_bks_sidang" name="id_bks_sidang">
+              <input type="hidden" id="id_seminar_ta" name="id_seminar_ta">
 
               <label for="exampleInputjudul1">NIM</label>
               <input type="hidden" class="form-control" id="nim" name="nim" placeholder="NIM">
@@ -222,10 +223,10 @@
   </div>
 
   <script>
-    function ResetInput(id_bks_sidang, nim, proposal, pkkmb, pengesahan, monitoring) {
-      document.getElementById('id_bks_sidang').value = "";
-      document.getElementById('nim').value = <?php echo $this->session->userdata('nim'); ?>;
-      document.getElementById('nim2').value = <?php echo $this->session->userdata('nim'); ?>;
+    function ResetInput(id_seminar_ta, nim, proposal, pkkmb, pengesahan, monitoring) {
+      document.getElementById('id_seminar_ta').value = "";
+      document.getElementById('nim').value = <?php echo $this->session->userdata('email'); ?>;
+      document.getElementById('nim2').value = <?php echo $this->session->userdata('email'); ?>;
       document.getElementById('proposal').value = "";
       document.getElementById('pkkmb').value = "";
       document.getElementById('pengesahan').value = "";

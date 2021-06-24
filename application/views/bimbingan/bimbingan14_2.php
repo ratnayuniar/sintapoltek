@@ -5,12 +5,12 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Lembar Bimbingan Minggu 1 -4</h1>
+                        <h1>Lembar Bimbingan Minggu</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item active">General Form</li>
+                            <li class="breadcrumb-item"><a href="<?php echo base_url('beranda'); ?>">Beranda</a></li>
+                            <li class="breadcrumb-item active">Lembar Bimbingan</li>
                         </ol>
                     </div>
                 </div>
@@ -28,7 +28,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">Lembar Bimbingan Minggu 1 - 4</h3>
+                            <h3 class="card-title">Lembar Bimbingan</h3>
                         </div>
                         <div class="card-body">
                             <table id="example1" class="table table-bordered table-striped">
@@ -36,12 +36,12 @@
                                     <tr>
                                         <th>No</th>
                                         <th>NIM</th>
-                                        <th>Nama</th>
-                                        <th>Nama Dosen</th>
+                                        <!-- <th>Nama</th> -->
+                                        <th>Nama Mahasiswa</th>
                                         <th>Tanggal</th>
                                         <th>Status</th>
                                         <th>Konfirmasi</th>
-                                        <th>Aksi</th>
+                                        <!-- <th>Aksi</th> -->
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -53,8 +53,8 @@
                                         <tr>
                                             <td><?= $no++ ?></td>
                                             <td><?= $row->nim ?></td>
+                                            <!-- <td><?= $row->nama ?></td> -->
                                             <td><?= $row->nama ?></td>
-                                            <td><?= $row->dosen ?></td>
                                             <td><?= $row->tanggal ?></td>
                                             <td>
                                                 <?php if ($row->status == '0') {
@@ -102,10 +102,10 @@
                                                 }
                                                 ?>
                                             </td>
-                                            <td>
+                                            <!-- <td>
                                                 <a href="<?= base_url('bimbingan2/detail_bimbingan/' . $row->id_bimbingan) ?>" class="btn btn-primary btn-sm">
                                                     <i class="fa fa-search"></i>
-                                            </td>
+                                            </td> -->
                                         </tr>
                                     <?php
                                         $no++;
@@ -241,47 +241,19 @@
             })
         })
     </script>
-
-    <script type="text/javascript">
-        function SetInput(id_bimbingan, nim, bidang, judul, lokasi) {
-            document.getElementById('id_bimbingan').value = id_bimbingan;
-            document.getElementById('nim').value = nim;
-            document.getElementById('bidang').value = bidang;
-            document.getElementById('judul').value = judul;
-            document.getElementById('lokasi').value = lokasi;
-        }
-
-        function SetInputs(id_bimbingan, nim, bidang, judul, lokasi) {
-            document.getElementById('id_bimbingan2').value = id_bimbingan;
-            document.getElementById('nim2').value = nim;
-            document.getElementById('bidang2').value = bidang;
-            document.getElementById('judul2').value = judul;
-            document.getElementById('lokasi2').value = lokasi;
-        }
-
-        function ResetInput(id_bimbingan, nim, bidang, judul, lokasi) {
-            document.getElementById('id_bimbingan').value = "";
-            document.getElementById('nim').value = "";
-            document.getElementById('bidang').value = "";
-            document.getElementById('judul').value = "";
-            document.getElementById('lokasi').value = "";
-        }
-    </script>
-
     <!-- USER MAHASISWA -->
-
 <?php } else { ?>
     <div class="content-wrapper">
         <section class="content-header">
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Lembar Bimbingan Minggu 1 - 4</h1>
+                        <h1>Lembar Bimbingan</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="<?php echo base_url('beranda'); ?>">Beranda</a></li>
-                            <li class="breadcrumb-item active">Lembar Bimbingan Minggu 1-4</li>
+                            <li class="breadcrumb-item active">Lembar Bimbingan</li>
                         </ol>
                     </div>
                 </div>
@@ -315,7 +287,7 @@
                                             <?php
                                             $no = 1;
                                             foreach ($query2->result() as $row) {
-                                                $data['user'] = $this->m_pembimbing->getmahasiswabyid($row->id_mahasiswa);
+                                                $data['user'] = $this->m_pembimbing->getmahasiswabyid($row->nim);
                                                 $data['dosen2'] = $this->m_pembimbing->getdosen2($row->pembimbing2);
                                                 echo
                                                 " 
@@ -354,7 +326,7 @@
                         </div>
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">Ajukan Lembar Bimbingan Minggu 1 - 4</h3>
+                                <h3 class="card-title">Ajukan Lembar Bimbingan</h3>
                             </div>
                             <div class="card-body">
                                 <table id="example1" class="table table-bordered table-striped">
@@ -362,8 +334,8 @@
                                         <tr>
                                             <th>No</th>
                                             <th>NIM</th>
-                                            <th>Nama</th>
-                                            <th>Dosen</th>
+                                            <th>Nama Dosen</th>
+                                            <!-- <th>Dosen</th> -->
                                             <th>Tanggal</th>
                                             <th>Status</th>
                                             <th>Aksi</th>
@@ -380,8 +352,9 @@
                                                 <td><?= $no++ ?></td>
                                                 <td><?= $row->nim ?></td>
                                                 <td><?= $row->nama ?></td>
-                                                <td><?= $row->dosen ?></td>
+                                                <!-- <td><?= $row->nama ?></td> -->
                                                 <td><?= $row->tanggal ?></td>
+
                                                 <td>
                                                     <?php if ($row->status == '0') {
                                                         echo '<span class="badge badge-warning">Menunggu</span>';
@@ -395,13 +368,16 @@
                                                     ?>
                                                 </td>
                                                 <td>
+                                                    <a href="https://wa.me/<?= $row->hp ?>" class="btn btn-info btn-sm"> <i class="fa fa-comment-dots"></i> Kirim Pesan</a>
+                                                </td>
+                                                <!-- <td>
                                                     <a href="<?= base_url('bimbingan2/detail_bimbingan/' . $row->id_bimbingan) ?>" class="btn btn-primary btn-sm">
                                                         <i class="fa fa-search"></i>
                                                         <a onclick="return confirm('Yakin akan hapus?');" href="<?= base_url('bimbingan2/delete_bimbingan/' . $row->id_bimbingan) ?>" class="btn btn-danger btn-sm">
                                                             <i class="fa fa-trash"></i>
                                                         </a>
 
-                                                </td>
+                                                </td> -->
                                             </tr>
                                         <?php } ?>
                                     </tbody>
@@ -484,8 +460,8 @@
 
         function ResetInput(id_bimbingan, nim, bidang, judul, lokasi, deskripsi) {
             document.getElementById('id_bimbingan').value = "";
-            document.getElementById('nim').value = <?php echo $this->session->userdata('nim'); ?>;
-            document.getElementById('nim2').value = <?php echo $this->session->userdata('nim'); ?>;
+            document.getElementById('nim').value = <?php echo $this->session->userdata('email'); ?>;
+            document.getElementById('nim2').value = <?php echo $this->session->userdata('email'); ?>;
             document.getElementById('bidang').value = "";
             document.getElementById('judul').value = "";
             document.getElementById('lokasi').value = "";

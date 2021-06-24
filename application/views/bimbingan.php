@@ -14,23 +14,23 @@
                         <div class="card-body">
                             <div class="well" style="width:100%; height: 300px; max-height: 300px; overflow-y: auto;">
                                 <?php
-                                $id = $this->session->userdata('id_user');
+                                $id = $this->session->userdata('email');
                                 ?>
                                 <?php foreach ($pesans as $pesan) : ?>
                                     <strong><?php //echo $pesan->isi_pesan; 
                                             ?></strong><br>
 
-                                    <?php if ($pesan->pengirim == $id) : ?>
+                                    <?php if ($pesan->id_pengirim == $id) : ?>
 
                                         <p class="text-right"></p>
                                         <p class="alert alert-primary" style="border-radius: 20px 20px 0px 20px; width: 50%; left: 50%;">
-                                            <?php $data['user'] = $this->m_pembimbing->getmahasiswabyid($pesan->id_pengirim); ?>
+                                            <?php $data['user'] = $this->m_pembimbing->getmahasiswabyid2($pesan->id_pengirim); ?>
                                             <i style="text-align: right;"><?php echo $data['user']->nama; ?></i>
                                             <br>
                                             <strong><?php echo $pesan->isi_pesan; ?></strong>
                                             <?php if (!empty($pesan->file)) { ?>
                                                 <br>
-                                                <a href="<?php echo base_url('assets/berkas/bahasa/' . $pesan->file) ?>"><?php echo $pesan->file; ?></a>
+                                                <a href="<?php echo base_url('assets/berkas/bimbingan/' . $pesan->file) ?>"><?php echo $pesan->file; ?></a>
                                                 <br>
                                             <?php } ?>
                                             <span class="text-default small">
@@ -39,18 +39,20 @@
                                                 ?>
                                             </span>
                                         </p>
-                                    <?php elseif ($pesan->pengirim != $id) : ?>
+                                    <?php elseif ($pesan->id_pengirim != $id) : ?>
                                         <p class="alert alert-info" style="border-radius: 20px 20px 20px 0px; background-color: #23A127; border-color: #1f8422; width: 50%;right: 0%;">
-                                            <?php $data['user'] = $this->m_pembimbing->getmahasiswabyid($pesan->id_pengirim); ?>
+                                            <!-- <?php $data['user'] = $this->m_pembimbing->getmahasiswabyid2($pesan->id_pengirim); ?>
+                                            <i style="text-align: right;"><?php echo $data['user']->nama; ?></i> -->
+                                            <?php $data['user'] = $this->m_pembimbing->getdosenbyid($pesan->id_pengirim); ?>
                                             <i style="text-align: right;"><?php echo $data['user']->nama; ?></i>
                                             <br>
                                             <strong><?php echo $pesan->isi_pesan; ?></strong>
                                             <?php if (!empty($pesan->file)) { ?>
                                                 <br>
-                                                <a href="<?php echo base_url('assets/berkas/bahasa/' . $pesan->file) ?>"><?php echo $pesan->file; ?></a>
+                                                <a href="<?php echo base_url('assets/berkas/bimbingan/' . $pesan->file) ?>"><?php echo $pesan->file; ?></a>
                                                 <br>
                                             <?php } ?>
-                                            <a href="<?php echo base_url('assets/berkas/bahasa/' . $pesan->file) ?>"></a>
+                                            <a href="<?php echo base_url('assets/berkas/bimbingan/' . $pesan->file) ?>"></a>
                                             <span class="text-default small">
                                                 <?php
                                                 echo $pesan->tanggal;

@@ -14,8 +14,6 @@ class Prodi2 extends CI_Controller
     public function index()
     {
         $data['query'] = $this->m_prodi2->tampil_data();
-        $data['user'] = $this->db->get_where('user', ['email' =>
-        $this->session->userdata('email')])->row_array();
         $data['title'] = 'SINTA PNM';
 
         $this->load->view('templates/header', $data);

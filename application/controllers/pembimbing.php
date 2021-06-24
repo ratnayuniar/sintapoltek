@@ -14,7 +14,7 @@ class Pembimbing extends CI_Controller
 
     public function index()
     {
-        $data['query'] = $this->m_pembimbing->tampil_data();
+        // $data['query'] = $this->m_pembimbing->tampil_data();
         $data['query3'] = $this->m_pembimbing->bimbingan_dosen();
         $data['query2'] = $this->m_pembimbing->bimbingan_mhs();
         $data['mahasiswa'] = $this->m_mahasiswa->getmahasiswa();
@@ -22,8 +22,8 @@ class Pembimbing extends CI_Controller
         $data['dosen'] = $this->m_mahasiswa->getdosen();
         $data['dosen_user'] = $this->m_pembimbing->dosen_user();
         $data['title'] = 'SINTA PNM';
-        $data['user'] = $this->db->get_where('user', ['email' =>
-        $this->session->userdata('email')])->row_array();
+        // $data['user'] = $this->db->get_where('user', ['email' =>
+        // $this->session->userdata('email')])->row_array();
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);

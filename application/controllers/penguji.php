@@ -20,12 +20,10 @@ class Penguji extends CI_Controller
         $data['dosen'] = $this->m_mahasiswa->getdosen();
 
         //lama
-        $data['query'] = $this->m_penguji->tampil_data();
+        // $data['query'] = $this->m_penguji->tampil_data();
 
         $data['title'] = 'SINTA PNM';
 
-        $data['user'] = $this->db->get_where('user', ['email' =>
-        $this->session->userdata('email')])->row_array();
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
@@ -35,10 +33,10 @@ class Penguji extends CI_Controller
 
     public function add()
     {
-        $nim = $this->input->post('nim');
+        $id_master_ta = $this->input->post('id_master_ta');
 
-        if (empty($nim)) $this->m_penguji->tambah_data();
-        else $this->m_penguji->ubah_data($nim);
+        if (empty($id_master_ta)) $this->m_penguji->tambah_data();
+        else $this->m_penguji->ubah_data($id_master_ta);
     }
 
     public function delete()
@@ -46,8 +44,6 @@ class Penguji extends CI_Controller
         $id_penguji = $this->input->post('id_penguji2');
         $this->m_penguji->hapus_data($id_penguji);
     }
-
-
 
     function delete_penguji($id)
     {

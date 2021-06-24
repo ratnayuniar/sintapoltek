@@ -12,7 +12,7 @@ class M_bks_bahasa extends CI_Model
     {
         $this->db->select('*');
         $this->db->join('mahasiswa', 'mahasiswa.nim=bks_bahasa.nim', 'left');
-        $this->db->where('bks_bahasa.nim', $this->session->userdata('nim'));
+        $this->db->where('bks_bahasa.nim', $this->session->userdata('email'));
         return $this->db->get('bks_bahasa');
     }
 
@@ -21,7 +21,6 @@ class M_bks_bahasa extends CI_Model
         $this->db->select("mahasiswa.nama, mahasiswa.nim, bks_bahasa.nim,bks_bahasa.status,bks_bahasa.id_bks_bhs, COUNT(*) AS jumlah")->group_by('bks_bahasa.nim');
         $this->db->join('mahasiswa', 'mahasiswa.nim=bks_bahasa.nim', 'left');
         return $this->db->get('bks_bahasa');
-
     }
 
     function insert($data)
@@ -32,12 +31,11 @@ class M_bks_bahasa extends CI_Model
     function update($id, $data)
     {
         $this->db->where('id_bks_bhs', $id);
-        $this->db->update('bks_bahasa', $data); 
+        $this->db->update('bks_bahasa', $data);
     }
 
     function get_nim($nim)
     {
-        $this->db->join('user', 'user.nim = bks_bahasa.nim', 'left');
         $this->db->join('mahasiswa', 'bks_bahasa.nim = mahasiswa.nim', 'left');
         $this->db->where('bks_bahasa.nim', $nim);
 

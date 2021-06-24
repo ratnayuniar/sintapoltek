@@ -41,7 +41,7 @@
                     <th>Lokasi</th>
                     <th>Status</th>
                     <th>Konfirmasi</th>
-                    <th>Aksi</th>
+                    <!-- <th>Aksi</th> -->
                   </tr>
                 </thead>
                 <tbody>
@@ -107,10 +107,10 @@
                         }
                         ?>
                       </td>
-                      <td>
+                      <!-- <td>
                         <a href="<?= base_url('topik/detail_topik/' . $row->id_topik) ?>" class="btn btn-primary btn-sm">
                           <i class="fa fa-search"></i>
-                      </td>
+                      </td> -->
                     </tr>
                   <?php } ?>
                 </tbody>
@@ -293,7 +293,7 @@
       <div class="container-fluid">
         <div class="row">
           <div id="custom-width-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="custom-width-modalLabel" aria-hidden="true" style="display: none;width: 100%;">
-            <div class="modal-dialog modal-lg" style="width: 200%;">
+            <div class="modal-dialog modal-m" style="width: 100%;">
               <div class="modal-content">
                 <div class="modal-header">
                   <h4 class="modal-title">Ajukan Topik Mahasiswa</h4>
@@ -349,11 +349,11 @@
                     <tr>
                       <th>No</th>
                       <th>NIM</th>
-                      <th>Bidang</th>
                       <th>Judul</th>
-                      <th>Lokasi</th>
+                      <th>Komentar</th>
+                      <!-- <th>Lokasi</th> -->
                       <th>Status</th>
-                      <th>Aksi</th>
+                      <!-- <th>Aksi</th> -->
                     </tr>
                   </thead>
                   <tbody>
@@ -363,9 +363,9 @@
                       <tr>
                         <td><?= $no++ ?></td>
                         <td><?= $row->nim ?></td>
-                        <td><?= $row->bidang ?></td>
                         <td><?= $row->judul ?></td>
-                        <td><?= $row->lokasi ?></td>
+                        <td><?= $row->komentar ?></td>
+                        <!-- <td><?= $row->lokasi ?></td> -->
                         <td>
                           <?php if ($row->status == '0') {
                             echo '<span class="badge badge-warning">Menunggu</span>';
@@ -380,9 +380,9 @@
                           }
                           ?>
                         </td>
-                        <td>
+                        <!-- <td>
                           <a href="<?= base_url('topik/detail_topik/' . $row->id_topik) ?>" class="btn btn-sm btn-info btn-xs"><i class="fa fa-search"></i> Detail</a></a>
-                        </td>
+                        </td> -->
                       </tr>
                     <?php } ?>
                   </tbody>

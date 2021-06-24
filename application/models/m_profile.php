@@ -8,7 +8,7 @@ class M_profile extends CI_Model
 
     function topik_user()
     {
-        $this->db->where('topik.nim', $this->session->userdata('nim'));
+        $this->db->where('topik.nim', $this->session->userdata('email'));
         $query = $this->db->get('topik');
         return $query->row();
     }

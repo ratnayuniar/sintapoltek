@@ -14,14 +14,14 @@ class Bks_keterampilan extends CI_Controller
 
     public function index()
     {
+        $id_prodi = $this->session->userdata('id_prodi');
         // $data['query'] = $this->m_bks_keterampilan->tampil_data(); 
         $data['bks_keterampilan_user'] = $this->m_bks_keterampilan->bks_keterampilan_user();
-        $data['bks_keterampilan_admin'] = $this->m_bks_keterampilan->bks_keterampilan_admin();
+        //$data['bks_keterampilan_admin'] = $this->m_bks_keterampilan->bks_keterampilan_admin($id_prodi);
 
         $data['title'] = 'SINTA PNM';
         $data['data'] = $this->db->get('bks_keterampilan')->result();
-        $data['user'] = $this->db->get_where('user', ['email' =>
-        $this->session->userdata('email')])->row_array();
+
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
@@ -44,9 +44,6 @@ class Bks_keterampilan extends CI_Controller
     function detail_bks_ket($nim)
     {
         $data['bks_keterampilan'] = $this->m_bks_keterampilan->get_nim($nim);
-
-        $data['user'] = $this->db->get_where('user', ['email' =>
-        $this->session->userdata('email')])->row_array();
 
         if ($data['bks_keterampilan']) {
             $data['title'] = 'SINA PNM';
@@ -105,7 +102,7 @@ class Bks_keterampilan extends CI_Controller
                     'tingkat' => $tingkat,
                     'sk_ket' => $sk_ket,
                     'status' => 0,
-                    'id_prodi' => $this->session->userdata('id_prodi')
+
                 ];
                 // print_r($data);
                 // exit();

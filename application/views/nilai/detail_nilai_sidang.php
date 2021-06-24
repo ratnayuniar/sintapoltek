@@ -41,7 +41,7 @@
                             </div>
                             <form action="<?php echo base_url() . 'nilai_sidang/add'; ?>" method="post" class="form-horizontal" role="form">
                                 <div class="card-body">
-                                    <input type="hidden" id="id_mahasiswa" name="id_mahasiswa" value="<?php echo $id_mahasiswa; ?>">
+                                    <input type="hidden" id="nim" name="nim" value="<?php echo $nim; ?>">
                                     <div class="form-group row">
                                         <label for="inputEmail3" class="col-sm-5 col-form-label">Perumusan</label>
                                         <div class="col-sm-5">
@@ -147,9 +147,9 @@
                     <div class="col-sm-6">
                         <?php
                         $this->db->select('*');
-                        $this->db->from('user');
-                        $this->db->join('mahasiswa', 'mahasiswa.nim=user.nim');
-                        $this->db->where("user.id_user", $nilai_sidang->id_mahasiswa);
+                        $this->db->from('mahasiswa');
+                        // $this->db->join('mahasiswa', 'mahasiswa.nim=user.nim');
+                        $this->db->where("mahasiswa.nim", $nilai_sidang->nim);
                         $result = $this->db->get()->row();
                         ?>
                         <h1>Nilai Mahasiswa <?php echo $result->nama ?></h1>
@@ -166,7 +166,7 @@
         <?php
         $this->db->select('*');
         $this->db->from('nilai_sidang');
-        $this->db->where('id_mahasiswa', $nilai_sidang->id_mahasiswa);
+        $this->db->where('nim', $nilai_sidang->nim);
         $result = $this->db->get();
         foreach ($result->result() as $row) {
             $data['namadosen'] = $this->m_pembimbing->getdosen1($row->id_dosen);
@@ -254,9 +254,9 @@
                             <div class="card-header">
                                 <?php
                                 $this->db->select('*');
-                                $this->db->from('user');
-                                $this->db->join('mahasiswa', 'mahasiswa.nim=user.nim');
-                                $this->db->where("user.id_user", $nilai_sidang->id_mahasiswa);
+                                $this->db->from('mahasiswa');
+                                // $this->db->join('mahasiswa', 'mahasiswa.nim=user.nim');
+                                $this->db->where("mahasiswa.nim", $nilai_sidang->nim);
                                 $result = $this->db->get()->row();
                                 ?>
                                 <h3 class="card-title">Total Hasil Nilai Akhir Mahasiswa <?php echo $result->nama ?></h3>
@@ -264,7 +264,7 @@
                             <div class="card-body">
                                 <?php
                                 $this->db->select('AVG(rata) as rata, sum(nilai_akhir) as nilaiakhir');
-                                $this->db->where('id_mahasiswa', $row->id_mahasiswa);
+                                $this->db->where('nim', $row->nim);
                                 $result = $this->db->get('nilai_sidang')->row();
                                 ?>
                                 <?= $result->nilaiakhir ?>
@@ -282,9 +282,9 @@
                             <div class="card-header">
                                 <?php
                                 $this->db->select('*');
-                                $this->db->from('user');
-                                $this->db->join('mahasiswa', 'mahasiswa.nim=user.nim');
-                                $this->db->where("user.id_user", $nilai_sidang->id_mahasiswa);
+                                $this->db->from('mahasiswa');
+                                // $this->db->join('mahasiswa', 'mahasiswa.nim=user.nim');
+                                $this->db->where("mahasiswa.nim", $nilai_sidang->nim);
                                 $result = $this->db->get()->row();
                                 ?>
                                 <h3 class="card-title">Rata - Rata Nilai Akhir Mahasiswa <?php echo $result->nama ?></h3>
@@ -292,7 +292,7 @@
                             <div class="card-body">
                                 <?php
                                 $this->db->select('AVG(rata) as rata, sum(nilai_akhir) as nilaiakhir');
-                                $this->db->where('id_mahasiswa', $row->id_mahasiswa);
+                                $this->db->where('nim', $row->nim);
                                 $result = $this->db->get('nilai_sidang')->row();
                                 $rata = number_format($result->rata, 1, '.', '');
                                 ?>
