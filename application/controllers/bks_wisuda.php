@@ -64,7 +64,7 @@ class Bks_wisuda extends CI_Controller
         if (isset($_POST['submit'])) {
             $this->form_validation->set_rules('nim', 'NIM', 'required');
             $config['upload_path'] = './assets/berkas/wisuda/';
-            $config['allowed_types'] = 'pdf|jpg|png|jpeg|mp4|video|exe';
+            $config['allowed_types'] = 'pdf|jpg|png|exe|jpeg|mp4|ppt|pptx';
             $config['max_size']  = 50000;
             $config['file_name'] = 'bks_wisuda-' . date('ymd');
             // $config['encrypt_name']  = TRUE;
@@ -158,11 +158,15 @@ class Bks_wisuda extends CI_Controller
         $data = $this->m_bks_wisuda->ambil_id_gambar($id_bks_wisuda);
         // lokasi gambar berada
         $path = './assets/berkas/wisuda/';
-        @unlink($path . $data->berita_acara); // hapus data di folder dimana data tersimpan
-        @unlink($path . $data->persetujuan); // hapus data di folder dimana data tersimpan
-        @unlink($path . $data->proposal);
-        @unlink($path . $data->presentasi);
-        @unlink($path . $data->monitoring);
+        @unlink($path . $data->file_ta); // hapus data di folder dimana data tersimpan
+        @unlink($path . $data->jurnal); // hapus data di folder dimana data tersimpan
+        @unlink($path . $data->lap_ta_prodi);
+        @unlink($path . $data->aplikasi);
+        @unlink($path . $data->ppt);
+        @unlink($path . $data->video);
+        @unlink($path . $data->foto_ijazah);
+        @unlink($path . $data->foto_wisuda);
+        
         if ($this->m_bks_wisuda->delete_users($id_bks_wisuda) == TRUE) {
             // TAMPILKAN PESAN JIKA BERHASIL
             $this->session->set_flashdata('pesan', 'dihapus');

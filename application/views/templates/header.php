@@ -26,7 +26,7 @@ if ($this->session->userdata('email') != null) {
         <!-- Theme style -->
         <link rel="stylesheet" href="<?php echo base_url(); ?>admin/dist/css/adminlte.min.css">
         <!-- daterange picker -->
-        <link rel="stylesheet" href="<?php echo base_url(); ?>admin/plugins/daterangepicker/daterangepicker.css">
+        <!-- <link rel="stylesheet" href="<?php echo base_url(); ?>admin/plugins/daterangepicker/daterangepicker.css"> -->
 
         <link rel="shortcut icon" href="<?= base_url('admin/dist/img/logo.ico') ?>">
         <!-- summernote -->
@@ -35,6 +35,10 @@ if ($this->session->userdata('email') != null) {
         <!-- Select2 -->
         <link rel="stylesheet" href="<?php echo base_url(); ?>admin/plugins/select2/css/select2.min.css">
         <link rel="stylesheet" href="<?php echo base_url(); ?>admin/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
         <style>
             .swal2-popup {
                 font-size: 0.9rem !important;

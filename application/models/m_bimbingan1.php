@@ -94,6 +94,7 @@ class M_bimbingan1 extends CI_Model
     function get_mahasiswa()
     {
         $this->db->join('prodi', 'mahasiswa.id_prodi = prodi.id_prodi', 'left');
+        $this->db->join('jurusan', 'prodi.id_jurusan = jurusan.id_jurusan', 'left');
         $this->db->where('mahasiswa.nim', $this->session->userdata('email'));
 
         $query = $this->db->get('mahasiswa');

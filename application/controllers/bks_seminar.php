@@ -65,8 +65,8 @@ class Bks_seminar extends CI_Controller
 		if (isset($_POST['submit'])) {
 			$this->form_validation->set_rules('nim', 'NIM', 'required');
 			$config['upload_path'] = './assets/berkas/seminar/';
-			$config['allowed_types'] = 'pdf|jpg|png|jpeg|mp4|doc|docx';
-			$config['max_size']  = 2048;
+			$config['allowed_types'] = 'pdf|jpg|png|jpeg|mp4|doc|docx|ppt|pptx';
+			$config['max_size']  = 5000;
 			$config['file_name'] = 'bks_seminar-' . date('ymd');
 			// $config['encrypt_name']  = TRUE;
 
@@ -121,7 +121,7 @@ class Bks_seminar extends CI_Controller
 				$insert = $this->db->insert('seminar_proposal', $data);
 				if ($insert) {
 					$this->session->set_flashdata('pesan', 'disimpan');
-					redirect('seminar_proposal');
+					redirect('bks_seminar');
 				}
 			} else {
 				$this->index();
@@ -131,9 +131,9 @@ class Bks_seminar extends CI_Controller
 		}
 	}
 
-	public function delete_users($id_bks_seminar)
+	public function delete_users($id_seminar_proposal)
 	{
-		$data = $this->m_bks_seminar->ambil_id_gambar($id_bks_seminar);
+		$data = $this->m_bks_seminar->ambil_id_gambar($id_seminar_proposal);
 		// lokasi gambar berada
 		$path = './assets/berkas/seminar/';
 		@unlink($path . $data->berita_acara); // hapus data di folder dimana data tersimpan
@@ -141,10 +141,10 @@ class Bks_seminar extends CI_Controller
 		@unlink($path . $data->proposal);
 		@unlink($path . $data->presentasi);
 		@unlink($path . $data->monitoring);
-		if ($this->m_bks_seminar->delete_users($id_bks_seminar) == TRUE) {
+		if ($this->m_bks_seminar->delete_users($id_seminar_proposal) == TRUE) {
 			// TAMPILKAN PESAN JIKA BERHASIL
 			$this->session->set_flashdata('pesan', 'dihapus');
 		}
-		redirect('bks_seminar');
+		redirect('bks_seminar'); 
 	}
 }

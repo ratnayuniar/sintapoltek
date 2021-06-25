@@ -71,7 +71,7 @@
     <div class="modal-dialog" style="width:55%;">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">Tambah Data Program Studi</h4>
+                <h4 class="modal-title">Data Program Studi</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
@@ -81,7 +81,7 @@
 
                     <div class="form-group">
                         <input type="hidden" id="id_prodi" name="id_prodi">
-                        <label class="col-md-3 control-label">Nama Prodi</label>
+                        <label class="col-md-5 control-label">Nama Program Studi</label>
                         <div class="col-md-9">
                             <input type="text" class="form-control" id="nama_prodi" name="nama_prodi">
                         </div>
@@ -98,10 +98,12 @@
                         <label class="col-md-3 control-label">Jurusan</label>
                         <div class="col-md-9">
                             <select class="form-control" data-live-search="true" data-style="btn-white" id="id_jurusan" name="id_jurusan" required>
+                                <option value="">-- Pilih Jurusan -- </option>
                                 <?php
                                 $query = $this->m_jurusan->tampil_data();
                                 foreach ($query->result() as $row) {
-                                    echo "<option value='" . $row->id_jurusan . "'>" . $row->nama_jurusan . "</option>";
+                                    echo "
+                                    <option value='" . $row->id_jurusan . "'>" . $row->nama_jurusan . "</option>";
                                 }
                                 ?>
                             </select>

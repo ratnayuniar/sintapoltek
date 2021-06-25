@@ -64,17 +64,17 @@ class Bks_sidang extends CI_Controller
 		if (isset($_POST['submit'])) {
 			$this->form_validation->set_rules('nim', 'NIM', 'required');
 			$config['upload_path'] = './assets/berkas/sidang/';
-			$config['allowed_types'] = 'pdf|jpg|png|doc|docx|ppt';
-			$config['max_size']  = 2048;
+			$config['allowed_types'] = 'pdf|jpg|png|doc|docx|ppt|pptx';
+			$config['max_size']  = 5000;
 			$config['file_name'] = 'bks_sidang-' . date('ymd');
 			// $config['encrypt_name']  = TRUE;
 
 			$this->load->library('upload', $config);
 
-			if (!empty($_FILES['proposal'])) {
-				$this->upload->do_upload('proposal');
+			if (!empty($_FILES['file_ta'])) {
+				$this->upload->do_upload('file_ta');
 				$data1 = $this->upload->data();
-				$proposal = $data1['file_name'];
+				$file_ta = $data1['file_name'];
 			}
 
 			if (!empty($_FILES['pkkmb'])) {
@@ -83,10 +83,10 @@ class Bks_sidang extends CI_Controller
 				$pkkmb = $data2['file_name'];
 			}
 
-			if (!empty($_FILES['pengesahan'])) {
-				$this->upload->do_upload('pengesahan');
+			if (!empty($_FILES['presentasi'])) {
+				$this->upload->do_upload('presentasi');
 				$data3 = $this->upload->data();
-				$pengesahan = $data3['file_name'];
+				$presentasi = $data3['file_name'];
 			}
 
 			if (!empty($_FILES['monitoring'])) {
@@ -101,16 +101,25 @@ class Bks_sidang extends CI_Controller
 				$persetujuan = $data5['file_name'];
 			}
 
+			if (!empty($_FILES['berita_acara'])) {
+				$this->upload->do_upload('berita_acara');
+				$data6 = $this->upload->data();
+				$berita_acara = $data6['file_name'];
+			}
+
 			if ($this->form_validation->run()) {
 				$nim = $this->input->post('nim', TRUE);
+				$link = $this->input->post('link', TRUE);
 				$data = [
 					'nim' => $nim,
+					'link' => $link,
 					'id_nilai_ta' => null,
-					'proposal' => $proposal,
+					'file_ta' => $file_ta,
 					'pkkmb' => $pkkmb,
-					'pengesahan' => $pengesahan,
+					'presentasi' => $presentasi,
 					'monitoring' => $monitoring,
 					'persetujuan' => $persetujuan,
+					'berita_acara' => $berita_acara,
 					'status' => 0,
 				];
 				// print_r($data);
@@ -129,17 +138,18 @@ class Bks_sidang extends CI_Controller
 		}
 	}
 
-	public function delete_berkas($id_bks_sidang)
+	public function delete_berkas($id_seminar_ta) 
 	{
-		$data = $this->m_bks_sidang->ambil_id_gambar($id_bks_sidang);
+		$data = $this->m_bks_sidang->ambil_id_gambar($id_seminar_ta);
 		// lokasi gambar berada
 		$path = './assets/berkas/sidang/';
-		@unlink($path . $data->berita_acara); // hapus data di folder dimana data tersimpan
+		@unlink($path . $data->pkkmb); // hapus data di folder dimana data tersimpan
 		@unlink($path . $data->persetujuan); // hapus data di folder dimana data tersimpan
-		@unlink($path . $data->proposal);
+		@unlink($path . $data->file_ta);
 		@unlink($path . $data->presentasi);
 		@unlink($path . $data->monitoring);
-		if ($this->m_bks_sidang->delete_users($id_bks_sidang) == TRUE) {
+		@unlink($path . $data->berita_acara);
+		if ($this->m_bks_sidang->delete_users($id_seminar_ta) == TRUE) {
 			// TAMPILKAN PESAN JIKA BERHASIL
 			$this->session->set_flashdata('pesan', 'dihapus');
 		}

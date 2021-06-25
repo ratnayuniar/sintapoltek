@@ -154,7 +154,7 @@
                                 <div class="row invoice-info">
                                     <div class="col-sm-4 invoice-col">
                                         Nama : <strong><?= $row->nama; ?></strong><br>
-                                        Email : <strong><?= $row->email; ?></strong>
+                                        <!-- Email : <strong><?= $row->email; ?></strong> -->
                                     </div>
                                     <div class="col-sm-4 invoice-col">
                                         <b>Status Pendaftaran</b> :

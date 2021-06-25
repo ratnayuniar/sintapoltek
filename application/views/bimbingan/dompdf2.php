@@ -7,10 +7,10 @@
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
     <style>
         @page {
-            margin-top: 400px;
+            margin-top: 50px;
             margin-left: 50px;
             margin-right: 50px;
-            margin-bottom: 350px;
+            margin-bottom: 50px;
         }
 
         .body {
@@ -66,32 +66,33 @@
             color: black;
             font-size: 12pt;
             text-align: center;
-            margin-bottom: 4px;
+            margin-top: 10px;
+            margin-bottom: 10px;
             text-align-last: left;
         }
 
         .tabel2 {
-            line-height: 20px;
+            line-height: 30px;
             font-family: 'Times New Roman', Times, serif;
             color: black;
             font-size: 12pt;
             text-align: left;
-            margin-top: 1px;
+            margin-top: 5px;
             margin-bottom: 10px;
-            margin-left: 3px;
+            margin-left: 4px;
             margin-right: 3px;
         }
 
         .tabel3 {
-            line-height: 20px;
+            line-height: 30px;
             font-family: 'Times New Roman', Times, serif;
             color: black;
             font-size: 12pt;
             text-align: justify;
             text-align-last: right;
-            margin-top: 1px;
-            margin-bottom: 10px;
-            margin-left: 3px;
+            margin-top: 10px;
+            margin-bottom: 5px;
+            margin-left: 5px;
             margin-right: 3px;
         }
     </style>
@@ -99,179 +100,130 @@
 </head>
 
 <body>
+    <table border="0">
+        <tr>
+            <td width="100 px">
+                <center><img src="http://localhost/sinta4/assets/img/PNM2.png" width="90" height="90"></center>
+            </td>
+            <td width="600 px" align="center">
+                <font size="4,5" face="Times New Roman" color="black">KEMENTERIAN PENDIDIKAN DAN KEBUDAYAAN</font>
+                <p class="spasi">
+                    <font size="4"><b>POLITEKNIK NEGERI MADIUN</b><br></font>
+                    <font size="4"><b>JURUSAN TEKNIK</b><br></font>
+                    Jalan Serayu Nomor 84 Madiun Kode Pos 63133<br>
+                    Telepon +62 351 452970 Faksimile +62 351 492960<br>
+                    www.pnm.ac.id
+                </p>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <p>
+                    <hr class="line-title">
+                </p>
+            </td>
+        </tr>
 
-    <div class="header">
-        <table border="0" style="margin-top: 1cm;">
-            <tr>
-                <td width="100 px">
-                    <center><img src="http://localhost/sinta4/assets/img/PNM2.png" width="90" height="90"></center>
-                </td>
-                <td width="600 px" align="center">
-                    <font size="4,5" face="Times New Roman" color="black">KEMENTERIAN PENDIDIKAN DAN KEBUDAYAAN</font>
-                    <p class="spasi">
-                        <font size="4"><b>POLITEKNIK NEGERI MADIUN</b><br></font>
-                        <font size="4"><b>JURUSAN TEKNIK</b><br></font>
-                        Jalan Serayu Nomor 84 Madiun Kode Pos 63133<br>
-                        Telepon +62 351 452970 Faksimile +62 351 492960<br>
-                        www.pnm.ac.id
+    </table>
+    <table width="700 px" align="center">
+        <tr>
+            <td colspan="2">
+                <center>
+                    <p class="spasi" style="margin-bottom: 10px;">
+                        <font size="4"><b>KARTU KONSULTASI / BIMBINGAN<br>
+                                PENYUSUNAN TUGAS AKHIR MAHASISWA<br>
+                                TAHUN AKADEMIK 2020 / 2021<br></b></font>
                     </p>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="2">
-                    <p>
-                        <hr class="line-title">
-                    </p>
-                </td>
-            </tr>
-
-        </table>
-        <table width="700 px" align="center">
-            <tr>
-                <td colspan="2">
-                    <center>
-                        <p class="spasi" style="margin-bottom: 10px;">
-                            <font size="4"><b>KARTU KONSULTASI / BIMBINGAN<br>
-                                    PENYUSUNAN TUGAS AKHIR MAHASISWA<br>
-                                    TAHUN AKADEMIK 2020 / 2021<br></b></font>
-                        </p>
-                    </center>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <p class="spasi">
-                        Nama
-                    </p>
-                </td>
-                <td>
-                    <p class="spasi">
-                        : <?= $get_mahasiswa->nama; ?>
-                    </p>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <p class="spasi">
-                        NPM
-                    </p>
-                </td>
-                <td>
-                    <p class="spasi">
-                        : <?= $get_mahasiswa->nim; ?>
-                    </p>
-                </td>
-            </tr>
-            <tr>
-                <td width="180 px">
-                    <p class="spasi">
-                        Program Studi / Angkatan
-                    </p>
-                </td>
-                <td>
-                    <p class="spasi">
-                        : <?= $get_mahasiswa->nama_prodi; ?> / <?= $get_mahasiswa->angkatan; ?>
-                    </p>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <p class="spasi">
-                        Alamat
-                    </p>
-                </td>
-                <td>
-                    <p class="spasi">
-                        : <?= $get_mahasiswa->alamat; ?>
-                    </p>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <p class="spasi">
-                        TTL
-                    </p>
-                </td>
-                <td>
-                    <p class="spasi">
-                        : <?= $get_mahasiswa->ttl; ?>
-                    </p>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <p class="spasi">
-                        No. HP
-                    </p>
-                </td>
-                <td>
-                    <p class="spasi">
-                        : <?= $get_mahasiswa->hp; ?>
-                    </p>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <p class="spasi">
-                        Judul TA
-                    </p>
-                </td>
-                <td>
-                    <p class="spasi">
-                        : <b><?= $topik_user->judul; ?>
-                        </b></p>
-                </td>
-            </tr>
-        </table>
-    </div>
-
-    <div class="footer">
-        <center>
-            <table border="0" width="750 px">
-                <tr class="tabel3">
-                    <td></td>
-                    <td>
-                        <p>
-                            Madiun,
-                            <?php
-                            $waktu = explode(" ", $get_tanggal->tanggal);
-                            echo
-                            ""  . mediumdate_indo($waktu[0]) . " ";
-                            ?>
-                        </p>
-                    </td>
-                </tr>
-                <tr class="tabel3">
-                    <td>Mengetahui,</td>
-                    <td>Menyetujui,</td>
-                </tr>
-                <tr class="tabel3">
-                    <td>
-
-                        Ketua Jurusan Teknik<br><br><br><br>
-
-                    </td>
-                    <td>
-
-                        Pembimbing <?= $get_dosen->status_dosen; ?>, <br><br><br><br>
-
-                    </td>
-                </tr>
-
-                <tr class="tabel3">
-                    <td><b> Akbar Yanuar, S.ST., M.T.</b> </td>
-                    <td><b> <?= $get_dosen->nama; ?></b></td>
-                </tr>
-                <tr class="tabel3">
-                    <td>NIP 199601182014041111 </td>
-                    <td>NIP. <?= $get_dosen->nip; ?></td>
-                </tr>
-            </table>
-        </center>
-    </div>
-
+                </center>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <p class="spasi">
+                    Nama
+                </p>
+            </td>
+            <td>
+                <p class="spasi">
+                    : <?= $get_mahasiswa->nama; ?>
+                </p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <p class="spasi">
+                    NPM
+                </p>
+            </td>
+            <td>
+                <p class="spasi">
+                    : <?= $get_mahasiswa->nim; ?>
+                </p>
+            </td>
+        </tr>
+        <tr>
+            <td width="180 px">
+                <p class="spasi">
+                    Program Studi / Angkatan
+                </p>
+            </td>
+            <td>
+                <p class="spasi">
+                    : <?= $get_mahasiswa->nama_prodi; ?> / <?= $get_mahasiswa->angkatan; ?>
+                </p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <p class="spasi">
+                    Alamat
+                </p>
+            </td>
+            <td>
+                <p class="spasi">
+                    : <?= $get_mahasiswa->alamat; ?>
+                </p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <p class="spasi">
+                    TTL
+                </p>
+            </td>
+            <td>
+                <p class="spasi">
+                    : <?= $get_mahasiswa->ttl; ?>
+                </p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <p class="spasi">
+                    No. HP
+                </p>
+            </td>
+            <td>
+                <p class="spasi">
+                    : <?= $get_mahasiswa->hp; ?>
+                </p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <p class="spasi">
+                    Judul TA
+                </p>
+            </td>
+            <td>
+                <p class="spasi">
+                    : <b><?= $topik_user->judul; ?>
+                    </b></p>
+            </td>
+        </tr>
+    </table>
     <main>
-        <table border="1" width="700 px">
+        <table border="1" width="700px" style="margin-top: 1cm;">
             <thead>
                 <tr>
                     <th>
@@ -314,7 +266,11 @@
                         </td>
                         <td>
                             <p class="tabel2">
-                                <?= $row->tanggal ?>
+                                <?php
+                                $waktu = explode(" ", $get_tanggal->tanggal);
+                                echo
+                                ""  . shortdate_indo($waktu[0]) . " ";
+                                ?>
                             </p>
                         </td>
                         <td>
@@ -331,11 +287,54 @@
                             <b></b>
                         </td>
                     </tr>
-
                 <?php } ?>
             <tbody>
         </table>
     </main>
+
+    <center>
+        <table border="0" width="750px" style="margin-top: 2cm;">
+            <tr class="tabel3">
+                <td></td>
+                <td>
+                    <p>
+                        Madiun,
+                        <?php
+                        $waktu = explode(" ", $get_tanggal->tanggal);
+                        echo
+                        ""  . mediumdate_indo($waktu[0]) . " ";
+                        ?>
+                    </p>
+                </td>
+            </tr>
+            <tr class="tabel3">
+                <td>Mengetahui,</td>
+                <td>Menyetujui,</td>
+            </tr>
+            <tr class="tabel3">
+                <td>
+
+                    Ketua Jurusan <?= $get_mahasiswa->nama_jurusan; ?><br><br><br><br>
+
+                </td>
+                <td>
+
+                    Pembimbing <?= $get_dosen->status_dosen; ?>, <br><br><br><br>
+
+                </td>
+            </tr>
+
+            <tr class="tabel3">
+                <td><b> Akbar Yanuar, S.ST., M.T.</b> </td>
+                <td><b> <?= $get_dosen->nama; ?></b></td>
+            </tr>
+            <tr class="tabel3">
+                <td>NIP 199601182014041111 </td>
+                <td>NIP. <?= $get_dosen->nip; ?></td>
+            </tr>
+        </table>
+    </center>
+
 </body>
 
 </html>

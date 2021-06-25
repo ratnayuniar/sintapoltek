@@ -195,19 +195,23 @@
               <input type="text" class="form-control" id="nim2" name="nim2" readonly placeholder="NIM">
             </div>
             <div class="form-group">
-              <label for="berita_acara">Berita Acara</label><br>
+              <label for="berita_acara">Berita Acara</label>
+              <span><h6>Upload dalam format doc.</h6></span>
               <input type="file" name="berita_acara" required>
             </div>
             <div class="form-group">
-              <label for="persetujuan">Persetujuan</label><br>
+              <label for="persetujuan">Persetujuan</label>
+              <span><h6>Upload dalam format doc.</h6></span>
               <input type="file" name="persetujuan" required>
             </div>
             <div class="form-group">
-              <label for="exampleInputjudul1">Proposal</label><br>
+              <label for="exampleInputjudul1">Proposal</label>
+              <span><h6>Upload dalam format pdf.</h6></span>
               <input type="file" name="proposal" required>
             </div>
             <div class="form-group">
-              <label for="exampleInputjudul1">Presentasi</label><br>
+              <label for="exampleInputjudul1">Presentasi</label>
+              <span><h6>Upload dalam format ppt.</h6></span>
               <input type="file" name="presentasi" required>
             </div>
             <div class="form-group">

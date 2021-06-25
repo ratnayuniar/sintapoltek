@@ -115,11 +115,7 @@ class Bks_organisasi extends CI_Controller
         $data = $this->m_bks_organisasi->ambil_id_gambar($id_bks_org);
         // lokasi gambar berada
         $path = './assets/berkas/organisasi/';
-        @unlink($path . $data->berita_acara); // hapus data di folder dimana data tersimpan
-        @unlink($path . $data->persetujuan); // hapus data di folder dimana data tersimpan
-        @unlink($path . $data->proposal);
-        @unlink($path . $data->presentasi);
-        @unlink($path . $data->monitoring);
+        @unlink($path . $data->sk_org); 
         if ($this->m_bks_organisasi->delete_users($id_bks_org) == TRUE) {
             // TAMPILKAN PESAN JIKA BERHASIL
             $this->session->set_flashdata('pesan', 'dihapus');

@@ -242,6 +242,13 @@
     </script>
     <!-- USER MAHASISWA -->
 <?php } else { ?>
+    <style>
+        pre {
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            font-family: inherit;
+        }
+    </style>
     <div class="content-wrapper">
         <section class="content-header">
             <div class="container-fluid">
@@ -304,7 +311,7 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="exampleInputjudul1">Masalah Yang Dikonsultasikan</label>
-                                            <textarea class="form-control" rows="3" id="masalah" name="masalah" placeholder="Masukkan Deskripsi Tugas Akhir"></textarea>
+                                            <pre><textarea class="form-control" rows="3" id="masalah" name="masalah" placeholder="Masukkan Deskripsi Tugas Akhir"></textarea></pre>
                                         </div>
                                     </div>
 

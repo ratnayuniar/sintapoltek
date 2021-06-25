@@ -261,7 +261,7 @@
                                                     </td>
                                                     <td class="text-center" width="160px">
                                                         <a href="<?php echo base_url('bks_prestasi/delete_users/' . $row->id_bks_prestasi) ?>" id="btn-hapus" data-toggle="tooltip" data-placement="bottom" title="Hapus Mahasiswa" class="btn btn-sm btn-danger btn-xs"><i class="fa fa-trash"></i> Delete</a>
-                                                        <!-- <a href="<?= base_url('bks_prestasi/detail_bks_prestasi/' . $row->id_bks_prestasi) ?>" class="on-default edit-row btn btn-info pull-right btn-xs"><i class="fa fa-search"></i> Detail </a> -->
+                                                        <a href="<?= base_url('bks_prestasi/detail_bks_prestasi/' . $row->nim) ?>" class="on-default edit-row btn btn-info pull-right btn-xs"><i class="fa fa-search"></i> Detail </a>
                                                     </td>
                                                 </tr>
                                             <?php } ?>
@@ -313,7 +313,7 @@
                                 <option>Regional</option>
                                 <option>Nasional</option>
                                 <option>Internasional</option>
-                            </select>
+                            </select> 
                         </div>
                         <div class="form-group">
                             <label for="persetujuan">Jenis</label><br>
@@ -325,6 +325,7 @@
                         </div>
                         <div class="form-group">
                             <label for="exampleInputjudul1">Piagam</label><br>
+                            <span><h6>Upload Scan Bukti/Piagam (PDF/JPG Maks. 1 MB)</h6></span>
                             <input type="file" name="piagam">
                         </div>
                     </div>

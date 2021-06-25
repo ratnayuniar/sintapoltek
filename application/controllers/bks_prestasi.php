@@ -113,12 +113,9 @@ class Bks_prestasi extends CI_Controller
     {
         $data = $this->m_bks_prestasi->ambil_id_gambar($id_bks_prestasi);
         // lokasi gambar berada
-        $path = './assets/berkas/wisuda/';
-        @unlink($path . $data->berita_acara); // hapus data di folder dimana data tersimpan
-        @unlink($path . $data->persetujuan); // hapus data di folder dimana data tersimpan
-        @unlink($path . $data->proposal);
-        @unlink($path . $data->presentasi);
-        @unlink($path . $data->monitoring);
+        $path = './assets/berkas/prestasi/';
+        @unlink($path . $data->piagam); // hapus data di folder dimana data tersimpan
+       
         if ($this->m_bks_prestasi->delete_users($id_bks_prestasi) == TRUE) {
             // TAMPILKAN PESAN JIKA BERHASIL
             $this->session->set_flashdata('pesan', 'dihapus');

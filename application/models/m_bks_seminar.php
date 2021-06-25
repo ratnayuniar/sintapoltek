@@ -58,26 +58,26 @@ class M_bks_seminar extends CI_Model
 		$this->db->update('bks_seminar', $data_buku);
 	}
 
-	public function hapusFile($id_bks_seminar)
+	public function hapusFile($id_seminar_proposal)
 	{
-		$this->db->where('id_bks_seminar', $id_bks_seminar);
-		return $this->db->delete('bks_seminar');
+		$this->db->where('id_seminar_proposal', $id_seminar_proposal);
+		return $this->db->delete('seminar_proposal');
 	}
-	public function getDataByID($id_bks_seminar)
+	public function getDataByID($id_seminar_proposal)
 	{
-		return $this->db->get_where('bks_seminar', array('id_bks_seminar' => $id_bks_seminar));
-	}
-
-	public function updateFile($id_bks_seminar, $data)
-	{
-		$this->db->where('id_bks_seminar', $id_bks_seminar);
-		return $this->db->update('bks_seminar', $data);
+		return $this->db->get_where('seminar_proposal', array('id_seminar_proposal' => $id_seminar_proposal));
 	}
 
-	public function ambil_id_gambar($id_bks_seminar)
+	public function updateFile($id_seminar_proposal, $data)
 	{
-		$this->db->from('bks_seminar');
-		$this->db->where('id_bks_seminar', $id_bks_seminar);
+		$this->db->where('id_seminar_proposal', $id_seminar_proposal);
+		return $this->db->update('seminar_proposal', $data);
+	}
+
+	public function ambil_id_gambar($id_seminar_proposal)
+	{
+		$this->db->from('seminar_proposal');
+		$this->db->where('id_seminar_proposal', $id_seminar_proposal);
 		$result = $this->db->get('');
 		// periksa ada datanya atau tidak
 		if ($result->num_rows() > 0) {
@@ -85,10 +85,10 @@ class M_bks_seminar extends CI_Model
 		}
 	}
 
-	public function delete_users($id_bks_seminar)
+	public function delete_users($id_seminar_proposal)
 	{
-		$this->db->where('id_bks_seminar', $id_bks_seminar);
-		$this->db->delete('bks_seminar');
+		$this->db->where('id_seminar_proposal', $id_seminar_proposal);
+		$this->db->delete('seminar_proposal');
 		return TRUE;
 	}
 
@@ -99,10 +99,10 @@ class M_bks_seminar extends CI_Model
 		return TRUE;
 	}
 
-	public function ambil_id_users($id_bks_seminar)
+	public function ambil_id_users($id_seminar_proposal)
 	{
-		$data = $this->db->where(['id_bks_seminar' => $id_bks_seminar])
-			->get("bks_seminar");
+		$data = $this->db->where(['id_seminar_proposal' => $id_seminar_proposal])
+			->get("seminar_proposal");
 		if ($data->num_rows() > 0) {
 			return $data->row();
 		}

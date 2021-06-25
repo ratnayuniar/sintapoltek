@@ -52,22 +52,49 @@
                             <div class="row">
                                 <div class="col-12">
                                     <br>
-                                    <div class="row">
+                                    <!-- <div class="row">
                                         <div class="col-12">
                                             <h4>
                                                 <i class="fas fa-check-circle"></i> Berita Acara
                                             </h4>
                                         </div>
                                     </div>
-                                    <iframe type="application/doc" src="<?php echo base_url('assets/berkas/seminar/' . $bks_seminar->berita_acara); ?>" width="100%" height="600"></iframe><br>
-                                    <div class="row">
+                                    <iframe type="application/doc" src="<?php echo base_url('assets/berkas/seminar/' . $bks_seminar->berita_acara); ?>" width="100%" height="600"></iframe><br> -->
+                                    <!-- <div class="row">
                                         <div class="col-12">
                                             <h4>
                                                 <i class="fas fa-check-circle"></i> Lembar Persetujuan
                                             </h4>
                                         </div>
                                     </div>
-                                    <iframe type="application/pdf" src="<?php echo base_url('assets/berkas/seminar/' . $bks_seminar->persetujuan); ?>" width="100%" height="600"></iframe><br><br>
+                                    <iframe type="application/pdf" src="<?php echo base_url('assets/berkas/seminar/' . $bks_seminar->persetujuan); ?>" width="100%" height="600"></iframe><br><br> -->
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <h4>
+                                                <i class="fas fa-check-circle"></i> Berita Acara
+                                            </h4>
+                                            <a href="<?php echo base_url('assets/berkas/seminar/' . $bks_seminar->berita_acara); ?>" class="btn btn-primary" download>Unduh</a>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <h4>
+                                                <i class="fas fa-check-circle"></i> Lembar Persetujuan
+                                            </h4>
+                                            <a href="<?php echo base_url('assets/berkas/seminar/' . $bks_seminar->persetujuan); ?>" class="btn btn-primary" download>Unduh</a>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <h4>
+                                                <i class="fas fa-check-circle"></i> Presentasi
+                                            </h4>
+                                            <a href="<?php echo base_url('assets/berkas/seminar/' . $bks_seminar->presentasi); ?>" class="btn btn-primary" download>Unduh</a>
+                                        </div>
+                                    </div>
+                                    <br>
                                     <div class="row">
                                         <div class="col-12">
                                             <h4>
@@ -76,14 +103,14 @@
                                         </div>
                                     </div>
                                     <iframe type="application/pdf" src="<?php echo base_url('assets/berkas/seminar/' . $bks_seminar->proposal); ?>" width="100%" height="600"></iframe><br><br>
-                                    <div class="row">
+                                    <!-- <div class="row">
                                         <div class="col-12">
                                             <h4>
                                                 <i class="fas fa-check-circle"></i> Presentasi
                                             </h4>
                                         </div>
                                     </div>
-                                    <iframe type="application/pdf" src="<?php echo base_url('assets/berkas/seminar/' . $bks_seminar->presentasi); ?>" width="100%" height="600"></iframe><br><br>
+                                    <iframe type="application/pdf" src="<?php echo base_url('assets/berkas/seminar/' . $bks_seminar->presentasi); ?>" width="100%" height="600"></iframe><br><br> -->
                                     <div class="row">
                                         <div class="col-12">
                                             <h4>

@@ -119,7 +119,7 @@
                                                     </td>
                                                     <td class="text-center" width="160px">
                                                         <a href="<?php echo base_url('bks_keterampilan/delete_users/' . $row->id_bks_ket) ?>" id="btn-hapus" data-toggle="tooltip" data-placement="bottom" title="Hapus Mahasiswa" class="btn btn-sm btn-danger btn-xs"><i class="fa fa-trash"></i> Delete</a>
-                                                        <!-- <a href="<?= base_url('bks_keterampilan/detail_bks_ketmhs/' . $row->id_bks_ket) ?>" class="on-default edit-row btn btn-info pull-right btn-xs"><i class="fa fa-search"></i> Detail </a> -->
+                                                        <a href="<?= base_url('bks_keterampilan/detail_bks_ket/' . $row->nim) ?>" class="btn btn-sm btn-primary btn-xs"><i class="fa fa-search"></i> Detail
                                                     </td>
                                                 </tr>
                                             <?php } ?>
@@ -153,7 +153,7 @@
                         </div>
                         <div class="form-group">
                             <label for="judul">Nama Keterampilan</label><br>
-                            <input type="text" class="form-control" id="nama_ket" name="nama_ket" placeholder="Nama Keterampilan">
+                            <input type="text" class="form-control" id="nama_ket" name="nama_ket" placeholder="Contoh: Pemrograman Mobile berbasis Android">
                         </div>
                         <div class="form-group">
                             <label for="persetujuan">Jenis</label><br>
@@ -165,10 +165,11 @@
                         </div>
                         <div class="form-group">
                             <label for="Provinsi">Tingkat / Level</label><br>
-                            <input type="text" class="form-control" id="tingkat" name="tingkat" placeholder="">
+                            <input type="text" class="form-control" id="tingkat" name="tingkat" placeholder="Contoh: Dasar">
                         </div>
                         <div class="form-group">
                             <label for="exampleInputjudul1">Surat Keterangan</label><br>
+                            <span><h6>Upload Scan Bukti/Sertifikat (PDF/JPG Maks. 1 MB)</h6></span>
                             <input type="file" name="sk_ket">
                         </div>
                     </div>

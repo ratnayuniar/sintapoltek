@@ -67,14 +67,19 @@
             "autoWidth": false,
             "responsive": true,
         });
+
+         //Date range picker
+        // $('#reservation').daterangepicker()
     });
 </script>
+
+
 <script>
     var flash = $('#flash').data('flash');
     if (flash) {
         Swal.fire({
             icon: 'success',
-            title: 'Success',
+            title: 'Sukses',
             text: flash
         })
     }
@@ -90,7 +95,8 @@
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, delete it!'
+            confirmButtonText: 'Ya,hapus',
+            cancelButtonText: 'Tidak'
         }).then((result) => {
             if (result.isConfirmed) {
                 window.location = link;

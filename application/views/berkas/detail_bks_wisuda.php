@@ -54,6 +54,15 @@
                                         <br>
                                         <div class="row">
                                             <div class="col-12">
+                                            <h4>
+                                                <i class="fas fa-check-circle"></i> Powerpoint
+                                            </h4>
+                                            <a href="<?php echo base_url('assets/berkas/wisuda/' . $bks_wisuda->ppt); ?>" class="btn btn-primary" download>Unduh</a>
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="row">
+                                            <div class="col-12">
                                                 <h4>
                                                     <i class="fas fa-check-circle"></i> File Tugas Akhir
                                                 </h4>
@@ -84,14 +93,18 @@
                                             </div>
                                         </div>
                                         <iframe type="application/pdf" src="<?php echo base_url('assets/berkas/wisuda/' . $bks_wisuda->aplikasi); ?>" width="100%" height="600"></iframe><br><br>
-                                        <div class="row">
+                                        <video controls>
+                                        <source src="<?php echo base_url('assets/berkas/wisuda/' . $bks_wisuda->video); ?>" width="50%" height="50%" type="video/webm" />
+                                        Browsermu tidak mendukung tag ini, upgrade donk!
+                                        </video>
+                                        <!-- <div class="row">
                                             <div class="col-12">
                                                 <h4>
                                                     <i class="fas fa-check-circle"></i> Powerpoint
                                                 </h4>
                                             </div>
                                         </div>
-                                        <iframe type="application/pdf" src="<?php echo base_url('assets/berkas/wisuda/' . $bks_wisuda->ppt); ?>" width="100%" height="600"></iframe><br>
+                                        <iframe type="application/pdf" src="<?php echo base_url('assets/berkas/wisuda/' . $bks_wisuda->ppt); ?>" width="100%" height="600"></iframe><br> -->
                                         <div class="row">
                                             <div class="col-12">
                                                 <h4>

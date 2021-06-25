@@ -125,12 +125,8 @@ class Bks_keterampilan extends CI_Controller
     {
         $data = $this->m_bks_keterampilan->ambil_id_gambar($id_bks_ket);
         // lokasi gambar berada
-        $path = './assets/berkas/wisuda/';
-        @unlink($path . $data->berita_acara); // hapus data di folder dimana data tersimpan
-        @unlink($path . $data->persetujuan); // hapus data di folder dimana data tersimpan
-        @unlink($path . $data->proposal);
-        @unlink($path . $data->presentasi);
-        @unlink($path . $data->monitoring);
+        $path = './assets/berkas/keterampilan/';
+        @unlink($path . $data->sk_ket);
         if ($this->m_bks_keterampilan->delete_users($id_bks_ket) == TRUE) {
             // TAMPILKAN PESAN JIKA BERHASIL
             $this->session->set_flashdata('pesan', 'dihapus');

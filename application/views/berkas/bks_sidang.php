@@ -162,7 +162,7 @@
                           </td>
                           <td class="text-center" width="160px">
                             <a href="<?php echo base_url('bks_sidang/delete_berkas/' . $row->id_seminar_ta) ?>" id="btn-hapus" data-toggle="tooltip" data-placement="bottom" title="Hapus Mahasiswa" class="btn btn-sm btn-danger btn-xs"><i class="fa fa-trash"></i> Delete</a>
-                            <!-- <a href="<?= base_url('bks_sidang/detail_bks_sidang/' . $row->id_seminar_ta) ?>" class="on-default edit-row btn btn-info pull-right btn-xs"><i class="fa fa-search"></i> Detail </a> -->
+                            <a href="<?= base_url('bks_sidang/detail_bks_sidang/' . $row->id_seminar_ta) ?>" class="on-default edit-row btn btn-info pull-right btn-xs"><i class="fa fa-search"></i> Detail </a>
                         </tr>
                       <?php } ?>
                     </tbody>
@@ -194,25 +194,38 @@
               <input type="text" class="form-control" id="nim2" name="nim2" readonly placeholder="NIM">
             </div>
             <div class="form-group">
-              <label for="proposal">Proposal Tugas Akhir</label><br>
-              <input type="file" name="proposal" required>
+              <label for="proposal">Judul dan Link Video Demo</label><br>
+              <input type="text" class="form-control" id="link" name="link" placeholder="Link Video">
             </div>
             <div class="form-group">
-              <label for="pkkmb">Sertifikat PKKMB</label><br>
+              <label for="proposal">Berita Acara</label>
+              <span><h6>Upload dalam format doc.</h6></span>
+              <input type="file" name="berita_acara" required>
+            </div>
+            <div class="form-group">
+              <label for="exampleInputjudul1">Persetujuan</label>
+              <span><h6>Upload dalam format doc.</h6></span>
+              <input type="file" name="persetujuan" required>
+            </div>
+            <div class="form-group">
+              <label for="pkkmb">Sertifikat PKKMB</label>
+              <span><h6>Upload dalam format pdf.</h6></span>
               <input type="file" name="pkkmb" required>
             </div>
             <div class="form-group">
-              <label for="exampleInputjudul1">Pengesahan</label><br>
-              <input type="file" name="pengesahan" required>
+              <label for="proposal">Berkas Tugas Akhir</label>
+              <span><h6>Upload dalam format pdf.</h6></span>
+              <input type="file" name="file_ta" required>
+            </div>
+            <div class="form-group">
+              <label for="proposal">Presentasi</label><br>
+              <span><h6>Upload dalam format ppt.</h6></span>
+              <input type="file" name="presentasi" required>
             </div>
             <div class="form-group">
               <label for="exampleInputjudul1">Monitoring</label><br>
               <input type="file" name="monitoring" required>
-            </div>
-            <div class="form-group">
-              <label for="exampleInputjudul1">Persetujuan</label><br>
-              <input type="file" name="persetujuan" required>
-            </div>
+            </div>          
           </div>
           <div class="card-footer">
             <button type="submit" name="submit" class="btn btn-primary">Simpan</button>
@@ -227,6 +240,7 @@
       document.getElementById('id_seminar_ta').value = "";
       document.getElementById('nim').value = <?php echo $this->session->userdata('email'); ?>;
       document.getElementById('nim2').value = <?php echo $this->session->userdata('email'); ?>;
+      document.getElementById('link').value = "";
       document.getElementById('proposal').value = "";
       document.getElementById('pkkmb').value = "";
       document.getElementById('pengesahan').value = "";

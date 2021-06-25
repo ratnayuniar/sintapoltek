@@ -53,7 +53,8 @@
 											<td>" . $data['dosen1']->nama . "</td>
 											<td>" . $data['dosen2']->nama . "</td>
 											<td><a href ='#' class ='btn btn-sm btn-primary btn-xs' data-toggle='modal' data-target='#custom-width-modal' onClick=\"SetInput('" . $row->id_master_ta . "','" . $row->nim . "','" . $row->pembimbing1 . "','" . $row->pembimbing2 . "')\"><i class ='fa fa-edit'></i> Edit</a>
-												<a href ='#' class ='btn btn-sm btn-danger btn-xs' data-toggle='modal' data-target='#delete-modal'onClick=\"SetInputs('" . $row->id_master_ta . "','" . $row->nim . "','" . $row->pembimbing1 . "','" . $row->pembimbing2 . "')\"><i class ='fa fa-trash'></i> Hapus</a>
+												
+                                                <a href='" . base_url('pembimbing/delete2/' . $row->id_master_ta) . "' id='btn-hapus' class='btn btn-sm btn-danger btn-xs' ><i class='fa fa-trash'></i> Hapus</a>
 											</td>
 									    </tr>";
                                             $no++;
@@ -73,7 +74,7 @@
         <div class="modal-dialog" style="width:55%;">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title">Tambah Data Dosen Pembimbing</h4>
+                    <h4 class="modal-title">Data Dosen Pembimbing</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>

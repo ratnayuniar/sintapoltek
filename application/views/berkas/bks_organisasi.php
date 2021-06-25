@@ -222,7 +222,7 @@
                                                 <tr>
                                                     <td><?= $no++ ?></td>
                                                     <td><?= $row->nim ?></td>
-                                                    <td><?= $row->nama ?></td>
+                                                    <td><?= $row->nama ?></td> 
                                                     <td class="text-center" width="160px">
                                                         <?php if ($row->status == '0') {
                                                             echo '<span class="badge badge-warning">Menunggu</span>';
@@ -235,6 +235,8 @@
                                                     </td>
                                                     <td class="text-center" width="160px">
                                                         <a href="<?php echo base_url('bks_organisasi/delete_users/' . $row->id_bks_org) ?>" id="btn-hapus" data-toggle="tooltip" data-placement="bottom" title="Hapus Mahasiswa" class="btn btn-sm btn-danger btn-xs"><i class="fa fa-trash"></i> Delete</a>
+                                                        <a href="<?= base_url('bks_organisasi/detail_bks_organisasi/' . $row->nim) ?>" class="btn btn-sm btn-primary btn-xs">
+                                                        <i class="fa fa-search"></i> Detail
                                                         <!-- <a href="<?php echo base_url("bks_organisasi/ambil_id_user/{$row->id_bks_org}") ?>" data-toggle="tooltip" data-placement="bottom" title="edit data" class="btn btn-sm btn-warning btn-xs"><i class="fa fa-edit"></i>edit</a> -->
                                                         <!-- <a href="<?= base_url('bks_organisasi/detail_bks_organisasi/' . $row->id_bks_org) ?>" class="on-default edit-row btn btn-info pull-right btn-xs"><i class="fa fa-search"></i> Detail </a> -->
                                                     </td>

@@ -3,7 +3,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Detail Berkas Seminar</h1>
+                        <h1>Detail Berkas Sidang Tugas Akhir</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
@@ -56,11 +56,38 @@
                                     <div class="row">
                                         <div class="col-12">
                                             <h4>
-                                                <i class="fas fa-check-circle"></i> Proposal
+                                                <i class="fas fa-check-circle"></i> Berita Acara
+                                            </h4>
+                                            <a href="<?php echo base_url('assets/berkas/sidang/' . $bks_sidang->berita_acara); ?>" class="btn btn-primary" download>Unduh</a>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <h4>
+                                                <i class="fas fa-check-circle"></i> Lembar Persetujuan
+                                            </h4>
+                                            <a href="<?php echo base_url('assets/berkas/sidang/' . $bks_sidang->persetujuan); ?>" class="btn btn-primary" download>Unduh</a>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <h4>
+                                                <i class="fas fa-check-circle"></i> Presentasi
+                                            </h4>
+                                            <a href="<?php echo base_url('assets/berkas/sidang/' . $bks_sidang->presentasi); ?>" class="btn btn-primary" download>Unduh</a>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <h4>
+                                                <i class="fas fa-check-circle"></i> File Tugas Akhir
                                             </h4>
                                         </div>
                                     </div>
-                                    <iframe type="application/pdf" src="<?php echo base_url('assets/berkas/sidang/' . $bks_sidang->proposal); ?>" width="100%" height="600"></iframe><br>
+                                    <iframe type="application/pdf" src="<?php echo base_url('assets/berkas/sidang/' . $bks_sidang->file_ta); ?>" width="100%" height="600"></iframe><br>
                                     <div class="row">
                                         <div class="col-12">
                                             <h4>
@@ -72,20 +99,12 @@
                                     <div class="row">
                                         <div class="col-12">
                                             <h4>
-                                                <i class="fas fa-check-circle"></i> Pengesahan
-                                            </h4>
-                                        </div>
-                                    </div>
-                                    <iframe type="application/pdf" src="<?php echo base_url('assets/berkas/sidang/' . $bks_sidang->pengesahan); ?>" width="100%" height="600"></iframe><br><br>
-                                    <div class="row">
-                                        <div class="col-12">
-                                            <h4>
                                                 <i class="fas fa-check-circle"></i> Monitoring
                                             </h4>
                                         </div>
                                     </div>
                                     <iframe type="application/pdf" src="<?php echo base_url('assets/berkas/sidang/' . $bks_sidang->monitoring); ?>" width="100%" height="600"></iframe><br><br>
-                                    <div class="row">
+                                    <!-- <div class="row">
                                         <div class="col-12">
                                             <h4>
                                                 <i class="fas fa-check-circle"></i> Persetujuan
@@ -93,6 +112,23 @@
                                         </div>
                                     </div>
                                     <iframe type="application/pdf" src="<?php echo base_url('assets/berkas/sidang/' . $bks_sidang->persetujuan); ?>" width="100%" height="600"></iframe><br>
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <h4>
+                                                <i class="fas fa-check-circle"></i> Berita Acara
+                                            </h4>
+                                        </div>
+                                    </div>
+                                    <iframe type="application/pdf" src="<?php echo base_url('assets/berkas/sidang/' . $bks_sidang->berita_acara); ?>" width="100%" height="600"></iframe><br><br>
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <h4>
+                                                <i class="fas fa-check-circle"></i> Presentasi
+                                            </h4>
+                                        </div>
+                                    </div>
+                                    <iframe type="application/pdf" src="<?php echo base_url('assets/berkas/sidang/' . $bks_sidang->presentasi); ?>" width="100%" height="600"></iframe><br><br> -->
+                                   
                                 </div>
                             </div>
                         </div>

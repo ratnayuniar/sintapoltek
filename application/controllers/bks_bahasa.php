@@ -117,12 +117,9 @@ class Bks_bahasa extends CI_Controller
     {
         $data = $this->m_bks_bahasa->ambil_id_gambar($id_bks_bhs);
         // lokasi gambar berada
-        $path = './assets/berkas/wisuda/';
-        @unlink($path . $data->berita_acara); // hapus data di folder dimana data tersimpan
-        @unlink($path . $data->persetujuan); // hapus data di folder dimana data tersimpan
-        @unlink($path . $data->proposal);
-        @unlink($path . $data->presentasi);
-        @unlink($path . $data->monitoring);
+        $path = './assets/berkas/bahasa/';
+        @unlink($path . $data->sk_bahasa); // hapus data di folder dimana data tersimpan
+      
         if ($this->m_bks_bahasa->delete_users($id_bks_bhs) == TRUE) {
             // TAMPILKAN PESAN JIKA BERHASIL
             $this->session->set_flashdata('pesan', 'dihapus');

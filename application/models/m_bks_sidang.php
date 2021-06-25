@@ -19,7 +19,7 @@ class M_bks_sidang extends CI_Model
 		$this->db->update('seminar_ta', $data);
 	}
 
-	function bks_sidang_user()
+	function bks_sidang_user() 
 	{
 		$this->db->select('*');
 		$this->db->join('mahasiswa', 'mahasiswa.nim=seminar_ta.nim', 'left');
@@ -46,10 +46,10 @@ class M_bks_sidang extends CI_Model
 		return $this->db->get('seminar_ta')->row();
 	}
 
-	public function ambil_id_gambar($id_bks_sidang)
+	public function ambil_id_gambar($id_seminar_ta)
 	{
-		$this->db->from('bks_sidang');
-		$this->db->where('id_bks_sidang', $id_bks_sidang);
+		$this->db->from('seminar_ta');
+		$this->db->where('id_seminar_ta', $id_seminar_ta);
 		$result = $this->db->get('');
 		// periksa ada datanya atau tidak
 		if ($result->num_rows() > 0) {
@@ -57,24 +57,24 @@ class M_bks_sidang extends CI_Model
 		}
 	}
 
-	public function delete_users($id_bks_sidang)
+	public function delete_users($id_seminar_ta)
 	{
-		$this->db->where('id_bks_sidang', $id_bks_sidang);
-		$this->db->delete('bks_sidang');
+		$this->db->where('id_seminar_ta', $id_seminar_ta);
+		$this->db->delete('seminar_ta');
 		return TRUE;
 	}
 
 	public function update_users($data, $where)
 	{
 		$this->db->where($where);
-		$this->db->update('bks_sidang', $data);
+		$this->db->update('seminar_ta', $data);
 		return TRUE;
 	}
 
-	public function ambil_id_users($id_bks_sidang)
+	public function ambil_id_users($id_seminar_ta)
 	{
-		$data = $this->db->where(['id_bks_sidang' => $id_bks_sidang])
-			->get("bks_sidang");
+		$data = $this->db->where(['id_seminar_ta' => $id_seminar_ta])
+			->get("seminar_ta");
 		if ($data->num_rows() > 0) {
 			return $data->row();
 		}
