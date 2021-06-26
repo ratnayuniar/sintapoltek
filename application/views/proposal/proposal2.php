@@ -72,7 +72,7 @@
             font-family: 'Times New Roman', Times, serif;
             color: black;
             font-size: 12pt;
-            text-align: left;
+            text-align: justify;
             margin-top: 1px;
             margin-bottom: 10px;
             margin-left: 3px;
@@ -107,13 +107,13 @@
     </div>
 
     <main>
-        <table border="0" width="700 px">
+        <table border="1" width="700 px">
             <tbody>
                 <tr>
                     <td>
                         <font size="4,5" face="Times New Roman" color="black">
                             <b>A. LATAR BELAKANG</b><br>
-                            <p class="tabel2" style="text-align: justify;">
+                            <p class="tabel2">
                                 <?= $proposal_user->latar_belakang; ?>
                             </p>
                         </font>
@@ -152,7 +152,7 @@
                 <tr>
                     <td>
                         <font size="4,5" face="Times New Roman" color="black">
-                            <b>E. Tinjauan Pustaka / Landasan Teori</b><br>
+                            <b>E. TINJAUAN PUSTAKA / LANDASAN TEORI</b><br>
                             <p class="tabel2" style="text-align: justify;">
                                 <?= $proposal_user->teori; ?>
                             </p>
@@ -162,7 +162,7 @@
                 <tr>
                     <td>
                         <font size="4,5" face="Times New Roman" color="black">
-                            <b>F. Metodelogi Penelitian</b><br>
+                            <b>F. METODE PENELITIAN</b><br>
                             <p class="tabel2" style="text-align: justify;">
                                 <?= $proposal_user->metode; ?>
                             </p>

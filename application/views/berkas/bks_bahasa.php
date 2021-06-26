@@ -9,6 +9,7 @@
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="<?php echo base_url('beranda'); ?>">Beranda</a></li>
+                            <li class="breadcrumb-item"><a href="<?php echo base_url('bks_bahasa/admin'); ?>">List Verifikasi Bahasa </a></li>
                             <li class="breadcrumb-item active"> Data Bahasa Internasional</li>
                         </ol>
                     </div>

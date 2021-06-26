@@ -8,6 +8,7 @@ class Bks_bahasa extends CI_Controller
     {
         parent::__construct();
         $this->load->model('m_bks_bahasa');
+        $this->load->model('m_prodi2');
         $this->load->helper('url');
         $this->load->library('form_validation');
     }
@@ -17,9 +18,36 @@ class Bks_bahasa extends CI_Controller
         $data['query'] = $this->m_bks_bahasa->tampil_data();
         $data['bks_bahasa_user'] = $this->m_bks_bahasa->bks_bahasa_user();
         $data['bks_bahasa_admin'] = $this->m_bks_bahasa->bks_bahasa_admin();
+        $data['prodi'] = $this->m_prodi2->tampil_data();
         $data['title'] = 'SINTA PNM';
         $data['data'] = $this->db->get('bks_bahasa')->result();
 
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('berkas/bks_bahasa', $data);
+        $this->load->view('templates/footer', $data);
+    }
+
+    public function admin()
+    {
+        $data['query'] = $this->m_bks_bahasa->tampil_data();
+        $data['bks_bahasa_user'] = $this->m_bks_bahasa->bks_bahasa_user();
+        $data['bks_bahasa_admin'] = $this->m_bks_bahasa->bks_bahasa_admin();
+        $data['prodi'] = $this->m_prodi2->tampil_data();
+        $data['title'] = 'SINTA PNM';
+        $data['data'] = $this->db->get('bks_bahasa')->result();
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('validasi/list_bahasa', $data);
+        $this->load->view('templates/footer', $data);
+    }
+
+    public function detaildata($id)
+    {
+        $data['title'] = 'SINTA PNM';
+        $data['bks_bahasa_admin'] = $this->m_bks_bahasa->bks_bahasa_admin();
+        $data['get_mahasiswa'] = $this->m_bks_bahasa->get_mahasiswa($id);
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('berkas/bks_bahasa', $data);
@@ -119,7 +147,7 @@ class Bks_bahasa extends CI_Controller
         // lokasi gambar berada
         $path = './assets/berkas/bahasa/';
         @unlink($path . $data->sk_bahasa); // hapus data di folder dimana data tersimpan
-      
+
         if ($this->m_bks_bahasa->delete_users($id_bks_bhs) == TRUE) {
             // TAMPILKAN PESAN JIKA BERHASIL
             $this->session->set_flashdata('pesan', 'dihapus');

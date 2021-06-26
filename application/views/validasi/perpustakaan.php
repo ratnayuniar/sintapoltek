@@ -24,7 +24,7 @@
                             <h3 class="card-title">Verifikasi Data Perpustakaan</h3>
                         </div>
                         <div class="card-body">
-                           <table id="example1" class="table table-bordered table-striped">
+                            <table id="example1" class="table table-bordered table-striped">
                                 <thead style="text-align:center; ">
                                     <tr>
                                         <th rowspan="2">No</th>
@@ -61,7 +61,7 @@
 
                                     <?php
                                     $no = 1;
-                                    foreach ($query->result() as $row) { ?>
+                                    foreach ($get_mahasiswa as $row) { ?>
                                         <tr>
                                             <td><?= $no++ ?></td>
                                             <td><?= $row->nim ?></td>

@@ -1,6 +1,13 @@
 <!-- <script type="text/javascript" src="<?= base_url("assets/ckeditor/ckeditor.js") ?>"></script> -->
 <!-- summernote -->
 <link rel="stylesheet" href="<?php echo base_url(); ?>admin/plugins/summernote/summernote-bs4.min.css">
+<style>
+    pre {
+        white-space: pre-wrap;
+        word-wrap: break-word;
+        font-family: inherit;
+    }
+</style>
 <div class="content-wrapper">
     <section class="content-header">
         <div class="container-fluid">
@@ -34,28 +41,25 @@
                                     <label for="exampleInputjudul1">Latar Belakang</label>
                                     <textarea class="form-control" rows="5" id="latar_belakang" name="latar_belakang" placeholder="Masukkan Latar Belakang"></textarea>
                                 </div>
-                                <!-- <div class="form-group">
-                                    <textarea id="compose-textarea" class="form-control" name="latar_belakang" style="height: 500px"></textarea>
-                                </div> -->
                                 <div class="form-group">
                                     <label for="exampleInputjudul1">Rumusan Masalah</label>
-                                    <textarea class="form-control" rows="5" id="rumusan_masalah" name="rumusan_masalah" placeholder="Masukkan Rumusan Masalah"></textarea>
+                                    <pre><textarea class="form-control" rows="5" id="rumusan_masalah" name="rumusan_masalah" placeholder="Masukkan Rumusan Masalah"></textarea></pre>
                                 </div>
                                 <div class=" form-group">
                                     <label for="exampleInputjudul1">Batasan Masalah</label>
-                                    <textarea class="form-control" rows="5" id="batasan_masalah" name="batasan_masalah" placeholder="Masukkan Batasan Masalah"></textarea>
+                                    <pre><textarea class="form-control" rows="5" id="batasan_masalah" name="batasan_masalah" placeholder="Masukkan Batasan Masalah"></textarea></pre>
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputjudul1">Tujuan</label>
-                                    <textarea class="form-control" rows="5" id="tujuan" name="tujuan" placeholder="Masukkan Tujuan"></textarea>
+                                    <pre><textarea class="form-control" rows="5" id="tujuan" name="tujuan" placeholder="Masukkan Tujuan"></textarea></pre>
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputjudul1">Tinjauan Pustaka / Landasan Teori</label>
-                                    <textarea class="form-control" rows="5" id="teori" name="teori" placeholder="Masukkan Tinjauan Pustaka"></textarea>
+                                    <pre><textarea class="form-control" rows="5" id="teori" name="teori" placeholder="Masukkan Tinjauan Pustaka"></textarea></pre>
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputjudul1">Metodelogi Penelitian</label>
-                                    <textarea class="form-control" rows="5" id="metode" name="metode" placeholder="Masukkan Metodelogi Penelitian"></textarea>
+                                    <pre><textarea class="form-control" rows="5" id="metode" name="metode" placeholder="Masukkan Metodelogi Penelitian"></textarea></pre>
                                 </div>
 
                             </div>

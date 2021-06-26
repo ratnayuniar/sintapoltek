@@ -22,7 +22,7 @@ class M_proposal extends CI_Model
             'tujuan' => $this->input->post('tujuan'),
             'teori' => $this->input->post('teori'),
             'metode' => $this->input->post('metode'),
-            'nim' => $this->session->userdata('nim'),
+            'nim' => $this->session->userdata('email'),
         );
         $this->db->insert('proposal', $data);
         $this->session->set_flashdata('message', '<div class="alert alert-info">Data Berhasil Di Simpan</div>');
@@ -33,7 +33,7 @@ class M_proposal extends CI_Model
     {
         $this->db->select('*');
         $this->db->order_by('id_proposal', 'DESC');
-        $this->db->where('proposal.nim', $this->session->userdata('nim'));
+        $this->db->where('proposal.nim', $this->session->userdata('email'));
         return $this->db->get('proposal')->row();
     }
 }

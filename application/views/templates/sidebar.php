@@ -719,7 +719,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="<?php echo base_url('bks_bahasa'); ?>" class="nav-link">
+                        <a href="<?php echo base_url('bks_bahasa/admin'); ?>" class="nav-link">
                             <i class="nav-icon fas fa-user-check"></i>
                             <p>
                                 Verifikasi

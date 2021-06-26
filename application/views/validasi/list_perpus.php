@@ -3,13 +3,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Verifikasi Keuangan</h1>
+                    <h1>List Verifikasi Data Perpustakaan</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="<?php echo base_url('beranda'); ?>">Beranda</a></li>
-                        <li class="breadcrumb-item"><a href="<?php echo base_url('verif_keuangan'); ?>">List Verifikasi Data Keuangan</a></li>
-                        <li class="breadcrumb-item active">Verifikasi Keuangan</li>
+                        <li class="breadcrumb-item active">List Verifikasi Data Perpustakaan</li>
                     </ol>
                 </div>
             </div>
@@ -23,45 +22,27 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">Verifikasi Data Keuangan</h3>
+                            <h3 class="card-title">List Verifikasi Data Perpustakaan</h3>
                         </div>
                         <div class="card-body">
                             <table id="example1" class="table table-bordered table-striped">
                                 <thead style="text-align:center; ">
                                     <tr>
                                         <th>No</th>
-                                        <th>NIM</th>
-                                        <!-- <th>Jurusan</th>
-                                        <th>Program Studi</th> -->
-                                        <th>Nama</th>
-                                        <th>Status UKT</th>
-                                        <th>Validasi</th>
+                                        <th>Jurusan</th>
+                                        <th>Program Studi</th>
+                                        <th>Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php
                                     $no = 1;
-                                    foreach ($get_mahasiswa as $row) { ?>
+                                    foreach ($prodi->result() as $row) { ?>
                                         <tr>
                                             <td><?= $no++ ?></td>
-                                            <td><?= $row->nim ?></td>
-                                            <!-- <td><?= $row->nama_jurusan ?></td>
-                                            <td><?= $row->nama_prodi ?></td> -->
-                                            <td><?= $row->nama ?></td>
-                                            <td> <?php if ($row->ukt == '0') {
-                                                        echo '<span class="badge badge-primary">Belum</span>';
-                                                    } else if ($row->ukt == '1') {
-                                                        echo '<span class="badge badge-success">Kurang</span>';
-                                                    } else {
-                                                        echo '<span class="badge badge-danger">Lengkap</span>';
-                                                    }
-                                                    ?>
-                                            </td>
-                                            <td>
-                                                <a href="<?php echo site_url('verif_keuangan/save_belum/' . $row->nim); ?>" id="btn-konfirmasi" class="btn btn-outline-primary btn-xs">Belum</a>
-                                                <a href="<?php echo site_url('verif_keuangan/save_kurang/' . $row->nim); ?>" id="btn-konfirmasi" class="btn btn-outline-success btn-xs">Kurang</a>
-                                                <a href="<?php echo site_url('verif_keuangan/save_lengkap/' . $row->nim); ?>" id="btn-konfirmasi" class="btn btn-outline-danger btn-xs">Lengkap</a>
-                                            </td>
+                                            <td><?= $row->nama_jurusan ?></td>
+                                            <td><?= $row->nama_prodi ?></td>
+                                            <td align="center"><a href="<?= base_url('veri_perpus/detaildata/' . $row->id_prodi) ?>" class="on-default edit-row btn btn-info pull-right btn-xs"><i class="fa fa-check"></i> &nbsp; Verifikasi Data </a></td>
                                         </tr>
                                     <?php } ?>
                                 </tbody>

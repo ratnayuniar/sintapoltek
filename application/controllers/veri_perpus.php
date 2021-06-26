@@ -18,10 +18,21 @@ class Veri_perpus extends CI_Controller
     public function index()
     {
         $data['query'] = $this->m_veri_perpus->tampil_data();
+        $data['prodi'] = $this->m_prodi2->tampil_data();
         $data['title'] = 'SINTA PNM';
         $data['data'] = $this->db->get('bks_wisuda')->result();
 
 
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('validasi/list_perpus', $data);
+        $this->load->view('templates/footer', $data);
+    }
+
+    public function detaildata($id)
+    {
+        $data['title'] = 'SINTA PNM';
+        $data['get_mahasiswa'] = $this->m_veri_perpus->get_mahasiswa($id);
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('validasi/perpustakaan', $data);
