@@ -30,6 +30,16 @@ class Verif_baak extends CI_Controller
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
+        $this->load->view('validasi/list_baak', $data);
+        $this->load->view('templates/footer', $data);
+    }
+
+    public function detaildata($id)
+    {
+        $data['title'] = 'SINTA PNM';
+        $data['get_mahasiswa'] = $this->m_verif_baak->get_mahasiswa($id);
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
         $this->load->view('validasi/baak', $data);
         $this->load->view('templates/footer', $data);
     }

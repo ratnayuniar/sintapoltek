@@ -18,6 +18,7 @@ class Verif_lab extends CI_Controller
     public function index()
     {
         $data['query'] = $this->m_verif_lab->tampil_data();
+        $data['prodi'] = $this->m_prodi2->tampil_data();
         // $data['query2'] = $this->m_verif_lab->tampil2();
 
 
@@ -29,6 +30,16 @@ class Verif_lab extends CI_Controller
         // $data['user'] = $this->db->get_where('user', ['email' =>
         // $this->session->userdata('email')])->row_array();
 
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('validasi/list_lab', $data);
+        $this->load->view('templates/footer', $data);
+    }
+
+    public function detaildata($id)
+    {
+        $data['title'] = 'SINTA PNM';
+        $data['get_mahasiswa'] = $this->m_verif_lab->get_mahasiswa($id);
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('validasi/lab', $data);

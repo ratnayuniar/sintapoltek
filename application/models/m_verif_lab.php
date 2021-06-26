@@ -11,6 +11,16 @@ class M_verif_lab extends CI_Model
         return $this->db->get('bks_wisuda');
     }
 
+    public function get_mahasiswa($id)
+    {
+        $this->db->select('*');
+        $this->db->from('bks_wisuda');
+        $this->db->join('mahasiswa', 'mahasiswa.nim = bks_wisuda.nim', 'left');
+        $this->db->join('prodi', 'prodi.id_prodi = mahasiswa.id_prodi', 'left');
+        $this->db->where('prodi.id_prodi', $id);
+        return $this->db->get()->result();
+    }
+
     function tampil2()
     {
         $this->db->join('mahasiswa', 'mahasiswa.nim=perpustakaan.nim', 'left');
