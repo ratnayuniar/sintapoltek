@@ -145,7 +145,8 @@
                                                     </td>
                                                     <td class="text-center" width="160px">
                                                         <a href="<?php echo base_url('bks_bahasa/delete_users/' . $row->id_bks_bhs) ?>" id="btn-hapus" data-toggle="tooltip" data-placement="bottom" title="Hapus Mahasiswa" class="btn btn-sm btn-danger btn-xs"><i class="fa fa-trash"></i> Delete</a>
-                                                        <!-- <a href="<?= base_url('bks_bahasa/detail_bks_bahasa/' . $row->id_bks_bhs) ?>" class="on-default edit-row btn btn-info pull-right btn-xs"><i class="fa fa-search"></i> Detail </a> -->
+                                                        <a href="<?= base_url('bks_bahasa/detail_bks_bahasa/' . $row->nim) ?>" class="btn btn-sm btn-primary btn-xs">
+                                                            <i class="fa fa-search"></i> Detail</a>
                                                     </td>
                                                 </tr>
                                             <?php } ?>

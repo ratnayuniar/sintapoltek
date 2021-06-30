@@ -18,14 +18,7 @@ class Topik extends CI_Controller
 		$data['query'] = $this->m_topik->tampil_data();
 		$data['topik_user'] = $this->m_topik->topik_user();
 		$data['topik_dosen'] = $this->m_topik->topik_dosen();
-
-
 		$data['title'] = 'SINTA PNM';
-		// $data['user'] = $this->db->get_where(
-		// 	'user',
-		// 	['email' => $this->session->userdata('email')],
-		// )->row_array();
-
 
 		$this->load->view('templates/header', $data);
 		$this->load->view('templates/sidebar', $data);
@@ -80,9 +73,6 @@ class Topik extends CI_Controller
 		$this->form_validation->set_rules('status', 'Status', 'trim|required');
 		$this->form_validation->set_error_delimiters('flash', 'Gagal');
 
-		// $this->form_validation->set_message('required', '{field}Harus di isi');
-		// $this->form_validation->set_error_delimiters('<div class="alert alert-danger">', '</div>');
-
 		if ($this->form_validation->run() == FALSE) {
 			redirect('index');
 		} else {
@@ -115,13 +105,6 @@ class Topik extends CI_Controller
 				);
 				$this->m_topik->update($this->input->post('id_topik'), $data);
 			}
-			// $data = array(
-			// 	'topik_id' => $this->input->post('id_topik'),
-			// 	'komentar' => $this->input->post('komentar'),
-			// 	'waktu_komentar' => date('Y-m-d'),
-			// );
-
-			// $this->m_topik->insert_komentar($data);
 
 			$this->session->set_flashdata('message', '<div class="alert alert-info">Data Berhasil Di Simpan</div>');
 			redirect('topik', 'refresh');
@@ -133,8 +116,6 @@ class Topik extends CI_Controller
 		$this->form_validation->set_rules('status', 'Status', 'trim|required');
 		$this->form_validation->set_error_delimiters('flash', 'Gagal');
 
-		// $this->form_validation->set_message('required', '{field}Harus di isi');
-		// $this->form_validation->set_error_delimiters('<div class="alert alert-danger">', '</div>');
 
 		if ($this->form_validation->run() == FALSE) {
 			redirect('index');
@@ -154,9 +135,6 @@ class Topik extends CI_Controller
 	{
 		$this->form_validation->set_rules('status', 'Status', 'trim|required');
 		$this->form_validation->set_error_delimiters('flash', 'Gagal');
-
-		// $this->form_validation->set_message('required', '{field}Harus di isi');
-		// $this->form_validation->set_error_delimiters('<div class="alert alert-danger">', '</div>');
 
 		if ($this->form_validation->run() == FALSE) {
 			redirect('index');

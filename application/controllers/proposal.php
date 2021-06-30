@@ -15,14 +15,8 @@ class Proposal extends CI_Controller
     public function index()
     {
         $data['query'] = $this->m_proposal->tampil_data();
-        // $data['bimbingan_user'] = $this->m_bimbingan1->bimbingan_user();
         $data['proposal_user'] = $this->m_proposal->proposal_user();
-
         $data['title'] = 'SINTA PNM';
-        // $data['user'] = $this->db->get_where(
-        //     'user',
-        //     ['email' => $this->session->userdata('email')],
-        // )->row_array();
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);

@@ -15,8 +15,6 @@ class Jurusan extends CI_Controller
 	{
 		$data['query'] = $this->m_jurusan->tampil_data();
 		$data['title'] = 'SINTA PNM';
-		// $data['user'] = $this->db->get_where('user', ['email' =>
-		// $this->session->userdata('email')])->row_array();
 
 		$this->load->view('templates/header', $data);
 		$this->load->view('templates/sidebar', $data);
@@ -44,11 +42,4 @@ class Jurusan extends CI_Controller
 			redirect('jurusan', 'refresh');
 		}
 	}
-
-	// public function delete()
-	// {
-	// 	$id_jurusan = $this->input->post('id_jurusan2');
-	// 	$this->m_jurusan->hapus_data($id_jurusan);
-	// }
-
 }

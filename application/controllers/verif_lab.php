@@ -11,6 +11,7 @@ class Verif_lab extends CI_Controller
         $this->load->model('m_jurusan');
         $this->load->model('m_prodi2');
         $this->load->model('m_mahasiswa');
+        $this->load->model('m_bks_wisuda');
         $this->load->helper('url');
         $this->load->library('form_validation');
     }
@@ -19,16 +20,9 @@ class Verif_lab extends CI_Controller
     {
         $data['query'] = $this->m_verif_lab->tampil_data();
         $data['prodi'] = $this->m_prodi2->tampil_data();
-        // $data['query2'] = $this->m_verif_lab->tampil2();
-
-
-        // $data['bks_seminar_user'] = $this->m_verif_lab->bks_seminar_user();
-
         $data['title'] = 'SINTA PNM';
         $data['data'] = $this->db->get('bks_wisuda')->result();
 
-        // $data['user'] = $this->db->get_where('user', ['email' =>
-        // $this->session->userdata('email')])->row_array();
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
@@ -40,6 +34,17 @@ class Verif_lab extends CI_Controller
     {
         $data['title'] = 'SINTA PNM';
         $data['get_mahasiswa'] = $this->m_verif_lab->get_mahasiswa($id);
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('validasi/lab', $data);
+        $this->load->view('templates/footer', $data);
+    }
+
+    public function detaildata_mhs()
+    {
+        $data['title'] = 'SINTA PNM';
+        // $data['get_mahasiswa'] = $this->m_verif_lab->get_mahasiswa($id);
+        $data['bks_wisuda_user'] = $this->m_bks_wisuda->bks_wisuda_user();
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('validasi/lab', $data);

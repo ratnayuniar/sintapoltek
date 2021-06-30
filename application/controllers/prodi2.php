@@ -30,12 +30,6 @@ class Prodi2 extends CI_Controller
         else $this->m_prodi2->ubah_data($id_prodi);
     }
 
-    public function delete()
-    {
-        $id_prodi = $this->input->post('id_prodi2');
-        $this->m_prodi2->hapus_data($id_prodi);
-    }
-
     function delete2($id_prodi)
     {
         $delete = $this->m_prodi2->get_id_prodi($id_prodi);
@@ -48,4 +42,10 @@ class Prodi2 extends CI_Controller
             redirect('prodi2', 'refresh');
         }
     }
+
+    // public function delete()
+    // {
+    //     $id_prodi = $this->input->post('id_prodi2');
+    //     $this->m_prodi2->hapus_data($id_prodi);
+    // }
 }

@@ -49,4 +49,9 @@ class M_auth extends CI_Model
         $sql = $this->db->query("SELECT * FROM mahasiswa WHERE nim = '$email' AND password = md5('$password') LIMIT 1");
         return $sql;
     }
+
+    function logged_id()
+    {
+        return $this->session->userdata('email');
+    }
 }

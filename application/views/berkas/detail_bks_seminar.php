@@ -33,7 +33,6 @@
                             <div class="row invoice-info">
                                 <div class="col-sm-4 invoice-col">
                                     Nama : <strong><?= $bks_seminar->nama; ?></strong><br>
-                                    <!-- Email : <strong><?= $bks_seminar->email; ?></strong> -->
                                 </div>
                                 <div class="col-sm-4 invoice-col">
                                     <b>Status Pendaftaran</b> :
@@ -52,22 +51,6 @@
                             <div class="row">
                                 <div class="col-12">
                                     <br>
-                                    <!-- <div class="row">
-                                        <div class="col-12">
-                                            <h4>
-                                                <i class="fas fa-check-circle"></i> Berita Acara
-                                            </h4>
-                                        </div>
-                                    </div>
-                                    <iframe type="application/doc" src="<?php echo base_url('assets/berkas/seminar/' . $bks_seminar->berita_acara); ?>" width="100%" height="600"></iframe><br> -->
-                                    <!-- <div class="row">
-                                        <div class="col-12">
-                                            <h4>
-                                                <i class="fas fa-check-circle"></i> Lembar Persetujuan
-                                            </h4>
-                                        </div>
-                                    </div>
-                                    <iframe type="application/pdf" src="<?php echo base_url('assets/berkas/seminar/' . $bks_seminar->persetujuan); ?>" width="100%" height="600"></iframe><br><br> -->
                                     <div class="row">
                                         <div class="col-12">
                                             <h4>
@@ -103,14 +86,6 @@
                                         </div>
                                     </div>
                                     <iframe type="application/pdf" src="<?php echo base_url('assets/berkas/seminar/' . $bks_seminar->proposal); ?>" width="100%" height="600"></iframe><br><br>
-                                    <!-- <div class="row">
-                                        <div class="col-12">
-                                            <h4>
-                                                <i class="fas fa-check-circle"></i> Presentasi
-                                            </h4>
-                                        </div>
-                                    </div>
-                                    <iframe type="application/pdf" src="<?php echo base_url('assets/berkas/seminar/' . $bks_seminar->presentasi); ?>" width="100%" height="600"></iframe><br><br> -->
                                     <div class="row">
                                         <div class="col-12">
                                             <h4>

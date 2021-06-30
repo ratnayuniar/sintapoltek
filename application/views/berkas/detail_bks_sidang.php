@@ -34,7 +34,6 @@
                             <div class="row invoice-info">
                                 <div class="col-sm-4 invoice-col">
                                     Nama : <strong><?= $bks_sidang->nama; ?></strong><br>
-                                    <!-- Email : <strong><?= $bks_sidang->email; ?></strong> -->
                                 </div>
                                 <div class="col-sm-4 invoice-col">
                                     <b>Status Pendaftaran</b> :
@@ -104,31 +103,6 @@
                                         </div>
                                     </div>
                                     <iframe type="application/pdf" src="<?php echo base_url('assets/berkas/sidang/' . $bks_sidang->monitoring); ?>" width="100%" height="600"></iframe><br><br>
-                                    <!-- <div class="row">
-                                        <div class="col-12">
-                                            <h4>
-                                                <i class="fas fa-check-circle"></i> Persetujuan
-                                            </h4>
-                                        </div>
-                                    </div>
-                                    <iframe type="application/pdf" src="<?php echo base_url('assets/berkas/sidang/' . $bks_sidang->persetujuan); ?>" width="100%" height="600"></iframe><br>
-                                    <div class="row">
-                                        <div class="col-12">
-                                            <h4>
-                                                <i class="fas fa-check-circle"></i> Berita Acara
-                                            </h4>
-                                        </div>
-                                    </div>
-                                    <iframe type="application/pdf" src="<?php echo base_url('assets/berkas/sidang/' . $bks_sidang->berita_acara); ?>" width="100%" height="600"></iframe><br><br>
-                                    <div class="row">
-                                        <div class="col-12">
-                                            <h4>
-                                                <i class="fas fa-check-circle"></i> Presentasi
-                                            </h4>
-                                        </div>
-                                    </div>
-                                    <iframe type="application/pdf" src="<?php echo base_url('assets/berkas/sidang/' . $bks_sidang->presentasi); ?>" width="100%" height="600"></iframe><br><br> -->
-                                   
                                 </div>
                             </div>
                         </div>

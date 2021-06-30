@@ -44,10 +44,4 @@ class Dosen extends CI_Controller
 			redirect('dosen', 'refresh');
 		}
 	}
-
-	// public function delete()
-	// {
-	// 	$id_dosen = $this->input->post('id_dosen2');
-	// 	$this->m_dosen->hapus_data($id_dosen);
-	// }
 }

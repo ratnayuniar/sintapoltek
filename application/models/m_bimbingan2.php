@@ -66,9 +66,22 @@ class M_bimbingan2 extends CI_Model
         $this->db->join('mahasiswa', 'bimbingan.nim = mahasiswa.nim', 'left');
         $this->db->join('dosen', 'bimbingan.id_dosen = dosen.id_dosen', 'left');
         $this->db->where('status_dosen', 2);
+        $this->db->where('jenis', "seminar");
         $this->db->where('bimbingan.nim', $this->session->userdata('email'));
         $this->db->or_where('bimbingan.id_dosen', $this->session->userdata('id_dosen'));
 
+        return $this->db->get('bimbingan');
+    }
+
+    function bimbingan_user_ta()
+    {
+
+        $this->db->join('mahasiswa', 'bimbingan.nim = mahasiswa.nim', 'left');
+        $this->db->join('dosen', 'bimbingan.id_dosen = dosen.id_dosen', 'left');
+        $this->db->where('status_dosen', 2);
+        $this->db->where('jenis', "ta");
+        $this->db->where('bimbingan.nim', $this->session->userdata('email'));
+        $this->db->or_where('bimbingan.id_dosen', $this->session->userdata('id_dosen'));
 
         return $this->db->get('bimbingan');
     }
@@ -92,6 +105,7 @@ class M_bimbingan2 extends CI_Model
     function get_mahasiswa()
     {
         $this->db->join('prodi', 'mahasiswa.id_prodi = prodi.id_prodi', 'left');
+        $this->db->join('jurusan', 'prodi.id_jurusan = jurusan.id_jurusan', 'left');
         $this->db->where('mahasiswa.nim', $this->session->userdata('email'));
 
         $query = $this->db->get('mahasiswa');
@@ -107,6 +121,7 @@ class M_bimbingan2 extends CI_Model
             'tanggal' => $this->input->post('tanggal'),
             'status' => 0,
             'status_dosen' => 2,
+            'jenis' => "seminar",
 
         );
 
@@ -114,6 +129,25 @@ class M_bimbingan2 extends CI_Model
         $this->session->set_flashdata('message', '<div class="alert alert-info">Data Berhasil Di Simpan</div>');
 
         redirect('/bimbingan2');
+    }
+
+    function tambah_data_ta()
+    {
+        $data = array(
+            'nim' => $this->input->post('nim'),
+            'id_dosen' => $this->input->post('id_dosen'),
+            'masalah' => $this->input->post('masalah'),
+            'tanggal' => $this->input->post('tanggal'),
+            'status' => 0,
+            'status_dosen' => 2,
+            'jenis' => "ta",
+
+        );
+
+        $this->db->insert('bimbingan', $data);
+        $this->session->set_flashdata('message', '<div class="alert alert-info">Data Berhasil Di Simpan</div>');
+
+        redirect('/bimbingan2/bimbingan2_ta');
     }
 
 

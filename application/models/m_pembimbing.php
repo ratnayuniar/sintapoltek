@@ -17,7 +17,7 @@ class M_pembimbing extends CI_Model
         // $this->db->join('user', 'user.nim=pembimbing.id_mahasiswa');
         // $this->db->where("pembimbing.pembimbing1", $id)->or_where("pembimbing.pembimbing2", $id);
         // $query = $this->db->get();
-        // return $query;
+        // return $query; 
         $id = $this->session->userdata('id_dosen');
         $this->db->select('*');
         $this->db->from('master_ta');
@@ -203,8 +203,8 @@ class M_pembimbing extends CI_Model
     function ubah_data($id_master_ta)
     {
         $data = array(
-            // 'nim' => $this->input->post('nim'),
-            'id_master_ta' => $this->input->post('id_master_ta'),
+            // 'id_master_ta' => $this->input->post('id_master_ta'),
+            'nim' => $this->input->post('nim'),
             'pembimbing1' => $this->input->post('pembimbing1'),
             'pembimbing2' => $this->input->post('pembimbing2')
         );
@@ -212,6 +212,7 @@ class M_pembimbing extends CI_Model
         $this->db->update('master_ta', $data);
         redirect('/pembimbing');
     }
+
 
 
     function hapus_data($id_master_ta)

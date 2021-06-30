@@ -15,10 +15,7 @@ class Bks_sidang extends CI_Controller
 	public function index()
 	{
 		$data['query'] = $this->m_bks_sidang->tampil_data();
-
 		$data['bks_sidang_user'] = $this->m_bks_sidang->bks_sidang_user();
-		// $data['bks_sidang_admin'] = $this->m_bks_sidang->bks_sidang_admin();
-
 		$data['title'] = 'SINTA PNM';
 		$data['data'] = $this->db->get('seminar_ta')->result();
 
@@ -67,7 +64,6 @@ class Bks_sidang extends CI_Controller
 			$config['allowed_types'] = 'pdf|jpg|png|doc|docx|ppt|pptx';
 			$config['max_size']  = 5000;
 			$config['file_name'] = 'bks_sidang-' . date('ymd');
-			// $config['encrypt_name']  = TRUE;
 
 			$this->load->library('upload', $config);
 
@@ -138,19 +134,17 @@ class Bks_sidang extends CI_Controller
 		}
 	}
 
-	public function delete_berkas($id_seminar_ta) 
+	public function delete_berkas($id_seminar_ta)
 	{
 		$data = $this->m_bks_sidang->ambil_id_gambar($id_seminar_ta);
-		// lokasi gambar berada
 		$path = './assets/berkas/sidang/';
-		@unlink($path . $data->pkkmb); // hapus data di folder dimana data tersimpan
-		@unlink($path . $data->persetujuan); // hapus data di folder dimana data tersimpan
+		@unlink($path . $data->pkkmb);
+		@unlink($path . $data->persetujuan);
 		@unlink($path . $data->file_ta);
 		@unlink($path . $data->presentasi);
 		@unlink($path . $data->monitoring);
 		@unlink($path . $data->berita_acara);
 		if ($this->m_bks_sidang->delete_users($id_seminar_ta) == TRUE) {
-			// TAMPILKAN PESAN JIKA BERHASIL
 			$this->session->set_flashdata('pesan', 'dihapus');
 		}
 		redirect('bks_sidang');

@@ -74,14 +74,6 @@
       </div>
       <form action="<?php echo base_url() . 'jurusan/add'; ?>" method="post" class="form-horizontal" role="form">
         <div class="modal-body">
-          <!-- <div class="form-group">
-            
-            <label class="col-md-3 control-label">Kode Jurusan</label>
-            <div class="col-md-9">
-              <input type="text" class="form-control" id="kode_jurusan" name="kode_jurusan" required>
-            </div>
-          </div> -->
-
           <div class="form-group">
             <input type="hidden" id="id_jurusan" name="id_jurusan">
             <label class="col-md-5 control-label">Nama Jurusan</label>
@@ -92,13 +84,10 @@
           <div class="modal-footer justify-content-between">
             <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
             <button type="submit" class="btn btn-primary">Simpan</button>
-
           </div>
-
         </div>
       </form>
     </div>
-
   </div>
 </div>
 
@@ -121,10 +110,9 @@
           <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal">Tidak</button>
           <button type="submit" class="btn btn-success waves-effect waves-light">Ya</button>
         </div>
-    </div><!-- /.modal-content -->
-  </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
-
+    </div>
+  </div>
+</div>
 
 <div id="delete-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="custom-width-modalLabel" aria-hidden="true" style="display: none;">
   <div class="modal-dialog">
@@ -150,19 +138,16 @@
 <script type="text/javascript">
   function SetInput(id_jurusan, nama_jurusan) {
     document.getElementById('id_jurusan').value = id_jurusan;
-    // document.getElementById('kode_jurusan').value = kode_jurusan;
     document.getElementById('nama_jurusan').value = nama_jurusan;
   }
 
-  function SetInputs(id_jurusan, kode_jurusan, nama_jurusan) {
+  function SetInputs(id_jurusan, nama_jurusan) {
     document.getElementById('id_jurusan2').value = id_jurusan;
-    document.getElementById('kode_jurusan2').value = kode_jurusan;
     document.getElementById('nama_jurusan2').value = nama_jurusan;
   }
 
-  function ResetInput(id_jurusan, kode_jurusan, nama_jurusan) {
+  function ResetInput(id_jurusan, nama_jurusan) {
     document.getElementById('id_jurusan').value = "";
-    document.getElementById('kode_jurusan').value = "";
     document.getElementById('nama_jurusan').value = "";
   }
 </script>

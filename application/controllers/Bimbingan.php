@@ -51,7 +51,7 @@ class Bimbingan extends CI_Controller
 
             redirect(base_url('bimbingan'), 'refresh');
         }
-        // check_not_login();
+
         $data['title'] = 'Bimbingann';
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);

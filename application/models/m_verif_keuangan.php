@@ -16,13 +16,13 @@ class M_verif_keuangan extends CI_Model
         return $this->db->insert('mahasiswa', $data);
     }
 
-    public function get_mahasiswa($id)
+    public function get_mahasiswa($id_prodi)
     {
         $this->db->select('*');
         $this->db->from('bks_wisuda');
         $this->db->join('mahasiswa', 'mahasiswa.nim = bks_wisuda.nim', 'left');
         $this->db->join('prodi', 'prodi.id_prodi = mahasiswa.id_prodi', 'left');
-        $this->db->where('prodi.id_prodi', $id);
+        $this->db->where('prodi.id_prodi', $id_prodi);
         return $this->db->get()->result();
     }
 

@@ -8,6 +8,7 @@ class Verif_keuangan extends CI_Controller
     {
         parent::__construct();
         $this->load->model('m_verif_keuangan');
+        $this->load->model('m_bks_wisuda');
         $this->load->model('m_jurusan');
         $this->load->model('m_prodi2');
         $this->load->model('m_mahasiswa');
@@ -36,6 +37,17 @@ class Verif_keuangan extends CI_Controller
     {
         $data['title'] = 'SINTA PNM';
         $data['get_mahasiswa'] = $this->m_verif_keuangan->get_mahasiswa($id);
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('validasi/keuangan', $data);
+        $this->load->view('templates/footer', $data);
+    }
+
+    public function detaildata_mhs()
+    {
+        $data['title'] = 'SINTA PNM';
+        // $data['get_mahasiswa'] = $this->m_verif_keuangan->get_mahasiswa($id);
+        $data['bks_wisuda_user'] = $this->m_bks_wisuda->bks_wisuda_user();
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('validasi/keuangan', $data);
@@ -95,8 +107,6 @@ class Verif_keuangan extends CI_Controller
             $this->load->view('templates/footer', $data);
         }
     }
-
-
 
     function detail_mahasiswa($nim)
     {

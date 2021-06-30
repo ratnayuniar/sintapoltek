@@ -46,10 +46,4 @@ class Jadwal_sidang extends CI_Controller
 			redirect('jadwal_sidang', 'refresh');
 		}
 	}
-
-	// public function delete()
-	// {
-	// 	$id_jadwal = $this->input->post('id_jadwal2');
-	// 	$this->m_jadwal_sidang->hapus_data($id_jadwal);
-	// }
 }

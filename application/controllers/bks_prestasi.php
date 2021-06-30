@@ -15,10 +15,7 @@ class Bks_prestasi extends CI_Controller
     public function index()
     {
         $data['query'] = $this->m_bks_prestasi->tampil_data();
-
         $data['bks_prestasi_user'] = $this->m_bks_prestasi->bks_prestasi_user();
-        // $data['bks_prestasi_admin'] = $this->m_bks_prestasi->bks_prestasi_admin();
-
         $data['title'] = 'SINTA PNM';
         $data['data'] = $this->db->get('bks_prestasi')->result();
 
@@ -66,8 +63,6 @@ class Bks_prestasi extends CI_Controller
             $config['allowed_types'] = 'pdf|jpg|jpeg|png';
             $config['max_size']  = 2048;
             $config['file_name'] = 'bks_prestasi-' . date('ymd');
-            // $config['encrypt_name']  = TRUE;
-
             $this->load->library('upload', $config);
 
             if (!empty($_FILES['piagam'])) {
@@ -112,12 +107,10 @@ class Bks_prestasi extends CI_Controller
     public function delete_users($id_bks_prestasi)
     {
         $data = $this->m_bks_prestasi->ambil_id_gambar($id_bks_prestasi);
-        // lokasi gambar berada
         $path = './assets/berkas/prestasi/';
-        @unlink($path . $data->piagam); // hapus data di folder dimana data tersimpan
-       
+        @unlink($path . $data->piagam);
+
         if ($this->m_bks_prestasi->delete_users($id_bks_prestasi) == TRUE) {
-            // TAMPILKAN PESAN JIKA BERHASIL
             $this->session->set_flashdata('pesan', 'dihapus');
         }
         redirect('bks_prestasi');

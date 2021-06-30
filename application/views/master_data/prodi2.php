@@ -148,24 +148,21 @@
 
 
 <script type="text/javascript">
-    function SetInput(id_jurusan, id_prodi, nama_prodi, kode_prodi) {
+    function SetInput(id_jurusan, id_prodi, nama_prodi) {
         document.getElementById('id_jurusan').value = id_jurusan;
         document.getElementById('id_prodi').value = id_prodi;
         document.getElementById('nama_prodi').value = nama_prodi;
-        document.getElementById('kode_prodi').value = kode_prodi;
     }
 
-    function SetInputs(id_jurusan, id_prodi, nama_prodi, kode_prodi) {
+    function SetInputs(id_jurusan, id_prodi, nama_prodi) {
 
         document.getElementById('id_prodi2').value = id_prodi;
         document.getElementById('nama_prodi2').value = nama_prodi;
-        document.getElementById('kode_prodi2').value = kode_prodi;
     }
 
     function ResetInput() {
         document.getElementById('id_jurusan').value = "";
         document.getElementById('id_prodi').value = "";
         document.getElementById('nama_prodi').value = "";
-        document.getElementById('kode_prodi').value = "";
     }
 </script>

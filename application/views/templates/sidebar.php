@@ -106,25 +106,114 @@
                     </li>
                     <li class="nav-item">
                         <a href="#" class="nav-link ">
-                            <i class="nav-icon fas fa-file-archive"></i>
+                            <i class="nav-icon fas fa-book-open"></i>
                             <p>
-                                Berkas Pendaftaran
+                                Proposal
                                 <i class="fas fa-angle-left right"></i>
                             </p>
                         </a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                <a href="<?php echo base_url('bks_seminar'); ?>" class="nav-link">
+                                <a href="<?php echo base_url('pembimbing'); ?>" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
-                                    <p>Berkas Seminar Proposal</p>
+                                    <p>Dosen Pembimbing</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="<?php echo base_url('bks_sidang'); ?>" class="nav-link">
+                                <a href="<?php echo base_url('bks_seminar'); ?>" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
-                                    <p>Berkas Sidang</p>
+                                    <p>Registrasi Seminar</p>
                                 </a>
                             </li>
+                            <li class="nav-item">
+                                <a href="<?php echo base_url('penguji'); ?>" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Dosen Penguji Seminar</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="<?php echo base_url('jadwal_seminar'); ?>" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Jadwal Seminar</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="<?php echo base_url('nilai_seminar'); ?>" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Nilai Seminar</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="<?php echo base_url('revisi_seminar'); ?>" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Hasil Seminar</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link ">
+                            <i class="nav-icon fas fa-book"></i>
+                            <p>
+                                Tugas Akhir
+                                <i class="fas fa-angle-left right"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="<?php echo base_url('bks_sidang'); ?>" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Registrasi Sidang</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="<?php echo base_url('penguji_sidang'); ?>" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Dosen Penguji Sidang</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="<?php echo base_url('jadwal_sidang'); ?>" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Jadwal Sidang</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="<?php echo base_url('nilai_sidang'); ?>" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Nilai Sidang</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="<?php echo base_url('revisi_sidang'); ?>" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Hasil Sidang</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link ">
+                            <i class="nav-icon fas fa-file-archive"></i>
+                            <p>
+                                Wisuda
+                                <i class="fas fa-angle-left right"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="<?php echo base_url('bks_wisuda'); ?>" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Berkas Prodi</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="<?php echo base_url('jadwal_wisuda'); ?>" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Jadwal Wisuda</p>
+                                </a>
+                            </li>
+                            <!--                           
                             <li class="nav-item">
                                 <a href="<?php echo base_url('bks_wisuda'); ?>" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
@@ -163,89 +252,8 @@
                                             <p>Organisasi</p>
                                         </a>
                                     </li>
-                                    <!-- <li class="nav-item">
-                                        <a href="<?php echo base_url('bks_bahasa'); ?>" class="nav-link">
-                                            <i class="far fa-dot-circle nav-icon"></i>
-                                            <p>Bahasa Internasional</p>
-                                        </a>
-                                    </li> -->
                                 </ul>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link ">
-                            <i class="nav-icon fas fa-users-cog"></i>
-                            <p>
-                                Penguji & Pembimbing
-                                <i class="fas fa-angle-left right"></i>
-                            </p>
-                        </a>
-                        <ul class="nav nav-treeview">
-                            <li class="nav-item">
-                                <a href="<?php echo base_url('pembimbing'); ?>" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Dosen Pembimbing</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="<?php echo base_url('penguji'); ?>" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Dosen Penguji Seminar</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="<?php echo base_url('penguji_sidang'); ?>" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Dosen Penguji Sidang</p>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link ">
-                            <i class="nav-icon fas fa-calendar-alt"></i>
-                            <p>
-                                Jadwal
-                                <i class="fas fa-angle-left right"></i>
-                            </p>
-                        </a>
-                        <ul class="nav nav-treeview">
-                            <li class="nav-item">
-                                <a href="<?php echo base_url('jadwal_seminar'); ?>" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Jadwal Seminar</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="<?php echo base_url('jadwal_sidang'); ?>" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Jadwal Sidang</p>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link ">
-                            <i class="nav-icon fas fa-clipboard"></i>
-                            <p>
-                                Nilai
-                                <i class="fas fa-angle-left right"></i>
-                            </p>
-                        </a>
-                        <ul class="nav nav-treeview">
-                            <li class="nav-item">
-                                <a href="<?php echo base_url('nilai_seminar'); ?>" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Nilai Seminar</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="<?php echo base_url('nilai_sidang'); ?>" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Nilai Sidang</p>
-                                </a>
-                            </li>
+                            </li> -->
                         </ul>
                     </li>
                 <?php }  ?>
@@ -260,42 +268,129 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="<?php echo base_url('topik'); ?>" class="nav-link">
+                        <a href="#" class="nav-link ">
                             <i class="nav-icon fas fa-book-open"></i>
                             <p>
-                                Topik Tugas Akhir
-                            </p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="<?php echo base_url('proposal'); ?>" class="nav-link">
-                            <i class="nav-icon fas fa-book"></i>
-                            <p>
                                 Proposal
-                            </p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="<?php echo base_url('bimbingan/'); ?>" class="nav-link">
-                            <i class="nav-icon fas fa-chalkboard-teacher"></i>
-                            <p>
-                                Bimbingan
-                            </p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link ">
-                            <i class="nav-icon fas fa-users-cog"></i>
-                            <p>
-                                Penguji & Pembimbing
                                 <i class="fas fa-angle-left right"></i>
                             </p>
                         </a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
+                                <a href="<?php echo base_url('topik'); ?>" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Pengajuan Judul</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="<?php echo base_url('pembimbing'); ?>" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Dosen Pembimbing</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="<?php echo base_url('proposal'); ?>" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Buat Proposal</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="<?php echo base_url(''); ?>" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Bimbingan Proposal</p>
+                                    <i class="fas fa-angle-left right"></i>
+                                </a>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a href="<?php echo base_url('bimbingan1'); ?>" class="nav-link">
+                                            <i class="far fa-dot-circle nav-icon"></i>
+                                            <p>Dosen Pembimbing 1</p>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a href="<?php echo base_url('bimbingan2'); ?>" class="nav-link">
+                                            <i class="far fa-dot-circle nav-icon"></i>
+                                            <p>Dosen Pembimbing 2</p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="nav-item">
+                                <a href="<?php echo base_url('bks_seminar'); ?>" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Registrasi Seminar</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="<?php echo base_url('jadwal_seminar'); ?>" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Jadwal Seminar</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
                                 <a href="<?php echo base_url('penguji'); ?>" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Dosen Penguji Seminar</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="<?php echo base_url('revisi_seminar'); ?>" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Hasil Seminar</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link ">
+                            <i class="nav-icon fas fa-book"></i>
+                            <p>
+                                Tugas Akhir
+                                <i class="fas fa-angle-left right"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="<?php echo base_url('profil_ta'); ?>" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Profil TA</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="<?php echo base_url(''); ?>" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Bimbingan TA</p>
+                                    <i class="fas fa-angle-left right"></i>
+                                </a>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a href="<?php echo base_url('bimbingan1/bimbingan1_ta'); ?>" class="nav-link">
+                                            <i class="far fa-dot-circle nav-icon"></i>
+                                            <p>Dosen Pembimbing 1</p>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a href="<?php echo base_url('bimbingan2/bimbingan2_ta'); ?>" class="nav-link">
+                                            <i class="far fa-dot-circle nav-icon"></i>
+                                            <p>Dosen Pembimbing 2</p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="nav-item">
+                                <a href="<?php echo base_url('bks_sidang'); ?>" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Registrasi Sidang</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="<?php echo base_url('jadwal_sidang'); ?>" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Jadwal Sidang</p>
                                 </a>
                             </li>
                             <li class="nav-item">
@@ -305,9 +400,15 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="<?php echo base_url('pembimbing'); ?>" class="nav-link">
+                                <a href="<?php echo base_url('revisi_sidang'); ?>" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
-                                    <p>Dosen Pembimbing</p>
+                                    <p>Hasil Sidang</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="<?php echo base_url('revisi_upload'); ?>" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Revisi</p>
                                 </a>
                             </li>
                         </ul>
@@ -316,115 +417,67 @@
                         <a href="#" class="nav-link ">
                             <i class="nav-icon fas fa-file-archive"></i>
                             <p>
-                                Berkas Pendaftaran
+                                Wisuda
                                 <i class="fas fa-angle-left right"></i>
                             </p>
                         </a>
                         <ul class="nav nav-treeview">
-                            <li class="nav-item">
-                                <a href="<?php echo base_url('bks_seminar'); ?>" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Berkas Seminar Proposal</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="<?php echo base_url('bks_sidang'); ?>" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Berkas Sidang</p>
-                                </a>
-                            </li>
                             <li class="nav-item">
                                 <a href="<?php echo base_url('bks_wisuda'); ?>" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
-                                    <p>Berkas Wisuda
-                                        <i class="fas fa-angle-left right"></i>
-                                    </p>
-                                </a>
-                                <ul class="nav nav-treeview">
-                                    <li class="nav-item">
-                                        <a href="<?php echo base_url('bks_wisuda'); ?>" class="nav-link">
-                                            <i class="far fa-dot-circle nav-icon"></i>
-                                            <p>Daftar Wisuda</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="<?php echo base_url('bks_pkl'); ?>" class="nav-link">
-                                            <i class="far fa-dot-circle nav-icon"></i>
-                                            <p>Magang / PKL</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="<?php echo base_url('bks_keterampilan'); ?>" class="nav-link">
-                                            <i class="far fa-dot-circle nav-icon"></i>
-                                            <p>Keterampilan</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="<?php echo base_url('bks_prestasi'); ?>" class="nav-link">
-                                            <i class="far fa-dot-circle nav-icon"></i>
-                                            <p>Prestasi</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="<?php echo base_url('bks_organisasi'); ?>" class="nav-link">
-                                            <i class="far fa-dot-circle nav-icon"></i>
-                                            <p>Organisasi</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="<?php echo base_url('bks_bahasa'); ?>" class="nav-link">
-                                            <i class="far fa-dot-circle nav-icon"></i>
-                                            <p>Bahasa Internasional</p>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link ">
-                            <i class="nav-icon fas fa-calendar-alt"></i>
-                            <p>
-                                Jadwal
-                                <i class="fas fa-angle-left right"></i>
-                            </p>
-                        </a>
-                        <ul class="nav nav-treeview">
-                            <li class="nav-item">
-                                <a href="<?php echo base_url('jadwal_seminar'); ?>" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Jadwal Seminar</p>
+                                    <p>Data Prodi</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="<?php echo base_url('jadwal_sidang'); ?>" class="nav-link">
+                                <a href="<?php echo base_url('bks_bahasa'); ?>" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
-                                    <p>Jadwal Sidang</p>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link ">
-                            <i class="nav-icon fas fa-file-alt"></i>
-                            <p>
-                                Lembar Bimbingan
-                                <i class="fas fa-angle-left right"></i>
-                            </p>
-                        </a>
-                        <ul class="nav nav-treeview">
-                            <li class="nav-item">
-                                <a href="<?php echo base_url('bimbingan1'); ?>" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Dosen Pembimbing 1</p>
+                                    <p>Data Bahasa</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="<?php echo base_url('bimbingan2'); ?>" class="nav-link">
+                                <a href="<?php echo base_url('bks_pkl'); ?>" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
-                                    <p>Dosen Pembimbing 2</p>
+                                    <p>Data Magang</p>
                                 </a>
                             </li>
+                            <li class="nav-item">
+                                <a href="<?php echo base_url('bks_keterampilan'); ?>" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Data Keterampilan</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="<?php echo base_url('bks_prestasi'); ?>" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Data Prestasi</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="<?php echo base_url('verif_baak/detaildata_mhs'); ?>" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Data BAAK</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="<?php echo base_url('veri_perpus/detaildata_mhs'); ?>" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Data Perpustakaan</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="<?php echo base_url('verif_keuangan/detaildata_mhs'); ?>" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Data Keuangan</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="<?php echo base_url('verif_lab/detaildata_mhs'); ?>" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Data LAB</p>
+                                </a>
+                            </li>
+
+
                         </ul>
                     </li>
                 <?php } ?>
@@ -438,15 +491,95 @@
                             </p>
                         </a>
                     </li>
-                    <li class="nav-item">
+                    <!-- <li class="nav-item">
                         <a href="<?php echo base_url('bimbingandosen'); ?>" class="nav-link">
                             <i class="nav-icon fas fa-chalkboard-teacher"></i>
                             <p>
                                 Bimbingan
                             </p>
                         </a>
+                    </li> -->
+                    <li class="nav-item">
+                        <a href="#" class="nav-link ">
+                            <i class="nav-icon fas fa-book-open"></i>
+                            <p>
+                                Proposal
+                                <i class="fas fa-angle-left right"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="<?php echo base_url(''); ?>" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Bimbingan Proposal</p>
+                                    <i class="fas fa-angle-left right"></i>
+                                </a>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a href="<?php echo base_url('bimbingan1'); ?>" class="nav-link">
+                                            <i class="far fa-dot-circle nav-icon"></i>
+                                            <p>Dosen Pembimbing 1</p>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a href="<?php echo base_url('bimbingan2'); ?>" class="nav-link">
+                                            <i class="far fa-dot-circle nav-icon"></i>
+                                            <p>Dosen Pembimbing 2</p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="nav-item">
+                                <a href="<?php echo base_url('nilai_seminar'); ?>" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Nilai Seminar</p>
+                                </a>
+                            </li>
+                        </ul>
                     </li>
                     <li class="nav-item">
+                        <a href="#" class="nav-link ">
+                            <i class="nav-icon fas fa-book"></i>
+                            <p>
+                                Tugas Akhir
+                                <i class="fas fa-angle-left right"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="<?php echo base_url(''); ?>" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Bimbingan TA</p>
+                                    <i class="fas fa-angle-left right"></i>
+                                </a>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a href="<?php echo base_url('bimbingan1'); ?>" class="nav-link">
+                                            <i class="far fa-dot-circle nav-icon"></i>
+                                            <p>Dosen Pembimbing 1</p>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a href="<?php echo base_url('bimbingan2'); ?>" class="nav-link">
+                                            <i class="far fa-dot-circle nav-icon"></i>
+                                            <p>Dosen Pembimbing 2</p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="nav-item">
+                                <a href="<?php echo base_url('nilai_sidang'); ?>" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Nilai Sidang</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <!-- <li class="nav-item">
                         <a href="#" class="nav-link ">
                             <i class="nav-icon fas fa-users-cog"></i>
                             <p>
@@ -474,31 +607,8 @@
                                 </a>
                             </li>
                         </ul>
-                    </li>
-                    <!-- <li class="nav-item">
-                        <a href="#" class="nav-link ">
-                            <i class="nav-icon fas fa-calendar-alt"></i>
-                            <p>
-                                Jadwal
-                                <i class="fas fa-angle-left right"></i>
-                            </p>
-                        </a>
-                        <ul class="nav nav-treeview">
-                            <li class="nav-item">
-                                <a href="<?php echo base_url('jadwal_seminar'); ?>" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Jadwal Seminar</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="<?php echo base_url('jadwal_sidang'); ?>" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Jadwal Sidang</p>
-                                </a>
-                            </li>
-                        </ul>
                     </li> -->
-                    <li class="nav-item">
+                    <!-- <li class="nav-item">
                         <a href="#" class="nav-link ">
                             <i class="nav-icon fas fa-clipboard"></i>
                             <p>
@@ -520,8 +630,8 @@
                                 </a>
                             </li>
                         </ul>
-                    </li>
-                    <li class="nav-item">
+                    </li> -->
+                    <!-- <li class="nav-item">
                         <a href="#" class="nav-link ">
                             <i class="nav-icon fas fa-file-alt"></i>
                             <p>
@@ -543,7 +653,7 @@
                                 </a>
                             </li>
                         </ul>
-                    </li>
+                    </li> -->
                 <?php } ?>
                 <!-- USER KAPRODI -->
                 <?php if ($this->session->userdata('level') == 4) { ?>
@@ -556,22 +666,108 @@
                         </a>
                     </li>
                     <li class="nav-item">
+                        <a href="#" class="nav-link ">
+                            <i class="nav-icon fas fa-book-open"></i>
+                            <p>
+                                Proposal
+                                <i class="fas fa-angle-left right"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="<?php echo base_url('topik'); ?>" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Judul Tugas Akhir</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="<?php echo base_url(''); ?>" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Bimbingan Proposal</p>
+                                    <i class="fas fa-angle-left right"></i>
+                                </a>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a href="<?php echo base_url('bimbingan1'); ?>" class="nav-link">
+                                            <i class="far fa-dot-circle nav-icon"></i>
+                                            <p>Dosen Pembimbing 1</p>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a href="<?php echo base_url('bimbingan2'); ?>" class="nav-link">
+                                            <i class="far fa-dot-circle nav-icon"></i>
+                                            <p>Dosen Pembimbing 2</p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="nav-item">
+                                <a href="<?php echo base_url('nilai_seminar'); ?>" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Nilai Seminar</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link ">
+                            <i class="nav-icon fas fa-book"></i>
+                            <p>
+                                Tugas Akhir
+                                <i class="fas fa-angle-left right"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="<?php echo base_url(''); ?>" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Bimbingan TA</p>
+                                    <i class="fas fa-angle-left right"></i>
+                                </a>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a href="<?php echo base_url('bimbingan1'); ?>" class="nav-link">
+                                            <i class="far fa-dot-circle nav-icon"></i>
+                                            <p>Dosen Pembimbing 1</p>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a href="<?php echo base_url('bimbingan2'); ?>" class="nav-link">
+                                            <i class="far fa-dot-circle nav-icon"></i>
+                                            <p>Dosen Pembimbing 2</p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="nav-item">
+                                <a href="<?php echo base_url('nilai_sidang'); ?>" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Nilai Sidang</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <!-- <li class="nav-item">
                         <a href="<?php echo base_url('topik'); ?>" class="nav-link">
                             <i class="nav-icon fas fa-book-open"></i>
                             <p>
                                 Topik Tugas Akhir
                             </p>
                         </a>
-                    </li>
-                    <li class="nav-item">
+                    </li> -->
+                    <!-- <li class="nav-item">
                         <a href="<?php echo base_url('bimbingandosen'); ?>" class="nav-link">
                             <i class="nav-icon fas fa-chalkboard-teacher"></i>
                             <p>
                                 Bimbingan
                             </p>
                         </a>
-                    </li>
-                    <li class="nav-item">
+                    </li> -->
+                    <!-- <li class="nav-item">
                         <a href="#" class="nav-link ">
                             <i class="nav-icon fas fa-users-cog"></i>
                             <p>
@@ -599,7 +795,7 @@
                                 </a>
                             </li>
                         </ul>
-                    </li>
+                    </li> -->
                     <!-- <li class="nav-item">
                         <a href="#" class="nav-link ">
                             <i class="nav-icon fas fa-calendar-alt"></i>
@@ -623,7 +819,7 @@
                             </li>
                         </ul>
                     </li> -->
-                    <li class="nav-item">
+                    <!-- <li class="nav-item">
                         <a href="#" class="nav-link ">
                             <i class="nav-icon fas fa-clipboard"></i>
                             <p>
@@ -645,8 +841,8 @@
                                 </a>
                             </li>
                         </ul>
-                    </li>
-                    <li class="nav-item">
+                    </li> -->
+                    <!-- <li class="nav-item">
                         <a href="#" class="nav-link ">
                             <i class="nav-icon fas fa-file-alt"></i>
                             <p>
@@ -668,7 +864,7 @@
                                 </a>
                             </li>
                         </ul>
-                    </li>
+                    </li> -->
                 <?php } ?>
                 <!-- USER PERPUSTAKAAN -->
                 <?php if ($this->session->userdata('level') == 6) { ?>

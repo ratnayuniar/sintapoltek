@@ -118,20 +118,18 @@ class Bks_pkl extends CI_Controller
                 $this->index();
             }
         } else {
-            $this->index(); 
+            $this->index();
         }
     }
 
     public function delete_users($id_bks_pkl)
     {
         $data = $this->m_bks_pkl->ambil_id_gambar($id_bks_pkl);
-        // lokasi gambar berada
         $path = './assets/berkas/magang/';
-        @unlink($path . $data->sk_pkl); // hapus data di folder dimana data tersimpan
-        @unlink($path . $data->laporan); // hapus data di folder dimana data tersimpan
-       
+        @unlink($path . $data->sk_pkl);
+        @unlink($path . $data->laporan);
+
         if ($this->m_bks_pkl->delete_users($id_bks_pkl) == TRUE) {
-            // TAMPILKAN PESAN JIKA BERHASIL
             $this->session->set_flashdata('pesan', 'dihapus');
         }
         redirect('bks_pkl');

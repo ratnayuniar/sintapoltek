@@ -13,26 +13,10 @@ class M_penguji extends CI_Model
         $this->db->where(array('mahasiswa.id_prodi' => $id_prodi));
         $query = $this->db->get('master_ta');
         return $query;
-
-
-        // return $this->db->get('master_ta');
-        // return $this->db->query("SELECT * FROM dosen, penguji WHERE dosen.id_dosen=penguji.penguji1");
-        // return $this->db->query("SELECT * FROM dosen, penguji WHERE dosen.id_dosen=penguji.id_penguji2");
-        // return $this->db->query("SELECT * FROM jurusan, prodi WHERE jurusan.id_jurusan=prodi.id_jurusan");
-        // return $this->db->query("SELECT * FROM jurusan, mahasiswa,prodi WHERE jurusan.id_jurusan=mahasiswa.id_jurusan AND prodi.id_prodi=mahasiswa.id_prodi");
-        // return $this->db->query("SELECT * FROM dosen, penguji,mahasiswa WHERE dosen.id_dosen=penguji.id_penguji1 AND mahasiswa.nim=penguji.id_penguji");
     }
 
     function bimbingan_dosen()
     {
-        // $this->db->select('*');
-        // $this->db->from('penguji');
-        // $this->db->join('user', 'user.id_user=penguji.penguji1');
-        // $this->db->where('penguji.penguji1', $this->session->userdata('id_user'));
-        // $this->db->or_where('penguji.penguji2', $this->session->userdata('id_user'));
-        // $this->db->or_where('penguji.penguji3', $this->session->userdata('id_user'));
-        // $query = $this->db->get();
-        // return $query;
         $this->db->select('*');
         $this->db->from('master_ta');
         $this->db->join('dosen', 'dosen.id_dosen=master_ta.penguji1_sempro');
@@ -43,15 +27,8 @@ class M_penguji extends CI_Model
         return $query;
     }
 
-    //diganti
     function bimbingan_mhs()
     {
-        // $this->db->select('*');
-        // $this->db->from('penguji');
-        // $this->db->join('user', 'user.id_user=penguji.id_mahasiswa');
-        // $this->db->where('penguji.id_mahasiswa', $this->session->userdata('id_user'));
-        // $query = $this->db->get();
-        // return $query;
         $this->db->select('*');
         $this->db->from('master_ta');
         $this->db->join('mahasiswa', 'mahasiswa.nim=master_ta.nim');
@@ -63,25 +40,12 @@ class M_penguji extends CI_Model
         return $query;
     }
 
-    // public function getmahasiswabyid($id)
-    // {
-    //     $this->db->select('*');
-    //     $this->db->from('mahasiswa');
-    //     $this->db->join('user', 'user.nim=mahasiswa.nim');
-    //     $this->db->where("user.id_user", $id);
-    //     $query = $this->db->get()->row();
-    //     return $query;
-    // }
-
     public function getmahasiswabyid($id)
     {
-        // return $this->db->get_where('user', ["id_user" => $id])->row();
+
         $this->db->select('*');
         $this->db->from('mahasiswa');
-        // $this->db->join('mahasiswa', 'mahasiswa.nim=user.nim');
-        // $this->db->join('dosen', 'dosen.id_dosen=user.id_dosen');
         $this->db->where("mahasiswa.nim", $id);
-        // $this->db->or_where("user.id_user", $id);
         $query = $this->db->get()->row();
         return $query;
     }
@@ -89,7 +53,6 @@ class M_penguji extends CI_Model
     {
         $this->db->select('*');
         $this->db->from('dosen');
-        // $this->db->join('user', 'user.id_dosen=dosen.id_dosen');
         $this->db->where("dosen.id_dosen", $id);
         $query = $this->db->get()->row();
         return $query;
@@ -99,7 +62,6 @@ class M_penguji extends CI_Model
     {
         $this->db->select('*');
         $this->db->from('dosen');
-        // $this->db->join('user', 'user.id_dosen=dosen.id_dosen');
         $this->db->where("dosen.id_dosen", $id);
         $query = $this->db->get()->row();
         return $query;
@@ -109,7 +71,6 @@ class M_penguji extends CI_Model
     {
         $this->db->select('*');
         $this->db->from('dosen');
-        // $this->db->join('user', 'user.id_dosen=dosen.id_dosen');
         $this->db->where("dosen.id_dosen", $id);
         $query = $this->db->get()->row();
         return $query;
@@ -128,18 +89,8 @@ class M_penguji extends CI_Model
         redirect('/penguji');
     }
 
-    // function penguji_user()
-    // {
-    //     $this->db->join('mahasiswa', 'penguji.nim = mahasiswa.nim', 'left');
-    //     $this->db->where('penguji.nim', $this->session->userdata('nim'));
-    //     return $this->db->get('penguji');
-    // }
-
     function dosen_user()
     {
-        // $this->db->where('penguji.id_penguji1', $this->session->userdata('id_dosen'));
-        // $this->db->where('penguji.id_penguji2', $this->session->userdata('id_dosen'));
-        //$this->db->where('penguji.id_penguji1', $this->session->userdata('id_dosen'));
         $this->db->or_where('penguji.id_penguji1', $this->session->userdata('id_dosen'));
         $this->db->or_where('penguji.id_penguji2', $this->session->userdata('id_dosen'));
         $this->db->or_where('penguji.id_penguji3', $this->session->userdata('id_dosen'));
@@ -153,9 +104,7 @@ class M_penguji extends CI_Model
         return $this->db->get_where('mahasiswa', $query);
     }
 
-
-
-    function ubah_data($id_master_ta)
+    function ubah_data($nim)
     {
         $data = array(
 
@@ -163,7 +112,7 @@ class M_penguji extends CI_Model
             'penguji2_sempro' => $this->input->post('penguji2_sempro'),
             'penguji3_sempro' => $this->input->post('penguji3_sempro')
         );
-        $this->db->where(array('id_master_ta' => $id_master_ta));
+        $this->db->where(array('nim' => $nim));
         $this->db->update('master_ta', $data);
         redirect('/penguji');
     }
@@ -175,20 +124,6 @@ class M_penguji extends CI_Model
         $this->db->delete('penguji');
         redirect('/penguji');
     }
-
-
-
-
-    // function tambah_data(){
-    // 	$data = array(
-    // 		'nim' => $this->input->post('nim'),
-    // 		'nama' => $this->input->post('nama'),
-    // 		'prodi' => $this->input->post('prodi'),
-    // 		'jurusan' => $this->input->post('jurusan'),
-    // 	);
-    // 	$this->db->insert('mahasiswa', $data);
-    // 	redirect('../mahasiswa');
-    // }
 
     function input_data($data, $table)
     {

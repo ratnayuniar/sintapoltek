@@ -46,10 +46,4 @@ class Jadwal_seminar extends CI_Controller
 			redirect('jadwal_seminar', 'refresh');
 		}
 	}
-
-	// public function delete()
-	// {
-	// 	$id_jadwal = $this->input->post('id_jadwal2');
-	// 	$this->m_jadwal_seminar->hapus_data($id_jadwal);
-	// }
 }

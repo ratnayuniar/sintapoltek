@@ -52,9 +52,8 @@
                                         	<td>" . $data['user']->nama   . "</td>
 											<td>" . $data['dosen1']->nama . "</td>
 											<td>" . $data['dosen2']->nama . "</td>
-											<td><a href ='#' class ='btn btn-sm btn-primary btn-xs' data-toggle='modal' data-target='#custom-width-modal' onClick=\"SetInput('" . $row->id_master_ta . "','" . $row->nim . "','" . $row->pembimbing1 . "','" . $row->pembimbing2 . "')\"><i class ='fa fa-edit'></i> Edit</a>
-												
-                                                <a href='" . base_url('pembimbing/delete2/' . $row->id_master_ta) . "' id='btn-hapus' class='btn btn-sm btn-danger btn-xs' ><i class='fa fa-trash'></i> Hapus</a>
+											<td><a href ='#' class ='btn btn-sm btn-primary btn-xs' data-toggle='modal' data-target='#custom-width-modal' onClick=\"SetInput('" . $row->pembimbing1 . "','" . $row->pembimbing2 . "','" . $row->id_master_ta . "','" . $row->nim . "')\"><i class ='fa fa-edit'></i> Edit</a>
+												<a href='" . base_url('pembimbing/delete2/' . $row->id_master_ta) . "' id='btn-hapus' class='btn btn-sm btn-danger btn-xs' ><i class='fa fa-trash'></i> Hapus</a>
 											</td>
 									    </tr>";
                                             $no++;
@@ -207,6 +206,7 @@
             document.getElementById('nim').value = nim;
             document.getElementById('pembimbing1').value = pembimbing1;
             document.getElementById('pembimbing2').value = pembimbing2;
+
         }
 
         function SetInputs(id_master_ta, pembimbing1, pembimbing2) {

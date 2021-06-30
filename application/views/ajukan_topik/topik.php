@@ -283,7 +283,7 @@
             <div class="col-sm-6">
               <ol class="breadcrumb float-sm-right">
                 <li class="breadcrumb-item"><a href="<?php echo base_url('beranda'); ?>">Beranda</a></li>
-                <li class="breadcrumb-item active">Data Topik</li>
+                <li class="breadcrumb-item active">Data Judul</li>
               </ol>
             </div>
           </div>
@@ -296,7 +296,7 @@
             <div class="modal-dialog modal-m" style="width: 100%;">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h4 class="modal-title">Ajukan Topik Mahasiswa</h4>
+                  <h4 class="modal-title">Ajukan Judul Mahasiswa</h4>
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                   </button>
@@ -341,7 +341,7 @@
             </div>
             <div class="card">
               <div class="card-header">
-                <h3 class="card-title">Daftar Topik Tugas Akhir</h3>
+                <h3 class="card-title">Daftar Judul Tugas Akhir</h3>
               </div>
               <div class="card-body">
                 <table id="example1" class="table table-bordered table-striped">
@@ -416,8 +416,8 @@
 
     function ResetInput(id_topik, nim, bidang, judul, lokasi, deskripsi) {
       document.getElementById('id_topik').value = "";
-      document.getElementById('nim').value = <?php echo $this->session->userdata('nim'); ?>;
-      document.getElementById('nim2').value = <?php echo $this->session->userdata('nim'); ?>;
+      document.getElementById('nim').value = <?php echo $this->session->userdata('email'); ?>;
+      document.getElementById('nim2').value = <?php echo $this->session->userdata('email'); ?>;
       document.getElementById('bidang').value = "";
       document.getElementById('judul').value = "";
       document.getElementById('lokasi').value = "";

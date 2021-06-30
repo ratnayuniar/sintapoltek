@@ -162,33 +162,6 @@
       </div>
     </div>
   </div>
-
-
-  <script type="text/javascript">
-    function SetInput(id_mhs, nim, nama, prodi, jurusan) {
-      document.getElementById('id_mhs').value = id_mhs;
-      document.getElementById('nim').value = nim;
-      document.getElementById('nama').value = nama;
-      document.getElementById('prodi').value = prodi;
-      document.getElementById('jurusan').value = jurusan;
-    }
-
-    function SetInputs(id_mhs, nim, nama, prodi, jurusan) {
-      document.getElementById('id_mhs2').value = id_mhs;
-      document.getElementById('nim2').value = nim;
-      document.getElementById('nama2').value = nama;
-      document.getElementById('prodi2').value = prodi;
-      document.getElementById('jurusan2').value = jurusan;
-    }
-
-    function ResetInput(id_mhs, nim, nama, prodi, jurusan) {
-      document.getElementById('id_mhs').value = "";
-      document.getElementById('nim').value = "";
-      document.getElementById('nama').value = "";
-      document.getElementById('prodi').value = "";
-      document.getElementById('jurusan').value = "";
-    }
-  </script>
 <?php } else if ($this->session->userdata('level') == 3) { ?>
   <div class="content-wrapper">
     <section class="content-header">
@@ -343,15 +316,5 @@
       </div>
     </div>
   </div>
-
-  <script type="text/javascript">
-    function SetInput(id_penguji, id_mahasiswa, penguji1, penguji2, penguji3) {
-      document.getElementById('id_penguji').value = id_penguji;
-      document.getElementById('id_mahasiswa').value = id_mahasiswa;
-      document.getElementById('penguji1').value = penguji1;
-      document.getElementById('penguji2').value = penguji2;
-      document.getElementById('penguji3').value = penguji3;
-    }
-  </script>
 <?php } else { ?>
 <?php } ?>

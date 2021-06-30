@@ -44,6 +44,16 @@ class Verif_bahasa extends CI_Controller
         $this->load->view('templates/footer', $data);
     }
 
+    public function detaildata_mhs()
+    {
+        $data['title'] = 'SINTA PNM';
+        // $data['get_mahasiswa'] = $this->m_verif_bahasa->get_mahasiswa($id);
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('validasi/bahasa', $data);
+        $this->load->view('templates/footer', $data);
+    }
+
     function detail_bks_bahasa($nim)
     {
         $data['bks_bahasa'] = $this->m_verif_bahasa->get_nim($nim);
@@ -71,7 +81,7 @@ class Verif_bahasa extends CI_Controller
     function save_belum($id)
     {
         $this->m_bks_bahasa->update($id, ['status' => 1]);
-        redirect('verif_bahasa', 'refresh');
+        redirect('verif_bahasa/detail_bks_bahasa/' . $this->uri->segment('3'), 'refresh');
     }
     function save_kurang($id)
     {

@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Lembar Bimbingan</title>
+    <title>Proposal</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
     <style>
         @page {
@@ -107,7 +107,7 @@
     </div>
 
     <main>
-        <table border="1" width="700 px">
+        <table border="0" width="700 px">
             <tbody>
                 <tr>
                     <td>

@@ -15,10 +15,7 @@ class Bks_keterampilan extends CI_Controller
     public function index()
     {
         $id_prodi = $this->session->userdata('id_prodi');
-        // $data['query'] = $this->m_bks_keterampilan->tampil_data(); 
         $data['bks_keterampilan_user'] = $this->m_bks_keterampilan->bks_keterampilan_user();
-        //$data['bks_keterampilan_admin'] = $this->m_bks_keterampilan->bks_keterampilan_admin($id_prodi);
-
         $data['title'] = 'SINTA PNM';
         $data['data'] = $this->db->get('bks_keterampilan')->result();
 
@@ -57,7 +54,6 @@ class Bks_keterampilan extends CI_Controller
     function detail_bks_ketmhs($nim)
     {
         $data['bks_keterampilan'] = $this->m_bks_keterampilan->get_nim_mhs($nim);
-
         $data['user'] = $this->db->get_where('user', ['email' =>
         $this->session->userdata('email')])->row_array();
 
@@ -124,11 +120,9 @@ class Bks_keterampilan extends CI_Controller
     public function delete_users($id_bks_ket)
     {
         $data = $this->m_bks_keterampilan->ambil_id_gambar($id_bks_ket);
-        // lokasi gambar berada
         $path = './assets/berkas/keterampilan/';
         @unlink($path . $data->sk_ket);
         if ($this->m_bks_keterampilan->delete_users($id_bks_ket) == TRUE) {
-            // TAMPILKAN PESAN JIKA BERHASIL
             $this->session->set_flashdata('pesan', 'dihapus');
         }
         redirect('bks_keterampilan');

@@ -5,12 +5,12 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Lembar Bimbingan</h1>
+                        <h1>Bimbingan</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="<?php echo base_url('beranda'); ?>">Beranda</a></li>
-                            <li class="breadcrumb-item active">Lembar Bimbingan</li>
+                            <li class="breadcrumb-item active">Bimbingan</li>
                         </ol>
                     </div>
                 </div>
@@ -28,7 +28,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">Lembar Bimbingan</h3>
+                            <h3 class="card-title">Bimbingan</h3>
                         </div>
                         <div class="card-body">
                             <table id="example1" class="table table-bordered table-striped">
@@ -37,7 +37,6 @@
                                         <th>No</th>
                                         <th>NIM</th>
                                         <th>Nama Mahasiswa</th>
-                                        <!-- <th>Nama Dosen</th> -->
                                         <th>Tanggal</th>
                                         <th>Status</th>
                                         <th>Konfirmasi</th>
@@ -53,7 +52,6 @@
                                             <td><?= $no++ ?></td>
                                             <td><?= $row->nim ?></td>
                                             <td><?= $row->nama ?></td>
-                                            <!-- <td><?= $row->nama ?></td> -->
                                             <td><?= $row->tanggal ?></td>
                                             <td>
                                                 <?php if ($row->status == '0') {
@@ -75,6 +73,7 @@
                                                 data-id_bimbingan_id="' . $row->id_bimbingan . '"
                                                 data-tanggal="' . $row->tanggal . '"
                                                 data-masalah="' . $row->masalah . '"
+                                                data-file="' . $row->file . '"
                                                 class="btn btn-info btn-sm">
                                                 Komentari
                                                 </a>';
@@ -84,6 +83,7 @@
                                                 data-id_bimbingan_id="' . $row->id_bimbingan . '"
                                                 data-tanggal="' . $row->tanggal . '"
                                                 data-masalah="' . $row->masalah . '"
+                                                data-file="' . $row->file . '"
                                                 class="btn btn-info btn-sm">
                                                 Komentari
                                                 </a>';
@@ -123,7 +123,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Yakin konfirmasi lembar bimbingan?</h5>
+                    <h5 class="modal-title">Yakin konfirmasi bimbingan?</h5>
                     <button class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -168,6 +168,10 @@
                                 <textarea id="masalah" rows="5" class="form-control" readonly></textarea>
                             </div>
                             <div class="form-group">
+                                <label for="deskripsi">File Bimbingan</label><br>
+                                <a id="file" href="<?php echo base_url('assets/berkas/bimbingan/' . $row->file); ?>" class="btn btn-primary" download>Unduh</a>
+                            </div>
+                            <div class="form-group">
                                 <label for="deskripsi">Solusi</label>
                                 <textarea name="solusi" rows="5" class="form-control"></textarea>
                             </div>
@@ -186,7 +190,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Yakin Menyetujui Lembar Bimbingan?</h5>
+                    <h5 class="modal-title">Yakin Menyetujui Bimbingan?</h5>
                     <button class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -223,11 +227,13 @@
                 var id_bimbingan_id = $(this).data('id_bimbingan_id');
                 var tanggal = $(this).data('tanggal');
                 var masalah = $(this).data('masalah');
+                var file = $(this).data('file');
 
                 $('#id_bimbingan').val(id_bimbingan);
                 $('#id_bimbingan_id').val(id_bimbingan_id);
                 $('#tanggal').val(tanggal);
                 $('#masalah').val(masalah);
+                $('#file').val(file);
             })
 
             $(document).on('click', '#ctopik', function() {
@@ -242,24 +248,22 @@
     </script>
     <!-- USER MAHASISWA -->
 <?php } else { ?>
-
     <div class="content-wrapper">
         <section class="content-header">
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Lembar Bimbingan</h1>
+                        <h1>Bimbingan</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="<?php echo base_url('beranda'); ?>">Beranda</a></li>
-                            <li class="breadcrumb-item active">Lembar Bimbingan</li>
+                            <li class="breadcrumb-item active">Bimbingan</li>
                         </ol>
                     </div>
                 </div>
             </div>
         </section>
-
         <section class="content">
             <div class="container-fluid">
                 <div class="row">
@@ -267,16 +271,17 @@
                         <div class="modal-dialog" style="width:55%;">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h4 class="modal-title">Ajukan Lembar Bimbingan</h4>
+                                    <h4 class="modal-title">Ajukan Bimbingan</h4>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">×</span>
                                     </button>
                                 </div>
-                                <form action="<?php echo base_url() . 'bimbingan1/add'; ?>" method="post" class="form-horizontal" role="form">
+                                <form action="<?= base_url('bimbingan1/create') ?>" method="post" class="form-horizontal" role="form" enctype="multipart/form-data">
                                     <div class="card-body">
                                         <div class="form-group">
                                             <input type="hidden" id="id_bimbingan" name="id_bimbingan">
                                             <input type="hidden" id="minggu" name="minggu">
+                                            <input type="hidden" id="judul" name="judul">
 
                                             <label for="exampleInputjudul1">NIM</label>
                                             <input type="hidden" class="form-control" id="nim" name="nim" placeholder="NIM">
@@ -305,14 +310,17 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="exampleInputjudul1">Masalah Yang Dikonsultasikan</label>
-                                            <pre><textarea class="form-control" rows="3" id="masalah" name="masalah" placeholder="Masukkan Deskripsi Tugas Akhir" ></textarea></pre>>
+                                            <textarea class="form-control" rows="3" id="masalah" name="masalah" placeholder="Masukkan Masalah Yang Dikonsultasikan"></textarea>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="exampleInputjudul1">File</label><br>
+                                            <input type="file" name="file">
                                         </div>
                                     </div>
 
                                     <div class="card-footer">
-                                        <button type="submit" class="btn btn-primary">Simpan</button>
+                                        <button type="submit" name="submit" class="btn btn-primary">Simpan</button>
                                     </div>
-
                                 </form>
                             </div>
                         </div>
@@ -321,13 +329,12 @@
                 <div class="row">
                     <div class="col-12">
                         <div style="text-align:right;margin-bottom: 10px ">
-                            <a href="#" class="on-default edit-row btn btn-success pull-right" data-toggle="modal" pull="right" data-target="#custom-width-modal" onclick="ResetInput()"><i class="fa fa-plus"></i> Ajukan Lembar Bimbingan</a><br><br>
-
-                            <a href="<?= site_url('bimbingan1/cetak_kartu') ?>" type="button" class="btn btn-primary">Print</a>
+                            <a href="#" class="on-default edit-row btn btn-success pull-right" data-toggle="modal" pull="right" data-target="#custom-width-modal" onclick="ResetInput()"><i class="fa fa-plus"></i> &nbsp;Ajukan Bimbingan</a><br><br>
+                            <a href="<?= site_url('bimbingan1/cetak_kartu') ?>" target="_blank" type="button" class="btn btn-primary"><i class="fas fa-print"></i> &nbsp;Cetak Lembar Bimbingan</a>
                         </div>
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">Ajukan Lembar Bimbingan</h3>
+                                <h3 class="card-title">Ajukan Bimbingan</h3>
                             </div>
                             <div class="card-body">
                                 <table id="example1" class="table table-bordered table-striped">
@@ -336,29 +343,27 @@
                                             <th>No</th>
                                             <th>NIM</th>
                                             <th>Nama Dosen</th>
-                                            <!-- <th>Dosen</th> -->
                                             <th>Tanggal</th>
                                             <th>Status</th>
                                             <th>Aksi</th>
-
                                         </tr>
                                     </thead>
-
-
                                     <tbody>
                                         <?php
                                         $no = 1;
                                         // print_r($bimbingan_user->row());
                                         //exit();
                                         foreach ($bimbingan_user->result() as $row) { ?>
-
                                             <tr>
                                                 <td><?= $no++ ?></td>
                                                 <td><?= $row->nim  ?></td>
                                                 <td><?= $row->nama ?></td>
-                                                <!-- <td><?= $row->nama ?></td> -->
-                                                <td><?= $row->tanggal ?></td>
-
+                                                <td> <?php
+                                                        $waktu = explode(" ", $row->tanggal);
+                                                        echo
+                                                        ""  . shortdate_indo($waktu[0]) . " ";
+                                                        ?>
+                                                </td>
                                                 <td>
                                                     <?php if ($row->status == '0') {
                                                         echo '<span class="badge badge-warning">Menunggu</span>';
@@ -374,7 +379,6 @@
                                                 <td>
                                                     <a href="https://wa.me/<?= $row->hp ?>" target="_blank" class="btn btn-info btn-sm"> <i class="fa fa-comment-dots"></i> Kirim Pesan</a>
                                                 </td>
-
                                                 <!-- <td>
                                                     <a href="<?= base_url('bimbingan1/detail_bimbingan/' . $row->id_bimbingan) ?>" class="btn btn-primary btn-sm">
                                                         <i class="fa fa-search"></i>
@@ -445,24 +449,6 @@
     <link href="<?php echo base_url() ?>assets/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
     <script type="text/javascript" src="<?php echo base_url() ?>assets/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
     <script type="text/javascript">
-        function SetInput(id_bimbingan, nim, bidang, judul, lokasi, deskripsi) {
-            document.getElementById('id_bimbingan').value = id_bimbingan;
-            document.getElementById('nim').value = nim;
-            document.getElementById('bidang').value = bidang;
-            document.getElementById('judul').value = judul;
-            document.getElementById('lokasi').value = lokasi;
-            document.getElementById('deskripsi').value = deskripsi;
-        }
-
-        function SetInputs(id_bimbingan, nim, bidang, judul, lokasi, deskripsi) {
-            document.getElementById('id_bimbingan2').value = id_bimbingan;
-            document.getElementById('nim2').value = nim;
-            document.getElementById('bidang2').value = bidang;
-            document.getElementById('judul2').value = judul;
-            document.getElementById('lokasi2').value = lokasi;
-            document.getElementById('deskripsi2').value = deskripsi;
-        }
-
         function ResetInput(id_bimbingan, nim, bidang, judul, lokasi, deskripsi) {
             document.getElementById('id_bimbingan').value = "";
             document.getElementById('nim').value = <?php echo $this->session->userdata('email'); ?>;

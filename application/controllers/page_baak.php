@@ -4,8 +4,6 @@ class Page_baak extends CI_Controller
     function __construct()
     {
         parent::__construct();
-
-        //user bukan level 'Manager' ditolak
         if ($this->session->userdata('level') !== '7') {
             redirect('auth/logout', 'refresh');
         }

@@ -70,6 +70,20 @@ class M_bimbingan1 extends CI_Model
         $this->db->join('mahasiswa', 'bimbingan.nim = mahasiswa.nim', 'left');
         $this->db->join('dosen', 'bimbingan.id_dosen = dosen.id_dosen', 'left');
         $this->db->where('status_dosen', 1);
+        $this->db->where('jenis', 'seminar');
+        $this->db->where('bimbingan.nim', $this->session->userdata('email'));
+        $this->db->or_where('bimbingan.id_dosen', $this->session->userdata('id_dosen'));
+
+        return $this->db->get('bimbingan');
+    }
+
+    function bimbingan_user_ta()
+    {
+
+        $this->db->join('mahasiswa', 'bimbingan.nim = mahasiswa.nim', 'left');
+        $this->db->join('dosen', 'bimbingan.id_dosen = dosen.id_dosen', 'left');
+        $this->db->where('status_dosen', 1);
+        $this->db->where('jenis', 'ta');
         $this->db->where('bimbingan.nim', $this->session->userdata('email'));
         $this->db->or_where('bimbingan.id_dosen', $this->session->userdata('id_dosen'));
 
@@ -110,6 +124,7 @@ class M_bimbingan1 extends CI_Model
             'tanggal' => $this->input->post('tanggal'),
             'status' => 0,
             'status_dosen' => 1,
+            'jenis' => "seminar",
 
         );
 
@@ -118,6 +133,28 @@ class M_bimbingan1 extends CI_Model
 
         redirect('/bimbingan1');
     }
+
+    function tambah_data_ta()
+    {
+        $data = array(
+            'nim' => $this->input->post('nim'),
+            'id_dosen' => $this->input->post('id_dosen'),
+            'masalah' => $this->input->post('masalah'),
+            'tanggal' => $this->input->post('tanggal'),
+            'status' => 0,
+            'status_dosen' => 1,
+            'jenis' => "ta",
+
+        );
+
+        // print_r($data);
+        // exit();
+        $this->db->insert('bimbingan', $data);
+        $this->session->set_flashdata('message', '<div class="alert alert-info">Data Berhasil Di Simpan</div>');
+
+        redirect('/bimbingan1/bimbingan1_ta');
+    }
+
     function ubah_data($id_bimbingan)
     {
         $data = array(

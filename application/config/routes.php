@@ -53,6 +53,6 @@ defined('BASEPATH') or exit('No direct script access allowed');
 // $route['edit/(:any)'] = 'bks_seminar/kehalamanEdit/$1';
 
 // $route['editUpload'] = 'bks_seminar/editUpload';
-$route['default_controller'] = 'auth';
+$route['default_controller'] = 'auth/login';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

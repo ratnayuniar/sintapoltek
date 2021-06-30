@@ -15,10 +15,7 @@ class Bks_organisasi extends CI_Controller
     public function index()
     {
         $data['query'] = $this->m_bks_organisasi->tampil_data();
-
         $data['bks_organisasi_user'] = $this->m_bks_organisasi->bks_organisasi_user();
-        // $data['bks_organisasi_admin'] = $this->m_bks_organisasi->bks_organisasi_admin();
-
         $data['title'] = 'SINTA PNM';
         $data['data'] = $this->db->get('bks_organisasi')->result();
 
@@ -67,7 +64,6 @@ class Bks_organisasi extends CI_Controller
             $config['allowed_types'] = 'pdf|jpg|jpeg|png';
             $config['max_size']  = 2048;
             $config['file_name'] = 'bks_organisasi-' . date('ymd');
-            // $config['encrypt_name']  = TRUE;
 
             $this->load->library('upload', $config);
 
@@ -113,11 +109,9 @@ class Bks_organisasi extends CI_Controller
     public function delete_users($id_bks_org)
     {
         $data = $this->m_bks_organisasi->ambil_id_gambar($id_bks_org);
-        // lokasi gambar berada
         $path = './assets/berkas/organisasi/';
-        @unlink($path . $data->sk_org); 
+        @unlink($path . $data->sk_org);
         if ($this->m_bks_organisasi->delete_users($id_bks_org) == TRUE) {
-            // TAMPILKAN PESAN JIKA BERHASIL
             $this->session->set_flashdata('pesan', 'dihapus');
         }
         redirect('bks_organisasi');

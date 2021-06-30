@@ -14,9 +14,7 @@ class Pengguna_mahasiswa extends CI_Controller
     public function index()
     {
         $data['mahasiswa'] = $this->m_pengguna_mahasiswa->tampil_data_mhs();
-
         $data['title'] = 'SINTA PNM';
-
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);

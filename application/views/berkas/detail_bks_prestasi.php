@@ -170,7 +170,6 @@
                                 <div class="row invoice-info">
                                     <div class="col-sm-4 invoice-col">
                                         Nama : <strong><?= $row->nama; ?></strong><br>
-                                        <!-- Email : <strong><?= $row->email; ?></strong> -->
                                     </div>
                                     <div class="col-sm-4 invoice-col">
                                         <b>Status Pendaftaran</b> :
@@ -182,9 +181,6 @@
                                             echo '<span class="badge badge-danger">Tidak Valid</span>';
                                         }
                                         ?><br>
-                                        <!-- <b>Aksi</b> :
-                                        <a href="<?php echo site_url('bks_prestasi/save_bks_valid/' . $row->id_bks_prestasi); ?>" id="btn-konfirmasi" class="btn btn-xs btn-success">Valid</a>
-                                        <a href="<?php echo site_url('bks_prestasi/save_bks_tidakvalid/' . $row->id_bks_prestasi); ?>" id="btn-konfirmasi" class="btn btn-xs btn-danger">Tidak Valid</a> -->
                                     </div>
                                 </div>
                                 <div class="row">

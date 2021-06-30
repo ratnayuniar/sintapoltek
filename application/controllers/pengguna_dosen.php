@@ -14,7 +14,6 @@ class Pengguna_dosen extends CI_Controller
     public function index()
     {
         $data['pengguna_dosen'] = $this->m_pengguna_dosen->tampil_data_dosen();
-
         $data['title'] = 'SINTA PNM';
 
 

@@ -15,7 +15,6 @@
         </div>
       </div>
     </section>
-
     <section class="content">
       <div class="container-fluid">
         <div class="row">
@@ -25,9 +24,6 @@
                 <h3 class="card-title">Data Nilai Seminar Proposal</h3>
               </div>
               <div class="card-body">
-                <div style="text-align:right;margin-bottom: 10px ">
-                  <!-- <a href="#" class="on-default edit-row btn btn-success pull-right" data-toggle="modal" pull="right"data-target="#custom-width-modal" onclick="ResetInput()"><i class="fa fa-plus" ></i></a> -->
-                </div>
                 <table id="example1" class="table table-bordered table-striped">
                   <thead>
                     <tr>
@@ -43,16 +39,21 @@
                     $no = 1;
                     foreach ($query->result() as $row) {
                       $data['user'] = $this->m_penguji->getmahasiswabyid($row->nim);
-                      $this->db->select('AVG(rata) as rata, sum(nilai_akhir) as nilaiakhir');
+                      $this->db->select('AVG(rata) as rata, sum(nilai_akhir) as jumlah,nim');
                       $this->db->where('nim', $row->nim);
                       $result = $this->db->get('nilai_sempro')->row();
+                      $this->db->set($result);
+                      // $this->db->insert($this->db->dbprefix . 'seminar_proposal');
+                      // $this->db->insert('seminar_proposal', $result);
+                      // $this->db->insert_id('seminar_proposal', $result);
+                      // $this->db->group_by('nim');
                       $rata = number_format($result->rata, 1, '.', '');
                     ?>
                       <tr>
                         <td><?= $no++ ?>.</td>
                         <td><?= $data['user']->nama; ?></td>
                         <td><?= $rata ?></td>
-                        <td><?= $result->nilaiakhir ?></td>
+                        <td><?= $result->jumlah ?></td>
                         <td>
                           <a href="<?= base_url('nilai_seminar/detail_nilai_seminar/' . $row->id_nilai_sempro) ?>" class="on-default edit-row btn btn-info pull-right btn-xs"><i class="fa fa-search"></i> Detail </a>
                         </td>
@@ -214,7 +215,7 @@
 											<td>" . $data['dosen2']->nama . "</td>
 											<td>" . $data['dosen3']->nama . "</td>
                       <td>
-                      <a href='" . base_url('nilai_seminar/detail_nilai_seminar2?id=' . $row->nim) . "' class='on-default edit-row btn btn-primary' ><i class='fa fa-search'></i> Input Nilai</a>
+                      <a href='" . base_url('nilai_seminar/detail_nilai_seminar2?id=' . $row->nim) . "' class='on-default edit-row btn btn-primary' ><i class='fa fa-search'></i> Input Revisi</a>
                       </td>
 											</tr>";
                       $no++;

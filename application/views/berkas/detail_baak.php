@@ -33,11 +33,6 @@
                             <div class="row invoice-info">
                                 <div class="col-sm-4 invoice-col">
                                     Nama : <strong><?= $bks_wisuda->nama; ?></strong>
-                                    <address>
-                                        <!-- Program Studi : <?= $this->session->userdata('nama_prodi'); ?><br>
-                                        Jurusan : <?= $this->session->userdata('nama_jurusan'); ?><br> -->
-                                        <!-- Email : <?= $bks_wisuda->email; ?> -->
-                                    </address>
                                 </div>
                                 <div class="col-sm-4 invoice-col">
                                     <b>Status Pendaftaran</b> :

@@ -157,13 +157,13 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Detail Data Keterampilan</h1>
+                        <h1>Detail Data Magang</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="<?php echo base_url('beranda'); ?>">Beranda</a></li>
-                            <li class="breadcrumb-item"><a href="<?php echo base_url('bks_keterampilan'); ?>">Data Berkas Keterampilan</a></li>
-                            <li class="breadcrumb-item">Detail Data Berkas Keterampilan</li>
+                            <li class="breadcrumb-item"><a href="<?php echo base_url('bks_pkl'); ?>">Data Berkas Magang</a></li>
+                            <li class="breadcrumb-item">Detail Data Berkas Magang</li>
                         </ol>
                     </div>
                 </div>
@@ -179,14 +179,13 @@
                                 <div class="row">
                                     <div class="col-12">
                                         <h4>
-                                            <i class="fas fa-file"></i> Detail Data Keterampilan
+                                            <i class="fas fa-file"></i> Detail Data Magang
                                         </h4>
                                     </div>
                                 </div>
                                 <div class="row invoice-info">
                                     <div class="col-sm-4 invoice-col">
                                         Nama : <strong><?= $row->nama; ?></strong><br>
-                                        <!-- Email : <strong><?= $row->email; ?></strong> -->
                                     </div>
                                     <div class="col-sm-4 invoice-col">
                                         <b>Status Pendaftaran</b> :
@@ -198,9 +197,6 @@
                                             echo '<span class="badge badge-danger">Tidak Valid</span>';
                                         }
                                         ?><br>
-                                        <!-- <b>Aksi</b> :
-                                        <a href="<?php echo site_url('bks_pkl/save_bks_valid/' . $row->id_bks_pkl); ?>" id="btn-konfirmasi" class="btn btn-xs btn-success">Valid</a>
-                                        <a href="<?php echo site_url('bks_pkl/save_bks_tidakvalid/' . $row->id_bks_pkl); ?>" id="btn-konfirmasi" class="btn btn-xs btn-danger">Tidak Valid</a> -->
                                     </div>
                                 </div>
                                 <div class="row">
@@ -279,29 +275,4 @@
             </div>
         </section>
     </div>
-
-    <script>
-        $(document).on('click', '#btn-konfirmasi', function(e) {
-            e.preventDefault();
-            var link = $(this).attr('href');
-            Swal.fire({
-                title: 'Apakah Anda Yakin ? ',
-                text: "Data akan dikonfirmasi ?",
-                icon: 'info',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    window.location = link;
-                    Swal.fire(
-                        'Sukses',
-                        'Data berhasil di konfirmasi',
-                        'success'
-                    )
-                }
-            });
-        });
-    </script>
 <?php } ?>

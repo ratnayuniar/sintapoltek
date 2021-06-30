@@ -51,10 +51,10 @@ class M_nilai_seminar extends CI_Model
 		} else {
 			$this->db->insert('nilai_sempro', $data);
 
-			$idjumlah = $query['id_nilai_sempro'];
-			$data = array(
-				'id_nilai_sempro'	=> $idjumlah
-			);
+			// $idjumlah = $this
+			// $data = array(
+			// 	'id_nilai_sempro'	=> $idjumlah
+			// );
 
 			//$this->db->insert('seminar_proposal', $data);
 		}

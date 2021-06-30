@@ -122,20 +122,6 @@
               </select>
             </div>
           </div>
-          <!-- <div class="form-group">
-            <label class="col-md-3 control-label">Jurusan</label>
-            <div class="col-md-9">
-              <select class="form-control" data-live-search="true" data-style="btn-white" id="id_jurusan" name="id_jurusan" required>
-                <option value="">-- Pilih Jurusan --</option>
-                <?php
-                $query = $this->m_jurusan->tampil_data();
-                foreach ($query->result() as $row) {
-                  echo "<option value='" . $row->id_jurusan . "'>" . $row->nama_jurusan . "</option>";
-                }
-                ?>
-              </select>
-            </div>
-          </div> -->
           <div class="modal-footer justify-content-between">
             <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
             <button type="submit" class="btn btn-primary">Simpan</button>

@@ -54,21 +54,30 @@ class Bks_bahasa extends CI_Controller
         $this->load->view('templates/footer', $data);
     }
 
+    public function detaildata_mhs()
+    {
+        $data['title'] = 'SINTA PNM';
+        $data['bks_bahasa_admin'] = $this->m_bks_bahasa->bks_bahasa_admin();
+        // $data['get_mahasiswa'] = $this->m_bks_bahasa->get_mahasiswa($id);
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('berkas/bks_bahasa', $data);
+        $this->load->view('templates/footer', $data);
+    }
+
     function save_bks_valid($id)
     {
+        // $data['bks_bahasa'] = $this->m_bks_bahasa->get_nim($nim);
         $this->m_bks_bahasa->update($id, ['status' => 1]);
+
+        // redirect('bks_bahasa', 'refresh');
+        $data['bks_bahasa_admin'] = $this->m_bks_bahasa->bks_bahasa_admin();
         redirect('bks_bahasa', 'refresh');
     }
 
     function save_bks_tidakvalid($id)
     {
         $this->m_bks_bahasa->update($id, ['status' => 2]);
-        redirect('bks_bahasa', 'refresh');
-    }
-
-    function save_bks_lengkap($id)
-    {
-        $this->m_bks_bahasa->update($id, ['status' => 3]);
         redirect('bks_bahasa', 'refresh');
     }
 
@@ -97,7 +106,6 @@ class Bks_bahasa extends CI_Controller
             $config['allowed_types'] = 'pdf|jpg|jpeg|png';
             $config['max_size']  = 2048;
             $config['file_name'] = 'bks_bahasa-' . date('ymd');
-            // $config['encrypt_name']  = TRUE;
 
             $this->load->library('upload', $config);
 
@@ -144,18 +152,14 @@ class Bks_bahasa extends CI_Controller
     public function delete_users($id_bks_bhs)
     {
         $data = $this->m_bks_bahasa->ambil_id_gambar($id_bks_bhs);
-        // lokasi gambar berada
         $path = './assets/berkas/bahasa/';
-        @unlink($path . $data->sk_bahasa); // hapus data di folder dimana data tersimpan
+        @unlink($path . $data->sk_bahasa);
 
         if ($this->m_bks_bahasa->delete_users($id_bks_bhs) == TRUE) {
-            // TAMPILKAN PESAN JIKA BERHASIL
             $this->session->set_flashdata('pesan', 'dihapus');
         }
         redirect('bks_bahasa');
     }
-
-
 
     public function ambil_id_user($id_bks_bhs)
     {
@@ -166,4 +170,11 @@ class Bks_bahasa extends CI_Controller
         $this->load->view('berkas/edit_bks_bahasa', ['data' => $data, 'title' => $title]);
         $this->load->view('templates/footer');
     }
+
+
+    // function save_bks_lengkap($id)
+    // {
+    //     $this->m_bks_bahasa->update($id, ['status' => 3]);
+    //     redirect('bks_bahasa', 'refresh');
+    // }
 }

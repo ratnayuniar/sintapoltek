@@ -173,32 +173,6 @@
             });
         });
     </script>
-
-    <script type="text/javascript">
-        function SetInput(id_mhs, nim, nama, prodi, jurusan) {
-            document.getElementById('id_mhs').value = id_mhs;
-            document.getElementById('nim').value = nim;
-            document.getElementById('nama').value = nama;
-            document.getElementById('prodi').value = prodi;
-            document.getElementById('jurusan').value = jurusan;
-        }
-
-        function SetInputs(id_mhs, nim, nama, prodi, jurusan) {
-            document.getElementById('id_mhs2').value = id_mhs;
-            document.getElementById('nim2').value = nim;
-            document.getElementById('nama2').value = nama;
-            document.getElementById('prodi2').value = prodi;
-            document.getElementById('jurusan2').value = jurusan;
-        }
-
-        function ResetInput(id_mhs, nim, nama, prodi, jurusan) {
-            document.getElementById('id_mhs').value = "";
-            document.getElementById('nim').value = "";
-            document.getElementById('nama').value = "";
-            document.getElementById('prodi').value = "";
-            document.getElementById('jurusan').value = "";
-        }
-    </script>
 <?php } else { ?>
     <!-- PUNYA MAHASISWA -->
     <div class="content-wrapper">
@@ -313,7 +287,7 @@
                                 <option>Regional</option>
                                 <option>Nasional</option>
                                 <option>Internasional</option>
-                            </select> 
+                            </select>
                         </div>
                         <div class="form-group">
                             <label for="persetujuan">Jenis</label><br>
@@ -325,7 +299,9 @@
                         </div>
                         <div class="form-group">
                             <label for="exampleInputjudul1">Piagam</label><br>
-                            <span><h6>Upload Scan Bukti/Piagam (PDF/JPG Maks. 1 MB)</h6></span>
+                            <span>
+                                <h6>Upload Scan Bukti/Piagam (PDF/JPG Maks. 1 MB)</h6>
+                            </span>
                             <input type="file" name="piagam">
                         </div>
                     </div>

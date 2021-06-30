@@ -11,6 +11,8 @@ class Veri_perpus extends CI_Controller
         $this->load->model('m_jurusan');
         $this->load->model('m_prodi2');
         $this->load->model('m_mahasiswa');
+        $this->load->model('m_bks_wisuda');
+
         $this->load->helper('url');
         $this->load->library('form_validation');
     }
@@ -33,6 +35,17 @@ class Veri_perpus extends CI_Controller
     {
         $data['title'] = 'SINTA PNM';
         $data['get_mahasiswa'] = $this->m_veri_perpus->get_mahasiswa($id);
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('validasi/perpustakaan', $data);
+        $this->load->view('templates/footer', $data);
+    }
+
+    public function detaildata_mhs()
+    {
+        $data['title'] = 'SINTA PNM';
+        // $data['get_mahasiswa'] = $this->m_veri_perpus->get_mahasiswa($id);
+        $data['bks_wisuda_user'] = $this->m_bks_wisuda->bks_wisuda_user();
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('validasi/perpustakaan', $data);

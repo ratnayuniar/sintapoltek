@@ -15,11 +15,8 @@ class Mahasiswa extends CI_Controller
 
 	public function index()
 	{
-		// $data['query'] = $this->m_mahasiswa->tampil_data();
 		$data['mahasiswa'] = $this->m_mahasiswa->getmahasiswa();
-
 		$data['title'] = 'SINTA PNM';
-
 
 		$this->load->view('templates/header', $data);
 		$this->load->view('templates/sidebar', $data);
@@ -50,11 +47,4 @@ class Mahasiswa extends CI_Controller
 			redirect('mahasiswa', 'refresh');
 		}
 	}
-
-	// public function delete()
-	// {
-	// 	$id_nim = $this->input->post('id_nim2');
-	// 	$this->m_mahasiswa->hapus_data($id_nim);
-	// }
-
 }

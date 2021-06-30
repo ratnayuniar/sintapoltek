@@ -35,11 +35,11 @@
                         </div>
                         <form class="form-horizontal" action="<?php echo base_url() . 'proposal/add'; ?>" method="post">
                             <div class="card-body">
-                                <a href="<?= site_url('proposal/cetak_kartu') ?>" type="button" class="btn btn-info float-right">Print</a><br>
+                                <a href="<?= site_url('proposal/cetak_kartu') ?>" type="button" target="_blank" class="btn btn-info float-right">Print</a><br>
                                 <div class="form-group">
                                     <input type="hidden" id="id_proposal" name="id_proposal">
                                     <label for="exampleInputjudul1">Latar Belakang</label>
-                                    <textarea class="form-control" rows="5" id="latar_belakang" name="latar_belakang" placeholder="Masukkan Latar Belakang"></textarea>
+                                    <pre><textarea class="form-control" rows="5" id="latar_belakang" name="latar_belakang" placeholder="Masukkan Latar Belakang"></textarea></pre>
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputjudul1">Rumusan Masalah</label>

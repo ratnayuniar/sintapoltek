@@ -4,8 +4,6 @@ class Page_kaprodi extends CI_Controller
     function __construct()
     {
         parent::__construct();
-
-        //user bukan level 'Manager' ditolak
         if ($this->session->userdata('level') !== '4') {
             redirect('auth/logout', 'refresh');
         }

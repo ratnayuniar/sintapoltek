@@ -214,8 +214,6 @@
         </div>
       </div>
     </section>
-
-
     <section class="content">
       <div class="container-fluid">
         <div class="row">
@@ -258,37 +256,4 @@
       </div>
     </section>
   </div>
-
-
-  <link href="<?php echo base_url() ?>assets/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
-  <script type="text/javascript" src="<?php echo base_url() ?>assets/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
-
-  <script type="text/javascript">
-    function SetInput(id_jadwal, nim, jadwal) {
-      document.getElementById('id_jadwal').value = id_jadwal;
-      document.getElementById('nim').value = nim;
-      document.getElementById('jadwal').value = jadwal;
-    }
-
-    function SetInputs(id_jadwal, nim, jadwal) {
-      document.getElementById('id_jadwal2').value = id_jadwal;
-      document.getElementById('nim2').value = nim;
-      document.getElementById('jadwal2').value = jadwal;
-    }
-
-    function ResetInput(id_jadwal, nim, jadwal) {
-      document.getElementById('id_jadwal').value = "";
-      document.getElementById('nim').value = "";
-      document.getElementById('jadwal').value = "";
-    }
-  </script>
-
-  <script>
-    $('#jadwal').datetimepicker({
-      format: "yyyy-mm-dd HH:ii",
-      autoclose: 1,
-      startView: 2,
-      showMeridian: 0
-    })
-  </script>
 <?php } ?>
