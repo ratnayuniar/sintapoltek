@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Jun 28, 2021 at 03:33 PM
+-- Generation Time: Jun 30, 2021 at 05:23 PM
 -- Server version: 5.7.31
 -- PHP Version: 7.3.21
 
@@ -38,18 +38,20 @@ CREATE TABLE IF NOT EXISTS `bimbingan` (
   `tanggal` date DEFAULT NULL,
   `status` tinyint(1) DEFAULT NULL,
   `status_dosen` tinyint(1) NOT NULL,
+  `jenis` varchar(7) NOT NULL,
+  `file` varchar(25) NOT NULL,
   PRIMARY KEY (`id_bimbingan`),
   KEY `fk_bimbingan_dosen1_idx` (`id_dosen`),
   KEY `fk_bimbingan_mahasiswa1_idx` (`nim`)
-) ENGINE=InnoDB AUTO_INCREMENT=66 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `bimbingan`
 --
 
-INSERT INTO `bimbingan` (`id_bimbingan`, `id_dosen`, `nim`, `masalah`, `solusi`, `tanggal`, `status`, `status_dosen`) VALUES
-(64, 23, 183307018, 'Bimbingan laporan BAB 4 Implementasi', 'Lanjutkan laporan BAB 4 pengujian', '2021-06-21', 3, 1),
-(65, 23, 183307018, 'll', '', '2021-06-30', 0, 1);
+INSERT INTO `bimbingan` (`id_bimbingan`, `id_dosen`, `nim`, `masalah`, `solusi`, `tanggal`, `status`, `status_dosen`, `jenis`, `file`) VALUES
+(21, 20, 183307018, 'Laporan BAB 5', 'Melanjutkan selanjutnya', '2021-06-30', 3, 1, 'seminar', 'bks_bimbingan-210629.pdf'),
+(22, 23, 183307018, 'Laporan Bab 4', 'Melanjutkan', '2021-07-10', 3, 2, 'seminar', 'bks_bimbingan-2106291.pdf');
 
 -- --------------------------------------------------------
 
@@ -224,8 +226,7 @@ CREATE TABLE IF NOT EXISTS `bks_wisuda` (
 --
 
 INSERT INTO `bks_wisuda` (`id_bks_wisuda`, `nim`, `file_ta`, `jurnal`, `lap_ta_prodi`, `aplikasi`, `ppt`, `video`, `foto_ijazah`, `foto_wisuda`, `status`, `laporan_perpus`, `tanggungan_perpus`, `ukt`, `pinjaman_alat`, `status_baak`) VALUES
-(13, 183307018, 'bks_wisuda-210625.pdf', 'bks_wisuda-2106251.pdf', 'bks_wisuda-2106252.pdf', 'winbox.exe', 'bks_wisuda-210625.pptx', 'bks_wisuda-210625.mp4', 'bks_wisuda-210625.jpg', 'bks_wisuda-2106251.jpg', 0, 2, 2, 0, 0, 3),
-(14, 183307019, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, NULL);
+(13, 183307018, 'bks_wisuda-210625.pdf', 'bks_wisuda-2106251.pdf', 'bks_wisuda-2106252.pdf', 'winbox.exe', 'bks_wisuda-210625.pptx', 'bks_wisuda-210625.mp4', 'bks_wisuda-210625.jpg', 'bks_wisuda-2106251.jpg', 0, 2, 2, 0, 0, 3);
 
 -- --------------------------------------------------------
 
@@ -377,7 +378,7 @@ CREATE TABLE IF NOT EXISTS `master_ta` (
 --
 
 INSERT INTO `master_ta` (`id_master_ta`, `nim`, `pembimbing1`, `pembimbing2`, `penguji1_sempro`, `penguji2_sempro`, `penguji3_sempro`, `penguji1_sidang`, `penguji2_sidang`, `penguji3_sidang`, `judul`, `jadwal_seminar`, `jadwal_sidang`) VALUES
-(22, 183307018, 20, 23, 23, 25, 32, 32, 25, 24, NULL, '2021-06-15 10:00:00', '2021-06-17 10:00:00');
+(22, 183307018, 20, 23, 20, 23, 24, 32, 25, 24, NULL, '2021-06-15 10:00:00', '2021-06-17 10:00:00');
 
 -- --------------------------------------------------------
 
@@ -514,6 +515,34 @@ INSERT INTO `proposal` (`id_proposal`, `nim`, `latar_belakang`, `rumusan_masalah
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `revisi`
+--
+
+DROP TABLE IF EXISTS `revisi`;
+CREATE TABLE IF NOT EXISTS `revisi` (
+  `id_revisi` int(11) NOT NULL AUTO_INCREMENT,
+  `nim` int(11) NOT NULL,
+  `penguji1` varchar(50) NOT NULL,
+  `penguji2` varchar(50) NOT NULL,
+  `penguji3` varchar(50) NOT NULL,
+  `jenis` varchar(15) NOT NULL,
+  `revisi1` text NOT NULL,
+  `revisi2` text NOT NULL,
+  `revisi3` text NOT NULL,
+  PRIMARY KEY (`id_revisi`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `revisi`
+--
+
+INSERT INTO `revisi` (`id_revisi`, `nim`, `penguji1`, `penguji2`, `penguji3`, `jenis`, `revisi1`, `revisi2`, `revisi3`) VALUES
+(2, 183307018, '20', '23', '24', 'seminar', 'Penulisan halaman', 'Penulisan daftar pustaka', 'Penulisan bahasa inggris'),
+(5, 183307018, '32', '25', '24', 'ta', 'Penulisan tanda baca', 'Penomoran halaman', 'Penulisan daftar pustaka');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `seminar_proposal`
 --
 
@@ -591,14 +620,15 @@ CREATE TABLE IF NOT EXISTS `topik` (
   `komentar` text NOT NULL,
   PRIMARY KEY (`id_topik`),
   KEY `nim` (`nim`)
-) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `topik`
 --
 
 INSERT INTO `topik` (`id_topik`, `nim`, `bidang`, `judul`, `lokasi`, `status`, `deskripsi`, `komentar`) VALUES
-(26, 183307018, 'Web', 'Sistem informasi penjualan', 'Madiun', 3, 'Sistem untuk penjualan', 'Ok');
+(28, 183307018, 'Web', 'mm', 'Madiun', 4, 'nnn', 'km'),
+(29, 183307018, 'mm', 'pp', 'jj', 3, 'vv', 'bb');
 
 --
 -- Constraints for dumped tables

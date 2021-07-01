@@ -218,6 +218,19 @@ class Bimbingan2 extends CI_Controller
         $this->mypdf->generate('bimbingan/dompdf_seminar', $data);
     }
 
+    function cetak_kartuta()
+    {
+        $data['bimbingan_user_ta'] = $this->m_bimbingan2->bimbingan_user_ta();
+        $data['get_dosen'] = $this->m_bimbingan2->get_dosen();
+        $data['get_tanggal'] = $this->m_bimbingan2->get_tanggal();
+        $data['get_mahasiswa'] = $this->m_bimbingan2->get_mahasiswa();
+        $data['topik_user'] = $this->m_profile->topik_user();
+        $this->load->library('mypdf');
+        $this->mypdf->setPaper('A4', 'potrait');
+        $this->mypdf->filename = "laporan";
+        $this->mypdf->generate('bimbingan/dompdf2', $data);
+    }
+
     // public function delete()
     // {
     //     $id_topik = $this->input->post('id_topik2');

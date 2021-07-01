@@ -18,6 +18,11 @@ class Topik extends CI_Controller
 		$data['query'] = $this->m_topik->tampil_data();
 		$data['topik_user'] = $this->m_topik->topik_user();
 		$data['topik_dosen'] = $this->m_topik->topik_dosen();
+
+		$data['ditolak'] = $this->m_topik->ditolak();
+
+		$data['disetujui'] = $this->m_topik->disetujui();
+
 		$data['title'] = 'SINTA PNM';
 
 		$this->load->view('templates/header', $data);
@@ -125,6 +130,12 @@ class Topik extends CI_Controller
 			);
 
 			$this->m_topik->update($this->input->post('id_topik'), $data);
+
+			// $array = array(
+			// 	'nim' => $this->input->post('nim'),
+			// 	'judul' => $this->input->post('judul')
+			// );
+			// $this->db->insert('master_ta',$array);
 
 			$this->session->set_flashdata('message', '<div class="alert alert-info">Data Berhasil Di Simpan</div>');
 			redirect('topik', 'refresh');

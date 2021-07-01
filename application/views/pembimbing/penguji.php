@@ -26,9 +26,7 @@
                                 <h3 class="card-title">Data Penguji Seminar</h3>
                             </div>
                             <div class="card-body">
-                                <div style="text-align:right;margin-bottom: 10px ">
-                                    <a href="#" class="on-default edit-row btn btn-success pull-right" data-toggle="modal" pull="right" data-target="#custom-width-modal" onclick="ResetInput()"><i class="fa fa-plus"></i> Tambah Data Penguji</a>
-                                </div>
+
                                 <table id="example1" class="table table-bordered table-striped">
                                     <thead>
                                         <tr>
@@ -46,24 +44,41 @@
                                         $no = 1;
                                         $id_prodi = $this->session->userdata('id_prodi');
                                         foreach ($this->m_penguji->tampil_data($id_prodi)->result() as $row) {
-                                            $data['user'] = $this->m_penguji->getmahasiswabyid($row->nim);
-                                            $data['dosen1'] = $this->m_penguji->getdosen1($row->penguji1_sempro);
-                                            $data['dosen2'] = $this->m_penguji->getdosen2($row->penguji2_sempro);
-                                            $data['dosen3'] = $this->m_penguji->getdosen3($row->penguji3_sempro);
-                                            echo
-                                            "<tr>
-											<td>" . $no . "</td>
-                                            <td>" . $data['user']->nim   . "</td>
-                                        	<td>" . $data['user']->nama   . "</td>
-                                            <td>" . $data['dosen1']->nama . "</td>
-											<td>" . $data['dosen2']->nama . "</td>
-											<td>" . $data['dosen3']->nama . "</td>
-											<td><a href ='#' class ='btn btn-sm btn-primary btn-xs' data-toggle='modal' data-target='#custom-width-modal' onClick=\"SetInput('" . $row->id_master_ta . "','" . $row->nim . "','" . $row->penguji1_sempro . "','" . $row->penguji2_sempro . "','" . $row->penguji3_sempro . "')\"><i class ='fa fa-edit'></i> Edit</a>
-												<a href ='#' class ='btn btn-sm btn-danger btn-xs' data-toggle='modal' data-target='#delete-modal'onClick=\"SetInputs('" . $row->id_master_ta . "','" . $row->nim . "','" . $row->penguji1_sempro . "','" . $row->penguji2_sempro . "','" . $row->penguji3_sempro . "')\"><i class ='fa fa-trash'></i> Hapus</a>
-                                                
-											</td>
-									    </tr>";
-                                            $no++;
+                                            if ($row->id_master_ta != "") {
+                                                $data['user'] = $this->m_penguji->getmahasiswabyid($row->nim);
+                                                $data['dosen1'] = $this->m_penguji->getdosen1($row->penguji1_sempro);
+                                                if ($row->penguji1_sempro != "") {
+                                                    $dosen1_nama = $data['dosen1']->nama;
+                                                } else {
+                                                    $dosen1_nama = "-";
+                                                }
+                                                $data['dosen2'] = $this->m_penguji->getdosen2($row->penguji2_sempro);
+                                                if ($row->penguji1_sempro != "") {
+                                                    $dosen2_nama = $data['dosen2']->nama;
+                                                } else {
+                                                    $dosen2_nama = "-";
+                                                }
+                                                $data['dosen3'] = $this->m_penguji->getdosen3($row->penguji3_sempro);
+                                                if ($row->penguji1_sempro != "") {
+                                                    $dosen3_nama = $data['dosen3']->nama;
+                                                } else {
+                                                    $dosen3_nama = "-";
+                                                }
+                                                echo
+                                                "<tr>
+                                                <td>" . $no . "</td>
+                                                <td>" . $data['user']->nim   . "</td>
+                                                <td>" . $data['user']->nama   . "</td>
+                                                <td>" . $dosen1_nama . "</td>
+                                                <td>" . $dosen2_nama . "</td>
+                                                <td>" . $dosen3_nama . "</td>
+                                                <td><a href ='#' class ='btn btn-sm btn-primary btn-xs' data-toggle='modal' data-target='#custom-width-modal' onClick=\"SetInput('" . $row->id_master_ta . "','" . $row->nim . "','" . $row->penguji1_sempro . "','" . $row->penguji2_sempro . "','" . $row->penguji3_sempro . "')\"><i class ='fa fa-edit'></i> Edit</a>
+                                                    <a href ='#' class ='btn btn-sm btn-danger btn-xs' data-toggle='modal' data-target='#delete-modal'onClick=\"SetInputs('" . $row->id_master_ta . "','" . $row->nim . "','" . $row->penguji1_sempro . "','" . $row->penguji2_sempro . "','" . $row->penguji3_sempro . "')\"><i class ='fa fa-trash'></i> Hapus</a>
+                                                    
+                                                </td>
+                                            </tr>";
+                                                $no++;
+                                            }
                                         }
                                         ?>
                                     </tbody>
@@ -316,12 +331,12 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Data Penguji Seminar</h1>
+                        <h1>Data Penguji dan Jadwal Seminar</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="<?php echo base_url('beranda'); ?>">Beranda</a></li>
-                            <li class="breadcrumb-item active">Data Penguji Seminar</li>
+                            <li class="breadcrumb-item active">Data Penguji dan Jadwal Seminar</li>
                         </ol>
                     </div>
                 </div>
@@ -334,23 +349,25 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">Data Pembimbing Seminar</h3>
+                                <h3 class="card-title">Data Penguji dan Jadwal Seminar</h3>
                             </div>
                             <div class="card-body">
                                 <table id="example1" class="table table-bordered table-striped">
                                     <thead>
                                         <tr>
                                             <th>No</th>
-                                            <th>Nama Mahasiswa</th>
+
                                             <th>Dosen Penguji 1</th>
                                             <th>Dosen Penguji 2</th>
                                             <th>Dosen Penguji 3</th>
+                                            <th>Jadwal </th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <?php
                                         $no = 1;
                                         foreach ($query2->result() as $row) {
+                                            $waktu = explode(" ", $row->jadwal_seminar);
                                             $data['user'] = $this->m_penguji->getmahasiswabyid($row->nim);
                                             $data['dosen1'] = $this->m_penguji->getdosen1($row->penguji1_sempro);
                                             $data['dosen2'] = $this->m_penguji->getdosen2($row->penguji2_sempro);
@@ -358,10 +375,12 @@
                                             echo
                                             "<tr>
 											<td>" . $no . "</td>
-                                        	<td>" . $data['user']->nama   . "</td>
+                                        	
 											<td>" . $data['dosen1']->nama . "</td>
 											<td>" . $data['dosen2']->nama . "</td>
 											<td>" . $data['dosen3']->nama . "</td>
+											<td>" . longdate_indo($waktu[0]) . " " . $waktu[1] . "</td>
+
 																				    </tr>";
                                             $no++;
                                         }

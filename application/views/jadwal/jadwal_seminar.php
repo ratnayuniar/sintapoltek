@@ -241,7 +241,8 @@
                       "<tr>
 											    <td>" . $no . "</td>
 											    <td>" . $row->nim . "</td>
-                          <td>" . $row->nama . "</td>
+                          
+                          <td>" . $row->penguji1_sempro . "</td>
 											    <td>"  . longdate_indo($waktu[0]) . " " . $waktu[1] . "</td>				
 									    </tr>";
                       $no++;

@@ -256,7 +256,7 @@
             <tbody>
                 <?php
                 $no = 1;
-                foreach ($bimbingan_user->result() as $row) { ?>
+                foreach ($bimbingan_user_ta->result() as $row) { ?>
 
                     <tr class="tabel2">
                         <td>

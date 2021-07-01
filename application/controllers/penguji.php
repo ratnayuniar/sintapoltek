@@ -9,6 +9,7 @@ class Penguji extends CI_Controller
         $this->load->model('m_dosen');
         $this->load->model('m_penguji');
         $this->load->model('m_mahasiswa');
+        $this->load->helper('tgl_indo');
         $this->load->helper('url');
     }
 

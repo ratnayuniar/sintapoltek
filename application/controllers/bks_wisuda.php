@@ -16,6 +16,8 @@ class Bks_wisuda extends CI_Controller
     {
         $data['query'] = $this->m_bks_wisuda->tampil_data();
         $data['bks_wisuda_user'] = $this->m_bks_wisuda->bks_wisuda_user();
+        $data['bks_wisuda'] = $this->m_bks_wisuda->bks_wisuda();
+
         $data['title'] = 'SINTA PNM';
         $data['data'] = $this->db->get('bks_wisuda')->result();
 
@@ -43,6 +45,20 @@ class Bks_wisuda extends CI_Controller
         redirect('bks_wisuda', 'refresh');
     }
 
+    // function detail_bks_wisuda($nim)
+    // {
+    //     $data['bks_wisuda'] = $this->m_bks_wisuda->get_nim($nim);
+
+    //     if ($data['bks_wisuda']) {
+    //         $data['title'] = 'Detail Berkas' . $data['bks_wisuda']->nim;
+    //         $this->load->view('templates/header', $data);
+    //         $this->load->view('templates/sidebar', $data);
+    //         $this->load->view('berkas/detail_bks_wisuda', $data);
+    //         $this->load->view('templates/footer', $data);
+    //     }
+    // }
+
+
     function detail_bks_wisuda($nim)
     {
         $data['bks_wisuda'] = $this->m_bks_wisuda->get_nim($nim);
@@ -51,10 +67,11 @@ class Bks_wisuda extends CI_Controller
             $data['title'] = 'Detail Berkas' . $data['bks_wisuda']->nim;
             $this->load->view('templates/header', $data);
             $this->load->view('templates/sidebar', $data);
-            $this->load->view('berkas/detail_bks_wisuda', $data);
+            $this->load->view('berkas/bks_wisuda', $data);
             $this->load->view('templates/footer', $data);
         }
     }
+
 
     public function create()
     {

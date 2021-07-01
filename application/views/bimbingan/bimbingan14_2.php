@@ -332,21 +332,22 @@
                 </div>
                 <div class="row">
                     <div class="col-12">
-                        <div style="text-align:right;margin-bottom: 10px ">
-                            <a href="#" class="on-default edit-row btn btn-success pull-right" data-toggle="modal" pull="right" data-target="#custom-width-modal" onclick="ResetInput()"><i class="fa fa-plus"></i> Ajukan Bimbingan</a><br><br>
-                            <a href="<?= site_url('bimbingan2/cetak_kartu') ?>" target="_blank" type="button" class="btn btn-primary"><i class="fas fa-print"></i> &nbsp;Cetak Lembar Bimbingan</a>
-                        </div>
+
                         <div class="card">
                             <div class="card-header">
                                 <h3 class="card-title">Ajukan Bimbingan</h3>
                             </div>
                             <div class="card-body">
+                                <div style="text-align:right;margin-bottom: 10px ">
+                                    <a href="#" class="on-default edit-row btn btn-success pull-right" data-toggle="modal" pull="right" data-target="#custom-width-modal" onclick="ResetInput()"><i class="fa fa-plus"></i> Ajukan Bimbingan</a>
+                                    <a href="<?= site_url('bimbingan2/cetak_kartu') ?>" target="_blank" type="button" class="btn btn-primary"><i class="fas fa-print"></i> &nbsp;Cetak Lembar Bimbingan</a>
+                                </div>
                                 <table id="example1" class="table table-bordered table-striped">
                                     <thead>
                                         <tr>
                                             <th>No</th>
-                                            <th>NIM</th>
-                                            <th>Nama Dosen</th>
+                                            <th>Masalah yang Dikonsultasikan</th>
+                                            <th>Solusi</th>
                                             <th>Tanggal</th>
                                             <th>Status</th>
                                             <th>Aksi</th>
@@ -361,8 +362,8 @@
 
                                             <tr>
                                                 <td><?= $no++ ?></td>
-                                                <td><?= $row->nim ?></td>
-                                                <td><?= $row->nama ?></td>
+                                                <td><?= $row->masalah ?></td>
+                                                <td><?= $row->solusi ?></td>
                                                 <td> <?php
                                                         $waktu = explode(" ", $row->tanggal);
                                                         echo
@@ -377,21 +378,21 @@
                                                     } else if ($row->status == '2') {
                                                         echo '<span class="badge badge-primary">Telah Dikomentari</span>';
                                                     } else {
-                                                        echo '<span class="badge badge-danger">Disetujui</span>';
+                                                        echo '<span class="badge badge-success">Disetujui</span>';
                                                     }
                                                     ?>
                                                 </td>
                                                 <td>
                                                     <a href="https://wa.me/<?= $row->hp ?>" target="_blank" class="btn btn-info btn-sm"> <i class="fa fa-comment-dots"></i> Kirim Pesan</a>
+                                                    <?php if ($row->status == '0') {
+                                                        echo "  <a onclick='return confirm('Yakin akan hapus?');' href='" . base_url('bimbingan1/delete_bimbingan_ta/' . $row->id_bimbingan) . "' id='btn-hapus' class='btn btn-danger btn-sm'>
+                                                            <i class='fa fa-trash'></i>
+                                                        </a>";
+                                                    } else {
+                                                        echo " ";
+                                                    }
+                                                    ?>
                                                 </td>
-                                                <!-- <td>
-                                                    <a href="<?= base_url('bimbingan2/detail_bimbingan/' . $row->id_bimbingan) ?>" class="btn btn-primary btn-sm">
-                                                        <i class="fa fa-search"></i>
-                                                        <a onclick="return confirm('Yakin akan hapus?');" href="<?= base_url('bimbingan2/delete_bimbingan/' . $row->id_bimbingan) ?>" class="btn btn-danger btn-sm">
-                                                            <i class="fa fa-trash"></i>
-                                                        </a>
-
-                                                </td> -->
                                             </tr>
                                         <?php } ?>
                                     </tbody>

@@ -30,9 +30,12 @@
                                             <th>No</th>
                                             <th>NIM</th>
                                             <th>Nama Mahasiswa</th>
-                                            <th>Status</th>
-                                            <th>Konfirmasi</th>
-                                            <th>Aksi</th>
+                                            <th>File TA</th>
+                                            <th>File Jurnal</th>
+                                            <th>Lap.TA</th>
+                                            <th>File Aplikasi</th>
+                                            <th>File PPT</th>
+                                            <th>File Video</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -44,24 +47,60 @@
                                                 <td><?= $no++ ?></td>
                                                 <td><?= $row->nim ?></td>
                                                 <td><?= $row->nama ?></td>
-                                                <td> <?php if ($row->status == '0') {
-                                                            echo '<span class="badge badge-warning">Menunggu</span>';
-                                                        } else if ($row->status == '1') {
-                                                            echo '<span class="badge badge-info">Belum Lengkap</span>';
-                                                        } else if ($row->status == '2') {
-                                                            echo '<span class="badge badge-primary">Kurang Lengkap</span>';
+                                                <td> <?php if ($row->status_file_ta == '0') {
+                                                            echo " <a href='" . base_url(' bks_wisuda/save_bks_belum/' . $row->id_bks_wisuda) . "' class='btn btn-xs btn-danger'>Belum</a>";
+                                                        } else if ($row->status_file_ta == '1') {
+                                                            echo " <a href='" . base_url(' bks_wisuda/save_bks_kurang/' . $row->id_bks_wisuda) . "' class='btn btn-xs btn-primary'>Kurang</a>";
                                                         } else {
-                                                            echo '<span class="badge badge-danger">Lengkap</span>';
+                                                            echo " <a href='" . base_url(' bks_wisuda/save_bks_lengkap/' . $row->id_bks_wisuda) . "' class='btn btn-xs btn-success'>Lengkap</a>";
+                                                        }
+                                                        ?>
+
+                                                </td>
+                                                <td> <?php if ($row->status_jurnal == '0') {
+                                                            echo " <a href='" . base_url(' bks_wisuda/save_bks_belum/' . $row->id_bks_wisuda) . "' class='btn btn-xs btn-danger'>Belum</a>";
+                                                        } else if ($row->status_jurnal == '1') {
+                                                            echo " <a href='" . base_url(' bks_wisuda/save_bks_kurang/' . $row->id_bks_wisuda) . "' class='btn btn-xs btn-primary'>Kurang</a>";
+                                                        } else {
+                                                            echo " <a href='" . base_url(' bks_wisuda/save_bks_lengkap/' . $row->id_bks_wisuda) . "' class='btn btn-xs btn-success'>Lengkap</a>";
                                                         }
                                                         ?>
                                                 </td>
-                                                <td>
-                                                    <a href="<?php echo site_url('bks_wisuda/save_bks_belum/' . $row->id_bks_wisuda); ?>" id="btn-konfirmasi" class="btn btn-xs btn-danger">Belum</a>
-                                                    <a href="<?php echo site_url('bks_wisuda/save_bks_kurang/' . $row->id_bks_wisuda); ?>" id="btn-konfirmasi" class="btn btn-xs btn-success">Kurang</a>
-                                                    <a href="<?php echo site_url('bks_wisuda/save_bks_lengkap/' . $row->id_bks_wisuda); ?>" id="btn-konfirmasi" class="btn btn-xs btn-primary">Lengkap</a>
+                                                <td> <?php if ($row->status_lap_ta == '0') {
+                                                            echo " <a href='" . base_url(' bks_wisuda/save_bks_belum/' . $row->id_bks_wisuda) . "' class='btn btn-xs btn-danger'>Belum</a>";
+                                                        } else if ($row->status_lap_ta == '1') {
+                                                            echo " <a href='" . base_url(' bks_wisuda/save_bks_kurang/' . $row->id_bks_wisuda) . "' class='btn btn-xs btn-primary'>Kurang</a>";
+                                                        } else {
+                                                            echo " <a href='" . base_url(' bks_wisuda/save_bks_lengkap/' . $row->id_bks_wisuda) . "' class='btn btn-xs btn-success'>Lengkap</a>";
+                                                        }
+                                                        ?>
                                                 </td>
-                                                <td><a href="<?= base_url('bks_wisuda/detail_bks_wisuda/' . $row->id_bks_wisuda) ?>" class="btn btn-primary btn-sm">
-                                                        <i class="fa fa-search"></i>
+                                                <td> <?php if ($row->status_aplikasi == '0') {
+                                                            echo " <a href='" . base_url(' bks_wisuda/save_bks_belum/' . $row->id_bks_wisuda) . "' class='btn btn-xs btn-danger'>Belum</a>";
+                                                        } else if ($row->status_aplikasi == '1') {
+                                                            echo " <a href='" . base_url(' bks_wisuda/save_bks_kurang/' . $row->id_bks_wisuda) . "' class='btn btn-xs btn-primary'>Kurang</a>";
+                                                        } else {
+                                                            echo " <a href='" . base_url(' bks_wisuda/save_bks_lengkap/' . $row->id_bks_wisuda) . "' class='btn btn-xs btn-success'>Lengkap</a>";
+                                                        }
+                                                        ?>
+                                                </td>
+                                                <td> <?php if ($row->status_ppt == '0') {
+                                                            echo " <a href='" . base_url(' bks_wisuda/save_bks_belum/' . $row->id_bks_wisuda) . "' class='btn btn-xs btn-danger'>Belum</a>";
+                                                        } else if ($row->status_ppt == '1') {
+                                                            echo " <a href='" . base_url(' bks_wisuda/save_bks_kurang/' . $row->id_bks_wisuda) . "' class='btn btn-xs btn-primary'>Kurang</a>";
+                                                        } else {
+                                                            echo " <a href='" . base_url(' bks_wisuda/save_bks_lengkap/' . $row->id_bks_wisuda) . "' class='btn btn-xs btn-success'>Lengkap</a>";
+                                                        }
+                                                        ?>
+                                                </td>
+                                                <td> <?php if ($row->status_video == '0') {
+                                                            echo " <a href='" . base_url(' bks_wisuda/save_bks_belum/' . $row->id_bks_wisuda) . "' class='btn btn-xs btn-danger'>Belum</a>";
+                                                        } else if ($row->status_video == '1') {
+                                                            echo " <a href='" . base_url(' bks_wisuda/save_bks_kurang/' . $row->id_bks_wisuda) . "' class='btn btn-xs btn-primary'>Kurang</a>";
+                                                        } else {
+                                                            echo " <a href='" . base_url(' bks_wisuda/save_bks_lengkap/' . $row->id_bks_wisuda) . "' class='btn btn-xs btn-success'>Lengkap</a>";
+                                                        }
+                                                        ?>
                                                 </td>
                                             </tr>
                                         <?php } ?>
@@ -129,7 +168,7 @@
                             </div>
                             <div class="card-body">
                                 <div id="flash" data-flash="<?= $this->session->flashdata('pesan'); ?>">
-                                    <table id="example1" class="table table-bordered table-striped">
+                                    <!-- <table id="example1" class="table table-bordered table-striped">
                                         <thead>
                                             <tr>
                                                 <th>No</th>
@@ -166,7 +205,83 @@
                                                 </tr>
                                             <?php } ?>
                                         </tbody>
-                                    </table>
+                                    </table> -->
+                                    <form action="<?= base_url('bks_wisuda/create') ?>" method="post" class="form-horizontal" role="form" enctype="multipart/form-data">
+                                        <input type="hidden" id="id_bks_wisuda" name="id_bks_wisuda">
+                                        <table id="example1" class="table table-bordered table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th>No</th>
+                                                    <th>Persyaratan</th>
+                                                    <th>Unggah Bukti</th>
+                                                    <th>Status</th>
+                                                    <th>Keterangan</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>1.</td>
+                                                    <td>File TA</td>
+                                                    <td>
+                                                        <!-- <input type="file" class="form-control col-md-5" name="file_ta"> -->
+                                                        <button type="submit" name="submit" class="badge badge-primary"><i class="fa fa-upload">Unggah</i></button>
+                                                    </td>
+                                                    <td></td>
+                                                    <td></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>2.</td>
+                                                    <td>File Jurnal</td>
+                                                    <td>
+                                                        <!-- <input type="file" class="form-control col-md-5" name="file_ta"> -->
+                                                        <button type="submit" name="submit" class="badge badge-primary"><i class="fa fa-upload">Unggah</i></button>
+                                                    </td>
+                                                    <td></td>
+                                                    <td></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>3.</td>
+                                                    <td>Lap.TA</td>
+                                                    <td>
+                                                        <!-- <input type="file" class="form-control col-md-5" name="file_ta"> -->
+                                                        <button type="submit" name="submit" class="badge badge-primary"><i class="fa fa-upload">Unggah</i></button>
+                                                    </td>
+                                                    <td></td>
+                                                    <td></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>4.</td>
+                                                    <td>File Aplikasi</td>
+                                                    <td>
+                                                        <!-- <input type="file" class="form-control col-md-5" name="file_ta"> -->
+                                                        <button type="submit" name="submit" class="badge badge-primary"><i class="fa fa-upload">Unggah</i></button>
+                                                    </td>
+                                                    <td></td>
+                                                    <td></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>5.</td>
+                                                    <td>File PPT</td>
+                                                    <td>
+                                                        <!-- <input type="file" class="form-control col-md-5" name="file_ta"> -->
+                                                        <button type="submit" name="submit" class="badge badge-primary"><i class="fa fa-upload">Unggah</i></button>
+                                                    </td>
+                                                    <td></td>
+                                                    <td></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>6.</td>
+                                                    <td>File Video</td>
+                                                    <td>
+                                                        <!-- <input type="file" class="form-control col-md-5" name="file_ta"> -->
+                                                        <button type="submit" name="submit" class="badge badge-primary"><i class="fa fa-upload">Unggah</i></button>
+                                                    </td>
+                                                    <td></td>
+                                                    <td></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </form>
                                 </div>
                             </div>
                         </div>

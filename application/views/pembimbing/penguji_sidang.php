@@ -267,12 +267,14 @@
                                             <th>Dosen Penguji 1</th>
                                             <th>Dosen Penguji 2</th>
                                             <th>Dosen Penguji 3</th>
+                                            <th>Jadwal</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <?php
                                         $no = 1;
                                         foreach ($query3->result() as $row) {
+                                            $waktu = explode(" ", $row->jadwal_seminar);
                                             $data['user'] = $this->m_penguji_sidang->getmahasiswabyid($row->nim);
                                             $data['dosen1'] = $this->m_penguji_sidang->getdosen1($row->penguji1_sidang);
                                             $data['dosen2'] = $this->m_penguji_sidang->getdosen2($row->penguji2_sidang);
@@ -284,6 +286,7 @@
 											<td>" . $data['dosen1']->nama . "</td>
 											<td>" . $data['dosen2']->nama . "</td>
 											<td>" . $data['dosen3']->nama . "</td>
+                                            <td>" . longdate_indo($waktu[0]) . " " . $waktu[1] . "</td>
 																				    </tr>";
                                             $no++;
                                         }
@@ -330,16 +333,18 @@
                                     <thead>
                                         <tr>
                                             <th>No</th>
-                                            <th>Nama Mahasiswa</th>
                                             <th>Dosen Penguji 1</th>
                                             <th>Dosen Penguji 2</th>
                                             <th>Dosen Penguji 3</th>
+                                            <th>Jadwal</th>
+
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <?php
                                         $no = 1;
                                         foreach ($query2->result() as $row) {
+                                            $waktu = explode(" ", $row->jadwal_sidang);
                                             $data['user'] = $this->m_penguji_sidang->getmahasiswabyid($row->nim);
                                             $data['dosen1'] = $this->m_penguji_sidang->getdosen1($row->penguji1_sidang);
                                             $data['dosen2'] = $this->m_penguji_sidang->getdosen2($row->penguji2_sidang);
@@ -347,10 +352,10 @@
                                             echo
                                             "<tr>
 											<td>" . $no . "</td>
-                                        	<td>" . $data['user']->nama   . "</td>
 											<td>" . $data['dosen1']->nama . "</td>
 											<td>" . $data['dosen2']->nama . "</td>
 											<td>" . $data['dosen3']->nama . "</td>
+                                            <td>" . longdate_indo($waktu[0]) . " " . $waktu[1] . "</td>
 																				    </tr>";
                                             $no++;
                                         }

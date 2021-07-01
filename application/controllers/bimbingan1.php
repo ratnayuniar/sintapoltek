@@ -156,6 +156,19 @@ class Bimbingan1 extends CI_Controller
         }
     }
 
+    function delete_bimbingan_ta($id)
+    {
+        $delete = $this->m_bimbingan1->get_id_bimbingan($id);
+        if ($delete) {
+            $this->m_bimbingan1->delete($id);
+            $this->session->set_flashdata('message', '<div class="alert alert-danger">Data Berhasil di Hapus</div>');
+            redirect('bimbingan1/bimbingan1_ta', 'refresh');
+        } else {
+            $this->session->set_flashdata('message', '<div class="alert alert-danger">Data Tidak ada</div>');
+            redirect('bimbingan1/bimbingan1_ta', 'refresh');
+        }
+    }
+
     function save_topik_waiting()
     {
         $this->form_validation->set_rules('status', 'Status', 'trim|required');
@@ -228,5 +241,18 @@ class Bimbingan1 extends CI_Controller
         $this->mypdf->setPaper('A4', 'potrait');
         $this->mypdf->filename = "laporan";
         $this->mypdf->generate('bimbingan/dompdf_seminar', $data);
+    }
+
+    function cetak_kartuta()
+    {
+        $data['bimbingan_user_ta'] = $this->m_bimbingan1->bimbingan_user_ta();
+        $data['get_dosen'] = $this->m_bimbingan1->get_dosen();
+        $data['get_tanggal'] = $this->m_bimbingan1->get_tanggal();
+        $data['get_mahasiswa'] = $this->m_bimbingan1->get_mahasiswa();
+        $data['topik_user'] = $this->m_profile->topik_user();
+        $this->load->library('mypdf');
+        $this->mypdf->setPaper('A4', 'potrait');
+        $this->mypdf->filename = "laporan";
+        $this->mypdf->generate('bimbingan/dompdf2', $data);
     }
 }

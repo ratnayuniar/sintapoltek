@@ -20,7 +20,7 @@
             <div class="row">
             </div>
             <div class="row">
-                <div class="col-12">
+                <div class="col-6">
                     <div class="card card-primary">
                         <div class="card-header">
                             <h3 class="card-title">Profil Tugas Akhir</h3>

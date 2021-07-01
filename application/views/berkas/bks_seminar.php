@@ -131,6 +131,44 @@
               <div class="card-body">
                 <div id="flash" data-flash="<?= $this->session->flashdata('pesan'); ?>">
                 </div>
+                <!-- <table id="example1" class="table table-bordered table-striped">
+                  <thead>
+                    <tr>
+                      <th>No</th>
+                      <th>NIM</th>
+                      <th>Nama Mahasiswa</th>
+                      <th>Status</th>
+                      <th>Aksi</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <?php
+                    $no = 1;
+                    foreach ($bks_seminar_user->result() as $row) { ?>
+                      <tr>
+                        <td><?= $no++ ?></td>
+                        <td><?= $row->nim ?></td>
+                        <td><?= $row->nama ?></td>
+                        <td class="text-center" width="160px">
+                          <?php if ($row->status == '0') {
+                            echo '<span class="badge badge-warning">Menunggu</span>';
+                          } else if ($row->status == '1') {
+                            echo '<span class="badge badge-info">Belum Lengkap</span>';
+                          } else if ($row->status == '2') {
+                            echo '<span class="badge badge-primary">Kurang Lengkap</span>';
+                          } else {
+                            echo '<span class="badge badge-danger">Lengkap</span>';
+                          }
+                          ?>
+                        </td>
+                        <td class="text-center" width="160px">
+                          <a href="<?php echo base_url('bks_seminar/delete_users/' . $row->id_seminar_proposal) ?>" id="btn-hapus" data-toggle="tooltip" data-placement="bottom" title="Hapus Mahasiswa" class="btn btn-sm btn-danger btn-xs"><i class="fa fa-trash"></i> Delete</a>
+                          <a href="<?= base_url('bks_seminar/detail_bks_seminar/' . $row->id_seminar_proposal) ?>" class="on-default edit-row btn btn-info pull-right btn-xs"><i class="fa fa-search"></i> Detail </a>
+                        </td>
+                      </tr>
+                    <?php } ?>
+                  </tbody>
+                </table> -->
                 <table id="example1" class="table table-bordered table-striped">
                   <thead>
                     <tr>
@@ -196,22 +234,30 @@
             </div>
             <div class="form-group">
               <label for="berita_acara">Berita Acara</label>
-              <span><h6>Upload dalam format doc.</h6></span>
+              <span>
+                <h6>Upload dalam format doc.</h6>
+              </span>
               <input type="file" name="berita_acara" required>
             </div>
             <div class="form-group">
               <label for="persetujuan">Persetujuan</label>
-              <span><h6>Upload dalam format doc.</h6></span>
+              <span>
+                <h6>Upload dalam format doc.</h6>
+              </span>
               <input type="file" name="persetujuan" required>
             </div>
             <div class="form-group">
               <label for="exampleInputjudul1">Proposal</label>
-              <span><h6>Upload dalam format pdf.</h6></span>
+              <span>
+                <h6>Upload dalam format pdf.</h6>
+              </span>
               <input type="file" name="proposal" required>
             </div>
             <div class="form-group">
               <label for="exampleInputjudul1">Presentasi</label>
-              <span><h6>Upload dalam format ppt.</h6></span>
+              <span>
+                <h6>Upload dalam format ppt.</h6>
+              </span>
               <input type="file" name="presentasi" required>
             </div>
             <div class="form-group">

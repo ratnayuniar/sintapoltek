@@ -27,84 +27,17 @@
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <!-- SEMUA USER -->
-
-                <!-- <li class="nav-item">
-                    <a href="<?php echo base_url('beranda'); ?>" class="nav-link">
-                        <i class="nav-icon fas fa-home"></i>
-                        <p>
-                            Beranda
-                        </p>
-                    </a>
-                </li> -->
                 <!-- USER ADMIN -->
                 <?php if ($this->session->userdata('level') == 1) { ?>
-                    <li class="nav-item">
-                        <a href="<?php echo base_url('beranda'); ?>" class="nav-link">
+                    <li class="nav-link">
+                        <a <?= $this->uri->segment(1) == 'beranda' || $this->uri->segment(1) == '' ? 'class="nav-link active"' : '' ?>href="<?php echo base_url('beranda'); ?>">
                             <i class="nav-icon fas fa-home"></i>
                             <p>
                                 Beranda
                             </p>
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link ">
-                            <i class="nav-icon fas fa-users"></i>
-                            <p>
-                                Data Pengguna
-                                <i class="fas fa-angle-left right"></i>
-                            </p>
-                        </a>
-                        <ul class="nav nav-treeview">
-                            <li class="nav-item">
-                                <a href="<?php echo base_url('pengguna_dosen'); ?>" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Pegawai</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="<?php echo base_url('pengguna_mahasiswa'); ?>" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Mahasiswa</p>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link ">
-                            <i class="nav-icon fas fa-database"></i>
-                            <p>
-                                Master Data
-                                <i class="fas fa-angle-left right"></i>
-                            </p>
-                        </a>
-                        <ul class="nav nav-treeview">
-                            <li class="nav-item">
-                                <a href="<?php echo base_url('mahasiswa'); ?>" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Data Mahasiswa</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="<?php echo base_url('dosen'); ?>" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Data Dosen</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="<?php echo base_url('jurusan'); ?>" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Data Jurusan</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="<?php echo base_url('prodi2'); ?>" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Data Program Studi</p>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="nav-item">
+                    <li class="nav-item <?= $this->uri->segment(1) == 'pembimbing' || $this->uri->segment(1) == 'bks_seminar' ? 'active' : '' ?>  ">
                         <a href="#" class="nav-link ">
                             <i class="nav-icon fas fa-book-open"></i>
                             <p>
@@ -113,7 +46,7 @@
                             </p>
                         </a>
                         <ul class="nav nav-treeview">
-                            <li class="nav-item">
+                            <li <?= $this->uri->segment(1) == 'pembimbing' ? 'class="nav-item active"' : '' ?>>
                                 <a href="<?php echo base_url('pembimbing'); ?>" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Dosen Pembimbing</p>
@@ -323,16 +256,16 @@
                                     <p>Registrasi Seminar</p>
                                 </a>
                             </li>
-                            <li class="nav-item">
+                            <!-- <li class="nav-item">
                                 <a href="<?php echo base_url('jadwal_seminar'); ?>" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
-                                    <p>Jadwal Seminar</p>
+                                    <p>Jadwal dan Dosen Penguji Seminar</p>
                                 </a>
-                            </li>
+                            </li> -->
                             <li class="nav-item">
                                 <a href="<?php echo base_url('penguji'); ?>" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
-                                    <p>Dosen Penguji Seminar</p>
+                                    <p>Jadwal dan Dosen Penguji</p>
                                 </a>
                             </li>
                             <li class="nav-item">
@@ -388,15 +321,9 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="<?php echo base_url('jadwal_sidang'); ?>" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Jadwal Sidang</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
                                 <a href="<?php echo base_url('penguji_sidang'); ?>" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
-                                    <p>Dosen Penguji Sidang</p>
+                                    <p>Penguji dan Jadwal</p>
                                 </a>
                             </li>
                             <li class="nav-item">
@@ -575,6 +502,12 @@
                                 <a href="<?php echo base_url('nilai_sidang'); ?>" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Nilai Sidang</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="<?php echo base_url('revisi_upload'); ?>" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Revisi</p>
                                 </a>
                             </li>
                         </ul>

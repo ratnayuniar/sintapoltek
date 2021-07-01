@@ -89,7 +89,7 @@
                           </a>';
                         } else if ($row->status == '2') {
                           echo '<a href="javascript:void(0);" data-toggle="modal" data-target="#modalclosetopik" id="ctopik"
-                          data-closetopik="' . $row->id_topik . '"
+                          data-closetopik="' . $row->id_topik . '" data-closenim="' . $row->nim . '" data-closejudul="' . $row->judul . '"
                           data-closestatus="' . $row->status . '"                          
                           class="btn btn-primary btn-sm">
                           Terima
@@ -110,7 +110,7 @@
                       <!-- <td>
                         <a href="<?= base_url('topik/detail_topik/' . $row->id_topik) ?>" class="btn btn-primary btn-sm">
                           <i class="fa fa-search"></i>
-                      </td> -->
+                        </td> -->
                     </tr>
                   <?php } ?>
                 </tbody>
@@ -195,6 +195,8 @@
         <div class="modal-body">
           <form action="<?= base_url('topik/save_close_topik') ?>" method="POST" enctype="multipart/form-data">
             <div class="modal-body">
+              <input type="hidden" name="nim" id="closenim">
+              <input type="hidden" name="judul" id="closejudul">
               <input type="hidden" name="id_topik" id="closetopik" class="form-control">
               <input type="hidden" name="status" value="3" class="form-control">
             </div>
@@ -254,6 +256,11 @@
       $(document).on('click', '#ctopik', function() {
         var closetopik = $(this).data('closetopik');
         var closestatus = $(this).data('closestatus');
+        var closenim = $(this).data('closenim');
+        var closejudul = $(this).data('closejudul');
+
+        $('#closenim').val(closenim);
+        $('#closejudul').val(closejudul);
 
         $('#closetopik').val(closetopik);
         $('#closestatus').val(closestatus);
@@ -283,7 +290,7 @@
             <div class="col-sm-6">
               <ol class="breadcrumb float-sm-right">
                 <li class="breadcrumb-item"><a href="<?php echo base_url('beranda'); ?>">Beranda</a></li>
-                <li class="breadcrumb-item active">Data Judul</li>
+                <li class="breadcrumb-item active">Data Topik</li>
               </ol>
             </div>
           </div>
@@ -296,7 +303,7 @@
             <div class="modal-dialog modal-m" style="width: 100%;">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h4 class="modal-title">Ajukan Judul Mahasiswa</h4>
+                  <h4 class="modal-title">Ajukan Topik Mahasiswa</h4>
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                   </button>
@@ -336,14 +343,35 @@
         </div>
         <div class="row">
           <div class="col-12">
-            <div style="text-align:right;margin-bottom: 10px ">
-              <a href="#" class="on-default edit-row btn btn-success pull-right" data-toggle="modal" pull="right" data-target="#custom-width-modal" onclick="ResetInput()"><i class="fa fa-plus"></i> Ajukan Judul</a>
-            </div>
+
             <div class="card">
               <div class="card-header">
-                <h3 class="card-title">Daftar Judul Tugas Akhir</h3>
+                <h3 class="card-title">Daftar Topik Tugas Akhir</h3>
               </div>
               <div class="card-body">
+                <div style="text-align:right;margin-bottom: 10px ">
+
+                  <?php
+
+                  $disabled = '';
+                  if ($topik_user->num_rows() > 0) {
+                    $disabled = 'disabled';
+
+                    if ($ditolak->num_rows() > 0) {
+                      $disabled = '';
+                    }
+
+                    if ($disetujui->num_rows() > 0) {
+                      $disabled = 'disabled';
+                    }
+                  } else {
+                    $disabled = '';
+                  }
+
+                  ?>
+
+                  <a href="#" class="on-default edit-row btn btn-success pull-right <?php echo $disabled ?>" data-toggle="modal" pull="right" data-target="#custom-width-modal" onclick="ResetInput()"><i class="fa fa-plus"></i> Ajukan Judul</a>
+                </div>
                 <table id="example1" class="table table-bordered table-striped">
                   <thead>
                     <tr>
@@ -351,7 +379,6 @@
                       <th>NIM</th>
                       <th>Judul</th>
                       <th>Komentar</th>
-                      <!-- <th>Lokasi</th> -->
                       <th>Status</th>
                       <!-- <th>Aksi</th> -->
                     </tr>

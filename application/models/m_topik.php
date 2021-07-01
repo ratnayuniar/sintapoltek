@@ -7,6 +7,23 @@ class M_topik extends CI_Model
         return $this->db->get('topik')->result();
     }
 
+    function ditolak()
+    {
+        $this->db->where('topik.nim', $this->session->userdata('email'));
+        // $this->db->or_where('topik.id_prodi', $this->session->userdata('id_prodi'));
+        $this->db->join('mahasiswa', 'topik.nim = mahasiswa.nim', 'left');
+        $this->db->where('topik.status', 4);
+        return $this->db->get('topik');
+    }
+    function disetujui()
+    {
+        $this->db->where('topik.nim', $this->session->userdata('email'));
+        // $this->db->or_where('topik.id_prodi', $this->session->userdata('id_prodi'));
+        $this->db->join('mahasiswa', 'topik.nim = mahasiswa.nim', 'left');
+        $this->db->where('topik.status', 3);
+        return $this->db->get('topik');
+    }
+
     function topik_user()
     {
         $this->db->where('topik.nim', $this->session->userdata('email'));

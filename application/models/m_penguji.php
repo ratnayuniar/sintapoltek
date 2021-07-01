@@ -6,9 +6,9 @@ class M_penguji extends CI_Model
     {
 
         $this->db->select('*');
-        $this->db->where('penguji1_sempro is NOT NULL', NULL, FALSE);
-        $this->db->where('penguji2_sempro is NOT NULL', NULL, FALSE);
-        $this->db->where('penguji3_sempro is NOT NULL', NULL, FALSE);
+        // $this->db->where('penguji1_sempro is NOT NULL', NULL, FALSE);
+        // $this->db->where('penguji2_sempro is NOT NULL', NULL, FALSE);
+        // $this->db->where('penguji3_sempro is NOT NULL', NULL, FALSE);
         $this->db->join('mahasiswa', 'mahasiswa.nim=master_ta.nim', 'left');
         $this->db->where(array('mahasiswa.id_prodi' => $id_prodi));
         $query = $this->db->get('master_ta');
