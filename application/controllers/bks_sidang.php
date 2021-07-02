@@ -18,6 +18,9 @@ class Bks_sidang extends CI_Controller
 		$data['bks_sidang_user'] = $this->m_bks_sidang->bks_sidang_user();
 		$data['title'] = 'SINTA PNM';
 		$data['data'] = $this->db->get('seminar_ta')->result();
+		$data['bks_sidang'] = $this->db->query('select * from seminar_ta')->row();
+
+
 
 		$this->load->view('templates/header', $data);
 		$this->load->view('templates/sidebar', $data);
@@ -53,6 +56,264 @@ class Bks_sidang extends CI_Controller
 			$this->load->view('templates/sidebar', $data);
 			$this->load->view('berkas/detail_bks_sidang', $data);
 			$this->load->view('templates/footer', $data);
+		}
+	}
+
+	public function upload_beritaacara()
+	{
+		if (isset($_POST['submit'])) {
+			$this->form_validation->set_rules('nim', 'NIM', 'required');
+			$config['upload_path'] = './assets/berkas/sidang/';
+			$config['allowed_types'] = 'pdf|jpg|png|jpeg|ppt|pptx|doc|docx';
+			$config['max_size']  = 50000;
+			$config['file_name'] = 'bks_sidang-' . date('ymd');
+
+			$this->load->library('upload', $config);
+
+			if (!empty($_FILES['berita_acara'])) {
+				$this->upload->do_upload('berita_acara');
+				$data1 = $this->upload->data();
+				$berita_acara = $data1['file_name'];
+			}
+
+			if ($this->form_validation->run()) {
+				$nim = $this->input->post('nim', TRUE);
+				$data = [
+					'nim' => $nim,
+					'berita_acara' => $berita_acara,
+
+
+				];
+
+				$cek = $this->db->like('nim', $data['nim'])->from('seminar_ta')->count_all_results();
+
+				if ($cek > 0) {
+					$this->db->where('nim', $data['nim'])->update('seminar_ta', $data);
+					redirect('bks_sidang');
+				} else {
+					$this->db->insert('seminar_ta', $data);
+					redirect('bks_sidang');
+				}
+			} else {
+				$this->index();
+			}
+		} else {
+			$this->index();
+		}
+	}
+
+	public function upload_persetujuan()
+	{
+		if (isset($_POST['submit'])) {
+			$this->form_validation->set_rules('nim', 'NIM', 'required');
+			$config['upload_path'] = './assets/berkas/sidang/';
+			$config['allowed_types'] = 'pdf|jpg|png|exe|jpeg|mp4|ppt|pptx';
+			$config['max_size']  = 50000;
+			$config['file_name'] = 'bks_sidang-' . date('ymd');
+
+			$this->load->library('upload', $config);
+
+			if (!empty($_FILES['persetujuan'])) {
+				$this->upload->do_upload('persetujuan');
+				$data1 = $this->upload->data();
+				$persetujuan = $data1['file_name'];
+			}
+
+			if ($this->form_validation->run()) {
+				$nim = $this->input->post('nim', TRUE);
+				$data = [
+					'nim' => $nim,
+					'persetujuan' => $persetujuan,
+
+
+				];
+
+				$cek = $this->db->like('nim', $data['nim'])->from('seminar_ta')->count_all_results();
+
+				if ($cek > 0) {
+					$this->db->where('nim', $data['nim'])->update('seminar_ta', $data);
+					redirect('bks_sidang');
+				} else {
+					$this->db->insert('seminar_ta', $data);
+					redirect('bks_sidang');
+				}
+			} else {
+				$this->index();
+			}
+		} else {
+			$this->index();
+		}
+	}
+
+	public function upload_pkkmb()
+	{
+		if (isset($_POST['submit'])) {
+			$this->form_validation->set_rules('nim', 'NIM', 'required');
+			$config['upload_path'] = './assets/berkas/sidang/';
+			$config['allowed_types'] = 'pdf|jpg|png|exe|jpeg|mp4|ppt|pptx';
+			$config['max_size']  = 50000;
+			$config['file_name'] = 'bks_sidang-' . date('ymd');
+
+			$this->load->library('upload', $config);
+
+			if (!empty($_FILES['pkkmb'])) {
+				$this->upload->do_upload('pkkmb');
+				$data1 = $this->upload->data();
+				$pkkmb = $data1['file_name'];
+			}
+
+			if ($this->form_validation->run()) {
+				$nim = $this->input->post('nim', TRUE);
+				$data = [
+					'nim' => $nim,
+					'pkkmb' => $pkkmb,
+
+
+				];
+
+				$cek = $this->db->like('nim', $data['nim'])->from('seminar_ta')->count_all_results();
+
+				if ($cek > 0) {
+					$this->db->where('nim', $data['nim'])->update('seminar_ta', $data);
+					redirect('bks_sidang');
+				} else {
+					$this->db->insert('seminar_ta', $data);
+					redirect('bks_sidang');
+				}
+			} else {
+				$this->index();
+			}
+		} else {
+			$this->index();
+		}
+	}
+
+	public function upload_file_ta()
+	{
+		if (isset($_POST['submit'])) {
+			$this->form_validation->set_rules('nim', 'NIM', 'required');
+			$config['upload_path'] = './assets/berkas/sidang/';
+			$config['allowed_types'] = 'pdf|jpg|png|exe|jpeg|mp4|ppt|pptx';
+			$config['max_size']  = 50000;
+			$config['file_name'] = 'bks_sidang-' . date('ymd');
+
+			$this->load->library('upload', $config);
+
+			if (!empty($_FILES['file_ta'])) {
+				$this->upload->do_upload('file_ta');
+				$data1 = $this->upload->data();
+				$file_ta = $data1['file_name'];
+			}
+
+			if ($this->form_validation->run()) {
+				$nim = $this->input->post('nim', TRUE);
+				$data = [
+					'nim' => $nim,
+					'file_ta' => $file_ta,
+
+
+				];
+
+				$cek = $this->db->like('nim', $data['nim'])->from('seminar_ta')->count_all_results();
+
+				if ($cek > 0) {
+					$this->db->where('nim', $data['nim'])->update('seminar_ta', $data);
+					redirect('bks_sidang');
+				} else {
+					$this->db->insert('seminar_ta', $data);
+					redirect('bks_sidang');
+				}
+			} else {
+				$this->index();
+			}
+		} else {
+			$this->index();
+		}
+	}
+
+	public function upload_monitoring()
+	{
+		if (isset($_POST['submit'])) {
+			$this->form_validation->set_rules('nim', 'NIM', 'required');
+			$config['upload_path'] = './assets/berkas/sidang/';
+			$config['allowed_types'] = 'pdf|jpg|png|exe|jpeg|mp4|ppt|pptx';
+			$config['max_size']  = 50000;
+			$config['file_name'] = 'bks_sidang-' . date('ymd');
+
+			$this->load->library('upload', $config);
+
+			if (!empty($_FILES['monitoring'])) {
+				$this->upload->do_upload('monitoring');
+				$data1 = $this->upload->data();
+				$monitoring = $data1['file_name'];
+			}
+
+			if ($this->form_validation->run()) {
+				$nim = $this->input->post('nim', TRUE);
+				$data = [
+					'nim' => $nim,
+					'monitoring' => $monitoring,
+
+
+				];
+
+				$cek = $this->db->like('nim', $data['nim'])->from('seminar_ta')->count_all_results();
+
+				if ($cek > 0) {
+					$this->db->where('nim', $data['nim'])->update('seminar_ta', $data);
+					redirect('bks_sidang');
+				} else {
+					$this->db->insert('seminar_ta', $data);
+					redirect('bks_sidang');
+				}
+			} else {
+				$this->index();
+			}
+		} else {
+			$this->index();
+		}
+	}
+
+	public function upload_presentasi()
+	{
+		if (isset($_POST['submit'])) {
+			$this->form_validation->set_rules('nim', 'NIM', 'required');
+			$config['upload_path'] = './assets/berkas/sidang/';
+			$config['allowed_types'] = 'pdf|jpg|png|exe|jpeg|mp4|ppt|pptx';
+			$config['max_size']  = 50000;
+			$config['file_name'] = 'bks_sidang-' . date('ymd');
+
+			$this->load->library('upload', $config);
+
+			if (!empty($_FILES['presentasi'])) {
+				$this->upload->do_upload('presentasi');
+				$data1 = $this->upload->data();
+				$presentasi = $data1['file_name'];
+			}
+
+			if ($this->form_validation->run()) {
+				$nim = $this->input->post('nim', TRUE);
+				$data = [
+					'nim' => $nim,
+					'presentasi' => $presentasi,
+
+
+				];
+
+				$cek = $this->db->like('nim', $data['nim'])->from('seminar_ta')->count_all_results();
+
+				if ($cek > 0) {
+					$this->db->where('nim', $data['nim'])->update('seminar_ta', $data);
+					redirect('bks_sidang');
+				} else {
+					$this->db->insert('seminar_ta', $data);
+					redirect('bks_sidang');
+				}
+			} else {
+				$this->index();
+			}
+		} else {
+			$this->index();
 		}
 	}
 

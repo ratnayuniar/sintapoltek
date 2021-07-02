@@ -19,6 +19,7 @@ class Bks_seminar extends CI_Controller
 		$data['bks_seminar_user'] = $this->m_bks_seminar->bks_seminar_user();
 		$data['title'] = 'SINTA PNM';
 		$data['data'] = $this->db->get('seminar_proposal')->result();
+		$data['bks_seminar'] = $this->db->query('select * from seminar_proposal')->row();
 
 		$this->load->view('templates/header', $data);
 		$this->load->view('templates/sidebar', $data);
@@ -56,6 +57,222 @@ class Bks_seminar extends CI_Controller
 			$this->load->view('templates/footer', $data);
 		}
 	}
+
+	public function upload_beritaacara()
+	{
+		if (isset($_POST['submit'])) {
+			$this->form_validation->set_rules('nim', 'NIM', 'required');
+			$config['upload_path'] = './assets/berkas/seminar/';
+			$config['allowed_types'] = 'pdf|jpg|png|jpeg|ppt|pptx|doc|docx';
+			$config['max_size']  = 50000;
+			$config['file_name'] = 'bks_seminar-' . date('ymd');
+
+			$this->load->library('upload', $config);
+
+			if (!empty($_FILES['berita_acara'])) {
+				$this->upload->do_upload('berita_acara');
+				$data1 = $this->upload->data();
+				$berita_acara = $data1['file_name'];
+			}
+
+			if ($this->form_validation->run()) {
+				$nim = $this->input->post('nim', TRUE);
+				$data = [
+					'nim' => $nim,
+					'berita_acara' => $berita_acara,
+					'st_beritaacara' => 0,
+
+				];
+
+				$cek = $this->db->like('nim', $data['nim'])->from('seminar_proposal')->count_all_results();
+
+				if ($cek > 0) {
+					$this->db->where('nim', $data['nim'])->update('seminar_proposal', $data);
+					redirect('bks_seminar');
+				} else {
+					$this->db->insert('seminar_proposal', $data);
+					redirect('bks_seminar');
+				}
+			} else {
+				$this->index();
+			}
+		} else {
+			$this->index();
+		}
+	}
+
+	public function upload_persetujuan()
+	{
+		if (isset($_POST['submit'])) {
+			$this->form_validation->set_rules('nim', 'NIM', 'required');
+			$config['upload_path'] = './assets/berkas/seminar/';
+			$config['allowed_types'] = 'pdf|jpg|png|exe|jpeg|mp4|ppt|pptx';
+			$config['max_size']  = 50000;
+			$config['file_name'] = 'bks_seminar-' . date('ymd');
+
+			$this->load->library('upload', $config);
+
+			if (!empty($_FILES['persetujuan'])) {
+				$this->upload->do_upload('persetujuan');
+				$data1 = $this->upload->data();
+				$persetujuan = $data1['file_name'];
+			}
+
+			if ($this->form_validation->run()) {
+				$nim = $this->input->post('nim', TRUE);
+				$data = [
+					'nim' => $nim,
+					'persetujuan' => $persetujuan,
+					'st_persetujuan' => 0,
+
+				];
+
+				$cek = $this->db->like('nim', $data['nim'])->from('seminar_proposal')->count_all_results();
+
+				if ($cek > 0) {
+					$this->db->where('nim', $data['nim'])->update('seminar_proposal', $data);
+					redirect('bks_seminar');
+				} else {
+					$this->db->insert('seminar_proposal', $data);
+					redirect('bks_seminar');
+				}
+			} else {
+				$this->index();
+			}
+		} else {
+			$this->index();
+		}
+	}
+
+	public function upload_proposal()
+	{
+		if (isset($_POST['submit'])) {
+			$this->form_validation->set_rules('nim', 'NIM', 'required');
+			$config['upload_path'] = './assets/berkas/seminar/';
+			$config['allowed_types'] = 'pdf|jpg|png|exe|jpeg|mp4|ppt|pptx';
+			$config['max_size']  = 50000;
+			$config['file_name'] = 'bks_seminar-' . date('ymd');
+
+			$this->load->library('upload', $config);
+
+			if (!empty($_FILES['proposal'])) {
+				$this->upload->do_upload('proposal');
+				$data1 = $this->upload->data();
+				$proposal = $data1['file_name'];
+			}
+
+			if ($this->form_validation->run()) {
+				$nim = $this->input->post('nim', TRUE);
+				$data = [
+					'nim' => $nim,
+					'proposal' => $proposal,
+					'st_proposal' => 0,
+
+				];
+
+				$cek = $this->db->like('nim', $data['nim'])->from('seminar_proposal')->count_all_results();
+
+				if ($cek > 0) {
+					$this->db->where('nim', $data['nim'])->update('seminar_proposal', $data);
+					redirect('bks_seminar');
+				} else {
+					$this->db->insert('seminar_proposal', $data);
+					redirect('bks_seminar');
+				}
+			} else {
+				$this->index();
+			}
+		} else {
+			$this->index();
+		}
+	}
+
+	public function upload_monitoring()
+	{
+		if (isset($_POST['submit'])) {
+			$this->form_validation->set_rules('nim', 'NIM', 'required');
+			$config['upload_path'] = './assets/berkas/seminar/';
+			$config['allowed_types'] = 'pdf|jpg|png|exe|jpeg|mp4|ppt|pptx';
+			$config['max_size']  = 50000;
+			$config['file_name'] = 'bks_seminar-' . date('ymd');
+
+			$this->load->library('upload', $config);
+
+			if (!empty($_FILES['monitoring'])) {
+				$this->upload->do_upload('monitoring');
+				$data1 = $this->upload->data();
+				$monitoring = $data1['file_name'];
+			}
+
+			if ($this->form_validation->run()) {
+				$nim = $this->input->post('nim', TRUE);
+				$data = [
+					'nim' => $nim,
+					'monitoring' => $monitoring,
+					'st_monitoring' => 0,
+
+				];
+
+				$cek = $this->db->like('nim', $data['nim'])->from('seminar_proposal')->count_all_results();
+
+				if ($cek > 0) {
+					$this->db->where('nim', $data['nim'])->update('seminar_proposal', $data);
+					redirect('bks_seminar');
+				} else {
+					$this->db->insert('seminar_proposal', $data);
+					redirect('bks_seminar');
+				}
+			} else {
+				$this->index();
+			}
+		} else {
+			$this->index();
+		}
+	}
+
+	public function upload_presentasi()
+	{
+		if (isset($_POST['submit'])) {
+			$this->form_validation->set_rules('nim', 'NIM', 'required');
+			$config['upload_path'] = './assets/berkas/seminar/';
+			$config['allowed_types'] = 'pdf|jpg|png|exe|jpeg|mp4|ppt|pptx';
+			$config['max_size']  = 50000;
+			$config['file_name'] = 'bks_seminar-' . date('ymd');
+
+			$this->load->library('upload', $config);
+
+			if (!empty($_FILES['presentasi'])) {
+				$this->upload->do_upload('presentasi');
+				$data1 = $this->upload->data();
+				$presentasi = $data1['file_name'];
+			}
+
+			if ($this->form_validation->run()) {
+				$nim = $this->input->post('nim', TRUE);
+				$data = [
+					'nim' => $nim,
+					'presentasi' => $presentasi,
+					'st_presentasi' => 0,
+
+				];
+
+				$cek = $this->db->like('nim', $data['nim'])->from('seminar_proposal')->count_all_results();
+
+				if ($cek > 0) {
+					$this->db->where('nim', $data['nim'])->update('seminar_proposal', $data);
+					redirect('bks_seminar');
+				} else {
+					$this->db->insert('seminar_proposal', $data);
+					redirect('bks_seminar');
+				}
+			} else {
+				$this->index();
+			}
+		} else {
+			$this->index();
+		}
+	}
+
 
 	public function create()
 	{

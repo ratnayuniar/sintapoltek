@@ -18,7 +18,6 @@ class Bks_wisuda extends CI_Controller
         $data['bks_wisuda_user'] = $this->m_bks_wisuda->bks_wisuda_user();
         $data['title'] = 'SINTA PNM';
         $data['data'] = $this->db->get('bks_wisuda')->result();
-
         $data['bks_wisuda'] = $this->db->query('select * from bks_wisuda')->row();
 
         $this->load->view('templates/header', $data);

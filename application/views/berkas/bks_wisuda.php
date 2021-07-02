@@ -668,7 +668,17 @@
                                                         }
                                                         ?>
                                                     </td>
-                                                    <td></td>
+                                                    <td align="center">
+                                                        <?php if ($row->status_file_ta == '0') {
+                                                            echo '<span class="badge badge-warning">Belum Diverifikasi</span>';
+                                                        } else if ($row->status_file_ta == '1') {
+                                                            echo '<span class="badge badge-info">Kurang Lengkap</span>';
+                                                        } else {
+                                                            echo '<span class="badge badge-success">Lengkap</span>';
+                                                        }
+                                                        ?>
+                                                    </td>
+
                                                 </tr>
                                                 <tr>
                                                     <td>2.</td>
@@ -683,7 +693,16 @@
                                                             echo "$bks_wisuda->jurnal";
                                                         }
                                                         ?></td>
-                                                    <td></td>
+                                                    <td align="center">
+                                                        <?php if ($row->status_jurnal == '0') {
+                                                            echo '<span class="badge badge-warning">Belum Diverifikasi</span>';
+                                                        } else if ($row->status_jurnal == '1') {
+                                                            echo '<span class="badge badge-info">Kurang Lengkap</span>';
+                                                        } else {
+                                                            echo '<span class="badge badge-success">Lengkap</span>';
+                                                        }
+                                                        ?>
+                                                    </td>
                                                 </tr>
 
                                                 <tr>
@@ -699,7 +718,16 @@
                                                             echo "$bks_wisuda->aplikasi";
                                                         }
                                                         ?></td>
-                                                    <td></td>
+                                                    <td align="center">
+                                                        <?php if ($row->status_aplikasi == '0') {
+                                                            echo '<span class="badge badge-warning">Belum Diverifikasi</span>';
+                                                        } else if ($row->status_aplikasi == '1') {
+                                                            echo '<span class="badge badge-info">Kurang Lengkap</span>';
+                                                        } else {
+                                                            echo '<span class="badge badge-success">Lengkap</span>';
+                                                        }
+                                                        ?>
+                                                    </td>
                                                 </tr>
                                                 <tr>
                                                     <td>4.</td>
@@ -714,7 +742,16 @@
                                                             echo "$bks_wisuda->ppt";
                                                         }
                                                         ?></td>
-                                                    <td></td>
+                                                    <td align="center">
+                                                        <?php if ($row->status_ppt == '0') {
+                                                            echo '<span class="badge badge-warning">Belum Diverifikasi</span>';
+                                                        } else if ($row->status_ppt == '1') {
+                                                            echo '<span class="badge badge-info">Kurang Lengkap</span>';
+                                                        } else {
+                                                            echo '<span class="badge badge-success">Lengkap</span>';
+                                                        }
+                                                        ?>
+                                                    </td>
                                                 </tr>
                                                 <tr>
                                                     <td>5.</td>
@@ -729,7 +766,16 @@
                                                             echo "$bks_wisuda->video";
                                                         }
                                                         ?></td>
-                                                    <td></td>
+                                                    <td align="center">
+                                                        <?php if ($row->status_video == '0') {
+                                                            echo '<span class="badge badge-warning">Belum Diverifikasi</span>';
+                                                        } else if ($row->status_video == '1') {
+                                                            echo '<span class="badge badge-info">Kurang Lengkap</span>';
+                                                        } else {
+                                                            echo '<span class="badge badge-success">Lengkap</span>';
+                                                        }
+                                                        ?>
+                                                    </td>
                                                 </tr>
                                                 <tr>
                                                     <td>6.</td>
@@ -744,7 +790,16 @@
                                                             echo "<?= $bks_wisuda->file_ta ?>";
                                                         }
                                                         ?></td>
-                                                    <td></td>
+                                                    <td align="center">
+                                                        <?php if ($row->status_lap_ta == '0') {
+                                                            echo '<span class="badge badge-warning">Belum Diverifikasi</span>';
+                                                        } else if ($row->status_lap_ta == '1') {
+                                                            echo '<span class="badge badge-info">Kurang Lengkap</span>';
+                                                        } else {
+                                                            echo '<span class="badge badge-success">Lengkap</span>';
+                                                        }
+                                                        ?>
+                                                    </td>
                                                 </tr>
                                             </tbody>
                                         </table>
