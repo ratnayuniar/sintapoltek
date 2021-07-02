@@ -24,9 +24,9 @@
                                 <h3 class="card-title">Data Pembimbing</h3>
                             </div>
                             <div class="card-body">
-                                <div style="text-align:right;margin-bottom: 10px ">
+                                <!-- <div style="text-align:right;margin-bottom: 10px ">
                                     <a href="#" class="on-default edit-row btn btn-success pull-right" data-toggle="modal" pull="right" data-target="#custom-width-modal" onclick="ResetInput()"><i class="fa fa-plus"></i> Tambah Data Pembimbing</a>
-                                </div>
+                                </div> -->
                                 <table id="example1" class="table table-bordered table-striped">
                                     <thead>
                                         <tr>
@@ -52,7 +52,7 @@
                                         	<td>" . $data['user']->nama   . "</td>
 											<td>" . $data['dosen1']->nama . "</td>
 											<td>" . $data['dosen2']->nama . "</td>
-											<td><a href ='#' class ='btn btn-sm btn-primary btn-xs' data-toggle='modal' data-target='#custom-width-modal' onClick=\"SetInput('" . $row->pembimbing1 . "','" . $row->pembimbing2 . "','" . $row->id_master_ta . "','" . $row->nim . "')\"><i class ='fa fa-edit'></i> Edit</a>
+											<td><a href ='#' class ='btn btn-sm btn-primary btn-xs' data-toggle='modal' data-target='#custom-width-modal' onClick=\"SetInput('" . $row->id_master_ta . "','" . $row->nim . "','" . $row->pembimbing1 . "','" . $row->pembimbing2 . "')\"><i class ='fa fa-edit'></i> Edit</a>
 												<a href='" . base_url('pembimbing/delete2/' . $row->id_master_ta) . "' id='btn-hapus' class='btn btn-sm btn-danger btn-xs' ><i class='fa fa-trash'></i> Hapus</a>
 											</td>
 									    </tr>";

@@ -25,7 +25,7 @@
                         </div>
                         <form action="<?php echo base_url() . 'revisi_seminar/add'; ?>" method="post" class="form-horizontal" role="form">
                             <div class="card-body">
-                                <!-- <input type="hidden" id="id_dosen" name="id_dosen" value="<?php echo $this->session->userdata('id_dosen'); ?>"> -->
+
                                 <input type="hidden" id="nim" name="nim" value="<?php echo $nim; ?>">
                                 <input type="hidden" id="jenis" name="jenis">
                                 <div class="form-group row">
@@ -97,11 +97,17 @@
                                         <textarea type="text" class="form-control" rows="7" id="revisi3" name="revisi3"></textarea>
                                     </div>
                                 </div>
+                                <div class="form-group row">
+                                    <label for="inputEmail3" class="col-sm-5 col-form-label">Upload File Revisi</label>
+                                    <div class="col-sm-5">
+                                        <input type="file" name="file_revisi" id="file_revisi">
+                                    </div>
+                                </div>
 
                             </div>
                             <div class="card-footer">
-                                <button type="submit" class="btn btn-info">Simpan</button>
-                                <button type="submit" class="btn btn-default float-right">Batal</button>
+                                <button type="submit" class="btn btn-info float-right">Simpan</button>
+                                <button type="submit" class="btn btn-default ">Batal</button>
                             </div>
                         </form>
                     </div>

@@ -50,32 +50,32 @@
                                                 <td><?= $row->nim ?></td>
                                                 <td><?= $row->nama ?></td>
                                                 <td> <?php if ($row->laporan_perpus == '0') {
-                                                            echo '<span class="badge badge-primary">Belum</span>';
+                                                            echo '<span class="badge badge-info">Belum</span>';
                                                         } else if ($row->laporan_perpus == '1') {
-                                                            echo '<span class="badge badge-success">Kurang</span>';
+                                                            echo '<span class="badge badge-primary">Kurang</span>';
                                                         } else {
-                                                            echo '<span class="badge badge-danger">Lengkap</span>';
+                                                            echo '<span class="badge badge-success">Lengkap</span>';
                                                         }
                                                         ?>
                                                 </td>
                                                 <td> <?php if ($row->tanggungan_perpus == '0') {
-                                                            echo '<span class="badge badge-primary">Belum</span>';
+                                                            echo '<span class="badge badge-info">Belum</span>';
                                                         } else if ($row->tanggungan_perpus  == '1') {
-                                                            echo '<span class="badge badge-success">Kurang</span>';
+                                                            echo '<span class="badge badge-primary">Kurang</span>';
                                                         } else {
-                                                            echo '<span class="badge badge-danger">Lengkap</span>';
+                                                            echo '<span class="badge badge-success">Lengkap</span>';
                                                         }
                                                         ?>
                                                 </td>
                                                 <td>
-                                                    <a href="<?php echo site_url('veri_perpus/save_lap_belum/' . $row->nim); ?>" id="btn-konfirmasi" class="btn btn-outline-primary btn-xs">Belum</a>
-                                                    <a href="<?php echo site_url('veri_perpus/save_lap_kurang/' . $row->nim); ?>" id="btn-konfirmasi" class="btn btn-outline-success btn-xs">Kurang</a>
-                                                    <a href="<?php echo site_url('veri_perpus/save_lap_lengkap/' . $row->nim); ?>" id="btn-konfirmasi" class="btn btn-outline-danger btn-xs">Lengkap</a>
+                                                    <a href="<?php echo site_url('veri_perpus/save_lap_belum/' . $row->nim); ?>" id="btn-konfirmasi" class="btn btn-outline-info btn-xs">Belum</a>
+                                                    <a href="<?php echo site_url('veri_perpus/save_lap_kurang/' . $row->nim); ?>" id="btn-konfirmasi" class="btn btn-outline-primary btn-xs">Kurang</a>
+                                                    <a href="<?php echo site_url('veri_perpus/save_lap_lengkap/' . $row->nim); ?>" id="btn-konfirmasi" class="btn btn-outline-success btn-xs">Lengkap</a>
                                                 </td>
                                                 <td>
-                                                    <a href="<?php echo site_url('veri_perpus/save_tg_belum/' . $row->nim); ?>" id="btn-konfirmasi" class="btn btn-outline-primary btn-xs">Belum</a>
-                                                    <a href="<?php echo site_url('veri_perpus/save_tg_kurang/' . $row->nim); ?>" id="btn-konfirmasi" class="btn btn-outline-success btn-xs">Kurang</a>
-                                                    <a href="<?php echo site_url('veri_perpus/save_tg_lengkap/' . $row->nim); ?>" id="btn-konfirmasi" class="btn btn-outline-danger btn-xs">Lengkap</a>
+                                                    <a href="<?php echo site_url('veri_perpus/save_tg_belum/' . $row->nim); ?>" id="btn-konfirmasi" class="btn btn-outline-info btn-xs">Belum</a>
+                                                    <a href="<?php echo site_url('veri_perpus/save_tg_kurang/' . $row->nim); ?>" id="btn-konfirmasi" class="btn btn-outline-primary btn-xs">Kurang</a>
+                                                    <a href="<?php echo site_url('veri_perpus/save_tg_lengkap/' . $row->nim); ?>" id="btn-konfirmasi" class="btn btn-outline-success btn-xs">Lengkap</a>
                                                 </td>
                                             </tr>
                                         <?php } ?>
@@ -274,20 +274,20 @@
                                                 <td><?= $row->nim ?></td>
                                                 <td><?= $row->nama ?></td>
                                                 <td> <?php if ($row->laporan_perpus == '0') {
-                                                            echo '<span class="badge badge-primary">Belum</span>';
+                                                            echo '<span class="badge badge-info">Belum</span>';
                                                         } else if ($row->laporan_perpus == '1') {
-                                                            echo '<span class="badge badge-success">Kurang</span>';
+                                                            echo '<span class="badge badge-primary">Kurang</span>';
                                                         } else {
-                                                            echo '<span class="badge badge-danger">Lengkap</span>';
+                                                            echo '<span class="badge badge-success">Lengkap</span>';
                                                         }
                                                         ?>
                                                 </td>
                                                 <td> <?php if ($row->tanggungan_perpus == '0') {
-                                                            echo '<span class="badge badge-primary">Belum</span>';
+                                                            echo '<span class="badge badge-info">Belum</span>';
                                                         } else if ($row->tanggungan_perpus  == '1') {
-                                                            echo '<span class="badge badge-success">Kurang</span>';
+                                                            echo '<span class="badge badge-primary">Kurang</span>';
                                                         } else {
-                                                            echo '<span class="badge badge-danger">Lengkap</span>';
+                                                            echo '<span class="badge badge-sucess">Lengkap</span>';
                                                         }
                                                         ?>
                                                 </td>

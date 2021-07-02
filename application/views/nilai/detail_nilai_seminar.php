@@ -27,7 +27,7 @@
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="<?php echo base_url('Beranda'); ?>">Beranda</a></li>
-                            <li class="breadcrumb-item active">Data Penguji</li>
+                            <li class="breadcrumb-item active">Data Nilai Seminar</li>
                         </ol>
                     </div>
                 </div>
@@ -37,8 +37,8 @@
         <section class="content">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-12">
-                        <div class="card card-info">
+                    <div class="col-5">
+                        <div class="card card-info ">
                             <div class="card-header">
                                 <h3 class="card-title">Data Nilai Seminar Proposal</h3>
                             </div>
@@ -88,12 +88,6 @@
                                             <input type="number" class="form-control hitung" id="penguasaan" name="penguasaan">
                                         </div>
                                     </div>
-                                    <!-- <div class="form-group row">
-                                        <label for="inputEmail3" class="col-sm-5 col-form-label ">Nilai Akhir Laporan</label>
-                                        <div class="col-sm-5">
-                                            <input type="number" class="form-control " id="nilai_akhir" name="nilai_akhir" readonly>
-                                        </div>
-                                    </div> -->
                                     <div class="form-group row">
                                         <label for="inputEmail3" class="col-sm-5 col-form-label ">Nilai Akhir Laporan</label>
                                         <div class="col-sm-5">
@@ -106,16 +100,10 @@
                                             <input readonly type="text" class="form-control" id="rata" name="rata" placeholder="Nilai rata rata ">
                                         </div>
                                     </div>
-                                    <!-- <div class="form-group row">
-                                        <label for="inputEmail3" class="col-sm-5 col-form-label">Rata - Rata</label>
-                                        <div class="col-sm-5">
-                                            <input type="number" class="form-control" id="rata" name="rata" readonly>
-                                        </div>
-                                    </div> -->
                                 </div>
                                 <div class="card-footer">
-                                    <button type="submit" onclick="jumlahnilai()" class="btn btn-info">Simpan</button>
-                                    <button type="submit" class="btn btn-default float-right">Batal</button>
+                                    <button type="submit" onclick="jumlahnilai()" class="btn btn-info float-right">Simpan</button>
+                                    <button type="submit" class="btn btn-danger ">Batal</button>
                                 </div>
                             </form>
                         </div>
@@ -168,7 +156,7 @@
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="<?php echo base_url('Beranda'); ?>">Beranda</a></li>
-                            <li class="breadcrumb-item active">Data Penguji</li>
+                            <li class="breadcrumb-item active">Data Nilai Seminar</li>
                         </ol>
                     </div>
                 </div>

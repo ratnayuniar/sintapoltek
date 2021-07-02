@@ -48,59 +48,100 @@
                                                 <td><?= $row->nim ?></td>
                                                 <td><?= $row->nama ?></td>
                                                 <td> <?php if ($row->status_file_ta == '0') {
-                                                            echo " <a href='" . base_url(' bks_wisuda/save_bks_belum/' . $row->id_bks_wisuda) . "' class='btn btn-xs btn-danger'>Belum</a>";
+                                                            echo " <a href ='#' class ='btn btn-sm btn-danger btn-xs btn-block' data-toggle='modal' data-target='#modal_file_ta' onClick=\"SetInput('" . $row->id_bks_wisuda . "','" . $row->nim . "','" . $row->nama . "')\"> Belum</a>";
                                                         } else if ($row->status_file_ta == '1') {
                                                             echo " <a href='" . base_url(' bks_wisuda/save_bks_kurang/' . $row->id_bks_wisuda) . "' class='btn btn-xs btn-primary'>Kurang</a>";
                                                         } else {
                                                             echo " <a href='" . base_url(' bks_wisuda/save_bks_lengkap/' . $row->id_bks_wisuda) . "' class='btn btn-xs btn-success'>Lengkap</a>";
                                                         }
                                                         ?>
-
+                                                    <?php if ($row->status_file_ta == '0') {
+                                                        echo " <h6>Belum diverifikasi</h6>";
+                                                    } else {
+                                                        echo " ";
+                                                    }
+                                                    ?>
+                                                    <h6><a href="<?php echo base_url('assets/berkas/wisuda/' . $row->file_ta); ?>" download><i class="far fa-file-pdf"></i></a></h6>
                                                 </td>
                                                 <td> <?php if ($row->status_jurnal == '0') {
-                                                            echo " <a href='" . base_url(' bks_wisuda/save_bks_belum/' . $row->id_bks_wisuda) . "' class='btn btn-xs btn-danger'>Belum</a>";
+                                                            echo " <a href ='#' class ='btn btn-sm btn-danger btn-xs btn-block' data-toggle='modal' data-target='#modal_jurnal' onClick=\"SetInput('" . $row->id_bks_wisuda . "','" . $row->nim . "','" . $row->nama . "')\"> Belum</a>";
                                                         } else if ($row->status_jurnal == '1') {
                                                             echo " <a href='" . base_url(' bks_wisuda/save_bks_kurang/' . $row->id_bks_wisuda) . "' class='btn btn-xs btn-primary'>Kurang</a>";
                                                         } else {
                                                             echo " <a href='" . base_url(' bks_wisuda/save_bks_lengkap/' . $row->id_bks_wisuda) . "' class='btn btn-xs btn-success'>Lengkap</a>";
                                                         }
                                                         ?>
+                                                    <?php if ($row->status_jurnal == '0') {
+                                                        echo " <h6>Belum diverifikasi</h6>";
+                                                    } else {
+                                                        echo " ";
+                                                    }
+                                                    ?>
+                                                    <h6><a href="<?php echo base_url('assets/berkas/wisuda/' . $row->jurnal); ?>" download><i class="far fa-file-pdf"></i></a></h6>
                                                 </td>
                                                 <td> <?php if ($row->status_lap_ta == '0') {
-                                                            echo " <a href='" . base_url(' bks_wisuda/save_bks_belum/' . $row->id_bks_wisuda) . "' class='btn btn-xs btn-danger'>Belum</a>";
+                                                            echo " <a href ='#' class ='btn btn-sm btn-danger btn-xs btn-block' data-toggle='modal' data-target='#modal_lapta' onClick=\"SetInput('" . $row->id_bks_wisuda . "','" . $row->nim . "','" . $row->nama . "')\"> Belum</a>";
                                                         } else if ($row->status_lap_ta == '1') {
                                                             echo " <a href='" . base_url(' bks_wisuda/save_bks_kurang/' . $row->id_bks_wisuda) . "' class='btn btn-xs btn-primary'>Kurang</a>";
                                                         } else {
                                                             echo " <a href='" . base_url(' bks_wisuda/save_bks_lengkap/' . $row->id_bks_wisuda) . "' class='btn btn-xs btn-success'>Lengkap</a>";
                                                         }
                                                         ?>
+                                                    <?php if ($row->status_lap_ta == '0') {
+                                                        echo " <h6>Belum diverifikasi</h6>";
+                                                    } else {
+                                                        echo " ";
+                                                    }
+                                                    ?>
+
                                                 </td>
                                                 <td> <?php if ($row->status_aplikasi == '0') {
-                                                            echo " <a href='" . base_url(' bks_wisuda/save_bks_belum/' . $row->id_bks_wisuda) . "' class='btn btn-xs btn-danger'>Belum</a>";
+                                                            echo " <a href ='#' class ='btn btn-sm btn-danger btn-xs btn-block' data-toggle='modal' data-target='#modal_aplikasi' onClick=\"SetInput('" . $row->id_bks_wisuda . "','" . $row->nim . "','" . $row->nama . "')\"> Belum</a>";
                                                         } else if ($row->status_aplikasi == '1') {
                                                             echo " <a href='" . base_url(' bks_wisuda/save_bks_kurang/' . $row->id_bks_wisuda) . "' class='btn btn-xs btn-primary'>Kurang</a>";
                                                         } else {
                                                             echo " <a href='" . base_url(' bks_wisuda/save_bks_lengkap/' . $row->id_bks_wisuda) . "' class='btn btn-xs btn-success'>Lengkap</a>";
                                                         }
                                                         ?>
+                                                    <?php if ($row->status_aplikasi == '0') {
+                                                        echo " <h6>Belum diverifikasi</h6>";
+                                                    } else {
+                                                        echo " ";
+                                                    }
+                                                    ?>
+                                                    <h6><a href="<?php echo base_url('assets/berkas/wisuda/' . $row->aplikasi); ?>" download><i class="far fa-file-archive"></i></i></a></h6>
                                                 </td>
                                                 <td> <?php if ($row->status_ppt == '0') {
-                                                            echo " <a href='" . base_url(' bks_wisuda/save_bks_belum/' . $row->id_bks_wisuda) . "' class='btn btn-xs btn-danger'>Belum</a>";
+                                                            echo " <a href ='#' class ='btn btn-sm btn-danger btn-xs btn-block' data-toggle='modal' data-target='#modal_ppt' onClick=\"SetInput('" . $row->id_bks_wisuda . "','" . $row->nim . "','" . $row->nama . "')\"> Belum</a>";
                                                         } else if ($row->status_ppt == '1') {
                                                             echo " <a href='" . base_url(' bks_wisuda/save_bks_kurang/' . $row->id_bks_wisuda) . "' class='btn btn-xs btn-primary'>Kurang</a>";
                                                         } else {
                                                             echo " <a href='" . base_url(' bks_wisuda/save_bks_lengkap/' . $row->id_bks_wisuda) . "' class='btn btn-xs btn-success'>Lengkap</a>";
                                                         }
                                                         ?>
+                                                    <?php if ($row->status_ppt == '0') {
+                                                        echo " <h6>Belum diverifikasi</h6>";
+                                                    } else {
+                                                        echo " ";
+                                                    }
+                                                    ?>
+                                                    <h6><a href="<?php echo base_url('assets/berkas/wisuda/' . $row->ppt); ?>" download><i class="far fa-file-powerpoint"></i></a></h6>
                                                 </td>
                                                 <td> <?php if ($row->status_video == '0') {
-                                                            echo " <a href='" . base_url(' bks_wisuda/save_bks_belum/' . $row->id_bks_wisuda) . "' class='btn btn-xs btn-danger'>Belum</a>";
+                                                            echo " <a href ='#' class ='btn btn-sm btn-danger btn-xs btn-block' data-toggle='modal' data-target='#modal_video' onClick=\"SetInput('" . $row->id_bks_wisuda . "','" . $row->nim . "','" . $row->nama . "')\"> Belum</a>";
                                                         } else if ($row->status_video == '1') {
                                                             echo " <a href='" . base_url(' bks_wisuda/save_bks_kurang/' . $row->id_bks_wisuda) . "' class='btn btn-xs btn-primary'>Kurang</a>";
                                                         } else {
                                                             echo " <a href='" . base_url(' bks_wisuda/save_bks_lengkap/' . $row->id_bks_wisuda) . "' class='btn btn-xs btn-success'>Lengkap</a>";
                                                         }
                                                         ?>
+                                                    <?php if ($row->status_video == '0') {
+                                                        echo " <h6>Belum diverifikasi</h6>";
+                                                    } else {
+                                                        echo " ";
+                                                    }
+                                                    ?>
+                                                    <h6><a href="<?php echo base_url('assets/berkas/wisuda/' . $row->video); ?>" download><i class="far fa-file-video"></i></a></h6>
                                                 </td>
                                             </tr>
                                         <?php } ?>
@@ -113,7 +154,398 @@
             </div>
         </section>
     </div>
-    <script>
+
+    <div id="modal_file_ta" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="custom-width-modalLabel" aria-hidden="true" style="display: none;">
+        <div class="modal-dialog" style="width:55%;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Verifikasi Persyaratan File TA</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <form action="<?= base_url('bks_wisuda/create') ?>" method="post" class="form-horizontal" role="form" enctype="multipart/form-data">
+                    <div class="card-body">
+                        <div class="form-group row">
+                            <input type="hidden" id="id_bks_wisuda" name="id_bks_wisuda">
+                            <label for="inputEmail3" class="col-sm-3 col-form-label">NIM</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="nim" name="nim" readonly>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="inputEmail3" class="col-sm-3 col-form-label">Nama Mahasiswa</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="nama" name="nama" readonly>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="persetujuan" class="col-sm-3 col-form-label">Judul TA</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" name="judul" required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="exampleInputjudul1" class="col-sm-3 col-form-label">Keterangan</label>
+                            <div class="col-sm-4">
+                                <select class="form-control" data-live-search="true" data-style="btn-white" onclick="choose()" id="nim" name="nim" required>
+                                    <option>Belum</option>
+                                    <option>kurang</option>
+                                    <option>Lengkap</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="persetujuan" class="col-sm-3 col-form-label">Catatan</label>
+                            <div class="col-sm-9">
+                                <textarea class="form-control" name="catatan"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="persetujuan" class="col-sm-3 col-form-label">Tanggal Verifikasi</label>
+                            <div class="col-sm-9">
+                                <input type="date" nama="tanggal" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <button type="submit" name="submit" class="btn btn-primary pull-right">Simpan</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal_jurnal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="custom-width-modalLabel" aria-hidden="true" style="display: none;">
+        <div class="modal-dialog" style="width:55%;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Verifikasi Persyaratan Jurnal</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <form action="<?= base_url('bks_wisuda/create') ?>" method="post" class="form-horizontal" role="form" enctype="multipart/form-data">
+                    <div class="card-body">
+                        <div class="form-group row">
+                            <input type="hidden" id="id_bks_wisuda" name="id_bks_wisuda">
+                            <label for="inputEmail3" class="col-sm-3 col-form-label">NIM</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="nim" name="nim" readonly>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="inputEmail3" class="col-sm-3 col-form-label">Nama Mahasiswa</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="nama" name="nama" readonly>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="persetujuan" class="col-sm-3 col-form-label">Judul TA</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" name="judul" required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="exampleInputjudul1" class="col-sm-3 col-form-label">Keterangan</label>
+                            <div class="col-sm-4">
+                                <select class="form-control" data-live-search="true" data-style="btn-white" onclick="choose()" id="nim" name="nim" required>
+                                    <option>Belum</option>
+                                    <option>kurang</option>
+                                    <option>Lengkap</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="persetujuan" class="col-sm-3 col-form-label">Catatan</label>
+                            <div class="col-sm-9">
+                                <textarea class="form-control" name="catatan"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="persetujuan" class="col-sm-3 col-form-label">Tanggal Verifikasi</label>
+                            <div class="col-sm-9">
+                                <input type="date" nama="tanggal" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <button type="submit" name="submit" class="btn btn-primary pull-right">Simpan</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal_lapta" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="custom-width-modalLabel" aria-hidden="true" style="display: none;">
+        <div class="modal-dialog" style="width:55%;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Verifikasi Persyaratan Laporan TA</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <form action="<?= base_url('bks_wisuda/create') ?>" method="post" class="form-horizontal" role="form" enctype="multipart/form-data">
+                    <div class="card-body">
+                        <div class="form-group row">
+                            <input type="hidden" id="id_bks_wisuda" name="id_bks_wisuda">
+                            <label for="inputEmail3" class="col-sm-3 col-form-label">NIM</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="nim" name="nim" readonly>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="inputEmail3" class="col-sm-3 col-form-label">Nama Mahasiswa</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="nama" name="nama" readonly>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="persetujuan" class="col-sm-3 col-form-label">Judul TA</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" name="judul" required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="exampleInputjudul1" class="col-sm-3 col-form-label">Keterangan</label>
+                            <div class="col-sm-4">
+                                <select class="form-control" data-live-search="true" data-style="btn-white" onclick="choose()" id="nim" name="nim" required>
+                                    <option>Belum</option>
+                                    <option>kurang</option>
+                                    <option>Lengkap</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="persetujuan" class="col-sm-3 col-form-label">Catatan</label>
+                            <div class="col-sm-9">
+                                <textarea class="form-control" name="catatan"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="persetujuan" class="col-sm-3 col-form-label">Tanggal Verifikasi</label>
+                            <div class="col-sm-9">
+                                <input type="date" nama="tanggal" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <button type="submit" name="submit" class="btn btn-primary pull-right">Simpan</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal_aplikasi" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="custom-width-modalLabel" aria-hidden="true" style="display: none;">
+        <div class="modal-dialog" style="width:55%;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Verifikasi Persyaratan Aplikasi</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <form action="<?= base_url('bks_wisuda/create') ?>" method="post" class="form-horizontal" role="form" enctype="multipart/form-data">
+                    <div class="card-body">
+                        <div class="form-group row">
+                            <input type="hidden" id="id_bks_wisuda" name="id_bks_wisuda">
+                            <label for="inputEmail3" class="col-sm-3 col-form-label">NIM</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="nim" name="nim" readonly>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="inputEmail3" class="col-sm-3 col-form-label">Nama Mahasiswa</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="nama" name="nama" readonly>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="persetujuan" class="col-sm-3 col-form-label">Judul TA</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" name="judul" required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="exampleInputjudul1" class="col-sm-3 col-form-label">Keterangan</label>
+                            <div class="col-sm-4">
+                                <select class="form-control" data-live-search="true" data-style="btn-white" onclick="choose()" id="nim" name="nim" required>
+                                    <option>Belum</option>
+                                    <option>kurang</option>
+                                    <option>Lengkap</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="persetujuan" class="col-sm-3 col-form-label">Catatan</label>
+                            <div class="col-sm-9">
+                                <textarea class="form-control" name="catatan"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="persetujuan" class="col-sm-3 col-form-label">Tanggal Verifikasi</label>
+                            <div class="col-sm-9">
+                                <input type="date" nama="tanggal" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <button type="submit" name="submit" class="btn btn-primary pull-right">Simpan</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal_ppt" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="custom-width-modalLabel" aria-hidden="true" style="display: none;">
+        <div class="modal-dialog" style="width:55%;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Verifikasi Persyaratan PPT</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <form action="<?= base_url('bks_wisuda/create') ?>" method="post" class="form-horizontal" role="form" enctype="multipart/form-data">
+                    <div class="card-body">
+                        <div class="form-group row">
+                            <input type="hidden" id="id_bks_wisuda" name="id_bks_wisuda">
+                            <label for="inputEmail3" class="col-sm-3 col-form-label">NIM</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="nim" name="nim" readonly>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="inputEmail3" class="col-sm-3 col-form-label">Nama Mahasiswa</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="nama" name="nama" readonly>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="persetujuan" class="col-sm-3 col-form-label">Judul TA</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" name="judul" required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="exampleInputjudul1" class="col-sm-3 col-form-label">Keterangan</label>
+                            <div class="col-sm-4">
+                                <select class="form-control" data-live-search="true" data-style="btn-white" onclick="choose()" id="nim" name="nim" required>
+                                    <option>Belum</option>
+                                    <option>kurang</option>
+                                    <option>Lengkap</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="persetujuan" class="col-sm-3 col-form-label">Catatan</label>
+                            <div class="col-sm-9">
+                                <textarea class="form-control" name="catatan"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="persetujuan" class="col-sm-3 col-form-label">Tanggal Verifikasi</label>
+                            <div class="col-sm-9">
+                                <input type="date" nama="tanggal" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <button type="submit" name="submit" class="btn btn-primary pull-right">Simpan</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal_video" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="custom-width-modalLabel" aria-hidden="true" style="display: none;">
+        <div class="modal-dialog" style="width:55%;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Verifikasi Persyaratan Video</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <form action="<?= base_url('bks_wisuda/create') ?>" method="post" class="form-horizontal" role="form" enctype="multipart/form-data">
+                    <div class="card-body">
+                        <div class="form-group row">
+                            <input type="hidden" id="id_bks_wisuda" name="id_bks_wisuda">
+                            <label for="inputEmail3" class="col-sm-3 col-form-label">NIM</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="nim" name="nim" readonly>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="inputEmail3" class="col-sm-3 col-form-label">Nama Mahasiswa</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="nama" name="nama" readonly>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="persetujuan" class="col-sm-3 col-form-label">Judul TA</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" name="judul" required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="exampleInputjudul1" class="col-sm-3 col-form-label">Keterangan</label>
+                            <div class="col-sm-4">
+                                <select class="form-control" data-live-search="true" data-style="btn-white" onclick="choose()" id="nim" name="nim" required>
+                                    <option>Belum</option>
+                                    <option>kurang</option>
+                                    <option>Lengkap</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="persetujuan" class="col-sm-3 col-form-label">Catatan</label>
+                            <div class="col-sm-9">
+                                <textarea class="form-control" name="catatan"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="persetujuan" class="col-sm-3 col-form-label">Tanggal Verifikasi</label>
+                            <div class="col-sm-9">
+                                <input type="date" nama="tanggal" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <button type="submit" name="submit" class="btn btn-primary pull-right">Simpan</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script type="text/javascript">
+        function SetInput(id_bks_wisuda, nim, nama, alamat, hp, ttl, id_prodi) {
+            document.getElementById('id_bks_wisuda').value = id_bks_wisuda;
+            document.getElementById('nim').value = nim;
+            document.getElementById('nama').value = nama;
+            document.getElementById('alamat').value = alamat;
+            document.getElementById('hp').value = hp;
+            document.getElementById('ttl').value = ttl;
+            document.getElementById('id_prodi').value = id_prodi;
+        }
+
+        function SetInput2(id_bks_wisuda, nim, nama, alamat, hp, ttl, id_prodi) {
+            document.getElementById('id_bks_wisuda').value = id_bks_wisuda;
+            document.getElementById('nim').value = nim;
+            document.getElementById('nama').value = nama;
+            document.getElementById('alamat').value = alamat;
+            document.getElementById('hp').value = hp;
+            document.getElementById('ttl').value = ttl;
+            document.getElementById('id_prodi').value = id_prodi;
+        }
+    </script>
+
+    <script script>
         $(document).on('click', '#btn-konfirmasi', function(e) {
             e.preventDefault();
             var link = $(this).attr('href');
@@ -159,14 +591,15 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-12">
-                        <div style="text-align:right;margin-bottom: 10px ">
-                            <a href="#" class="on-default edit-row btn btn-success pull-right" data-toggle="modal" pull="right" data-target="#custom-width-modal" onclick="ResetInput()"><i class="fa fa-plus"></i> Tambah Berkas</a>
-                        </div>
+
                         <div class="card">
                             <div class="card-header">
                                 <h3 class="card-title">Data Berkas Pendaftaran Wisuda</h3>
                             </div>
                             <div class="card-body">
+                                <div style="text-align:right;margin-bottom: 10px ">
+                                    <a href="#" class="on-default edit-row btn btn-success pull-right" data-toggle="modal" pull="right" data-target="#custom-width-modal" onclick="ResetInput()"><i class="fa fa-plus"></i> Tambah Berkas</a>
+                                </div>
                                 <div id="flash" data-flash="<?= $this->session->flashdata('pesan'); ?>">
                                     <!-- <table id="example1" class="table table-bordered table-striped">
                                         <thead>

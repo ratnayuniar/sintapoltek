@@ -80,14 +80,15 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-12">
-                        <div style="text-align:right;margin-bottom: 10px ">
-                            <a href="#" class="on-default edit-row btn btn-success pull-right" data-toggle="modal" pull="right" data-target="#custom-width-modal" onclick="ResetInput()"><i class="fa fa-plus"></i> Tambah Berkas</a>
-                        </div>
+
                         <div class="card">
                             <div class="card-header">
                                 <h3 class="card-title">Data Keterampilan</h3>
                             </div>
                             <div class="card-body">
+                                <div style="text-align:right;margin-bottom: 10px ">
+                                    <a href="#" class="on-default edit-row btn btn-success pull-right" data-toggle="modal" pull="right" data-target="#custom-width-modal" onclick="ResetInput()"><i class="fa fa-plus"></i> Tambah Berkas</a>
+                                </div>
                                 <div id="flash" data-flash="<?= $this->session->flashdata('pesan'); ?>">
                                     <table id="example1" class="table table-bordered table-striped">
                                         <thead>
@@ -169,7 +170,9 @@
                         </div>
                         <div class="form-group">
                             <label for="exampleInputjudul1">Surat Keterangan</label><br>
-                            <span><h6>Upload Scan Bukti/Sertifikat (PDF/JPG Maks. 1 MB)</h6></span>
+                            <span>
+                                <h6>Upload Scan Bukti/Sertifikat (PDF/JPG Maks. 1 MB)</h6>
+                            </span>
                             <input type="file" name="sk_ket">
                         </div>
                     </div>

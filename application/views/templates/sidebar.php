@@ -27,18 +27,34 @@
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <!-- SEMUA USER -->
+
                 <!-- USER ADMIN -->
                 <?php if ($this->session->userdata('level') == 1) { ?>
-                    <li class="nav-link">
-                        <a <?= $this->uri->segment(1) == 'beranda' || $this->uri->segment(1) == '' ? 'class="nav-link active"' : '' ?>href="<?php echo base_url('beranda'); ?>">
+                    <li class="nav-item">
+                        <a href="<?php echo base_url('beranda'); ?>" class="nav-link <?= activate_menu('beranda') ?>">
                             <i class="nav-icon fas fa-home"></i>
                             <p>
                                 Beranda
                             </p>
                         </a>
                     </li>
-                    <li class="nav-item <?= $this->uri->segment(1) == 'pembimbing' || $this->uri->segment(1) == 'bks_seminar' ? 'active' : '' ?>  ">
-                        <a href="#" class="nav-link ">
+                    <li class="nav-item 
+                    <?php if (
+                        $this->uri->segment(1) == 'pembimbing' || $this->uri->segment(1) == 'bks_seminar'
+                        || $this->uri->segment(1) == 'penguji' || $this->uri->segment(1) == 'jadwal_seminar'
+                        || $this->uri->segment(1) == 'nilai_seminar'
+                        || $this->uri->segment(1) == 'revisi_seminar'
+                    ) {
+                        echo "menu-open";
+                    } ?>">
+                        <a href="#" class="nav-link 
+                        <?php if (
+                            $this->uri->segment(1) == 'pembimbing' || $this->uri->segment(1) == 'bks_seminar'
+                            || $this->uri->segment(1) == 'penguji' || $this->uri->segment(1) == 'jadwal_seminar'
+                            || $this->uri->segment(1) == 'revisi_seminar' || $this->uri->segment(1) == 'nilai_seminar'
+                        ) {
+                            echo "active";
+                        } ?>">
                             <i class="nav-icon fas fa-book-open"></i>
                             <p>
                                 Proposal
@@ -46,46 +62,62 @@
                             </p>
                         </a>
                         <ul class="nav nav-treeview">
-                            <li <?= $this->uri->segment(1) == 'pembimbing' ? 'class="nav-item active"' : '' ?>>
-                                <a href="<?php echo base_url('pembimbing'); ?>" class="nav-link">
+                            <li class="nav-item">
+                                <a href="<?php echo base_url('pembimbing'); ?>" class="nav-link <?php if ($this->uri->segment(1) == 'pembimbing') {
+                                                                                                    echo "active";
+                                                                                                } ?>">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Dosen Pembimbing</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="<?php echo base_url('bks_seminar'); ?>" class="nav-link">
+                                <a href="<?php echo base_url('bks_seminar'); ?>" class="nav-link <?= activate_menu('bks_seminar') ?>">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Registrasi Seminar</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="<?php echo base_url('penguji'); ?>" class="nav-link">
+                                <a href="<?php echo base_url('penguji'); ?>" class="nav-link <?= activate_menu('penguji') ?>">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Dosen Penguji Seminar</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="<?php echo base_url('jadwal_seminar'); ?>" class="nav-link">
+                                <a href="<?php echo base_url('jadwal_seminar'); ?>" class="nav-link <?= activate_menu('jadwal_seminar') ?>">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Jadwal Seminar</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="<?php echo base_url('nilai_seminar'); ?>" class="nav-link">
+                                <a href="<?php echo base_url('nilai_seminar'); ?>" class="nav-link <?= activate_menu('nilai_seminar') ?>">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Nilai Seminar</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="<?php echo base_url('revisi_seminar'); ?>" class="nav-link">
+                                <a href="<?php echo base_url('revisi_seminar'); ?>" class="nav-link <?= activate_menu('revisi_seminar') ?>">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Hasil Seminar</p>
                                 </a>
                             </li>
                         </ul>
                     </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link ">
+                    <li class="nav-item 
+                    <?php if (
+                        $this->uri->segment(1) == 'bks_sidang' || $this->uri->segment(1) == 'penguji_sidang'
+                        || $this->uri->segment(1) == 'jadwal_sidang' || $this->uri->segment(1) == 'nilai_sidang'
+                        || $this->uri->segment(1) == 'revisi_sidang'
+                    ) {
+                        echo "menu-open";
+                    } ?>">
+                        <a href="#" class="nav-link  
+                        <?php if (
+                            $this->uri->segment(1) == 'bks_sidang' || $this->uri->segment(1) == 'penguji_sidang'
+                            || $this->uri->segment(1) == 'jadwal_sidang' || $this->uri->segment(1) == 'nilai_sidang'
+                            || $this->uri->segment(1) == 'revisi_sidang'
+                        ) {
+                            echo "active";
+                        } ?> ">
                             <i class="nav-icon fas fa-book"></i>
                             <p>
                                 Tugas Akhir
@@ -94,39 +126,47 @@
                         </a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                <a href="<?php echo base_url('bks_sidang'); ?>" class="nav-link">
+                                <a href="<?php echo base_url('bks_sidang'); ?>" class="nav-link <?= activate_menu('bks_sidang') ?>">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Registrasi Sidang</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="<?php echo base_url('penguji_sidang'); ?>" class="nav-link">
+                                <a href="<?php echo base_url('penguji_sidang'); ?>" class="nav-link <?= activate_menu('penguji_sidang') ?>">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Dosen Penguji Sidang</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="<?php echo base_url('jadwal_sidang'); ?>" class="nav-link">
+                                <a href="<?php echo base_url('jadwal_sidang'); ?>" class="nav-link <?= activate_menu('jadwal_sidang') ?>">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Jadwal Sidang</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="<?php echo base_url('nilai_sidang'); ?>" class="nav-link">
+                                <a href="<?php echo base_url('nilai_sidang'); ?>" class="nav-link <?= activate_menu('nilai_sidang') ?>">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Nilai Sidang</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="<?php echo base_url('revisi_sidang'); ?>" class="nav-link">
+                                <a href="<?php echo base_url('revisi_sidang'); ?>" class="nav-link <?= activate_menu('revisi_sidang') ?>">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Hasil Sidang</p>
                                 </a>
                             </li>
                         </ul>
                     </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link ">
+                    <li class="nav-item <?php if (
+                                            $this->uri->segment(1) == 'bks_wisuda' || $this->uri->segment(1) == 'jadwal_wisuda'
+                                        ) {
+                                            echo "menu-open";
+                                        } ?>">
+                        <a href="#" class="nav-link <?php if (
+                                                        $this->uri->segment(1) == 'bks_wisuda' || $this->uri->segment(1) == 'jadwal_wisuda'
+                                                    ) {
+                                                        echo "active";
+                                                    } ?>">
                             <i class="nav-icon fas fa-file-archive"></i>
                             <p>
                                 Wisuda
@@ -135,13 +175,13 @@
                         </a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                <a href="<?php echo base_url('bks_wisuda'); ?>" class="nav-link">
+                                <a href="<?php echo base_url('bks_wisuda'); ?>" class="nav-link <?= activate_menu('bks_wisuda') ?>">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Berkas Prodi</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="<?php echo base_url('jadwal_wisuda'); ?>" class="nav-link">
+                                <a href="<?php echo base_url('jadwal_wisuda'); ?>" class="nav-link <?= activate_menu('jadwal_wisuda') ?>">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Jadwal Wisuda</p>
                                 </a>
@@ -193,15 +233,31 @@
                 <!-- USER MAHASISWA -->
                 <?php if ($this->session->userdata('level') == 2) { ?>
                     <li class="nav-item">
-                        <a href="<?php echo base_url('beranda'); ?>" class="nav-link">
+                        <a href="<?php echo base_url('beranda'); ?>" class="nav-link <?= activate_menu('beranda') ?>">
                             <i class="nav-icon fas fa-home"></i>
                             <p>
                                 Beranda
                             </p>
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link ">
+                    <li class="nav-item 
+                    <?php if (
+                        $this->uri->segment(1) == 'topik' || $this->uri->segment(1) == 'pembimbing'
+                        || $this->uri->segment(1) == 'proposal' || $this->uri->segment(1) == 'bimbingan1'
+                        || $this->uri->segment(1) == 'bimbingan2' || $this->uri->segment(1) == 'bks_seminar'
+                        || $this->uri->segment(1) == 'penguji' || $this->uri->segment(1) == 'revisi_seminar'
+                    ) {
+                        echo "menu-open";
+                    } ?> ">
+                        <a href="#" class="nav-link 
+                        <?php if (
+                            $this->uri->segment(1) == 'topik' || $this->uri->segment(1) == 'pembimbing'
+                            || $this->uri->segment(1) == 'proposal' || $this->uri->segment(1) == 'bimbingan1'
+                            || $this->uri->segment(1) == 'bimbingan2' || $this->uri->segment(1) == 'bks_seminar'
+                            || $this->uri->segment(1) == 'penguji' || $this->uri->segment(1) == 'revisi_seminar'
+                        ) {
+                            echo "active";
+                        } ?>">
                             <i class="nav-icon fas fa-book-open"></i>
                             <p>
                                 Proposal
@@ -210,32 +266,32 @@
                         </a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                <a href="<?php echo base_url('topik'); ?>" class="nav-link">
+                                <a href="<?php echo base_url('topik'); ?>" class="nav-link <?= activate_menu('topik') ?>">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Pengajuan Judul</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="<?php echo base_url('pembimbing'); ?>" class="nav-link">
+                                <a href="<?php echo base_url('pembimbing'); ?>" class="nav-link <?= activate_menu('pembimbing') ?>">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Dosen Pembimbing</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="<?php echo base_url('proposal'); ?>" class="nav-link">
+                                <a href="<?php echo base_url('proposal'); ?>" class="nav-link <?= activate_menu('proposal') ?>">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Buat Proposal</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="<?php echo base_url(''); ?>" class="nav-link">
+                                <a href="<?php echo base_url(''); ?>" class="nav-link ">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Bimbingan Proposal</p>
                                     <i class="fas fa-angle-left right"></i>
                                 </a>
                                 <ul class="nav nav-treeview">
                                     <li class="nav-item">
-                                        <a href="<?php echo base_url('bimbingan1'); ?>" class="nav-link">
+                                        <a href="<?php echo base_url('bimbingan1'); ?>" class="nav-link ">
                                             <i class="far fa-dot-circle nav-icon"></i>
                                             <p>Dosen Pembimbing 1</p>
                                         </a>
@@ -243,7 +299,7 @@
                                 </ul>
                                 <ul class="nav nav-treeview">
                                     <li class="nav-item">
-                                        <a href="<?php echo base_url('bimbingan2'); ?>" class="nav-link">
+                                        <a href="<?php echo base_url('bimbingan2'); ?>" class="nav-link ">
                                             <i class="far fa-dot-circle nav-icon"></i>
                                             <p>Dosen Pembimbing 2</p>
                                         </a>
@@ -251,33 +307,43 @@
                                 </ul>
                             </li>
                             <li class="nav-item">
-                                <a href="<?php echo base_url('bks_seminar'); ?>" class="nav-link">
+                                <a href="<?php echo base_url('bks_seminar'); ?>" class="nav-link <?= activate_menu('bks_seminar') ?>">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Registrasi Seminar</p>
                                 </a>
                             </li>
-                            <!-- <li class="nav-item">
-                                <a href="<?php echo base_url('jadwal_seminar'); ?>" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Jadwal dan Dosen Penguji Seminar</p>
-                                </a>
-                            </li> -->
                             <li class="nav-item">
-                                <a href="<?php echo base_url('penguji'); ?>" class="nav-link">
+                                <a href="<?php echo base_url('penguji'); ?>" class="nav-link <?= activate_menu('penguji') ?>">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Jadwal dan Dosen Penguji</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="<?php echo base_url('revisi_seminar'); ?>" class="nav-link">
+                                <a href="<?php echo base_url('revisi_seminar'); ?>" class="nav-link <?= activate_menu('revisi_seminar') ?>">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Hasil Seminar</p>
                                 </a>
                             </li>
                         </ul>
                     </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link ">
+                    <li class="nav-item 
+                    <?php if (
+                        $this->uri->segment(1) == 'profil_ta' || $this->uri->segment(2) == 'bimbingan1_ta'
+                        || $this->uri->segment(2) == 'bimbingan2_ta' || $this->uri->segment(1) == 'bks_sidang'
+                        || $this->uri->segment(1) == 'penguji_sidang' || $this->uri->segment(1) == 'revisi_sidang'
+                        || $this->uri->segment(1) == 'revisi_upload'
+                    ) {
+                        echo "menu-open";
+                    } ?>">
+                        <a href="#" class="nav-link 
+                        <?php if (
+                            $this->uri->segment(1) == 'profil_ta' || $this->uri->segment(2) == 'bimbingan1_ta'
+                            || $this->uri->segment(2) == 'bimbingan2_ta' || $this->uri->segment(1) == 'bks_sidang'
+                            || $this->uri->segment(1) == 'penguji_sidang' || $this->uri->segment(1) == 'revisi_sidang'
+                            || $this->uri->segment(1) == 'revisi_upload'
+                        ) {
+                            echo "active";
+                        } ?>">
                             <i class="nav-icon fas fa-book"></i>
                             <p>
                                 Tugas Akhir
@@ -286,7 +352,7 @@
                         </a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                <a href="<?php echo base_url('profil_ta'); ?>" class="nav-link">
+                                <a href="<?php echo base_url('profil_ta'); ?>" class="nav-link <?= activate_menu('profil_ta') ?>">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Profil TA</p>
                                 </a>
@@ -299,7 +365,7 @@
                                 </a>
                                 <ul class="nav nav-treeview">
                                     <li class="nav-item">
-                                        <a href="<?php echo base_url('bimbingan1/bimbingan1_ta'); ?>" class="nav-link">
+                                        <a href="<?php echo base_url('bimbingan1/bimbingan1_ta'); ?>" class="nav-link ">
                                             <i class="far fa-dot-circle nav-icon"></i>
                                             <p>Dosen Pembimbing 1</p>
                                         </a>
@@ -307,7 +373,7 @@
                                 </ul>
                                 <ul class="nav nav-treeview">
                                     <li class="nav-item">
-                                        <a href="<?php echo base_url('bimbingan2/bimbingan2_ta'); ?>" class="nav-link">
+                                        <a href="<?php echo base_url('bimbingan2/bimbingan2_ta'); ?>" class="nav-link ">
                                             <i class="far fa-dot-circle nav-icon"></i>
                                             <p>Dosen Pembimbing 2</p>
                                         </a>
@@ -315,33 +381,51 @@
                                 </ul>
                             </li>
                             <li class="nav-item">
-                                <a href="<?php echo base_url('bks_sidang'); ?>" class="nav-link">
+                                <a href="<?php echo base_url('bks_sidang'); ?>" class="nav-link <?= activate_menu('bks_sidang') ?> ">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Registrasi Sidang</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="<?php echo base_url('penguji_sidang'); ?>" class="nav-link">
+                                <a href="<?php echo base_url('penguji_sidang'); ?>" class="nav-link <?= activate_menu('penguji_sidang') ?>">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Penguji dan Jadwal</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="<?php echo base_url('revisi_sidang'); ?>" class="nav-link">
+                                <a href="<?php echo base_url('revisi_sidang'); ?>" class="nav-link <?= activate_menu('revisi_sidang') ?>">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Hasil Sidang</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="<?php echo base_url('revisi_upload'); ?>" class="nav-link">
+                                <a href="<?php echo base_url('revisi_upload'); ?>" class="nav-link <?= activate_menu('revisi_upload') ?>">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Revisi</p>
                                 </a>
                             </li>
                         </ul>
                     </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link ">
+                    <li class="nav-item 
+                    <?php if (
+                        $this->uri->segment(1) == 'bks_wisuda' || $this->uri->segment(1) == 'bks_bahasa'
+                        || $this->uri->segment(1) == 'bks_pkl' || $this->uri->segment(1) == 'bks_keterampilan'
+                        || $this->uri->segment(1) == 'bks_prestasi' || $this->uri->segment(2) == 'detaildata_mhs'
+                        || $this->uri->segment(1) == 'veri_perpus/detaildata_mhs' || $this->uri->segment(1) == 'verif_keuangan/detaildata_mhs'
+                        || $this->uri->segment(1) == 'veri_perpus/detaildata_mhs'
+                    ) {
+                        echo "menu-open";
+                    } ?>">
+                        <a href="#" class="nav-link  
+                        <?php if (
+                            $this->uri->segment(1) == 'bks_wisuda' || $this->uri->segment(1) == 'bks_bahasa'
+                            || $this->uri->segment(1) == 'bks_pkl' || $this->uri->segment(1) == 'bks_keterampilan'
+                            || $this->uri->segment(1) == 'bks_prestasi' || $this->uri->segment(2) == 'detaildata_mhs'
+                            || $this->uri->segment(1) == 'veri_perpus/detaildata_mhs' || $this->uri->segment(1) == 'verif_keuangan/detaildata_mhs'
+                            || $this->uri->segment(1) == 'veri_perpus/detaildata_mhs'
+                        ) {
+                            echo "active";
+                        } ?> ">
                             <i class="nav-icon fas fa-file-archive"></i>
                             <p>
                                 Wisuda
@@ -350,55 +434,55 @@
                         </a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                <a href="<?php echo base_url('bks_wisuda'); ?>" class="nav-link">
+                                <a href="<?php echo base_url('bks_wisuda'); ?>" class="nav-link <?= activate_menu('bks_wisuda') ?>">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Data Prodi</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="<?php echo base_url('bks_bahasa'); ?>" class="nav-link">
+                                <a href="<?php echo base_url('bks_bahasa'); ?>" class="nav-link <?= activate_menu('bks_bahasa') ?>">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Data Bahasa</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="<?php echo base_url('bks_pkl'); ?>" class="nav-link">
+                                <a href="<?php echo base_url('bks_pkl'); ?>" class="nav-link <?= activate_menu('bks_pkl') ?>">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Data Magang</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="<?php echo base_url('bks_keterampilan'); ?>" class="nav-link">
+                                <a href="<?php echo base_url('bks_keterampilan'); ?>" class="nav-link <?= activate_menu('bks_keterampilan') ?>">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Data Keterampilan</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="<?php echo base_url('bks_prestasi'); ?>" class="nav-link">
+                                <a href="<?php echo base_url('bks_prestasi'); ?>" class="nav-link <?= activate_menu('bks_prestasi') ?>">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Data Prestasi</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="<?php echo base_url('verif_baak/detaildata_mhs'); ?>" class="nav-link">
+                                <a href="<?php echo base_url('verif_baak/detaildata_mhs'); ?>" class="nav-link <?= activate_menu('verif_baak/detaildata_mhs') ?>">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Data BAAK</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="<?php echo base_url('veri_perpus/detaildata_mhs'); ?>" class="nav-link">
+                                <a href="<?php echo base_url('veri_perpus/detaildata_mhs'); ?>" class="nav-link <?= activate_menu('veri_perpus/detaildata_mhs') ?> ">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Data Perpustakaan</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="<?php echo base_url('verif_keuangan/detaildata_mhs'); ?>" class="nav-link">
+                                <a href="<?php echo base_url('verif_keuangan/detaildata_mhs'); ?>" class="nav-link <?= activate_menu('verif_keuangan/detaildata_mhs') ?>">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Data Keuangan</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="<?php echo base_url('verif_lab/detaildata_mhs'); ?>" class="nav-link">
+                                <a href="<?php echo base_url('verif_lab/detaildata_mhs'); ?>" class="nav-link <?= activate_menu('verif_lab/detaildata_mhs') ?>">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Data LAB</p>
                                 </a>

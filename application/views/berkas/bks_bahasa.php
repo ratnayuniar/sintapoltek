@@ -106,14 +106,15 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-12">
-                        <div style="text-align:right;margin-bottom: 10px ">
-                            <a href="#" class="on-default edit-row btn btn-success pull-right" data-toggle="modal" pull="right" data-target="#custom-width-modal" onclick="ResetInput()"><i class="fa fa-plus"></i> Tambah Berkas</a>
-                        </div>
+
                         <div class="card">
                             <div class="card-header">
                                 <h3 class="card-title">Data Bahasa Internasional</h3>
                             </div>
                             <div class="card-body">
+                                <div style="text-align:right;margin-bottom: 10px ">
+                                    <a href="#" class="on-default edit-row btn btn-success pull-right" data-toggle="modal" pull="right" data-target="#custom-width-modal" onclick="ResetInput()"><i class="fa fa-plus"></i> Tambah Berkas</a>
+                                </div>
                                 <div id="flash" data-flash="<?= $this->session->flashdata('pesan'); ?>">
                                     <table id="example1" class="table table-bordered table-striped">
                                         <thead>

@@ -100,8 +100,8 @@
 
                             </div>
                             <div class="card-footer">
-                                <button type="submit" class="btn btn-info">Simpan</button>
-                                <button type="submit" class="btn btn-default float-right">Batal</button>
+                                <button type="submit" class="btn btn-info float-right">Simpan</button>
+                                <button type="submit" class="btn btn-danger ">Batal</button>
                             </div>
                         </form>
                     </div>

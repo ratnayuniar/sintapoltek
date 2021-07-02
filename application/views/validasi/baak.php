@@ -46,20 +46,18 @@
                                                 <td><?= $row->nim ?></td>
                                                 <td><?= $row->nama ?></td>
                                                 <td> <?php if ($row->status_baak == '0') {
-                                                            echo '<span class="badge badge-warning">Menunggu</span>';
+                                                            echo '<span class="badge badge-info">Belum</span>';
                                                         } else if ($row->status_baak == '1') {
-                                                            echo '<span class="badge badge-info">Belum Lengkap</span>';
-                                                        } else if ($row->status_baak == '2') {
-                                                            echo '<span class="badge badge-primary">Kurang Lengkap</span>';
+                                                            echo '<span class="badge badge-primary">Kurang</span>';
                                                         } else {
-                                                            echo '<span class="badge badge-danger">Lengkap</span>';
+                                                            echo '<span class="badge badge-success">Lengkap</span>';
                                                         }
                                                         ?>
                                                 </td>
                                                 <td>
-                                                    <a href="<?php echo site_url('verif_baak/save_belum/' . $row->id_bks_wisuda); ?>" id="btn-konfirmasi" class="btn btn-xs btn-danger">Belum</a>
-                                                    <a href="<?php echo site_url('verif_baak/save_kurang/' . $row->id_bks_wisuda); ?>" id="btn-konfirmasi" class="btn btn-xs btn-success">Kurang</a>
-                                                    <a href="<?php echo site_url('verif_baak/save_lengkap/' . $row->id_bks_wisuda); ?>" id="btn-konfirmasi" class="btn btn-xs btn-primary">Lengkap</a>
+                                                    <a href="<?php echo site_url('verif_baak/save_belum/' . $row->id_bks_wisuda); ?>" id="btn-konfirmasi" class="btn btn-xs btn-info">Belum</a>
+                                                    <a href="<?php echo site_url('verif_baak/save_kurang/' . $row->id_bks_wisuda); ?>" id="btn-konfirmasi" class="btn btn-xs btn-primary">Kurang</a>
+                                                    <a href="<?php echo site_url('verif_baak/save_lengkap/' . $row->id_bks_wisuda); ?>" id="btn-konfirmasi" class="btn btn-xs btn-success">Lengkap</a>
                                                 </td>
                                                 <td><a href="<?= base_url('verif_baak/detail_foto/' . $row->id_bks_wisuda) ?>" class="btn btn-xs btn-info">
                                                         <i class="fa fa-search"></i> Detail</a>
@@ -123,13 +121,11 @@
                                                 <td><?= $row->nim ?></td>
                                                 <td><?= $row->nama ?></td>
                                                 <td> <?php if ($row->status_baak == '0') {
-                                                            echo '<span class="badge badge-warning">Menunggu</span>';
+                                                            echo '<span class="badge badge-info">Belum</span>';
                                                         } else if ($row->status_baak == '1') {
-                                                            echo '<span class="badge badge-info">Belum Lengkap</span>';
-                                                        } else if ($row->status_baak == '2') {
-                                                            echo '<span class="badge badge-primary">Kurang Lengkap</span>';
+                                                            echo '<span class="badge badge-primary">Kurang</span>';
                                                         } else {
-                                                            echo '<span class="badge badge-danger">Lengkap</span>';
+                                                            echo '<span class="badge badge-success">Lengkap</span>';
                                                         }
                                                         ?>
                                                 </td>

@@ -50,18 +50,18 @@
                                             <td><?= $row->nama_prodi ?></td> -->
                                                 <td><?= $row->nama ?></td>
                                                 <td> <?php if ($row->ukt == '0') {
-                                                            echo '<span class="badge badge-primary">Belum</span>';
+                                                            echo '<span class="badge badge-info">Belum</span>';
                                                         } else if ($row->ukt == '1') {
-                                                            echo '<span class="badge badge-success">Kurang</span>';
+                                                            echo '<span class="badge badge-primary">Kurang</span>';
                                                         } else {
-                                                            echo '<span class="badge badge-danger">Lengkap</span>';
+                                                            echo '<span class="badge badge-success">Lengkap</span>';
                                                         }
                                                         ?>
                                                 </td>
                                                 <td>
-                                                    <a href="<?php echo site_url('verif_keuangan/save_belum/' . $row->nim); ?>" id="btn-konfirmasi" class="btn btn-outline-primary btn-xs">Belum</a>
-                                                    <a href="<?php echo site_url('verif_keuangan/save_kurang/' . $row->nim); ?>" id="btn-konfirmasi" class="btn btn-outline-success btn-xs">Kurang</a>
-                                                    <a href="<?php echo site_url('verif_keuangan/save_lengkap/' . $row->nim); ?>" id="btn-konfirmasi" class="btn btn-outline-danger btn-xs">Lengkap</a>
+                                                    <a href="<?php echo site_url('verif_keuangan/save_belum/' . $row->nim); ?>" id="btn-konfirmasi" class="btn btn-outline-info btn-xs">Belum</a>
+                                                    <a href="<?php echo site_url('verif_keuangan/save_kurang/' . $row->nim); ?>" id="btn-konfirmasi" class="btn btn-outline-primary btn-xs">Kurang</a>
+                                                    <a href="<?php echo site_url('verif_keuangan/save_lengkap/' . $row->nim); ?>" id="btn-konfirmasi" class="btn btn-outline-success btn-xs">Lengkap</a>
                                                 </td>
                                             </tr>
                                         <?php } ?>
@@ -219,7 +219,6 @@
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="<?php echo base_url('beranda'); ?>">Beranda</a></li>
-                            <li class="breadcrumb-item"><a href="<?php echo base_url('verif_keuangan'); ?>">List Verifikasi Data Keuangan</a></li>
                             <li class="breadcrumb-item active">Verifikasi Keuangan</li>
                         </ol>
                     </div>
@@ -260,11 +259,11 @@
                                             <td><?= $row->nama_prodi ?></td> -->
                                                 <td><?= $row->nama ?></td>
                                                 <td> <?php if ($row->ukt == '0') {
-                                                            echo '<span class="badge badge-primary">Belum</span>';
+                                                            echo '<span class="badge badge-info">Belum</span>';
                                                         } else if ($row->ukt == '1') {
-                                                            echo '<span class="badge badge-success">Kurang</span>';
+                                                            echo '<span class="badge badge-primary">Kurang</span>';
                                                         } else {
-                                                            echo '<span class="badge badge-danger">Lengkap</span>';
+                                                            echo '<span class="badge badge-success">Lengkap</span>';
                                                         }
                                                         ?>
                                                 </td>

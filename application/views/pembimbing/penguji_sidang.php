@@ -26,9 +26,9 @@
                                 <h3 class="card-title">Data Penguji Sidang</h3>
                             </div>
                             <div class="card-body">
-                                <div style="text-align:right;margin-bottom: 10px ">
+                                <!-- <div style="text-align:right;margin-bottom: 10px ">
                                     <a href="#" class="on-default edit-row btn btn-success pull-right" data-toggle="modal" pull="right" data-target="#custom-width-modal" onclick="ResetInput()"><i class="fa fa-plus"></i> Tambah Data Penguji</a>
-                                </div>
+                                </div> -->
                                 <table id="example1" class="table table-bordered table-striped">
                                     <thead>
                                         <tr>
@@ -77,7 +77,7 @@
         <div class="modal-dialog" style="width:55%;">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title">Tambah Data Dosen Penguji </h4>
+                    <h4 class="modal-title">Data Dosen Penguji Sidang</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
@@ -100,7 +100,7 @@
                         <div class="form-group">
                             <label class="col-md-5 control-label">Dosen penguji 1</label>
                             <div class="col-md-9">
-                                <select class="form-control" data-live-search="true" data-style="btn-white" onclick="choose()" id="nama" name="" required>
+                                <select class="form-control" data-live-search="true" data-style="btn-white" onclick="choose()" id="penguji1_sidang" name="penguji1_sidang" required>
                                     <option>-- Pilih Dosen penguji 1 --</option>
                                     <?php foreach ($dosen->result() as $row) : ?>
                                         <option value="<?php echo $row->id_dosen; ?>"><?php echo $row->nama; ?></option>
@@ -116,7 +116,7 @@
                         <div class="form-group">
                             <label class="col-md-5 control-label">Dosen penguji 2</label>
                             <div class="col-md-9">
-                                <select class="form-control" data-live-search="true" data-style="btn-white" onclick="pilih()" id="nama2" name="" required>
+                                <select class="form-control" data-live-search="true" data-style="btn-white" onclick="pilih()" id="penguji2_sidang" name="penguji2_sidang" required>
                                     <option>-- Pilih Dosen penguji 2 --</option>
                                     <?php foreach ($dosen->result() as $row) : ?>
                                         <option value="<?php echo $row->id_dosen; ?>"><?php echo $row->nama; ?></option>
@@ -132,7 +132,7 @@
                         <div class="form-group">
                             <label class="col-md-5 control-label">Dosen penguji 3</label>
                             <div class="col-md-9">
-                                <select class="form-control" data-live-search="true" data-style="btn-white" onclick="pilih2()" id="nama3" name="" required>
+                                <select class="form-control" data-live-search="true" data-style="btn-white" onclick="pilih2()" id="penguji3_sidang" name="penguji3_sidang" required>
                                     <option>-- Pilih Dosen penguji 3 --</option>
                                     <?php foreach ($dosen->result() as $row) : ?>
                                         <option value="<?php echo $row->id_dosen; ?>"><?php echo $row->nama; ?></option>
@@ -183,7 +183,7 @@
 
     <script type="text/javascript">
         function choose() {
-            var zoo = document.getElementById('nama').value;
+            var zoo = document.getElementById('penguji1_sidang').value;
             document.getElementById('output').value = zoo;
             var zoo2 = document.getElementById('id_dosen').value;
             document.getElementById('output_id').value = zoo2;
@@ -192,14 +192,14 @@
 
     <script type="text/javascript">
         function pilih() {
-            var zoo = document.getElementById('nama2').value;
+            var zoo = document.getElementById('penguji2_sidang').value;
             document.getElementById('hasil').value = zoo;
         }
     </script>
 
     <script type="text/javascript">
         function pilih2() {
-            var zoo = document.getElementById('nama3').value;
+            var zoo = document.getElementById('penguji3_sidang').value;
             document.getElementById('hasil3').value = zoo;
         }
     </script>

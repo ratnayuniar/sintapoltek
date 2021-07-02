@@ -109,14 +109,15 @@
       <div class="container-fluid">
         <div class="row">
           <div class="col-12">
-            <div style="text-align:right;margin-bottom: 10px ">
-              <a href="#" class="on-default edit-row btn btn-success pull-right" data-toggle="modal" pull="right" data-target="#custom-width-modal" onclick="ResetInput()"><i class="fa fa-plus"></i> Tambah Berkas</a>
-            </div>
+
             <div class="card">
               <div class="card-header">
                 <h3 class="card-title">Data Pengalaman Magang / PKL</h3>
               </div>
               <div class="card-body">
+                <div style="text-align:right;margin-bottom: 10px ">
+                  <a href="#" class="on-default edit-row btn btn-success pull-right" data-toggle="modal" pull="right" data-target="#custom-width-modal" onclick="ResetInput()"><i class="fa fa-plus"></i> Tambah Berkas</a>
+                </div>
                 <div id="flash" data-flash="<?= $this->session->flashdata('pesan'); ?>">
                   <table id="example1" class="table table-bordered table-striped">
                     <thead>
@@ -149,8 +150,8 @@
                           <td class="text-center" width="160px">
                             <a href="<?php echo base_url('bks_pkl/delete_users/' . $row->id_bks_pkl) ?>" id="btn-hapus" data-toggle="tooltip" data-placement="bottom" title="Hapus Mahasiswa" class="btn btn-sm btn-danger btn-xs"><i class="fa fa-trash"></i> Delete</a>
                             <a href="<?= base_url('bks_pkl/detail_bks_pkl/' . $row->nim) ?>" class="on-default edit-row btn btn-info pull-right btn-xs"><i class="fa fa-search"></i> Detail </a>
-                          </td> 
-                         </tr>
+                          </td>
+                        </tr>
                       <?php } ?>
                     </tbody>
                   </table>
@@ -201,18 +202,22 @@
               <!-- <input type="date" name="tanggal" class="form-control" id="tanggal" required> -->
               <input type="text" name="tanggal" id="tanggal" value="" class="form-control" required>
             </div>
-             <div class="form-group">
+            <div class="form-group">
               <label for="exampleInputjudul1">Ringkasan</label><br>
               <textarea type="text" rows="3" class="form-control" id="ringkasan" name="ringkasan" placeholder="" required></textarea>
             </div>
             <div class="form-group">
               <label for="exampleInputjudul1">Surat Keterangan</label><br>
-              <span><h6>Upload Scan Bukti/Surat Keterangan (PDF/JPG Maks. 1 MB)</h6></span>
+              <span>
+                <h6>Upload Scan Bukti/Surat Keterangan (PDF/JPG Maks. 1 MB)</h6>
+              </span>
               <input type="file" name="sk_pkl" required>
             </div>
             <div class="form-group">
               <label for="exampleInputjudul1">Laporan PKL / Magang</label><br>
-              <span><h6>Upload Laporan PKL/Magang (PDF Maks. 5 MB)</h6></span>
+              <span>
+                <h6>Upload Laporan PKL/Magang (PDF Maks. 5 MB)</h6>
+              </span>
               <input type="file" name="laporan" required>
             </div>
           </div>
@@ -284,27 +289,25 @@
       document.getElementById('sk_pkl').value = "";
       document.getElementById('laporan').value = "";
     }
-
-  
   </script>
 
-<script>
-$(function() {
-  $('input[name="tanggal"]').daterangepicker({
-    opens: 'left'
-  }, function(start, end, label) {
-    console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
-  });
-});
-</script>
-<script>
-$(function(){
-    $('#reservation').daterangepicker()
-
-    $('input[name="dates"]').daterangepicker();
+  <script>
+    $(function() {
+      $('input[name="tanggal"]').daterangepicker({
+        opens: 'left'
+      }, function(start, end, label) {
+        console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
+      });
     });
-</script>
-  
+  </script>
+  <script>
+    $(function() {
+      $('#reservation').daterangepicker()
+
+      $('input[name="dates"]').daterangepicker();
+    });
+  </script>
+
 
   <!-- <script type="text/javascript">
     $('#tanggal').datetimepicker({
