@@ -155,6 +155,7 @@
         </section>
     </div>
 
+
     <div id="modal_file_ta" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="custom-width-modalLabel" aria-hidden="true" style="display: none;">
         <div class="modal-dialog" style="width:55%;">
             <div class="modal-content">
@@ -597,9 +598,9 @@
                                 <h3 class="card-title">Data Berkas Pendaftaran Wisuda</h3>
                             </div>
                             <div class="card-body">
-                                <div style="text-align:right;margin-bottom: 10px ">
+                                <!-- <div style="text-align:right;margin-bottom: 10px ">
                                     <a href="#" class="on-default edit-row btn btn-success pull-right" data-toggle="modal" pull="right" data-target="#custom-width-modal" onclick="ResetInput()"><i class="fa fa-plus"></i> Tambah Berkas</a>
-                                </div>
+                                </div> -->
                                 <div id="flash" data-flash="<?= $this->session->flashdata('pesan'); ?>">
                                     <!-- <table id="example1" class="table table-bordered table-striped">
                                         <thead>
@@ -656,60 +657,93 @@
                                                     <td>1.</td>
                                                     <td>File TA</td>
                                                     <td>
-                                                        <!-- <input type="file" class="form-control col-md-5" name="file_ta"> -->
-                                                        <button type="submit" name="submit" class="badge badge-primary"><i class="fa fa-upload">Unggah</i></button>
+                                                        <a href="#" class="btn btn-info" data-toggle="modal" pull="right" data-target="#file_ta" onclick="ResetInput()"><i class="fa fa-file"></i> Unggah</a>
                                                     </td>
-                                                    <td></td>
+                                                    <td>
+                                                        <?php
+                                                        if ($bks_wisuda == "") {
+                                                            echo "";
+                                                        } else {
+                                                            echo "$bks_wisuda->file_ta";
+                                                        }
+                                                        ?>
+                                                    </td>
                                                     <td></td>
                                                 </tr>
                                                 <tr>
                                                     <td>2.</td>
                                                     <td>File Jurnal</td>
                                                     <td>
-                                                        <!-- <input type="file" class="form-control col-md-5" name="file_ta"> -->
-                                                        <button type="submit" name="submit" class="badge badge-primary"><i class="fa fa-upload">Unggah</i></button>
+                                                        <a href="#" class="btn btn-info" data-toggle="modal" pull="right" data-target="#file_jurnal" onclick="ResetInput()"><i class="fa fa-file"></i> Unggah</a>
                                                     </td>
-                                                    <td></td>
+                                                    <td><?php
+                                                        if ($bks_wisuda == "") {
+                                                            echo "";
+                                                        } else {
+                                                            echo "$bks_wisuda->jurnal";
+                                                        }
+                                                        ?></td>
                                                     <td></td>
                                                 </tr>
+
                                                 <tr>
                                                     <td>3.</td>
-                                                    <td>Lap.TA</td>
+                                                    <td>File Aplikasi</td>
                                                     <td>
-                                                        <!-- <input type="file" class="form-control col-md-5" name="file_ta"> -->
-                                                        <button type="submit" name="submit" class="badge badge-primary"><i class="fa fa-upload">Unggah</i></button>
+                                                        <a href="#" class="btn btn-info" data-toggle="modal" pull="right" data-target="#file_aplikasi" onclick="ResetInput()"><i class="fa fa-file"></i> Unggah</a>
                                                     </td>
-                                                    <td></td>
+                                                    <td><?php
+                                                        if ($bks_wisuda == "") {
+                                                            echo "";
+                                                        } else {
+                                                            echo "$bks_wisuda->aplikasi";
+                                                        }
+                                                        ?></td>
                                                     <td></td>
                                                 </tr>
                                                 <tr>
                                                     <td>4.</td>
-                                                    <td>File Aplikasi</td>
+                                                    <td>File PPT</td>
                                                     <td>
-                                                        <!-- <input type="file" class="form-control col-md-5" name="file_ta"> -->
-                                                        <button type="submit" name="submit" class="badge badge-primary"><i class="fa fa-upload">Unggah</i></button>
+                                                        <a href="#" class="btn btn-info" data-toggle="modal" pull="right" data-target="#file_ppt" onclick="ResetInput()"><i class="fa fa-file"></i> Unggah</a>
                                                     </td>
-                                                    <td></td>
+                                                    <td><?php
+                                                        if ($bks_wisuda == "") {
+                                                            echo "";
+                                                        } else {
+                                                            echo "$bks_wisuda->ppt";
+                                                        }
+                                                        ?></td>
                                                     <td></td>
                                                 </tr>
                                                 <tr>
                                                     <td>5.</td>
-                                                    <td>File PPT</td>
+                                                    <td>File Video</td>
                                                     <td>
-                                                        <!-- <input type="file" class="form-control col-md-5" name="file_ta"> -->
-                                                        <button type="submit" name="submit" class="badge badge-primary"><i class="fa fa-upload">Unggah</i></button>
+                                                        <a href="#" class="btn btn-info" data-toggle="modal" pull="right" data-target="#file_video" onclick="ResetInput()"><i class="fa fa-file"></i> Unggah</a>
                                                     </td>
-                                                    <td></td>
+                                                    <td><?php
+                                                        if ($bks_wisuda == "") {
+                                                            echo "";
+                                                        } else {
+                                                            echo "$bks_wisuda->video";
+                                                        }
+                                                        ?></td>
                                                     <td></td>
                                                 </tr>
                                                 <tr>
                                                     <td>6.</td>
-                                                    <td>File Video</td>
+                                                    <td>Lap.TA</td>
                                                     <td>
-                                                        <!-- <input type="file" class="form-control col-md-5" name="file_ta"> -->
-                                                        <button type="submit" name="submit" class="badge badge-primary"><i class="fa fa-upload">Unggah</i></button>
+                                                        <!-- <a href="#" class="btn btn-info" data-toggle="modal" pull="right" data-target="#lap_ta" onclick="ResetInput()"><i class="fa fa-file"></i> Unggah</a> -->
                                                     </td>
-                                                    <td></td>
+                                                    <td><?php
+                                                        if ($bks_wisuda == "") {
+                                                            echo "";
+                                                        } else {
+                                                            echo "<?= $bks_wisuda->file_ta ?>";
+                                                        }
+                                                        ?></td>
                                                     <td></td>
                                                 </tr>
                                             </tbody>
@@ -721,6 +755,187 @@
                     </div>
                 </div>
         </section>
+    </div>
+
+    <div id="file_ta" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="custom-width-modalLabel" aria-hidden="true" style="display: none;">
+        <div class="modal-dialog" style="width:55%;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Berkas Pendaftaran Wisuda</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <form action="<?= base_url('bks_wisuda/upload_fileta') ?>" method="post" class="form-horizontal" role="form" enctype="multipart/form-data">
+                    <div class="card-body">
+                        <div class="form-group">
+                            <input type="hidden" id="id_bks_wisuda" name="id_bks_wisuda">
+                            <input type="hidden" value="<?php echo $this->session->userdata('email'); ?>" class="form-control" id="nim" name="nim" placeholder="NIM">
+                            <input type="hidden" value="<?php echo $this->session->userdata('email'); ?>" class="form-control" id="nim2" name="nim2" readonly placeholder="NIM">
+                        </div>
+                        <div class="form-group">
+                            <label for="berita_acara">File Tugas Akhir</label><br>
+                            <input type="file" name="file_ta" required>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <button type="submit" name="submit" class="btn btn-primary">Simpan</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div id="file_jurnal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="custom-width-modalLabel" aria-hidden="true" style="display: none;">
+        <div class="modal-dialog" style="width:55%;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Berkas Pendaftaran Wisuda</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <form action="<?= base_url('bks_wisuda/upload_jurnal') ?>" method="post" class="form-horizontal" role="form" enctype="multipart/form-data">
+                    <div class="card-body">
+                        <div class="form-group">
+                            <!-- <input type="text" id="id_bks_wisuda" name="id_bks_wisuda"> -->
+                            <input type="hidden" id="jurnal" name="jurnal">
+                            <input type="hidden" value="<?php echo $this->session->userdata('email'); ?>" class="form-control" id="nim" name="nim" placeholder="NIM">
+                            <input type="hidden" value="<?php echo $this->session->userdata('email'); ?>" class="form-control" id="nim2" name="nim2" readonly placeholder="NIM">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="persetujuan">Jurnal</label><br>
+                            <input type="file" name="jurnal" required>
+                        </div>
+
+                    </div>
+                    <div class="card-footer">
+                        <button type="submit" name="submit" class="btn btn-primary">Simpan</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div id="lap_ta" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="custom-width-modalLabel" aria-hidden="true" style="display: none;">
+        <div class="modal-dialog" style="width:55%;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Berkas Pendaftaran Wisuda</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <form action="<?= base_url('bks_wisuda/create') ?>" method="post" class="form-horizontal" role="form" enctype="multipart/form-data">
+                    <div class="card-body">
+                        <div class="form-group">
+                            <input type="hidden" id="id_bks_wisuda" name="id_bks_wisuda">
+                            <input type="hidden" value="<?php echo $this->session->userdata('email'); ?>" class="form-control" id="nim" name="nim" placeholder="NIM">
+                            <input type="hidden" value="<?php echo $this->session->userdata('email'); ?>" class="form-control" id="nim2" name="nim2" readonly placeholder="NIM">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="exampleInputjudul1">Laporan Tugas Akhir</label><br>
+                            <input type="file" name="lap_ta_prodi" required>
+                        </div>
+
+                    </div>
+                    <div class="card-footer">
+                        <button type="submit" name="submit" class="btn btn-primary">Simpan</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div id="file_aplikasi" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="custom-width-modalLabel" aria-hidden="true" style="display: none;">
+        <div class="modal-dialog" style="width:55%;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Berkas Pendaftaran Wisuda</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <form action="<?= base_url('bks_wisuda/upload_aplikasi') ?>" method="post" class="form-horizontal" role="form" enctype="multipart/form-data">
+                    <div class="card-body">
+                        <div class="form-group">
+                            <input type="hidden" id="id_bks_wisuda" name="id_bks_wisuda">
+                            <input type="hidden" value="<?php echo $this->session->userdata('email'); ?>" class="form-control" id="nim" name="nim" placeholder="NIM">
+                            <input type="hidden" value="<?php echo $this->session->userdata('email'); ?>" class="form-control" id="nim2" name="nim2" readonly placeholder="NIM">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputjudul1">Aplikasi</label><br>
+                            <input type="file" name="aplikasi" required>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <button type="submit" name="submit" class="btn btn-primary">Simpan</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div id="file_ppt" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="custom-width-modalLabel" aria-hidden="true" style="display: none;">
+        <div class="modal-dialog" style="width:55%;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Berkas Pendaftaran Wisuda</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <form action="<?= base_url('bks_wisuda/upload_ppt') ?>" method="post" class="form-horizontal" role="form" enctype="multipart/form-data">
+                    <div class="card-body">
+                        <div class="form-group">
+                            <input type="hidden" id="id_bks_wisuda" name="id_bks_wisuda">
+                            <input type="hidden" value="<?php echo $this->session->userdata('email'); ?>" class="form-control" id="nim" name="nim" placeholder="NIM">
+                            <input type="hidden" value="<?php echo $this->session->userdata('email'); ?>" class="form-control" id="nim2" name="nim2" readonly placeholder="NIM">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="exampleInputjudul1">Powerpoint</label><br>
+                            <input type="file" name="ppt" required>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <button type="submit" name="submit" class="btn btn-primary">Simpan</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div id="file_video" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="custom-width-modalLabel" aria-hidden="true" style="display: none;">
+        <div class="modal-dialog" style="width:55%;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Berkas Pendaftaran Wisuda</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <form action="<?= base_url('bks_wisuda/upload_video') ?>" method="post" class="form-horizontal" role="form" enctype="multipart/form-data">
+                    <div class="card-body">
+                        <div class="form-group">
+                            <input type="hidden" id="id_bks_wisuda" name="id_bks_wisuda">
+                            <input type="hidden" value="<?php echo $this->session->userdata('email'); ?>" class="form-control" id="nim" name="nim" placeholder="NIM">
+                            <input type="hidden" value="<?php echo $this->session->userdata('email'); ?>" class="form-control" id="nim2" name="nim2" readonly placeholder="NIM">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="exampleInputjudul1">Video</label><br>
+                            <input type="file" name="video" required>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <button type="submit" name="submit" class="btn btn-primary">Simpan</button>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
 
     <div id="custom-width-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="custom-width-modalLabel" aria-hidden="true" style="display: none;">

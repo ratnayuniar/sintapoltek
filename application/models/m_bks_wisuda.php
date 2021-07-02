@@ -18,16 +18,6 @@ class M_bks_wisuda extends CI_Model
         return $this->db->get('bks_wisuda');
     }
 
-    function bks_wisuda()
-    {
-        // $this->db->select('*');
-        // $this->db->join('mahasiswa', 'mahasiswa.nim=bks_wisuda.nim', 'left');
-        // $this->db->join('prodi', 'prodi.id_prodi=mahasiswa.id_prodi', 'left');
-        // $this->db->where('bks_wisuda.nim', $this->session->userdata('email'));
-        // $this->db->or_where('bks_wisuda.nim', $this->session->userdata('id_prodi'));
-        return $this->db->get('bks_wisuda');
-    }
-
     function bks_wisuda_admin($id_prodi)
     {
         $this->db->select('*');
@@ -90,5 +80,30 @@ class M_bks_wisuda extends CI_Model
         if ($data->num_rows() > 0) {
             return $data->row();
         }
+    }
+
+    function tambah_data()
+    {
+        $data = array(
+            'nim' => $this->input->post('nim'),
+            'file_ta' => $this->input->post('file_ta'),
+            'jurnal' => $this->input->post('jurnal'),
+            'aplikasi' => $this->input->post('aplikasi'),
+        );
+        $this->db->insert('bks_wisuda', $data);
+        redirect('/bks_wisuda');
+    }
+
+    function ubah_data($nim)
+    {
+        $data = array(
+            // 'nim' => $this->input->post('nim'),
+            'file_ta' => $this->input->post('file_ta'),
+            'jurnal' => $this->input->post('jurnal'),
+            'aplikasi' => $this->input->post('aplikasi')
+        );
+        $this->db->where(array('nim' => $nim));
+        $this->db->update('bks_wisuda', $data);
+        redirect('/bks_wisuda');
     }
 }

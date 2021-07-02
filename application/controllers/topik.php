@@ -131,11 +131,13 @@ class Topik extends CI_Controller
 
 			$this->m_topik->update($this->input->post('id_topik'), $data);
 
-			// $array = array(
-			// 	'nim' => $this->input->post('nim'),
-			// 	'judul' => $this->input->post('judul')
-			// );
-			// $this->db->insert('master_ta',$array);
+			$array = array(
+				'nim' => $this->input->post('nim'),
+				'judul' => $this->input->post('judul')
+			);
+			// print_r($array);
+			// exit();
+			$this->db->insert('master_ta', $array);
 
 			$this->session->set_flashdata('message', '<div class="alert alert-info">Data Berhasil Di Simpan</div>');
 			redirect('topik', 'refresh');

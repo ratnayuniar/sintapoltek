@@ -110,7 +110,7 @@
                                     <tbody>
                                         <?php
                                         $id_prodi = $this->session->userdata('id_prodi');
-                                        // $no = 1;
+                                        // $no = 1; 
                                         foreach ($this->m_penguji->tampil_data($id_prodi)->result() as $row) {
                                             $data['user'] = $this->m_penguji->getmahasiswabyid($row->nim);
                                             $data['dosen1'] = $this->m_penguji->getdosen2($row->penguji1_sempro);
@@ -119,6 +119,7 @@
                                             $data['revisi1'] = $this->m_revisi_seminar->revisi_mhs();
                                             $data['revisi2'] = $this->m_revisi_seminar->revisi_mhs();
                                             $data['revisi3'] = $this->m_revisi_seminar->revisi_mhs();
+
 
                                             echo
                                             "<tr>

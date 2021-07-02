@@ -315,7 +315,7 @@
                             <li class="nav-item">
                                 <a href="<?php echo base_url('penguji'); ?>" class="nav-link <?= activate_menu('penguji') ?>">
                                     <i class="far fa-circle nav-icon"></i>
-                                    <p>Jadwal dan Dosen Penguji</p>
+                                    <p>Jadwal Seminar</p>
                                 </a>
                             </li>
                             <li class="nav-item">
@@ -389,7 +389,7 @@
                             <li class="nav-item">
                                 <a href="<?php echo base_url('penguji_sidang'); ?>" class="nav-link <?= activate_menu('penguji_sidang') ?>">
                                     <i class="far fa-circle nav-icon"></i>
-                                    <p>Penguji dan Jadwal</p>
+                                    <p>Jadwal Sidang</p>
                                 </a>
                             </li>
                             <li class="nav-item">

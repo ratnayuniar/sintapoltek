@@ -31,6 +31,7 @@
                                     <thead>
                                         <tr>
                                             <th>No</th>
+                                            <th>NIM</th>
                                             <th>Mahasiswa</th>
                                             <th>Dosen Pembimbing 1</th>
                                             <th>Dosen Pembimbing 2</th>
@@ -42,21 +43,35 @@
                                         $no = 1;
                                         $id_prodi = $this->session->userdata('id_prodi');
                                         foreach ($this->m_pembimbing->tampil_data($id_prodi)->result() as $row) {
-                                            // foreach ($query->result() as $row) {
-                                            $data['user'] = $this->m_pembimbing->getmahasiswabyid($row->nim);
-                                            $data['dosen1'] = $this->m_pembimbing->getdosen1($row->pembimbing1);
-                                            $data['dosen2'] = $this->m_pembimbing->getdosen2($row->pembimbing2);
-                                            echo
-                                            "<tr>
-											<td>" . $no . "</td>
-                                        	<td>" . $data['user']->nama   . "</td>
-											<td>" . $data['dosen1']->nama . "</td>
-											<td>" . $data['dosen2']->nama . "</td>
-											<td><a href ='#' class ='btn btn-sm btn-primary btn-xs' data-toggle='modal' data-target='#custom-width-modal' onClick=\"SetInput('" . $row->id_master_ta . "','" . $row->nim . "','" . $row->pembimbing1 . "','" . $row->pembimbing2 . "')\"><i class ='fa fa-edit'></i> Edit</a>
-												<a href='" . base_url('pembimbing/delete2/' . $row->id_master_ta) . "' id='btn-hapus' class='btn btn-sm btn-danger btn-xs' ><i class='fa fa-trash'></i> Hapus</a>
-											</td>
-									    </tr>";
-                                            $no++;
+                                            if ($row->id_master_ta != "") {
+                                                $data['user'] = $this->m_pembimbing->getmahasiswabyid($row->nim);
+                                                $data['dosen1'] = $this->m_pembimbing->getdosen1($row->pembimbing1);
+                                                if ($row->pembimbing1 != "") {
+                                                    $dosen1_nama = $data['dosen1']->nama;
+                                                } else {
+                                                    $dosen1_nama = "-";
+                                                }
+                                                $data['dosen2'] = $this->m_pembimbing->getdosen2($row->pembimbing2);
+                                                if ($row->pembimbing2 != "") {
+                                                    $dosen2_nama = $data['dosen2']->nama;
+                                                } else {
+                                                    $dosen2_nama = "-";
+                                                }
+
+                                                echo
+                                                "<tr>
+                                                <td>" . $no . "</td>
+                                                <td>" . $data['user']->nim   . "</td>
+                                                <td>" . $data['user']->nama   . "</td>
+                                                <td>" . $dosen1_nama . "</td>
+                                                <td>" . $dosen2_nama . "</td>
+                                                
+                                                <td><a href ='#' class ='btn btn-sm btn-primary btn-xs' data-toggle='modal' data-target='#custom-width-modal' onClick=\"SetInput('" . $row->id_master_ta . "','" . $row->nim . "','" . $row->penguji1_sempro . "','" . $row->penguji2_sempro . "','" . $row->penguji3_sempro . "')\"><i class ='fa fa-edit'></i> Edit</a>
+                                                                                                       
+                                                </td>
+                                            </tr>";
+                                                $no++;
+                                            }
                                         }
                                         ?>
                                     </tbody>
@@ -321,7 +336,7 @@
                                     <thead>
                                         <tr>
                                             <th>No</th>
-                                            <th>Nama Mahasiswa</th>
+                                            <th>Judul</th>
                                             <th>Dosen Pembimbing 1</th>
                                             <th>Dosen Pembimbing 2</th>
                                         </tr>
@@ -330,17 +345,32 @@
                                         <?php
                                         $no = 1;
                                         foreach ($query2->result() as $row) {
-                                            $data['user'] = $this->m_pembimbing->getmahasiswabyid($row->nim);
-                                            $data['dosen1'] = $this->m_pembimbing->getdosen1($row->pembimbing1);
-                                            $data['dosen2'] = $this->m_pembimbing->getdosen2($row->pembimbing2);
-                                            echo
-                                            "<tr>
-											<td>" . $no . "</td>
-                                        	<td>" . $data['user']->nama   . "</td>
-											<td>" . $data['dosen1']->nama . "</td>
-											<td>" . $data['dosen2']->nama . "</td>
-																				    </tr>";
-                                            $no++;
+                                            if ($row->id_master_ta != "") {
+                                                $data['user'] = $this->m_pembimbing->getmahasiswabyid($row->nim);
+                                                $data['dosen1'] = $this->m_pembimbing->getdosen1($row->pembimbing1);
+                                                if ($row->pembimbing1 != "") {
+                                                    $dosen1_nama = $data['dosen1']->nama;
+                                                } else {
+                                                    $dosen1_nama = "-";
+                                                }
+                                                $data['dosen2'] = $this->m_pembimbing->getdosen2($row->pembimbing2);
+                                                if ($row->pembimbing2 != "") {
+                                                    $dosen2_nama = $data['dosen2']->nama;
+                                                } else {
+                                                    $dosen2_nama = "-";
+                                                }
+
+                                                echo
+                                                "<tr>
+                                                <td>" . $no . "</td>
+                                                <td>" . $row->judul . "</td>
+                                                <td>" . $dosen1_nama . "</td>
+                                                <td>" . $dosen2_nama . "</td>
+                                                
+                                               
+                                            </tr>";
+                                                $no++;
+                                            }
                                         }
                                         ?>
                                     </tbody>

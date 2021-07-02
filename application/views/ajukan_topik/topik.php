@@ -36,7 +36,7 @@
                     <th>No</th>
                     <th>NIM</th>
                     <th>Nama</th>
-                    <th>Bidang</th>
+                    <!-- <th>Bidang</th> -->
                     <th>Judul</th>
                     <th>Lokasi</th>
                     <th>Status</th>
@@ -52,7 +52,7 @@
                       <td><?= $no++ ?></td>
                       <td><?= $row->nim ?></td>
                       <td><?= $row->nama ?></td>
-                      <td><?= $row->bidang ?></td>
+                      <!-- <td><?= $row->bidang ?></td> -->
                       <td><?= $row->judul ?></td>
                       <td><?= $row->lokasi ?></td>
                       <td>
@@ -139,7 +139,7 @@
               <input type="hidden" name="status" value="1" class="form-control">
             </div>
 
-            <button type="submit" id="tombol" class="btn btn-primary btn-sm">Ya</button>
+            <button type="submit" id="tombol" class="btn btn-primary btn-sm " style="float: right;">Ya</button>
             <button type="reset" class="btn btn-danger btn-sm">Tidak</button>
 
           </form>
@@ -175,7 +175,7 @@
                 <textarea name="komentar" class="form-control"></textarea>
               </div>
             </div>
-            <button type="submit" id="tombol" class="btn btn-primary btn-sm">Kirim</button>
+            <button type="submit" id="tombol" class="btn btn-primary btn-sm " style="float: right;">Kirim</button>
             <button type="reset" class="btn btn-danger btn-sm">Batal</button>
           </form>
         </div>
@@ -200,7 +200,7 @@
               <input type="hidden" name="id_topik" id="closetopik" class="form-control">
               <input type="hidden" name="status" value="3" class="form-control">
             </div>
-            <button type="submit" id="tombol" class="btn btn-primary btn-sm">Ya</button>
+            <button type="submit" id="tombol" class="btn btn-primary btn-sm" style="float: right;">Ya</button>
             <button type="reset" class="btn btn-danger btn-sm">Tidak</button>
           </form>
         </div>
@@ -310,31 +310,33 @@
                 </div>
                 <form action="<?php echo base_url() . 'topik/add'; ?>" method="post" class="form-horizontal" role="form">
                   <div class="card-body">
-                    <div class="form-group">
-                      <input type="hidden" id="id_topik" name="id_topik">
+                    <!-- <div class="form-group">
+
                       <label for="exampleInputjudul1">NIM</label>
-                      <input type="hidden" class="form-control" id="nim" name="nim" placeholder="NIM">
-                      <input type="text" class="form-control" id="nim2" name="nim2" readonly placeholder="NIM">
-                    </div>
-                    <div class="form-group">
+
+                    </div> -->
+                    <!-- <div class="form-group">
                       <label for="exampleInputjudul1">Bidang</label>
                       <input type="text" class="form-control" id="bidang" name="bidang" placeholder="Bidang">
-                    </div>
+                    </div> -->
                     <div class="form-group">
                       <label for="exampleInputjudul1">Topik Tugas Akhir</label>
+                      <input type="hidden" id="id_topik" name="id_topik">
+                      <input type="hidden" class="form-control" id="nim" name="nim" placeholder="NIM">
+                      <input type="hidden" class="form-control" id="nim2" name="nim2" readonly placeholder="NIM">
                       <textarea class="form-control" rows="3" id="judul" name="judul" placeholder="Masukkan Topik Tugas Akhir"></textarea>
                     </div>
                     <div class="form-group">
-                      <label for="exampleInputjudul1">Lokasi</label>
-                      <input type="text" class="form-control" id="lokasi" name="lokasi" placeholder="Lokasi ">
+                      <label for="exampleInputjudul1">Deskripsi</label>
+                      <textarea class="form-control" rows="3" id="deskripsi" name="deskripsi" placeholder="Masukkan Deskripsi Tugas Akhir"></textarea>
                     </div>
                     <div class="form-group">
-                      <label for="exampleInputjudul1">Deskripsi</label>
-                      <textarea class="form-control" rows="3" id="deskripsi" name="deskripsi" placeholder="Masukkan Topik Tugas Akhir"></textarea>
+                      <label for="exampleInputjudul1">Tempat Penelitian</label>
+                      <input type="text" class="form-control" id="lokasi" name="lokasi" placeholder="Masukkan Tempat Penelitian ">
                     </div>
                   </div>
                   <div class="card-footer">
-                    <button type="submit" class="btn btn-primary">Simpan</button>
+                    <button type="submit" class="btn btn-primary" style="float: right;">Simpan</button>
                   </div>
                 </form>
               </div>
@@ -376,9 +378,10 @@
                   <thead>
                     <tr>
                       <th>No</th>
-                      <th>NIM</th>
-                      <th>Judul</th>
-                      <th>Komentar</th>
+                      <!-- <th>NIM</th> -->
+                      <th>Topik Tugas Akhir</th>
+                      <th>Deskripsi</th>
+                      <th>Tempat Penelitian</th>
                       <th>Status</th>
                       <!-- <th>Aksi</th> -->
                     </tr>
@@ -389,10 +392,10 @@
                     foreach ($topik_user->result() as $row) { ?>
                       <tr>
                         <td><?= $no++ ?></td>
-                        <td><?= $row->nim ?></td>
+                        <!-- <td><?= $row->nim ?></td> -->
                         <td><?= $row->judul ?></td>
-                        <td><?= $row->komentar ?></td>
-                        <!-- <td><?= $row->lokasi ?></td> -->
+                        <td><?= $row->deskripsi ?></td>
+                        <td><?= $row->lokasi ?></td>
                         <td>
                           <?php if ($row->status == '0') {
                             echo '<span class="badge badge-warning">Menunggu</span>';
