@@ -43,7 +43,7 @@
                                         <?php
                                         $no = 1;
                                         $id_prodi = $this->session->userdata('id_prodi');
-                                        foreach ($this->m_penguji->tampil_data($id_prodi)->result() as $row) {
+                                        foreach ($this->m_penguji->tampil_data2($id_prodi)->result() as $row) {
                                             if ($row->id_master_ta != "") {
                                                 $data['user'] = $this->m_penguji->getmahasiswabyid($row->nim);
                                                 $data['dosen1'] = $this->m_penguji->getdosen1($row->penguji1_sempro);

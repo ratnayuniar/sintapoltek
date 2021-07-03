@@ -33,6 +33,12 @@ class Bks_seminar extends CI_Controller
 		redirect('bks_seminar', 'refresh');
 	}
 
+	function save_($id)
+	{
+		$this->m_bks_seminar->update($id, ['status' => 1]);
+		redirect('bks_seminar', 'refresh');
+	}
+
 	function save_bks_kurang($id)
 	{
 		$this->m_bks_seminar->update($id, ['status' => 2]);
@@ -342,6 +348,14 @@ class Bks_seminar extends CI_Controller
 		} else {
 			$this->index();
 		}
+	}
+
+	public function verif_fileta()
+	{
+		$id_seminar_proposal = $this->input->post('id_seminar_proposal');
+
+		if (empty($id_seminar_proposal)) $this->m_bks_seminar->tambah_data();
+		else $this->m_bks_seminar->ubah_data($id_seminar_proposal);
 	}
 
 	public function delete_users($id_seminar_proposal)

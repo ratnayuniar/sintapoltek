@@ -9,20 +9,13 @@ class M_dosen extends CI_Model
 
 	function getdosen()
 	{
-		// $this->db->where_in('level', ['3', '4']);
-		// $this->db->where('user.id_prodi', $this->session->userdata('id_prodi'));
-		// $this->db->join('prodi', 'prodi.id_prodi = user.id_prodi', 'left');
-		// $this->db->join('jurusan', 'jurusan.id_jurusan = user.id_jurusan', 'left');
-		// $this->db->join('dosen', 'dosen.id_dosen = user.id_dosen', 'left');
 
-		// return $this->db->get('user'); 
 
 		$this->db->select('*');
 		$this->db->order_by('level');
 		$this->db->from('dosen');
 		$this->db->where_in('level', ['3', '4']);
 		$this->db->where('dosen.id_prodi', $this->session->userdata('id_prodi'));
-		// $this->db->join('user', 'user.nim=mahasiswa.nim');
 		$query = $this->db->get();
 		return $query;
 	}

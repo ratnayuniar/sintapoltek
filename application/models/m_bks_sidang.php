@@ -4,7 +4,6 @@ class M_bks_sidang extends CI_Model
 
 	function tampil_data()
 	{
-		// return $this->db->get('bks_sidang');
 		return $this->db->query("SELECT * FROM mahasiswa, seminar_ta WHERE mahasiswa.nim=seminar_ta.nim");
 	}
 
@@ -19,7 +18,7 @@ class M_bks_sidang extends CI_Model
 		$this->db->update('seminar_ta', $data);
 	}
 
-	function bks_sidang_user() 
+	function bks_sidang_user()
 	{
 		$this->db->select('*');
 		$this->db->join('mahasiswa', 'mahasiswa.nim=seminar_ta.nim', 'left');

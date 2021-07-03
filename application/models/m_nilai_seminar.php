@@ -5,11 +5,6 @@ class M_nilai_seminar extends CI_Model
 	{
 		$this->db->select('*');
 		$this->db->from('mahasiswa', $id);
-
-
-		// $this->db->join('dosen', 'dosen.id_dosen=user.id_dosen');
-		// $this->db->where("user.id_user", $id);
-		// $this->db->join('mahasiswa', 'mahasiswa.nim=user.nim');
 		$query = $this->db->get()->row();
 		return $query;
 	}
@@ -65,7 +60,6 @@ class M_nilai_seminar extends CI_Model
 	{
 
 		return $this->db->query("(SELECT * FROM nilai_sempro GROUP BY nim) ");
-		// $this->db->query("SELECT * FROM user, nilai_seminar WHERE user.id_user=nilai_seminar.id_mahasiswa");
 	}
 	function jumlahnilai($id_mahasiswa)
 	{

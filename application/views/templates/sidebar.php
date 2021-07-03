@@ -738,6 +738,12 @@
                                     <p>Nilai Seminar</p>
                                 </a>
                             </li>
+                            <li class="nav-item">
+                                <a href="<?php echo base_url('revisi_seminar'); ?>" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Hasil Seminar</p>
+                                </a>
+                            </li>
                         </ul>
                     </li>
                     <li class="nav-item">

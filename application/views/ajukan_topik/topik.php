@@ -36,12 +36,10 @@
                     <th>No</th>
                     <th>NIM</th>
                     <th>Nama</th>
-                    <!-- <th>Bidang</th> -->
                     <th>Judul</th>
                     <th>Lokasi</th>
                     <th>Status</th>
                     <th>Konfirmasi</th>
-                    <!-- <th>Aksi</th> -->
                   </tr>
                 </thead>
                 <tbody>
@@ -52,14 +50,11 @@
                       <td><?= $no++ ?></td>
                       <td><?= $row->nim ?></td>
                       <td><?= $row->nama ?></td>
-                      <!-- <td><?= $row->bidang ?></td> -->
                       <td><?= $row->judul ?></td>
                       <td><?= $row->lokasi ?></td>
                       <td>
-                        <?php if ($row->status == '0') {
+                        <?php if ($row->status == '1') {
                           echo '<span class="badge badge-warning">Menunggu</span>';
-                        } else if ($row->status == '1') {
-                          echo '<span class="badge badge-info">Telah Dikonfirmasi</span>';
                         } else if ($row->status == '2') {
                           echo '<span class="badge badge-primary">Proses</span>';
                         } else if ($row->status == '4') {
@@ -107,10 +102,6 @@
                         }
                         ?>
                       </td>
-                      <!-- <td>
-                        <a href="<?= base_url('topik/detail_topik/' . $row->id_topik) ?>" class="btn btn-primary btn-sm">
-                          <i class="fa fa-search"></i>
-                        </td> -->
                     </tr>
                   <?php } ?>
                 </tbody>
@@ -126,7 +117,7 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title">Yakin konfirmasi topik?</h5>
+          <h5 class="modal-title">Konfirmasi Topik</h5>
           <button class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -161,7 +152,6 @@
           <form action="<?= base_url('topik/save_komentar') ?>" method="POST" enctype="multipart/form-data">
             <div class="modal-body">
               <input type="hidden" name="id_topik" id="id_topik_id" class="form-control">
-              <!-- <input type="hidden" name="topik_id" id="topik_id" class="form-control"> -->
               <div class="form-group">
                 <label for="judul">Judul Topik</label>
                 <input type="text" id="judul" class="form-control" readonly>
@@ -175,6 +165,12 @@
                 <textarea name="komentar" class="form-control"></textarea>
               </div>
             </div>
+            <!-- <a href="javascript:void(0);" data-toggle="modal" data-target="#modalclosetopik" id="ctopik" data-closetopik="' . $row->id_topik . '" data-closenim="' . $row->nim . '" data-closejudul="' . $row->judul . '" data-closestatus="' . $row->status . '" class="btn btn-primary btn-sm">
+              Terima
+            </a>
+            <a href="<?= base_url('topik/save_close_topik') ?>" data-toggle="modal" data-target="#modaltolaktopik" id="tlktopik" data-tolaktopik="' . $row->id_topik . '" data-closestatus="' . $row->status . '" class="btn btn-danger btn-sm">
+              Revisi
+            </a> -->
             <button type="submit" id="tombol" class="btn btn-primary btn-sm " style="float: right;">Kirim</button>
             <button type="reset" class="btn btn-danger btn-sm">Batal</button>
           </form>
@@ -310,15 +306,6 @@
                 </div>
                 <form action="<?php echo base_url() . 'topik/add'; ?>" method="post" class="form-horizontal" role="form">
                   <div class="card-body">
-                    <!-- <div class="form-group">
-
-                      <label for="exampleInputjudul1">NIM</label>
-
-                    </div> -->
-                    <!-- <div class="form-group">
-                      <label for="exampleInputjudul1">Bidang</label>
-                      <input type="text" class="form-control" id="bidang" name="bidang" placeholder="Bidang">
-                    </div> -->
                     <div class="form-group">
                       <label for="exampleInputjudul1">Topik Tugas Akhir</label>
                       <input type="hidden" id="id_topik" name="id_topik">
@@ -354,36 +341,18 @@
                 <div style="text-align:right;margin-bottom: 10px ">
 
                   <?php
-
-                  $disabled = '';
-                  if ($topik_user->num_rows() > 0) {
-                    $disabled = 'disabled';
-
-                    if ($ditolak->num_rows() > 0) {
-                      $disabled = '';
-                    }
-
-                    if ($disetujui->num_rows() > 0) {
-                      $disabled = 'disabled';
-                    }
-                  } else {
-                    $disabled = '';
-                  }
+                  if ($topik_user->num_rows() == 0) echo "<a href='#' class='on-default edit-row btn btn-success pull-right' data-toggle='modal' pull='right' data-target='#custom-width-modal' onclick='ResetInput()'><i class='fa fa-plus'></i> Ajukan Judul</a>";
 
                   ?>
-
-                  <a href="#" class="on-default edit-row btn btn-success pull-right <?php echo $disabled ?>" data-toggle="modal" pull="right" data-target="#custom-width-modal" onclick="ResetInput()"><i class="fa fa-plus"></i> Ajukan Judul</a>
                 </div>
                 <table id="example1" class="table table-bordered table-striped">
                   <thead>
                     <tr>
                       <th>No</th>
-                      <!-- <th>NIM</th> -->
                       <th>Topik Tugas Akhir</th>
                       <th>Deskripsi</th>
                       <th>Tempat Penelitian</th>
                       <th>Status</th>
-                      <!-- <th>Aksi</th> -->
                     </tr>
                   </thead>
                   <tbody>
@@ -392,15 +361,12 @@
                     foreach ($topik_user->result() as $row) { ?>
                       <tr>
                         <td><?= $no++ ?></td>
-                        <!-- <td><?= $row->nim ?></td> -->
                         <td><?= $row->judul ?></td>
                         <td><?= $row->deskripsi ?></td>
                         <td><?= $row->lokasi ?></td>
                         <td>
-                          <?php if ($row->status == '0') {
+                          <?php if ($row->status == '1') {
                             echo '<span class="badge badge-warning">Menunggu</span>';
-                          } else if ($row->status == '1') {
-                            echo '<span class="badge badge-info">Telah Dikonfirmasi</span>';
                           } else if ($row->status == '2') {
                             echo '<span class="badge badge-primary">Proses</span>';
                           } else if ($row->status == '4') {

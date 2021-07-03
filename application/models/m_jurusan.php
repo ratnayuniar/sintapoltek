@@ -4,14 +4,12 @@ class M_jurusan extends CI_Model
 
 	function tampil_data()
 	{
-		// return $this->db->query("SELECT * FROM jurusan, prodi WHERE jurusan.id_jurusan=prodi.id_jurusan");
 		return $this->db->query("SELECT * FROM jurusan");
 	}
 
 	function tambah_data()
 	{
 		$data = array(
-			// 'kode_jurusan' => $this->input->post('kode_jurusan'),
 			'nama_jurusan' => $this->input->post('nama_jurusan'),
 		);
 		$this->db->insert('jurusan', $data);
@@ -22,7 +20,6 @@ class M_jurusan extends CI_Model
 	function ubah_data($id_jurusan)
 	{
 		$data = array(
-			// 'kode_jurusan' => $this->input->post('kode_jurusan'),
 			'nama_jurusan' => $this->input->post('nama_jurusan')
 		);
 		$this->db->where(array('id_jurusan' => $id_jurusan));

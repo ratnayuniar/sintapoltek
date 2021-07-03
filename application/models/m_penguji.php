@@ -6,13 +6,20 @@ class M_penguji extends CI_Model
     {
 
         $this->db->select('*');
-        // $this->db->where('penguji1_sempro is NOT NULL', NULL, FALSE);
-        // $this->db->where('penguji2_sempro is NOT NULL', NULL, FALSE);
-        // $this->db->where('penguji3_sempro is NOT NULL', NULL, FALSE);
         $this->db->join('mahasiswa', 'mahasiswa.nim=master_ta.nim', 'left');
         $this->db->where(array('mahasiswa.id_prodi' => $id_prodi));
+        $this->db->where('master_ta.penguji1_sempro', $this->session->userdata('id_dosen'));
+        $this->db->or_where('master_ta.penguji2_sempro', $this->session->userdata('id_dosen'));
+        $this->db->or_where('master_ta.penguji3_sempro', $this->session->userdata('id_dosen'));
         $query = $this->db->get('master_ta');
         return $query;
+    }
+    function tampil_data2($id_prodi)
+    {
+
+        $this->db->join('mahasiswa', 'mahasiswa.nim=master_ta.nim', 'left');
+        $this->db->where(array('mahasiswa.id_prodi' => $id_prodi));
+        return $this->db->get('master_ta');
     }
 
     function bimbingan_dosen()
@@ -26,6 +33,8 @@ class M_penguji extends CI_Model
         $query = $this->db->get();
         return $query;
     }
+
+
 
     function bimbingan_mhs()
     {

@@ -12,6 +12,8 @@ class M_revisi_seminar extends CI_Model
             'revisi1' => $this->input->post('revisi1'),
             'revisi2' =>  $this->input->post('revisi2'),
             'revisi3' =>  $this->input->post('revisi3'),
+            'penguji' =>  $this->input->post('penguji'),
+            'revisi' =>  $this->input->post('revisi'),
             'jenis' => "seminar",
         );
         // print_r($data);
@@ -30,11 +32,14 @@ class M_revisi_seminar extends CI_Model
 
     public function revisi_mhs()
     {
+
         $this->db->select('*');
-        $this->db->from('revisi');
+        $this->db->from('mahasiswa');
+        $this->db->join('revisi', 'mahasiswa.nim = revisi.nim', 'left');
+        $this->db->join('master_ta', 'mahasiswa.nim = master_ta.nim', 'left');
         $this->db->where('jenis', 'seminar');
         $this->db->where('revisi.nim', $this->session->userdata('email'));
-        $query = $this->db->get()->row();
+        $query = $this->db->get();
         return $query;
     }
 }

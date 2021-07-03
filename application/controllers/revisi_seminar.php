@@ -1,4 +1,7 @@
 <?php
+
+use FontLib\Table\Type\post;
+
 defined('BASEPATH') or exit('No direct script access allowed');
 
 class Revisi_seminar extends CI_Controller
@@ -58,5 +61,47 @@ class Revisi_seminar extends CI_Controller
     public function add()
     {
         $this->m_revisi_seminar->tambah_data();
+    }
+
+    public function upload_revisi_seminar()
+    {
+        if (isset($_POST['submit'])) {
+            $this->form_validation->set_rules('nim', 'NIM', 'required');
+            $config['upload_path'] = './assets/berkas/seminar/';
+            $config['allowed_types'] = 'pdf|jpg|png|jpeg|ppt|pptx|doc|docx';
+            $config['max_size']  = 50000;
+            $config['file_name'] = 'revisi_seminar-' . date('ymd');
+
+            $this->load->library('upload', $config);
+
+            if (!empty($_FILES['revisi_seminar'])) {
+                $this->upload->do_upload('revisi_seminar');
+                $data1 = $this->upload->data();
+                $revisi_seminar = $data1['file_name'];
+            }
+
+            if ($this->form_validation->run()) {
+                $nim = $this->input->post('nim', TRUE);
+                $data = [
+                    'nim' => $nim,
+                    'revisi_seminar' => $revisi_seminar,
+                    'status_seminar' => $this->input->post('status_seminar'),
+                ];
+
+                $cek = $this->db->like('nim', $data['nim'])->from('master_ta')->count_all_results();
+
+                if ($cek > 0) {
+                    $this->db->where('nim', $data['nim'])->update('master_ta', $data);
+                    redirect('revisi_seminar');
+                } else {
+                    $this->db->insert('master_ta', $data);
+                    redirect('revisi_seminar');
+                }
+            } else {
+                $this->index();
+            }
+        } else {
+            $this->index();
+        }
     }
 }

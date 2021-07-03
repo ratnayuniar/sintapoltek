@@ -4,7 +4,6 @@ class M_bks_prestasi extends CI_Model
 
     function tampil_data()
     {
-        // return $this->db->get('bks_seminar');
         return $this->db->query("SELECT * FROM mahasiswa, bks_prestasi WHERE mahasiswa.nim=bks_prestasi.nim");
     }
 
@@ -13,7 +12,6 @@ class M_bks_prestasi extends CI_Model
         $this->db->select('*');
         $this->db->join('mahasiswa', 'mahasiswa.nim=bks_prestasi.nim', 'left');
         $this->db->where('bks_prestasi.nim', $this->session->userdata('email'));
-        // $this->db->or_where('bks_prestasi.id_prodi', $this->session->userdata('id_prodi'));
         return $this->db->get('bks_prestasi');
     }
 

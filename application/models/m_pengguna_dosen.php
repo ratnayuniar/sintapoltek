@@ -5,8 +5,6 @@ class M_pengguna_dosen extends CI_Model
     {
         $this->db->where_in('level', ['3', '4', '1']);
         $this->db->order_by('level', 'desc');
-
-        // $this->db->join('dosen', 'dosen.id_dosen = user.id_dosen', 'left');
         $this->db->where('dosen.id_prodi', $this->session->userdata('id_prodi'));
         return $this->db->get('dosen');
     }

@@ -4,13 +4,9 @@ class M_jadwal_sidang extends CI_Model
 
 	function tampil_data()
 	{
-		// $this->db->join('mahasiswa', 'mahasiswa.nim=master_ta.nim', 'left');
-		// // $this->db->where('jenis_jadwal', 'sidang');
-		// return $this->db->get('master_ta');
 		$this->db->select('*');
 		$this->db->join('mahasiswa', 'mahasiswa.nim=master_ta.nim', 'left');
 		$this->db->where('jadwal_sidang is NOT NULL', NULL, FALSE);
-
 
 		$query = $this->db->get('master_ta');
 		return $query;
@@ -20,7 +16,6 @@ class M_jadwal_sidang extends CI_Model
 	{
 		$this->db->select('*');
 		$this->db->join('mahasiswa', 'mahasiswa.nim=master_ta.nim', 'left');
-		// $this->db->where('jenis_jadwal', 'seminar');
 		$this->db->where('master_ta.nim', $this->session->userdata('email'));
 		$this->db->where('jadwal_sidang is NOT NULL', NULL, FALSE);
 		return $this->db->get('master_ta');
@@ -31,7 +26,6 @@ class M_jadwal_sidang extends CI_Model
 		$data = array(
 			'nim' => $this->input->post('nim'),
 			'jadwal_sidang' => $this->input->post('jadwal_sidang'),
-			// 'jenis_jadwal' => 'sidang',
 		);
 		$this->db->insert('master_ta', $data);
 		redirect('/jadwal_sidang');

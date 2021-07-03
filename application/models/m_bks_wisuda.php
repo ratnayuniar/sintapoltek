@@ -4,7 +4,6 @@ class M_bks_wisuda extends CI_Model
 
     function tampil_data()
     {
-        // return $this->db->get('bks_wisuda'); 
         return $this->db->query("SELECT * FROM mahasiswa, bks_wisuda WHERE mahasiswa.nim=bks_wisuda.nim");
     }
 

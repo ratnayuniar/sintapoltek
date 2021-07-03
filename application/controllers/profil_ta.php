@@ -24,6 +24,8 @@ class Profil_ta extends CI_Controller
     {
         $data['query2'] = $this->m_penguji->bimbingan_mhs();
         $data['query_pembimbing'] = $this->m_pembimbing->bimbingan_mhs();
+        $data['judul'] = $this->m_pembimbing->bimbingan_mhs();
+        $data['tempat'] = $this->m_pembimbing->tempat();
         $data['title'] = 'SINTA PNM';
 
         $this->load->view('templates/header', $data);

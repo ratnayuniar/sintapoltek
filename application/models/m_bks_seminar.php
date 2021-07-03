@@ -4,7 +4,6 @@ class M_bks_seminar extends CI_Model
 
 	function tampil_data()
 	{
-		// return $this->db->get('bks_seminar');
 		return $this->db->query("SELECT * FROM mahasiswa, seminar_proposal WHERE mahasiswa.nim=seminar_proposal.nim");
 	}
 
@@ -20,9 +19,21 @@ class M_bks_seminar extends CI_Model
 	{
 		$this->db->select('*');
 		$this->db->join('mahasiswa', 'mahasiswa.nim=seminar_proposal.nim', 'left');
+		$this->db->join('master_ta', 'mahasiswa.nim = master_ta.nim', 'left');
 		$this->db->where(array('mahasiswa.id_prodi' => $id_prodi));
-		// $this->db->where('seminar_proposal.id_prodi', $this->session->userdata('id_prodi'));
 		return $this->db->get('seminar_proposal');
+	}
+
+	function ubah_data($id_seminar_proposal)
+	{
+		$data = array(
+			'st_beritaacara' => $this->input->post('st_beritaacara'),
+			'catatan_fileta' => $this->input->post('catatan_fileta'),
+			'tgl_fileta' => $this->input->post('tgl_fileta'),
+		);
+		$this->db->where(array('id_seminar_proposal' => $id_seminar_proposal));
+		$this->db->update('seminar_proposal', $data);
+		redirect('/bks_seminar');
 	}
 
 	function insert($data)
@@ -107,38 +118,4 @@ class M_bks_seminar extends CI_Model
 			return $data->row();
 		}
 	}
-
-	// public function M_EditMahasiswa($data, $id_bks_seminar)
-	// {
-	// 	$this->db->where('id_bks_seminar', $id_bks_seminar);
-	// 	$this->db->update('bks_seminar', $data);
-	// }
-
-	// function cari_data($data_kode)
-	// {
-	// 	$this->db->where($data_kode);
-	// 	$hasil = $this->db->get('bks_seminar')->result();
-	// 	return $hasil;
-	// }
-
-	// public function proses_edit_data()
-	// {
-	// 	// $id_bks_seminar = $this->input->post('id_bks_seminar', true);
-	// 	$data = [
-	// 		"nim" => $this->input->post('nim'),
-	// 		"berita_acara" => $this->input->post('berita_acara'),
-	// 	];
-	// 	// $this->db->set('data', $data);
-	// 	// $this->db->where('id_bks_seminar', $id_bks_seminar);
-	// 	// $this->db->update('bks_seminar', $data);
-	// 	$this->db->where('id_bks_seminar', $this->input->post('id_bks_seminar'));
-	// 	$this->db->update('bks_seminar', $data['id_bks_seminar']);
-	// }
-	// public function add2($post)
-	// {
-	// 	$params = [
-	// 		'nim' => $post['nim'],
-	// 	];
-	// 	$this->db->insert('bks_seminar', $params);
-	// 
 }

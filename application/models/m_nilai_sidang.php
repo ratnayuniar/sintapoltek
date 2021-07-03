@@ -5,8 +5,6 @@ class M_nilai_sidang extends CI_Model
 	{
 		$this->db->select('*');
 		$this->db->from('mahasiswa');
-		// $this->db->where("user.id_user", $id);
-		// $this->db->join('mahasiswa', 'mahasiswa.nim=user.nim');
 		$query = $this->db->get()->row();
 		return $query;
 	}
@@ -56,21 +54,9 @@ class M_nilai_sidang extends CI_Model
 
 	function tampil_data()
 	{
-		// $this->db->select('*');
-		// $this->db->join('mahasiswa', 'mahasiswa.nim=bks_bahasa.nim', 'left');
-		// $this->db->where('bks_bahasa.id_user', $this->session->userdata('id_user'));
-		// return $this->db->get('bks_bahasa');
-
-		// $this->db->where('bks_bahasa.id_user', $this->session->userdata('id_user'));
-
-		// $this->db->select("*");
-		// $this->db->join('user', 'user.id_user=nilai_sidang.id_mahasiswa', 'left');
-		// return $this->db->get('nilai_sidang');
 
 		$this->db->select("*, COUNT(*) as jumlah");
-		// $this->db->join('user', 'user.id_user=seminar_ta.nim', 'left');
 		$this->db->group_by('nilai_sidang.nim');
-		//$this->db->having("jumlah > 1", null, false);
 		return $this->db->get('nilai_sidang');
 	}
 
@@ -98,11 +84,4 @@ class M_nilai_sidang extends CI_Model
 
 		return $this->db->get('nilai_sidang')->row();
 	}
-
-	// function tampil_data2($id_nilai_seminar)
-	// {
-	// 	$this->db->join('user', 'nilai_seminar.id_mahasiswa = user.id_user', 'left');
-	// 	$this->db->where('id_nilai_seminar', $id_nilai_seminar);
-	// 	return $this->db->get('nilai_seminar')->row();
-	// }
 }

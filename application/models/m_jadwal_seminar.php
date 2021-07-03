@@ -4,9 +4,6 @@ class M_jadwal_seminar extends CI_Model
 
 	function tampil_data()
 	{
-		// $this->db->where('jenis_jadwal', 'seminar');
-
-		// return $this->db->get('master_ta');
 		$this->db->select('*');
 		$this->db->join('mahasiswa', 'mahasiswa.nim=master_ta.nim', 'left');
 		$this->db->where('jadwal_seminar is NOT NULL', NULL, FALSE);
@@ -20,7 +17,6 @@ class M_jadwal_seminar extends CI_Model
 	{
 		$this->db->select('*');
 		$this->db->join('mahasiswa', 'mahasiswa.nim=master_ta.nim', 'left');
-		// $this->db->where('jenis_jadwal', 'seminar');
 		$this->db->where('jadwal_seminar is NOT NULL', NULL, FALSE);
 		$this->db->where('master_ta.nim', $this->session->userdata('email'));
 		return $this->db->get('master_ta');
@@ -31,7 +27,8 @@ class M_jadwal_seminar extends CI_Model
 		$data = array(
 			'nim' => $this->input->post('nim'),
 			'jadwal_seminar' => $this->input->post('jadwal_seminar'),
-			// 'jenis_jadwal' => 'seminar',
+			'ruang' => $this->input->post('ruang'),
+
 		);
 		$this->db->insert('master_ta', $data);
 		redirect('/jadwal_seminar');
@@ -43,7 +40,20 @@ class M_jadwal_seminar extends CI_Model
 		$data = array(
 			// 'nim' => $this->input->post('nim'),
 			'jadwal_seminar' => $this->input->post('jadwal_seminar'),
+			'ruang_seminar' => $this->input->post('ruang_seminar'),
 
+		);
+		$this->db->where(array('nim' => $nim));
+		$this->db->update('master_ta', $data);
+		redirect('/jadwal_seminar');
+	}
+
+	function ubah_data_hapus($nim)
+	{
+		$data = array(
+			// 'nim' => $this->input->post('nim'),
+			'jadwal_seminar' => null,
+			'ruang_seminar' => null,
 		);
 		$this->db->where(array('nim' => $nim));
 		$this->db->update('master_ta', $data);

@@ -34,16 +34,24 @@ class Jadwal_seminar extends CI_Controller
 		else $this->m_jadwal_seminar->ubah_data($nim);
 	}
 
-	function delete2($id_jadwal)
+	public function delete()
 	{
-		$delete = $this->m_jadwal_seminar->get_id_jadwal($id_jadwal);
-		if ($delete) {
-			$this->m_jadwal_seminar->delete($id_jadwal);
-			$this->session->set_flashdata('pesan', 'Data Berhasil di Hapus');
-			redirect('jadwal_seminar', 'refresh');
-		} else {
-			$this->session->set_flashdata('pesan', 'Data Tidak ada');
-			redirect('jadwal_seminar', 'refresh');
-		}
+		$nim = $this->input->post('nim');
+
+		if (empty($nim)) $this->m_jadwal_seminar->tambah_data();
+		else $this->m_jadwal_seminar->ubah_data_hapus($nim);
 	}
+
+	// function delete2($id_jadwal)
+	// {
+	// 	$delete = $this->m_jadwal_seminar->get_id_jadwal($id_jadwal);
+	// 	if ($delete) {
+	// 		$this->m_jadwal_seminar->delete($id_jadwal);
+	// 		$this->session->set_flashdata('pesan', 'Data Berhasil di Hapus');
+	// 		redirect('jadwal_seminar', 'refresh');
+	// 	} else {
+	// 		$this->session->set_flashdata('pesan', 'Data Tidak ada');
+	// 		redirect('jadwal_seminar', 'refresh');
+	// 	}
+	// }
 }

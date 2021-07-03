@@ -162,7 +162,7 @@
       </div>
     </div>
   </div>
-<?php } else if ($this->session->userdata('level') == 3) { ?>
+<?php } else if (($this->session->userdata('level') == 3) || ($this->session->userdata('level') == 4)) { ?>
   <div class="content-wrapper">
     <section class="content-header">
       <div class="container-fluid">
@@ -316,5 +316,4 @@
       </div>
     </div>
   </div>
-<?php } else { ?>
 <?php } ?>

@@ -4,7 +4,6 @@ class M_bks_pkl extends CI_Model
 
     function tampil_data()
     {
-        // return $this->db->get('bks_seminar');
         return $this->db->query("SELECT * FROM mahasiswa, bks_pkl WHERE mahasiswa.nim=bks_pkl.nim");
     }
 
@@ -16,25 +15,12 @@ class M_bks_pkl extends CI_Model
         return $this->db->get('bks_pkl');
     }
 
-
-
-    // function bks_pkl_admin($id_prodi)
-    // {
-    //     $this->db->select("mahasiswa.nama, mahasiswa.nim, bks_pkl.nim,bks_pkl.status,bks_pkl.id_bks_pkl, COUNT(*) AS jumlah")->group_by('bks_pkl.nim');
-    //     $this->db->join('mahasiswa', 'mahasiswa.nim=bks_pkl.nim', 'left');
-    //     $this->db->where(array('mahasiswa.id_prodi' => $id_prodi));
-    //     return $this->db->get('bks_pkl');
-    // }
-
     function bks_pkl_admin($id_prodi)
     {
         $this->db->select("mahasiswa.nama, mahasiswa.nim, bks_pkl.nim,bks_pkl.status,bks_pkl.id_bks_pkl, COUNT(*) AS jumlah")->group_by('bks_pkl.nim');
         $this->db->join('mahasiswa', 'mahasiswa.nim=bks_pkl.nim', 'left');
         $this->db->where(array('mahasiswa.id_prodi' => $id_prodi));
         return $this->db->get('bks_pkl');
-
-        //return $this->db->query("SELECT nim,status,id_bks_ket, COUNT(*) AS jumlah FROM bks_keterampilan AS jumlah GROUP BY nim ");
-        // return $this->db->query("SELECT * FROM mahasiswa, bks_keterampilan WHERE mahasiswa.nim=bks_keterampilan.nim");
     }
 
     function insert($data)
@@ -62,9 +48,9 @@ class M_bks_pkl extends CI_Model
         $this->db->from('bks_pkl');
         $this->db->where('id_bks_pkl', $id_bks_pkl);
         $result = $this->db->get('');
-        // periksa ada datanya atau tidak
+
         if ($result->num_rows() > 0) {
-            return $result->row(); //ambil datanya berdasrka row id
+            return $result->row();
         }
     }
 
@@ -90,14 +76,4 @@ class M_bks_pkl extends CI_Model
             return $data->row();
         }
     }
-
-    // function bks_pkl_admin()
-    // {
-
-    //     $this->db->select('*');
-    //     $this->db->join('mahasiswa', 'mahasiswa.nim=bks_pkl.nim', 'left');
-    //     $this->db->where('bks_pkl.nim', $this->session->userdata('nim'));
-    //     $this->db->or_where('bks_pkl.id_prodi', $this->session->userdata('id_prodi'));
-    //     return $this->db->get('bks_pkl');
-    // }
 }

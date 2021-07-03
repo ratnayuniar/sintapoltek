@@ -30,7 +30,7 @@
                                 <strong><i class="fas fa-book mr-1"></i> Judul</strong>
 
                                 <p class="text-muted">
-                                    Sistem Informasi Penjualan
+                                    <?= $judul->row()->judul ?>
                                 </p>
 
                                 <hr>
@@ -58,7 +58,7 @@
                             <div class="col-md-6" style="float :right">
                                 <strong><i class="fas fa-map-marker-alt mr-1"></i> Tempat Penelitian</strong>
 
-                                <p class="text-muted">Dinas Perdagangan Kota Madiun</p>
+                                <p class="text-muted"><?= $tempat->row()->lokasi ?></p>
 
                                 <hr>
                                 <?php

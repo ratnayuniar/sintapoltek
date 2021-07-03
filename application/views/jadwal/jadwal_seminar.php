@@ -1,4 +1,7 @@
 <?php if ($this->session->userdata('level') == 1) { ?>
+  <!-- Select2 -->
+  <link rel="stylesheet" href="<?php echo base_url(); ?>admin/plugins/select2/css/select2.min.css">
+  <link rel="stylesheet" href="<?php echo base_url(); ?>admin/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
   <div class="content-wrapper">
     <section class="content-header">
       <div class="container-fluid">
@@ -52,7 +55,7 @@
 										      	<td>" . longdate_indo($waktu[0]) . " " . $waktu[1] . "</td>
 										      	<td>
                             <a href ='#' class ='btn btn-sm btn-primary btn-xs' data-toggle='modal' data-target='#custom-width-modal' onClick=\"SetInput('" . $row->id_master_ta . "','" . $row->nim . "','" . $row->jadwal_seminar . "')\"><i class ='fa fa-edit'></i> Edit</a>
-												  	<a href='" . base_url('jadwal_seminar/delete2/' . $row->id_master_ta) . "' id='btn-hapus' class='btn btn-sm btn-danger btn-xs' ><i class='fa fa-trash'></i> Hapus</a> 
+												  	<a href='" . base_url('jadwal_seminar/delete/' . $row->id_master_ta) . "' id='btn-hapus' class='btn btn-sm btn-danger btn-xs' ><i class='fa fa-trash'></i> Hapus</a> 
 											      </td>									
 									    </tr>";
                         $no++;
@@ -85,12 +88,19 @@
               <input type="hidden" id="id_master_ta" name="id_master_ta">
               <label class="col-md-6 control-label">Nama Mahasiswa</label>
               <div class="col-md-9 ">
-                <select class="form-control" style="width: 100%;" data-live-search="true" data-style="btn-white" onclick="choose()" id="nim" name="nim" required>
+                <select class="form-control select2" style="width: 100%;" data-live-search="true" data-style="btn-white" onclick="choose()" id="nim" name="nim" required>
                   <option>-- Pilih Mahasiswa --</option>
                   <?php foreach ($mahasiswa->result() as $row) : ?>
                     <option value="<?php echo $row->nim; ?>"><?php echo $row->nama; ?></option>
                   <?php endforeach; ?>
                 </select>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="col-md-3 control-label">Ruang</label>
+              <div class="input-group col-md-9">
+                <input type="text" name="ruang_seminar" class="form-control" id="ruang_seminar">
               </div>
             </div>
 
@@ -158,9 +168,22 @@
     </div>
   </div>
 
+  <!-- Select2 -->
+  <!-- <script src="<?php echo base_url() ?>admin/plugins/select2/js/select2.full.min.js"></script> -->
   <link href="<?php echo base_url() ?>assets/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
   <script type="text/javascript" src="<?php echo base_url() ?>assets/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
+  <script>
+    $(function() {
+      //Initialize Select2 Elements
+      $('.select2').select2()
 
+      //Initialize Select2 Elements
+      $('.select2bs4').select2({
+        theme: 'bootstrap4'
+      })
+
+    })
+  </script>
   <script type="text/javascript">
     function choose() {
       var zoo = document.getElementById('nama').value;
@@ -181,10 +204,11 @@
       document.getElementById('jadwal2').value = jadwal;
     }
 
-    function ResetInput(id_jadwal, nim, jadwal) {
-      document.getElementById('id_jadwal').value = "";
+    function ResetInput(id_master_ta, nim, jadwal, ruang_seminar) {
+      document.getElementById('id_master_ta').value = "";
       document.getElementById('nim').value = "";
       document.getElementById('jadwal').value = "";
+      document.getElementById('ruang_seminar').value = "";
     }
   </script>
 

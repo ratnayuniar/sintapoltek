@@ -42,7 +42,6 @@ class M_prodi extends CI_Model
 	}
 	public function get_data($id_prodi)
 	{
-		// return $this->db->query("SELECT * FROM prodi, jurusan WHERE prodi.id_jurusan=jurusan.id_jurusan");
 		$this->db->select('*');
 		$this->db->from('prodi');
 		$this->db->join('jurusan', 'jurusan.id_jurusan = prodi.id_jurusan', 'left');

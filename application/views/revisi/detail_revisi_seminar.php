@@ -19,7 +19,7 @@
         <section class="content">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-12">
+                    <div class="col-6">
                         <div class="card card-info">
                             <div class="card-header">
                                 <h3 class="card-title">Data Revisi Seminar Proposal</h3>
@@ -28,7 +28,7 @@
                                 <div class="card-body">
                                     <input type="hidden" id="nim" name="nim" value="<?php echo $nim; ?>">
                                     <input type="hidden" id="jenis" name="jenis">
-                                    <div class="form-group row">
+                                    <!-- <div class="form-group row">
                                         <label for="inputEmail3" class="col-sm-5 col-form-label">Dosen Penguji 1</label>
                                         <div class="col-sm-5">
                                             <?php
@@ -44,14 +44,14 @@
                                             }
                                             ?>
                                         </div>
-                                    </div>
-                                    <div class="form-group row">
+                                    </div> -->
+                                    <!-- <div class="form-group row">
                                         <label for="inputEmail3" class="col-sm-5 col-form-label">Revisi Dosen Penguji 1</label>
                                         <div class="col-sm-5">
                                             <textarea type="text" class="form-control" rows="7" id="revisi1" name="revisi1"></textarea>
                                         </div>
-                                    </div>
-                                    <div class="form-group row">
+                                    </div> -->
+                                    <!-- <div class="form-group row">
                                         <label for="inputEmail3" class="col-sm-5 col-form-label">Dosen Penguji 2</label>
                                         <div class="col-sm-5">
                                             <?php
@@ -67,14 +67,14 @@
                                             }
                                             ?>
                                         </div>
-                                    </div>
-                                    <div class="form-group row">
+                                    </div> -->
+                                    <!-- <div class="form-group row">
                                         <label for="inputEmail3" class="col-sm-5 col-form-label">Revisi Dosen Penguji 2</label>
                                         <div class="col-sm-5">
                                             <textarea type="text" class="form-control" rows="7" id="revisi2" name="revisi2"></textarea>
                                         </div>
-                                    </div>
-                                    <div class="form-group row">
+                                    </div> -->
+                                    <!-- <div class="form-group row">
                                         <label for="inputEmail3" class="col-sm-5 col-form-label">Dosen Penguji 3</label>
                                         <div class="col-sm-5">
                                             <?php
@@ -90,13 +90,13 @@
                                             }
                                             ?>
                                         </div>
-                                    </div>
-                                    <div class="form-group row">
+                                    </div> -->
+                                    <!-- <div class="form-group row">
                                         <label for="inputEmail3" class="col-sm-5 col-form-label">Revisi Dosen Penguji 3</label>
                                         <div class="col-sm-5">
                                             <textarea type="text" class="form-control" rows="7" id="revisi3" name="revisi3"></textarea>
                                         </div>
-                                    </div>
+                                    </div> -->
                                     <div class="form-group row">
                                         <label for="inputEmail3" class="col-sm-5 col-form-label">Upload File Revisi</label>
                                         <div class="col-sm-5">
@@ -116,6 +116,7 @@
             </div>
         </section>
     </div>
+    <!-- user dosen -->
 <?php } else { ?>
     <div class="content-wrapper">
         <section class="content-header">
@@ -147,29 +148,18 @@
                                     <input type="hidden" id="nim" name="nim" value="<?php echo $nim; ?>">
                                     <input type="hidden" id="jenis" name="jenis">
                                     <div class="form-group row">
-                                        <label for="inputEmail3" class="col-sm-5 col-form-label">Dosen Penguji 1</label>
+                                        <label for="inputEmail3" class="col-sm-5 col-form-label">Dosen</label>
                                         <div class="col-sm-5">
-                                            <?php
-                                            $id_prodi = $this->session->userdata('id_prodi');
-                                            foreach ($this->m_penguji->tampil_data($id_prodi)->result() as $row) {
-                                                $data['user'] = $this->m_penguji->getmahasiswabyid($row->nim);
-                                                $data['dosen1'] = $this->m_penguji->getdosen1($row->penguji1_sempro);
-                                                echo
-                                                " 
-											<input type='text' class='form-control' id='dosen' readonly name='dosen' placeholder='Nama Dosen' value='" . $data['dosen1']->nama . "'></td>
-											<input type='hidden' class='form-control' id='id_dosen' readonly name='penguji1' placeholder='Nama Dosen' value='" . $data['dosen1']->id_dosen . "'></td>
-											";
-                                            }
-                                            ?>
+                                            <input type="text" class="form-control" id="dosen" readonly name="penguji" placeholder="Nama Dosen" value=" <?php echo $this->session->userdata('nama') ?>"></td>
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="inputEmail3" class="col-sm-5 col-form-label">Revisi Dosen Penguji 1</label>
+                                        <label for="inputEmail3" class="col-sm-5 col-form-label">Revisi</label>
                                         <div class="col-sm-5">
-                                            <textarea type="text" class="form-control" rows="7" id="revisi1" name="revisi1"></textarea>
+                                            <textarea type="text" class="form-control" rows="7" id="revisi" name="revisi"></textarea>
                                         </div>
                                     </div>
-                                    <div class="form-group row">
+                                    <!-- <div class="form-group row">
                                         <label for="inputEmail3" class="col-sm-5 col-form-label">Dosen Penguji 2</label>
                                         <div class="col-sm-5">
                                             <?php
@@ -214,14 +204,13 @@
                                         <div class="col-sm-5">
                                             <textarea type="text" class="form-control" rows="7" id="revisi3" name="revisi3"></textarea>
                                         </div>
-                                    </div>
-                                    <div class="form-group row">
+                                    </div> -->
+                                    <!-- <div class="form-group row">
                                         <label for="inputEmail3" class="col-sm-5 col-form-label">Upload File Revisi</label>
                                         <div class="col-sm-5">
                                             <input type="file" name="file_revisi" id="file_revisi">
                                         </div>
-                                    </div>
-
+                                    </div> -->
                                 </div>
                                 <div class="card-footer">
                                     <button type="submit" class="btn btn-info float-right">Simpan</button>
