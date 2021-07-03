@@ -9,6 +9,7 @@ class Bks_sidang extends CI_Controller
 		parent::__construct();
 		$this->load->model('m_bks_sidang');
 		$this->load->helper('url');
+		$this->load->helper("file");
 		$this->load->library('form_validation');
 	}
 
@@ -81,7 +82,7 @@ class Bks_sidang extends CI_Controller
 				$data = [
 					'nim' => $nim,
 					'berita_acara' => $berita_acara,
-
+					'st_berita_acara' => 0,
 
 				];
 
@@ -124,6 +125,7 @@ class Bks_sidang extends CI_Controller
 				$data = [
 					'nim' => $nim,
 					'persetujuan' => $persetujuan,
+					'st_persetujuan' => 0,
 
 
 				];
@@ -167,6 +169,7 @@ class Bks_sidang extends CI_Controller
 				$data = [
 					'nim' => $nim,
 					'pkkmb' => $pkkmb,
+					'st_pkkmb' => 0,
 
 
 				];
@@ -210,6 +213,7 @@ class Bks_sidang extends CI_Controller
 				$data = [
 					'nim' => $nim,
 					'file_ta' => $file_ta,
+					'st_file_ta' => 0,
 
 
 				];
@@ -253,6 +257,7 @@ class Bks_sidang extends CI_Controller
 				$data = [
 					'nim' => $nim,
 					'monitoring' => $monitoring,
+					'st_monitoring' => 0,
 
 
 				];
@@ -296,6 +301,7 @@ class Bks_sidang extends CI_Controller
 				$data = [
 					'nim' => $nim,
 					'presentasi' => $presentasi,
+					'st_presentasi' => 0,
 
 
 				];

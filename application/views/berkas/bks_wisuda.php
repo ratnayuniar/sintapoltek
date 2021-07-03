@@ -669,13 +669,19 @@
                                                         ?>
                                                     </td>
                                                     <td align="center">
-                                                        <?php if ($row->status_file_ta == '0') {
-                                                            echo '<span class="badge badge-warning">Belum Diverifikasi</span>';
-                                                        } else if ($row->status_file_ta == '1') {
-                                                            echo '<span class="badge badge-info">Kurang Lengkap</span>';
+                                                        <?php
+                                                        if ($bks_wisuda == "") {
+                                                            echo "";
                                                         } else {
-                                                            echo '<span class="badge badge-success">Lengkap</span>';
+                                                            if ($row->status_file_ta == '0') {
+                                                                echo '<span class="badge badge-warning">Belum Diverifikasi</span>';
+                                                            } else if ($row->status_file_ta == '1') {
+                                                                echo '<span class="badge badge-info">Kurang Lengkap</span>';
+                                                            } else if ($row->status_file_ta == '2') {
+                                                                echo '<span class="badge badge-success">Lengkap</span>';
+                                                            }
                                                         }
+
                                                         ?>
                                                     </td>
 
@@ -694,13 +700,19 @@
                                                         }
                                                         ?></td>
                                                     <td align="center">
-                                                        <?php if ($row->status_jurnal == '0') {
-                                                            echo '<span class="badge badge-warning">Belum Diverifikasi</span>';
-                                                        } else if ($row->status_jurnal == '1') {
-                                                            echo '<span class="badge badge-info">Kurang Lengkap</span>';
+                                                        <?php
+                                                        if ($bks_wisuda == "") {
+                                                            echo "";
                                                         } else {
-                                                            echo '<span class="badge badge-success">Lengkap</span>';
+                                                            if ($row->status_jurnal == '0') {
+                                                                echo '<span class="badge badge-warning">Belum Diverifikasi</span>';
+                                                            } else if ($row->status_jurnal == '1') {
+                                                                echo '<span class="badge badge-info">Kurang Lengkap</span>';
+                                                            } else if ($row->status_jurnal == '2') {
+                                                                echo '<span class="badge badge-success">Lengkap</span>';
+                                                            }
                                                         }
+
                                                         ?>
                                                     </td>
                                                 </tr>
@@ -719,13 +731,19 @@
                                                         }
                                                         ?></td>
                                                     <td align="center">
-                                                        <?php if ($row->status_aplikasi == '0') {
-                                                            echo '<span class="badge badge-warning">Belum Diverifikasi</span>';
-                                                        } else if ($row->status_aplikasi == '1') {
-                                                            echo '<span class="badge badge-info">Kurang Lengkap</span>';
+                                                        <?php
+                                                        if ($bks_wisuda == "") {
+                                                            echo "";
                                                         } else {
-                                                            echo '<span class="badge badge-success">Lengkap</span>';
+                                                            if ($row->status_aplikasi == '0') {
+                                                                echo '<span class="badge badge-warning">Belum Diverifikasi</span>';
+                                                            } else if ($row->status_aplikasi == '1') {
+                                                                echo '<span class="badge badge-info">Kurang Lengkap</span>';
+                                                            } else if ($row->status_aplikasi == '2') {
+                                                                echo '<span class="badge badge-success">Lengkap</span>';
+                                                            }
                                                         }
+
                                                         ?>
                                                     </td>
                                                 </tr>
@@ -743,13 +761,19 @@
                                                         }
                                                         ?></td>
                                                     <td align="center">
-                                                        <?php if ($row->status_ppt == '0') {
-                                                            echo '<span class="badge badge-warning">Belum Diverifikasi</span>';
-                                                        } else if ($row->status_ppt == '1') {
-                                                            echo '<span class="badge badge-info">Kurang Lengkap</span>';
+                                                        <?php
+                                                        if ($bks_wisuda == "") {
+                                                            echo "";
                                                         } else {
-                                                            echo '<span class="badge badge-success">Lengkap</span>';
+                                                            if ($row->status_ppt == '0') {
+                                                                echo '<span class="badge badge-warning">Belum Diverifikasi</span>';
+                                                            } else if ($row->status_ppt == '1') {
+                                                                echo '<span class="badge badge-info">Kurang Lengkap</span>';
+                                                            } else if ($row->status_ppt == '2') {
+                                                                echo '<span class="badge badge-success">Lengkap</span>';
+                                                            }
                                                         }
+
                                                         ?>
                                                     </td>
                                                 </tr>
@@ -767,13 +791,19 @@
                                                         }
                                                         ?></td>
                                                     <td align="center">
-                                                        <?php if ($row->status_video == '0') {
-                                                            echo '<span class="badge badge-warning">Belum Diverifikasi</span>';
-                                                        } else if ($row->status_video == '1') {
-                                                            echo '<span class="badge badge-info">Kurang Lengkap</span>';
+                                                        <?php
+                                                        if ($bks_wisuda == "") {
+                                                            echo "";
                                                         } else {
-                                                            echo '<span class="badge badge-success">Lengkap</span>';
+                                                            if ($row->status_video == '0') {
+                                                                echo '<span class="badge badge-warning">Belum Diverifikasi</span>';
+                                                            } else if ($row->status_video == '1') {
+                                                                echo '<span class="badge badge-info">Kurang Lengkap</span>';
+                                                            } else if ($row->status_video == '2') {
+                                                                echo '<span class="badge badge-success">Lengkap</span>';
+                                                            }
                                                         }
+
                                                         ?>
                                                     </td>
                                                 </tr>
@@ -791,13 +821,19 @@
                                                         }
                                                         ?></td>
                                                     <td align="center">
-                                                        <?php if ($row->status_lap_ta == '0') {
-                                                            echo '<span class="badge badge-warning">Belum Diverifikasi</span>';
-                                                        } else if ($row->status_lap_ta == '1') {
-                                                            echo '<span class="badge badge-info">Kurang Lengkap</span>';
+                                                        <?php
+                                                        if ($bks_wisuda == "") {
+                                                            echo "";
                                                         } else {
-                                                            echo '<span class="badge badge-success">Lengkap</span>';
+                                                            if ($row->status_lap_ta == '0') {
+                                                                echo '<span class="badge badge-warning">Belum Diverifikasi</span>';
+                                                            } else if ($row->status_lap_ta == '1') {
+                                                                echo '<span class="badge badge-info">Kurang Lengkap</span>';
+                                                            } else if ($row->status_lap_ta == '2') {
+                                                                echo '<span class="badge badge-success">Lengkap</span>';
+                                                            }
                                                         }
+
                                                         ?>
                                                     </td>
                                                 </tr>
@@ -834,7 +870,7 @@
                         </div>
                     </div>
                     <div class="card-footer">
-                        <button type="submit" name="submit" class="btn btn-primary">Simpan</button>
+                        <button type="submit" name="submit" class="btn btn-primary" style="float: right;">Simpan</button>
                     </div>
                 </form>
             </div>
@@ -866,7 +902,7 @@
 
                     </div>
                     <div class="card-footer">
-                        <button type="submit" name="submit" class="btn btn-primary">Simpan</button>
+                        <button type="submit" name="submit" class="btn btn-primary" style="float: right;">Simpan</button>
                     </div>
                 </form>
             </div>
@@ -897,7 +933,7 @@
 
                     </div>
                     <div class="card-footer">
-                        <button type="submit" name="submit" class="btn btn-primary">Simpan</button>
+                        <button type="submit" name="submit" class="btn btn-primary" style="float: right;">Simpan</button>
                     </div>
                 </form>
             </div>
@@ -926,7 +962,7 @@
                         </div>
                     </div>
                     <div class="card-footer">
-                        <button type="submit" name="submit" class="btn btn-primary">Simpan</button>
+                        <button type="submit" name="submit" class="btn btn-primary" style="float: right;">Simpan</button>
                     </div>
                 </form>
             </div>
@@ -956,7 +992,7 @@
                         </div>
                     </div>
                     <div class="card-footer">
-                        <button type="submit" name="submit" class="btn btn-primary">Simpan</button>
+                        <button type="submit" name="submit" class="btn btn-primary" style="float: right;">Simpan</button>
                     </div>
                 </form>
             </div>
@@ -986,7 +1022,7 @@
                         </div>
                     </div>
                     <div class="card-footer">
-                        <button type="submit" name="submit" class="btn btn-primary">Simpan</button>
+                        <button type="submit" name="submit" class="btn btn-primary" style="float: right;">Simpan</button>
                     </div>
                 </form>
             </div>

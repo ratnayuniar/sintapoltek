@@ -195,12 +195,17 @@
                             ?>
                           </td>
                           <td align="center">
-                            <?php if ($row->st_berita_acara == '0') {
-                              echo '<span class="badge badge-warning">Belum Diverifikasi</span>';
-                            } else if ($row->st_berita_acara == '1') {
-                              echo '<span class="badge badge-info">Kurang Lengkap</span>';
+                            <?php
+                            if ($bks_sidang == "") {
+                              echo "";
                             } else {
-                              echo '<span class="badge badge-success">Lengkap</span>';
+                              if ($row->st_berita_acara == '0') {
+                                echo '<span class="badge badge-warning">Belum Diverifikasi</span>';
+                              } else if ($row->st_berita_acara == '1') {
+                                echo '<span class="badge badge-info">Kurang Lengkap</span>';
+                              } else if ($row->st_berita_acara == '2') {
+                                echo '<span class="badge badge-success">Lengkap</span>';
+                              }
                             }
                             ?>
                           </td>
@@ -219,13 +224,19 @@
                               }
                               ?></td>
                           <td align="center">
-                            <?php if ($row->st_persetujuan == '0') {
-                              echo '<span class="badge badge-warning">Belum Diverifikasi</span>';
-                            } else if ($row->st_persetujuan == '1') {
-                              echo '<span class="badge badge-info">Kurang Lengkap</span>';
+                            <?php
+                            if ($bks_sidang == "") {
+                              echo "";
                             } else {
-                              echo '<span class="badge badge-success">Lengkap</span>';
+                              if ($row->st_persetujuan == '0') {
+                                echo '<span class="badge badge-warning">Belum Diverifikasi</span>';
+                              } else if ($row->st_persetujuan == '1') {
+                                echo '<span class="badge badge-info">Kurang Lengkap</span>';
+                              } else if ($row->st_persetujuan == '2') {
+                                echo '<span class="badge badge-success">Lengkap</span>';
+                              }
                             }
+
                             ?>
                           </td>
                         </tr>
@@ -234,7 +245,7 @@
                           <td>3.</td>
                           <td>File TA</td>
                           <td>
-                            <a href="#" class="btn btn-info" data-toggle="modal" pull="right" data-target="#file_proposal" onclick="ResetInput()"><i class="fa fa-file"></i> Unggah</a>
+                            <a href="#" class="btn btn-info" data-toggle="modal" pull="right" data-target="#file_ta" onclick="ResetInput()"><i class="fa fa-file"></i> Unggah</a>
                           </td>
                           <td><?php
                               if ($bks_sidang == "") {
@@ -244,12 +255,17 @@
                               }
                               ?></td>
                           <td align="center">
-                            <?php if ($row->st_file_ta == '0') {
-                              echo '<span class="badge badge-warning">Belum Diverifikasi</span>';
-                            } else if ($row->st_file_ta == '1') {
-                              echo '<span class="badge badge-info">Kurang Lengkap</span>';
+                            <?php
+                            if ($bks_sidang == "") {
+                              echo "";
                             } else {
-                              echo '<span class="badge badge-success">Lengkap</span>';
+                              if ($row->st_file_ta == '0') {
+                                echo '<span class="badge badge-warning">Belum Diverifikasi</span>';
+                              } else if ($row->st_file_ta == '1') {
+                                echo '<span class="badge badge-info">Kurang Lengkap</span>';
+                              } else if ($row->st_file_ta == '2') {
+                                echo '<span class="badge badge-success">Lengkap</span>';
+                              }
                             }
                             ?>
                           </td>
@@ -268,12 +284,17 @@
                               }
                               ?></td>
                           <td align="center">
-                            <?php if ($row->st_presentasi == '0') {
-                              echo '<span class="badge badge-warning">Belum Diverifikasi</span>';
-                            } else if ($row->st_presentasi == '1') {
-                              echo '<span class="badge badge-info">Kurang Lengkap</span>';
+                            <?php
+                            if ($bks_sidang == "") {
+                              echo "";
                             } else {
-                              echo '<span class="badge badge-success">Lengkap</span>';
+                              if ($row->st_presentasi == '0') {
+                                echo '<span class="badge badge-warning">Belum Diverifikasi</span>';
+                              } else if ($row->st_presentasi == '1') {
+                                echo '<span class="badge badge-info">Kurang Lengkap</span>';
+                              } else if ($row->st_presentasi == '2') {
+                                echo '<span class="badge badge-success">Lengkap</span>';
+                              }
                             }
                             ?>
                           </td>
@@ -292,21 +313,27 @@
                               }
                               ?></td>
                           <td align="center">
-                            <?php if ($row->st_monitoring == '0') {
-                              echo '<span class="badge badge-warning">Belum Diverifikasi</span>';
-                            } else if ($row->st_monitoring == '1') {
-                              echo '<span class="badge badge-info">Kurang Lengkap</span>';
+                            <?php
+                            if ($bks_sidang == "") {
+                              echo "";
                             } else {
-                              echo '<span class="badge badge-success">Lengkap</span>';
+                              if ($row->st_monitoring == '0') {
+                                echo '<span class="badge badge-warning">Belum Diverifikasi</span>';
+                              } else if ($row->st_monitoring == '1') {
+                                echo '<span class="badge badge-info">Kurang Lengkap</span>';
+                              } else if ($row->st_monitoring == '2') {
+                                echo '<span class="badge badge-success">Lengkap</span>';
+                              }
                             }
                             ?>
+
                           </td>
                         </tr>
                         <tr>
                           <td>6.</td>
                           <td>PKKMB</td>
                           <td>
-                            <a href="#" class="btn btn-info" data-toggle="modal" pull="right" data-target="#file_monitoring" onclick="ResetInput()"><i class="fa fa-file"></i> Unggah</a>
+                            <a href="#" class="btn btn-info" data-toggle="modal" pull="right" data-target="#file_pkkmb" onclick="ResetInput()"><i class="fa fa-file"></i> Unggah</a>
                           </td>
                           <td><?php
                               if ($bks_sidang == "") {
@@ -316,12 +343,17 @@
                               }
                               ?></td>
                           <td align="center">
-                            <?php if ($row->st_pkkmb == '0') {
-                              echo '<span class="badge badge-warning">Belum Diverifikasi</span>';
-                            } else if ($row->st_pkkmb == '1') {
-                              echo '<span class="badge badge-info">Kurang Lengkap</span>';
+                            <?php
+                            if ($bks_sidang == "") {
+                              echo "";
                             } else {
-                              echo '<span class="badge badge-success">Lengkap</span>';
+                              if ($row->st_pkkmb == '0') {
+                                echo '<span class="badge badge-warning">Belum Diverifikasi</span>';
+                              } else if ($row->st_pkkmb == '1') {
+                                echo '<span class="badge badge-info">Kurang Lengkap</span>';
+                              } else  if ($row->st_pkkmb == '2') {
+                                echo '<span class="badge badge-success">Lengkap</span>';
+                              }
                             }
                             ?>
                           </td>
@@ -335,6 +367,180 @@
           </div>
         </div>
     </section>
+  </div>
+
+  <div id="file_ba" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="custom-width-modalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog" style="width:55%;">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Berkas Pendaftaran Seminar</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <form action="<?= base_url('bks_sidang/upload_beritaacara') ?>" method="post" class="form-horizontal" role="form" enctype="multipart/form-data">
+          <div class="card-body">
+            <div class="form-group">
+              <input type="hidden" id="id_seminar_ta" name="id_seminar_ta">
+              <input type="hidden" value="<?php echo $this->session->userdata('email'); ?>" class="form-control" id="nim" name="nim" placeholder="NIM">
+              <input type="hidden" value="<?php echo $this->session->userdata('email'); ?>" class="form-control" id="nim2" name="nim2" readonly placeholder="NIM">
+            </div>
+            <div class="form-group">
+              <label for="berita_acara">File Berita Acara</label><br>
+              <input type="file" name="berita_acara" required>
+            </div>
+          </div>
+          <div class="card-footer">
+            <button type="submit" name="submit" class="btn btn-primary" style="float: right;">Simpan</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div id="file_persetujuan" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="custom-width-modalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog" style="width:55%;">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Berkas Pendaftaran Seminar</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <form action="<?= base_url('bks_sidang/upload_persetujuan') ?>" method="post" class="form-horizontal" role="form" enctype="multipart/form-data">
+          <div class="card-body">
+            <div class="form-group">
+              <input type="hidden" id="id_seminar_ta" name="id_seminar_ta">
+              <input type="hidden" value="<?php echo $this->session->userdata('email'); ?>" class="form-control" id="nim" name="nim" placeholder="NIM">
+              <input type="hidden" value="<?php echo $this->session->userdata('email'); ?>" class="form-control" id="nim2" name="nim2" readonly placeholder="NIM">
+            </div>
+            <div class="form-group">
+              <label for="berita_acara">File Persetujuan</label><br>
+              <input type="file" name="persetujuan" required>
+            </div>
+          </div>
+          <div class="card-footer">
+            <button type="submit" name="submit" class="btn btn-primary" style="float: right;">Simpan</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div id="file_ta" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="custom-width-modalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog" style="width:55%;">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Berkas Pendaftaran Seminar</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <form action="<?= base_url('bks_sidang/upload_file_ta') ?>" method="post" class="form-horizontal" role="form" enctype="multipart/form-data">
+          <div class="card-body">
+            <div class="form-group">
+              <input type="hidden" id="id_seminar_ta" name="id_seminar_ta">
+              <input type="hidden" value="<?php echo $this->session->userdata('email'); ?>" class="form-control" id="nim" name="nim" placeholder="NIM">
+              <input type="hidden" value="<?php echo $this->session->userdata('email'); ?>" class="form-control" id="nim2" name="nim2" readonly placeholder="NIM">
+            </div>
+            <div class="form-group">
+              <label for="berita_acara">File TA</label><br>
+              <input type="file" name="file_ta" required>
+            </div>
+          </div>
+          <div class="card-footer">
+            <button type="submit" name="submit" class="btn btn-primary " style="float: right;">Simpan</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div id="file_presentasi" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="custom-width-modalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog" style="width:55%;">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Berkas Pendaftaran Seminar</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <form action="<?= base_url('bks_sidang/upload_presentasi') ?>" method="post" class="form-horizontal" role="form" enctype="multipart/form-data">
+          <div class="card-body">
+            <div class="form-group">
+              <input type="hidden" id="id_seminar_ta" name="id_seminar_ta">
+              <input type="hidden" value="<?php echo $this->session->userdata('email'); ?>" class="form-control" id="nim" name="nim" placeholder="NIM">
+              <input type="hidden" value="<?php echo $this->session->userdata('email'); ?>" class="form-control" id="nim2" name="nim2" readonly placeholder="NIM">
+            </div>
+            <div class="form-group">
+              <label for="berita_acara">File Presentasi</label><br>
+              <input type="file" name="presentasi" required>
+            </div>
+          </div>
+          <div class="card-footer">
+            <button type="submit" name="submit" class="btn btn-primary" style="float: right;">Simpan</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div id="file_monitoring" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="custom-width-modalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog" style="width:55%;">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Berkas Pendaftaran Seminar</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <form action="<?= base_url('bks_sidang/upload_monitoring') ?>" method="post" class="form-horizontal" role="form" enctype="multipart/form-data">
+          <div class="card-body">
+            <div class="form-group">
+              <input type="hidden" id="id_seminar_ta" name="id_seminar_ta">
+              <input type="hidden" value="<?php echo $this->session->userdata('email'); ?>" class="form-control" id="nim" name="nim" placeholder="NIM">
+              <input type="hidden" value="<?php echo $this->session->userdata('email'); ?>" class="form-control" id="nim2" name="nim2" readonly placeholder="NIM">
+            </div>
+            <div class="form-group">
+              <label for="berita_acara">File Monitoring</label><br>
+              <input type="file" name="monitoring" required>
+            </div>
+          </div>
+          <div class="card-footer">
+            <button type="submit" name="submit" class="btn btn-primary" style="float: right;">Simpan</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div id="file_pkkmb" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="custom-width-modalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog" style="width:55%;">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Berkas Pendaftaran Seminar</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <form action="<?= base_url('bks_sidang/upload_pkkmb') ?>" method="post" class="form-horizontal" role="form" enctype="multipart/form-data">
+          <div class="card-body">
+            <div class="form-group">
+              <input type="hidden" id="id_seminar_ta" name="id_seminar_ta">
+              <input type="hidden" value="<?php echo $this->session->userdata('email'); ?>" class="form-control" id="nim" name="nim" placeholder="NIM">
+              <input type="hidden" value="<?php echo $this->session->userdata('email'); ?>" class="form-control" id="nim2" name="nim2" readonly placeholder="NIM">
+            </div>
+            <div class="form-group">
+              <label for="berita_acara">File PKKMB</label><br>
+              <input type="file" name="pkkmb" required>
+            </div>
+          </div>
+          <div class="card-footer">
+            <button type="submit" name="submit" class="btn btn-primary" style="float: right;">Simpan</button>
+          </div>
+        </form>
+      </div>
+    </div>
   </div>
 
   <div id="custom-width-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="custom-width-modalLabel" aria-hidden="true" style="display: none;">

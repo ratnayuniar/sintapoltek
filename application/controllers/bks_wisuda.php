@@ -173,7 +173,7 @@ class Bks_wisuda extends CI_Controller
                 $data = [
                     'nim' => $nim,
                     'file_ta' => $file_ta,
-                    'status' => 0,
+                    'status_file_ta' => 0,
                     'laporan_perpus' => 0,
                     'tanggungan_perpus' => 0,
                     'ukt' => 0,
@@ -229,11 +229,7 @@ class Bks_wisuda extends CI_Controller
                 $data = [
                     'nim' => $nim,
                     'jurnal' => $jurnal,
-                    'status' => 0,
-                    'laporan_perpus' => 0,
-                    'tanggungan_perpus' => 0,
-                    'ukt' => 0,
-                    'pinjaman_alat' => 0,
+                    'status_jurnal' => 0,
                 ];
 
                 $cek = $this->db->like('nim', $data['nim'])->from('bks_wisuda')->count_all_results();
@@ -275,11 +271,8 @@ class Bks_wisuda extends CI_Controller
                 $data = [
                     'nim' => $nim,
                     'aplikasi' => $aplikasi,
-                    'status' => 0,
-                    'laporan_perpus' => 0,
-                    'tanggungan_perpus' => 0,
-                    'ukt' => 0,
-                    'pinjaman_alat' => 0,
+                    'status_aplikasi' => 0,
+
                 ];
 
                 $cek = $this->db->like('nim', $data['nim'])->from('bks_wisuda')->count_all_results();
@@ -321,11 +314,8 @@ class Bks_wisuda extends CI_Controller
                 $data = [
                     'nim' => $nim,
                     'ppt' => $ppt,
-                    'status' => 0,
-                    'laporan_perpus' => 0,
-                    'tanggungan_perpus' => 0,
-                    'ukt' => 0,
-                    'pinjaman_alat' => 0,
+                    'status_ppt' => 0,
+
                 ];
 
                 $cek = $this->db->like('nim', $data['nim'])->from('bks_wisuda')->count_all_results();
@@ -367,11 +357,9 @@ class Bks_wisuda extends CI_Controller
                 $data = [
                     'nim' => $nim,
                     'video' => $video,
-                    'status' => 0,
-                    'laporan_perpus' => 0,
-                    'tanggungan_perpus' => 0,
-                    'ukt' => 0,
-                    'pinjaman_alat' => 0,
+                    'status_video' => 0,
+                    'status_lap_ta' => 0,
+
                 ];
 
                 $cek = $this->db->like('nim', $data['nim'])->from('bks_wisuda')->count_all_results();

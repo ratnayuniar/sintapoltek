@@ -198,13 +198,19 @@
                           ?>
                         </td>
                         <td align="center">
-                          <?php if ($row->st_beritaacara == '0') {
-                            echo '<span class="badge badge-warning">Belum Diverifikasi</span>';
-                          } else if ($row->st_beritaacara == '1') {
-                            echo '<span class="badge badge-info">Kurang Lengkap</span>';
+                          <?php
+                          if ($bks_seminar == "") {
+                            echo "";
                           } else {
-                            echo '<span class="badge badge-success">Lengkap</span>';
+                            if ($row->st_beritaacara == '0') {
+                              echo '<span class="badge badge-warning">Belum Diverifikasi</span>';
+                            } else if ($row->st_beritaacara == '1') {
+                              echo '<span class="badge badge-info">Kurang Lengkap</span>';
+                            } else if ($row->st_beritaacara == '2') {
+                              echo '<span class="badge badge-success">Lengkap</span>';
+                            }
                           }
+
                           ?>
                         </td>
                       </tr>
@@ -222,13 +228,19 @@
                             }
                             ?></td>
                         <td align="center">
-                          <?php if ($row->st_persetujuan == '0') {
-                            echo '<span class="badge badge-warning">Belum Diverifikasi</span>';
-                          } else if ($row->st_persetujuan == '1') {
-                            echo '<span class="badge badge-info">Kurang Lengkap</span>';
+                          <?php
+                          if ($bks_seminar == "") {
+                            echo "";
                           } else {
-                            echo '<span class="badge badge-success">Lengkap</span>';
+                            if ($row->st_persetujuan == '0') {
+                              echo '<span class="badge badge-warning">Belum Diverifikasi</span>';
+                            } else if ($row->st_persetujuan == '1') {
+                              echo '<span class="badge badge-info">Kurang Lengkap</span>';
+                            } else if ($row->st_persetujuan == '2') {
+                              echo '<span class="badge badge-success">Lengkap</span>';
+                            }
                           }
+
                           ?>
                         </td>
                       </tr>
@@ -247,13 +259,19 @@
                             }
                             ?></td>
                         <td align="center">
-                          <?php if ($row->st_proposal == '0') {
-                            echo '<span class="badge badge-warning">Belum Diverifikasi</span>';
-                          } else if ($row->st_proposal == '1') {
-                            echo '<span class="badge badge-info">Kurang Lengkap</span>';
+                          <?php
+                          if ($bks_seminar == "") {
+                            echo "";
                           } else {
-                            echo '<span class="badge badge-success">Lengkap</span>';
+                            if ($row->st_proposal == '0') {
+                              echo '<span class="badge badge-warning">Belum Diverifikasi</span>';
+                            } else if ($row->st_proposal == '1') {
+                              echo '<span class="badge badge-info">Kurang Lengkap</span>';
+                            } else if ($row->st_proposal == '2') {
+                              echo '<span class="badge badge-success">Lengkap</span>';
+                            }
                           }
+
                           ?>
                         </td>
                       </tr>
@@ -271,13 +289,19 @@
                             }
                             ?></td>
                         <td align="center">
-                          <?php if ($row->st_presentasi == '0') {
-                            echo '<span class="badge badge-warning">Belum Diverifikasi</span>';
-                          } else if ($row->st_presentasi == '1') {
-                            echo '<span class="badge badge-info">Kurang Lengkap</span>';
+                          <?php
+                          if ($bks_seminar == "") {
+                            echo "";
                           } else {
-                            echo '<span class="badge badge-success">Lengkap</span>';
+                            if ($row->st_presentasi == '0') {
+                              echo '<span class="badge badge-warning">Belum Diverifikasi</span>';
+                            } else if ($row->st_presentasi == '1') {
+                              echo '<span class="badge badge-info">Kurang Lengkap</span>';
+                            } else if ($row->st_presentasi == '2') {
+                              echo '<span class="badge badge-success">Lengkap</span>';
+                            }
                           }
+
                           ?>
                         </td>
                       </tr>
@@ -295,13 +319,19 @@
                             }
                             ?></td>
                         <td align="center">
-                          <?php if ($row->st_monitoring == '0') {
-                            echo '<span class="badge badge-warning">Belum Diverifikasi</span>';
-                          } else if ($row->st_monitoring == '1') {
-                            echo '<span class="badge badge-info">Kurang Lengkap</span>';
+                          <?php
+                          if ($bks_seminar == "") {
+                            echo "";
                           } else {
-                            echo '<span class="badge badge-success">Lengkap</span>';
+                            if ($row->st_monitoring == '0') {
+                              echo '<span class="badge badge-warning">Belum Diverifikasi</span>';
+                            } else if ($row->st_monitoring == '1') {
+                              echo '<span class="badge badge-info">Kurang Lengkap</span>';
+                            } else if ($row->st_monitoring == '2') {
+                              echo '<span class="badge badge-success">Lengkap</span>';
+                            }
                           }
+
                           ?>
                         </td>
                       </tr>
