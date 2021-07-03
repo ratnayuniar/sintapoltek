@@ -34,6 +34,7 @@
                                         <tr>
                                             <th>No</th>
                                             <th>NIM</th>
+                                            <th>Nama</th>
                                             <th>Dosen Penguji 1</th>
                                             <th>Dosen Penguji 2</th>
                                             <th>Dosen Penguji 3</th>
@@ -45,22 +46,40 @@
                                         $no = 1;
                                         $id_prodi = $this->session->userdata('id_prodi');
                                         foreach ($this->m_penguji_sidang->tampil_data($id_prodi)->result() as $row) {
-                                            $data['user'] = $this->m_penguji_sidang->getmahasiswabyid($row->nim);
-                                            $data['dosen1'] = $this->m_penguji_sidang->getdosen1($row->penguji1_sidang);
-                                            $data['dosen2'] = $this->m_penguji_sidang->getdosen2($row->penguji2_sidang);
-                                            $data['dosen3'] = $this->m_penguji_sidang->getdosen3($row->penguji3_sidang);
-                                            echo
-                                            "<tr>
-											<td>" . $no . "</td>
-                                        	<td>" . $data['user']->nama   . "</td>
-											<td>" . $data['dosen1']->nama . "</td>
-											<td>" . $data['dosen2']->nama . "</td>
-											<td>" . $data['dosen3']->nama . "</td>
-											<td><a href ='#' class ='btn btn-sm btn-primary btn-xs' data-toggle='modal' data-target='#custom-width-modal' onClick=\"SetInput('" . $row->id_master_ta . "','" . $row->nim . "','" . $row->penguji1_sidang . "','" . $row->penguji2_sidang . "','" . $row->penguji3_sidang . "')\"><i class ='fa fa-edit'></i> Edit</a>
-												<a href ='#' class ='btn btn-sm btn-danger btn-xs' data-toggle='modal' data-target='#delete-modal'onClick=\"SetInputs('" . $row->id_master_ta . "','" . $row->nim . "','" . $row->penguji1_sidang . "','" . $row->penguji2_sidang . "','" . $row->penguji3_sidang . "')\"><i class ='fa fa-trash'></i> Hapus</a>
-											</td>
-									    </tr>";
-                                            $no++;
+                                            if ($row->id_master_ta != "") {
+                                                $data['user'] = $this->m_penguji_sidang->getmahasiswabyid($row->nim);
+                                                $data['dosen1'] = $this->m_penguji_sidang->getdosen1($row->penguji1_sidang);
+                                                if ($row->penguji1_sidang != "") {
+                                                    $dosen1_nama = $data['dosen1']->nama;
+                                                } else {
+                                                    $dosen1_nama = "-";
+                                                }
+                                                $data['dosen2'] = $this->m_penguji_sidang->getdosen2($row->penguji2_sidang);
+                                                if ($row->penguji2_sidang != "") {
+                                                    $dosen2_nama = $data['dosen2']->nama;
+                                                } else {
+                                                    $dosen2_nama = "-";
+                                                }
+                                                $data['dosen3'] = $this->m_penguji_sidang->getdosen3($row->penguji3_sidang);
+                                                if ($row->penguji3_sidang != "") {
+                                                    $dosen3_nama = $data['dosen3']->nama;
+                                                } else {
+                                                    $dosen3_nama = "-";
+                                                }
+                                                echo
+                                                "<tr>
+                                                <td>" . $no . "</td>
+                                                <td>" . $data['user']->nim   . "</td>
+                                                <td>" . $data['user']->nama   . "</td>
+                                                <td>" . $dosen1_nama . "</td>
+                                                <td>" . $dosen2_nama . "</td>
+                                                <td>" . $dosen3_nama . "</td>
+                                                <td><a href ='#' class ='btn btn-sm btn-primary btn-xs' data-toggle='modal' data-target='#custom-width-modal' onClick=\"SetInput('" . $row->id_master_ta . "','" . $row->nim . "','" . $row->penguji1_sempro . "','" . $row->penguji2_sempro . "','" . $row->penguji3_sempro . "')\"><i class ='fa fa-edit'></i> Edit</a>
+                                                                                                       
+                                                </td>
+                                            </tr>";
+                                                $no++;
+                                            }
                                         }
                                         ?>
                                     </tbody>
@@ -333,10 +352,11 @@
                                     <thead>
                                         <tr>
                                             <th>No</th>
+                                            <th>Jadwal</th>
                                             <th>Dosen Penguji 1</th>
                                             <th>Dosen Penguji 2</th>
                                             <th>Dosen Penguji 3</th>
-                                            <th>Jadwal</th>
+
 
                                         </tr>
                                     </thead>
@@ -352,10 +372,11 @@
                                             echo
                                             "<tr>
 											<td>" . $no . "</td>
+                                            <td>" . longdate_indo($waktu[0]) . " " . $waktu[1] . "</td>
 											<td>" . $data['dosen1']->nama . "</td>
 											<td>" . $data['dosen2']->nama . "</td>
 											<td>" . $data['dosen3']->nama . "</td>
-                                            <td>" . longdate_indo($waktu[0]) . " " . $waktu[1] . "</td>
+                                            
 																				    </tr>";
                                             $no++;
                                         }

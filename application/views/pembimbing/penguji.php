@@ -355,11 +355,11 @@
                                     <thead>
                                         <tr>
                                             <th>No</th>
-
+                                            <th>Jadwal </th>
                                             <th>Dosen Penguji 1</th>
                                             <th>Dosen Penguji 2</th>
                                             <th>Dosen Penguji 3</th>
-                                            <th>Jadwal </th>
+
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -374,13 +374,11 @@
                                             echo
                                             "<tr>
 											<td>" . $no . "</td>
-                                        	
+                                        	<td>" . longdate_indo($waktu[0]) . " " . $waktu[1] . "</td>
 											<td>" . $data['dosen1']->nama . "</td>
 											<td>" . $data['dosen2']->nama . "</td>
-											<td>" . $data['dosen3']->nama . "</td>
-											<td>" . longdate_indo($waktu[0]) . " " . $waktu[1] . "</td>
-
-																				    </tr>";
+											<td>" . $data['dosen3']->nama . "</td>									
+											</tr>";
                                             $no++;
                                         }
                                         ?>
