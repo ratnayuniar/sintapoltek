@@ -71,7 +71,7 @@
                                                 <td>" . $dosen2_nama . "</td>
                                                 <td>" . $dosen3_nama . "</td>
                                                 <td>
-                                                <a href ='#' class ='btn btn-sm btn-primary btn-xs' data-toggle='modal' data-target='#file_ba' onClick=\"SetInput('" . $row->id_master_ta . "','" . $row->nim . "','" . $row->revisi_seminar . "')\"><i class ='fa fa-edit'></i> Edit</a>
+                                                <a href ='#' class ='btn btn-sm btn-primary btn-xs' data-toggle='modal' data-target='#file_ba' onClick=\"SetInput('" . $row->id_master_ta . "','" . $row->nim . "','" . $row->revisi_seminar . "')\"><i class ='fa fa-file'></i> Hasil Seminar</a>
                                                                                                        
                                                 </td>
                                             </tr>";

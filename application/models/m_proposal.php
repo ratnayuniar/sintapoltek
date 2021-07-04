@@ -29,6 +29,22 @@ class M_proposal extends CI_Model
         redirect('/proposal');
     }
 
+    function ubah_data($id_proposal)
+    {
+        $data = array(
+            'latar_belakang' => $this->input->post('latar_belakang'),
+            'rumusan_masalah' => $this->input->post('rumusan_masalah'),
+            'batasan_masalah' => $this->input->post('batasan_masalah'),
+            'tujuan' => $this->input->post('tujuan'),
+            'teori' => $this->input->post('teori'),
+            'metode' => $this->input->post('metode'),
+            'nim' => $this->session->userdata('email'),
+        );
+        $this->db->where(array('id_proposal' => $id_proposal));
+        $this->db->update('proposal', $data);
+        redirect('/proposal');
+    }
+
     function proposal_user()
     {
         $this->db->select('*');

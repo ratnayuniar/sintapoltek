@@ -6,6 +6,7 @@ class M_jadwal_seminar extends CI_Model
 	{
 		$this->db->select('*');
 		$this->db->join('mahasiswa', 'mahasiswa.nim=master_ta.nim', 'left');
+		$this->db->order_by('ruang_seminar', 'asc');
 		$this->db->where('jadwal_seminar is NOT NULL', NULL, FALSE);
 
 

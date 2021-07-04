@@ -6,6 +6,7 @@ class M_jadwal_sidang extends CI_Model
 	{
 		$this->db->select('*');
 		$this->db->join('mahasiswa', 'mahasiswa.nim=master_ta.nim', 'left');
+		$this->db->order_by('ruang_sidang', 'asc');
 		$this->db->where('jadwal_sidang is NOT NULL', NULL, FALSE);
 
 		$query = $this->db->get('master_ta');
@@ -26,6 +27,7 @@ class M_jadwal_sidang extends CI_Model
 		$data = array(
 			'nim' => $this->input->post('nim'),
 			'jadwal_sidang' => $this->input->post('jadwal_sidang'),
+			'ruang_sidang' => $this->input->post('ruang_sidang'),
 		);
 		$this->db->insert('master_ta', $data);
 		redirect('/jadwal_sidang');
@@ -37,6 +39,7 @@ class M_jadwal_sidang extends CI_Model
 		$data = array(
 			// 'nim' => $this->input->post('nim'),
 			'jadwal_sidang' => $this->input->post('jadwal_sidang'),
+			'ruang_sidang' => $this->input->post('ruang_sidang'),
 		);
 		$this->db->where(array('nim' => $nim));
 		$this->db->update('master_ta', $data);

@@ -33,9 +33,10 @@
                     <thead>
                       <tr>
                         <th>No</th>
+                        <th>Ruang</th>
+                        <th>Jadwal</th>
                         <th>NIM</th>
                         <th>Nama</th>
-                        <th>Jadwal</th>
                         <th>Aksi</th>
                       </tr>
                     </thead>
@@ -47,11 +48,11 @@
                         echo "
                       <tr>
 											<td>" . $no . "</td>
+											<td>" . $row->ruang_sidang . "</td>
+											<td>" . longdate_indo($waktu[0]) . " " . $waktu[1] . "</td>
 											<td>" . $row->nim . "</td>
 											<td>" . $row->nama . "</td>
-											<td>" . longdate_indo($waktu[0]) . " " . $waktu[1] . "</td>
 											<td>
-                          <a href ='#' class ='btn btn-sm btn-primary btn-xs' data-toggle='modal' data-target='#custom-width-modal' onClick=\"SetInput('" . $row->id_master_ta . "','" . $row->nim . "','" . $row->jadwal_sidang . "')\"><i class ='fa fa-edit'></i> Edit</a>
 													<a href='" . base_url('jadwal_sidang/delete2/' . $row->id_master_ta) . "' id='btn-hapus' class='btn btn-sm btn-danger btn-xs' ><i class='fa fa-trash'></i> Hapus</a>
 											</td>									
 									    </tr>";
@@ -86,12 +87,19 @@
               <label class="col-md-6 control-label">Nama Mahasiswa</label>
               <div class="col-md-9">
                 <!-- <input type="text" class="form-control" id="nim" name="nim" required> -->
-                <select class="form-control" data-live-search="true" data-style="btn-white" onclick="choose()" id="nim" name="nim" required>
+                <select class="form-control select2" data-live-search="true" data-style="btn-white" onclick="choose()" id="nim" name="nim" required>
                   <option>-- Pilih Mahasiswa --</option>
                   <?php foreach ($mahasiswa->result() as $row) : ?>
                     <option value="<?php echo $row->nim; ?>"><?php echo $row->nama; ?></option>
                   <?php endforeach; ?>
                 </select>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="col-md-3 control-label">Ruang</label>
+              <div class="input-group col-md-9">
+                <input type="text" name="ruang_sidang" class="form-control" id="ruang_sidang">
               </div>
             </div>
 
@@ -182,10 +190,11 @@
       document.getElementById('jadwal2').value = jadwal;
     }
 
-    function ResetInput(id_master_ta, nim, jadwal_sidang) {
+    function ResetInput(id_master_ta, nim, jadwal_sidang, ruang_sidang) {
       document.getElementById('id_master_ta').value = "";
       document.getElementById('nim').value = "";
       document.getElementById('jadwal_sidang').value = "";
+      document.getElementById('ruang_sidang').value = "";
     }
   </script>
 

@@ -36,9 +36,10 @@
                     <thead>
                       <tr>
                         <th>No</th>
+                        <th>Ruang</th>
+                        <th>Jadwal</th>
                         <th>NIM</th>
                         <th>Nama</th>
-                        <th>Jadwal</th>
                         <th>Aksi</th>
                       </tr>
                     </thead>
@@ -50,11 +51,12 @@
                         echo
                         " <tr>
 											      <td>" . $no . "</td>
+											      <td>" . $row->ruang_seminar . "</td>
+										      	<td>" . longdate_indo($waktu[0]) . " " . $waktu[1] . "</td>
 											      <td>" . $row->nim . "</td>
                             <td>" . $row->nama . "</td>
-										      	<td>" . longdate_indo($waktu[0]) . " " . $waktu[1] . "</td>
 										      	<td>
-                            <a href ='#' class ='btn btn-sm btn-primary btn-xs' data-toggle='modal' data-target='#custom-width-modal' onClick=\"SetInput('" . $row->id_master_ta . "','" . $row->nim . "','" . $row->jadwal_seminar . "')\"><i class ='fa fa-edit'></i> Edit</a>
+                            
 												  	<a href='" . base_url('jadwal_seminar/delete/' . $row->id_master_ta) . "' id='btn-hapus' class='btn btn-sm btn-danger btn-xs' ><i class='fa fa-trash'></i> Hapus</a> 
 											      </td>									
 									    </tr>";

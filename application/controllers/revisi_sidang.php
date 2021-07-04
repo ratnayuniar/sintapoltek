@@ -31,6 +31,48 @@ class Revisi_sidang extends CI_Controller
         $this->load->view('templates/footer', $data);
     }
 
+    public function upload_revisi_sidang()
+    {
+        if (isset($_POST['submit'])) {
+            $this->form_validation->set_rules('nim', 'NIM', 'required');
+            $config['upload_path'] = './assets/berkas/sidang/';
+            $config['allowed_types'] = 'pdf|jpg|png|jpeg|ppt|pptx|doc|docx';
+            $config['max_size']  = 50000;
+            $config['file_name'] = 'revisi_sidang-' . date('ymd');
+
+            $this->load->library('upload', $config);
+
+            if (!empty($_FILES['revisi_sidang'])) {
+                $this->upload->do_upload('revisi_sidang');
+                $data1 = $this->upload->data();
+                $revisi_sidang = $data1['file_name'];
+            }
+
+            if ($this->form_validation->run()) {
+                $nim = $this->input->post('nim', TRUE);
+                $data = [
+                    'nim' => $nim,
+                    'revisi_sidang' => $revisi_sidang,
+                    'status_sidang' => $this->input->post('status_sidang'),
+                ];
+
+                $cek = $this->db->like('nim', $data['nim'])->from('master_ta')->count_all_results();
+
+                if ($cek > 0) {
+                    $this->db->where('nim', $data['nim'])->update('master_ta', $data);
+                    redirect('revisi_sidang');
+                } else {
+                    $this->db->insert('master_ta', $data);
+                    redirect('revisi_sidang');
+                }
+            } else {
+                $this->index();
+            }
+        } else {
+            $this->index();
+        }
+    }
+
     function revisi_mahasiswa($nim)
     {
         $data['revisi_seminar'] = $this->m_revisi_sidang->get_nim($nim);
