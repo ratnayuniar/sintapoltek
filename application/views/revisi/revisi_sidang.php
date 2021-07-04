@@ -214,6 +214,7 @@
             </div>
         </section>
     </div>
+    <!-- USER MAHASISWA -->
 <?php } else { ?>
     <div class="content-wrapper">
         <section class="content-header">
@@ -238,7 +239,7 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">Hasil Sidang :</h3>
+                                <h3 class="card-title">Hasil Sidang : </h3>
                             </div>
                             <div class="card-body">
                                 <table id="example1" class="table table-bordered table-striped">
@@ -252,41 +253,20 @@
                                     </thead>
                                     <tbody>
                                         <?php
-                                        $id_prodi = $this->session->userdata('id_prodi');
-                                        // $no = 1;
-                                        foreach ($this->m_penguji_sidang->tampil_data($id_prodi)->result() as $row) {
-
-                                            $data['user'] = $this->m_penguji_sidang->getmahasiswabyid($row->nim);
-                                            $data['dosen1'] = $this->m_penguji_sidang->getdosen2($row->penguji1_sidang);
-                                            $data['dosen2'] = $this->m_penguji_sidang->getdosen2($row->penguji2_sidang);
-                                            $data['dosen3'] = $this->m_penguji_sidang->getdosen3($row->penguji3_sidang);
-                                            $data['revisi1'] = $this->m_revisi_sidang->revisi_mhs();
-                                            $data['revisi2'] = $this->m_revisi_sidang->revisi_mhs();
-                                            $data['revisi3'] = $this->m_revisi_sidang->revisi_mhs();
-
-                                            echo
-                                            "<tr>
-											<td>" . '1.' . "</td>
-											<td>" . $data['dosen1']->nama . "</td>
-                                            <td>" . $data['revisi1']->revisi1 . "</td>
-                                            <td></td>
-											</tr>
+                                        $no = 1;
+                                        foreach ($query2->result() as $row) { ?>
                                             <tr>
-                                            <td>" . '2.' . "</td>
-                                            <td>" . $data['dosen2']->nama . "</td>
-                                            <td>" . $data['revisi2']->revisi2 . "</td>
-                                            <td></td>
+                                                <td><?= $no++ ?></td>
+                                                <td><?= $row->penguji ?></td>
+                                                <td><?= $row->revisi ?></td>
+
+                                                <td><a href="<?php echo base_url('assets/berkas/seminar/' . $row->revisi_seminar); ?>" download><i class="far fa-file-pdf"></i></a></td>
+                                                </td>
+                                            <?php } ?>
                                             </tr>
-                                            <tr>
-                                            <td>" . '3.' . "</td>
-                                            <td>" . $data['dosen3']->nama . "</td>
-                                            <td>" . $data['revisi3']->revisi3 . "</td>
-                                            <td></td>
+
                                             </tr>
-                                            
-                                            ";
-                                        }
-                                        ?>
+
                                     </tbody>
                                 </table>
                             </div>

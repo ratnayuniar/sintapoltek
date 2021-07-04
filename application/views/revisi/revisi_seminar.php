@@ -133,6 +133,8 @@
             document.getElementById('revisi_seminar').value = revisi_seminar;
         }
     </script>
+
+    <!-- User Dosen -->
 <?php } else if (($this->session->userdata('level') == 3) ||  ($this->session->userdata('level') == 4)) { ?>
 
     <div class="content-wrapper">
