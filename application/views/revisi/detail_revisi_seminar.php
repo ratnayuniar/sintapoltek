@@ -150,7 +150,8 @@
                                     <div class="form-group row">
                                         <label for="inputEmail3" class="col-sm-5 col-form-label">Dosen</label>
                                         <div class="col-sm-5">
-                                            <input type="text" class="form-control" id="dosen" readonly name="penguji" placeholder="Nama Dosen" value=" <?php echo $this->session->userdata('nama') ?>"></td>
+                                            <input type="text" class="form-control" id="dosen" readonly placeholder="Nama Dosen" value=" <?php echo $this->session->userdata('nama') ?>">
+                                            <input type="hidden" name="penguji" value="<?= $this->session->userdata('id_dosen'); ?>">
                                         </div>
                                     </div>
                                     <div class="form-group row">

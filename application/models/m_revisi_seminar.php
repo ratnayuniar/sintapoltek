@@ -6,12 +6,6 @@ class M_revisi_seminar extends CI_Model
     {
         $data = array(
             'nim' => $this->input->post('nim'),
-            'penguji1' => $this->input->post('penguji1'),
-            'penguji2' => $this->input->post('penguji2'),
-            'penguji3' => $this->input->post('penguji3'),
-            'revisi1' => $this->input->post('revisi1'),
-            'revisi2' =>  $this->input->post('revisi2'),
-            'revisi3' =>  $this->input->post('revisi3'),
             'penguji' =>  $this->input->post('penguji'),
             'revisi' =>  $this->input->post('revisi'),
             'jenis' => "seminar",

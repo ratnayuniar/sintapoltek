@@ -784,6 +784,18 @@
                                     <p>Nilai Sidang</p>
                                 </a>
                             </li>
+                            <li class="nav-item">
+                                <a href="<?php echo base_url('revisi_sidang'); ?>" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Hasil Sidang</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="<?php echo base_url('revisi_upload'); ?>" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Revisi</p>
+                                </a>
+                            </li>
                         </ul>
                     </li>
                     <!-- <li class="nav-item">

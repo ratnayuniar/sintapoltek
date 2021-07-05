@@ -105,6 +105,24 @@
         })
     })
 </script>
+
+<script>
+    $('.form-check-input').on('click', function() {
+        const revisiId = $(this).data('revisi');
+
+        $.ajax({
+            url: "<?= base_url('revisi_upload/approve'); ?>",
+            type: 'post',
+            data: {
+                revisiId: revisiId,
+            },
+            success: function() {
+                document.location.href = "<?= base_url('revisi_upload'); ?>";
+            }
+        });
+    });
+</script>
+
 </body>
 
 </html>

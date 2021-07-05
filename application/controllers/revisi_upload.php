@@ -13,7 +13,7 @@ class Revisi_upload extends CI_Controller
         $this->load->model('m_mahasiswa');
         $this->load->model('m_penguji_sidang');
         $this->load->model('m_pembimbing');
-        $this->load->helper('url');
+        $this->load->helper(array('form', 'url', 'fungsi', 'download'));
     }
 
     public function index()
@@ -24,6 +24,15 @@ class Revisi_upload extends CI_Controller
         $data['dosen'] = $this->m_mahasiswa->getdosen();
         $data['query'] = $this->m_nilai_seminar->tampil_data();
         $data['title'] = 'SINTA PNM';
+
+        // menghitung apakah revisinya sudah mencapai 3 dosen
+        $data['cekRevisi'] = $this->db->get_where('revisi', array('nim' => $this->session->userdata('email'), 'status' => 1));
+
+        // ambil berkas
+        $data['ambilBerkas'] = $this->db->get_where('revisi', array('nim' => $this->session->userdata('email')))->row_array();
+
+        // ambil data mahasiswa revisi
+        $data['getAllMahasiswaRevisiBydIdDosen'] = $this->m_revisi_sidang->getAllMahasiswaRevisiBydIdDosen();
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
@@ -58,5 +67,52 @@ class Revisi_upload extends CI_Controller
     public function add()
     {
         $this->m_revisi_sidang->tambah_data();
+    }
+
+    public function approve()
+    {
+        $revisiId = $this->input->post('revisiId');
+
+        $cek_status = $this->db->get_where('revisi', array('id_revisi' => $revisiId, 'status' => 0));
+
+        if ($cek_status->num_rows() > 0) {
+            $data = [
+                'status' => 1,
+            ];
+        } else {
+            $data = [
+                'status' => 0,
+            ];
+        }
+
+        $this->db->where('id_revisi', $revisiId);
+        $this->db->update('revisi', $data);
+
+        redirect('revisi_upload');
+    }
+
+    public function upload_berkas()
+    {
+
+        $nim = $this->session->userdata('email');
+
+        $config['upload_path']          = './assets/berkas/sidang/';
+        $config['allowed_types']        = 'doc|pdf|docx';
+        $config['file_name']            = $nim . ' - Revisi Sidang';
+
+        $this->load->library('upload', $config);
+
+        if (!$this->upload->do_upload('file_revisi')) {
+            $error = array('error' => $this->upload->display_error());
+            redirect('revisi_upload');
+        } else {
+            $this->db->set('file_revisi', $this->upload->data('file_name'))->where('nim', $nim)->update('revisi');
+            redirect('revisi_upload');
+        }
+    }
+
+    public function download($file)
+    {
+        force_download(FCPATH . 'assets/berkas/' . $file, null);
     }
 }

@@ -31,3 +31,17 @@ function check_not_login()
         redirect('auth/login');
     }
 }
+
+function approve_revisi($id_revisi)
+{
+    $ci = get_instance();
+
+    $ci->db->where('id_revisi', $id_revisi);
+    $ci->db->where('status', 1);
+    $ci->db->where('penguji', $ci->session->userdata('id_dosen'));
+    $result = $ci->db->get('revisi');
+
+    if ($result->num_rows() > 0) {
+        return "checked";
+    }
+}

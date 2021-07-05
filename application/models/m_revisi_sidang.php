@@ -6,16 +6,9 @@ class M_revisi_sidang extends CI_Model
     {
         $data = array(
             'nim' => $this->input->post('nim'),
-            'penguji1' => $this->input->post('penguji1'),
-            'penguji2' => $this->input->post('penguji2'),
-            'penguji3' => $this->input->post('penguji3'),
-            'revisi1' => $this->input->post('revisi1'),
-            'revisi2' =>  $this->input->post('revisi2'),
-            'revisi3' =>  $this->input->post('revisi3'),
-            'jenis' => "ta",
+            'penguji' => $this->input->post('penguji'),
+            'jenis' => "seminar",
         );
-        // print_r($data);
-        // exit();
         $this->db->insert('revisi', $data);
         redirect('/revisi_seminar');
     }
@@ -38,6 +31,22 @@ class M_revisi_sidang extends CI_Model
         $this->db->where('jenis', 'ta');
         $this->db->where('revisi.nim', $this->session->userdata('email'));
         $query = $this->db->get();
+        return $query;
+    }
+
+
+    function getAllMahasiswaRevisiBydIdDosen()
+    {
+        $dosen_id = $this->session->userdata('id_dosen');
+
+        $query = $this->db->select('revisi.*, mahasiswa.nama, dospen1.nama as dospen1, dospen2.nama as dospen2, dospen3.nama as dospen3, master_ta.nim')
+            ->from('revisi')
+            ->join('mahasiswa', 'mahasiswa.nim = revisi.nim')
+            ->join('master_ta', 'master_ta.nim = revisi.nim')
+            ->join('dosen as dospen1', 'dospen1.id_dosen = master_ta.penguji1_sidang')
+            ->join('dosen as dospen2', 'dospen2.id_dosen = master_ta.penguji2_sidang')
+            ->join('dosen as dospen3', 'dospen3.id_dosen = master_ta.penguji3_sidang')
+            ->where('penguji', $dosen_id)->get()->result_array();
         return $query;
     }
 }
