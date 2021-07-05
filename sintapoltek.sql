@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.5
+-- version 5.1.0
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1:3306
--- Generation Time: Jun 30, 2021 at 05:23 PM
--- Server version: 5.7.31
--- PHP Version: 7.3.21
+-- Host: 127.0.0.1
+-- Waktu pembuatan: 05 Jul 2021 pada 03.57
+-- Versi server: 10.4.18-MariaDB
+-- Versi PHP: 8.0.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -25,43 +24,42 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `bimbingan`
+-- Struktur dari tabel `bimbingan`
 --
 
-DROP TABLE IF EXISTS `bimbingan`;
-CREATE TABLE IF NOT EXISTS `bimbingan` (
-  `id_bimbingan` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `bimbingan` (
+  `id_bimbingan` int(11) NOT NULL,
   `id_dosen` int(11) NOT NULL,
   `nim` int(11) NOT NULL,
-  `masalah` text,
+  `masalah` text DEFAULT NULL,
   `solusi` text NOT NULL,
   `tanggal` date DEFAULT NULL,
   `status` tinyint(1) DEFAULT NULL,
   `status_dosen` tinyint(1) NOT NULL,
   `jenis` varchar(7) NOT NULL,
-  `file` varchar(25) NOT NULL,
-  PRIMARY KEY (`id_bimbingan`),
-  KEY `fk_bimbingan_dosen1_idx` (`id_dosen`),
-  KEY `fk_bimbingan_mahasiswa1_idx` (`nim`)
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=latin1;
+  `file` varchar(25) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `bimbingan`
+-- Dumping data untuk tabel `bimbingan`
 --
 
 INSERT INTO `bimbingan` (`id_bimbingan`, `id_dosen`, `nim`, `masalah`, `solusi`, `tanggal`, `status`, `status_dosen`, `jenis`, `file`) VALUES
 (21, 20, 183307018, 'Laporan BAB 5', 'Melanjutkan selanjutnya', '2021-06-30', 3, 1, 'seminar', 'bks_bimbingan-210629.pdf'),
-(22, 23, 183307018, 'Laporan Bab 4', 'Melanjutkan', '2021-07-10', 3, 2, 'seminar', 'bks_bimbingan-2106291.pdf');
+(22, 23, 183307018, 'Laporan Bab 4', 'Melanjutkan', '2021-07-10', 3, 2, 'seminar', 'bks_bimbingan-2106291.pdf'),
+(24, 23, 183307018, 'Bimbingan kesimpulan', '', '2021-07-21', 0, 2, 'ta', ''),
+(27, 20, 183307018, 'Bimbingan laporan BAB 5', '', '2021-07-28', 0, 1, 'ta', 'kkkkkk'),
+(28, 25, 183307018, 'Laporan BAB 5', '', '2021-07-03', 0, 1, 'seminar', 'bks_bimbingan-210702'),
+(29, 32, 183307018, 'Kesimpulan', '', '2021-07-30', 0, 2, 'seminar', 'bks_bimbingan-210702');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `bks_bahasa`
+-- Struktur dari tabel `bks_bahasa`
 --
 
-DROP TABLE IF EXISTS `bks_bahasa`;
-CREATE TABLE IF NOT EXISTS `bks_bahasa` (
-  `id_bks_bhs` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `bks_bahasa` (
+  `id_bks_bhs` int(11) NOT NULL,
   `nim` int(11) NOT NULL,
   `periode` varchar(20) DEFAULT NULL,
   `tahun` varchar(20) DEFAULT NULL,
@@ -69,13 +67,11 @@ CREATE TABLE IF NOT EXISTS `bks_bahasa` (
   `skor` varchar(10) DEFAULT NULL,
   `tanggal` varchar(20) DEFAULT NULL,
   `sk_bahasa` varchar(30) DEFAULT NULL,
-  `status` tinyint(1) DEFAULT NULL,
-  PRIMARY KEY (`id_bks_bhs`),
-  KEY `fk_bks_bahasa_mahasiswa1_idx` (`nim`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+  `status` tinyint(1) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `bks_bahasa`
+-- Dumping data untuk tabel `bks_bahasa`
 --
 
 INSERT INTO `bks_bahasa` (`id_bks_bhs`, `nim`, `periode`, `tahun`, `nama_bhs`, `skor`, `tanggal`, `sk_bahasa`, `status`) VALUES
@@ -84,24 +80,21 @@ INSERT INTO `bks_bahasa` (`id_bks_bhs`, `nim`, `periode`, `tahun`, `nama_bhs`, `
 -- --------------------------------------------------------
 
 --
--- Table structure for table `bks_keterampilan`
+-- Struktur dari tabel `bks_keterampilan`
 --
 
-DROP TABLE IF EXISTS `bks_keterampilan`;
-CREATE TABLE IF NOT EXISTS `bks_keterampilan` (
-  `id_bks_ket` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `bks_keterampilan` (
+  `id_bks_ket` int(11) NOT NULL,
   `nim` int(11) NOT NULL,
   `nama_ket` varchar(20) DEFAULT NULL,
   `jenis` varchar(30) DEFAULT NULL,
   `tingkat` varchar(20) DEFAULT NULL,
   `sk_ket` varchar(30) DEFAULT NULL,
-  `status` tinyint(1) DEFAULT NULL,
-  PRIMARY KEY (`id_bks_ket`),
-  KEY `fk_bks_keterampilan_mahasiswa1_idx` (`nim`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+  `status` tinyint(1) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `bks_keterampilan`
+-- Dumping data untuk tabel `bks_keterampilan`
 --
 
 INSERT INTO `bks_keterampilan` (`id_bks_ket`, `nim`, `nama_ket`, `jenis`, `tingkat`, `sk_ket`, `status`) VALUES
@@ -110,12 +103,11 @@ INSERT INTO `bks_keterampilan` (`id_bks_ket`, `nim`, `nama_ket`, `jenis`, `tingk
 -- --------------------------------------------------------
 
 --
--- Table structure for table `bks_organisasi`
+-- Struktur dari tabel `bks_organisasi`
 --
 
-DROP TABLE IF EXISTS `bks_organisasi`;
-CREATE TABLE IF NOT EXISTS `bks_organisasi` (
-  `id_bks_org` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `bks_organisasi` (
+  `id_bks_org` int(11) NOT NULL,
   `nim` int(11) NOT NULL,
   `nama_org` varchar(50) DEFAULT NULL,
   `tempat` varchar(100) DEFAULT NULL,
@@ -123,13 +115,11 @@ CREATE TABLE IF NOT EXISTS `bks_organisasi` (
   `tahun_keluar` varchar(4) DEFAULT NULL,
   `jabatan` varchar(20) DEFAULT NULL,
   `sk_org` varchar(30) DEFAULT NULL,
-  `status` tinyint(1) DEFAULT NULL,
-  PRIMARY KEY (`id_bks_org`),
-  KEY `fk_bks_organisasi_mahasiswa1_idx` (`nim`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+  `status` tinyint(1) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `bks_organisasi`
+-- Dumping data untuk tabel `bks_organisasi`
 --
 
 INSERT INTO `bks_organisasi` (`id_bks_org`, `nim`, `nama_org`, `tempat`, `tahun_masuk`, `tahun_keluar`, `jabatan`, `sk_org`, `status`) VALUES
@@ -138,28 +128,25 @@ INSERT INTO `bks_organisasi` (`id_bks_org`, `nim`, `nama_org`, `tempat`, `tahun_
 -- --------------------------------------------------------
 
 --
--- Table structure for table `bks_pkl`
+-- Struktur dari tabel `bks_pkl`
 --
 
-DROP TABLE IF EXISTS `bks_pkl`;
-CREATE TABLE IF NOT EXISTS `bks_pkl` (
-  `id_bks_pkl` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `bks_pkl` (
+  `id_bks_pkl` int(11) NOT NULL,
   `nim` int(11) NOT NULL,
   `judul` varchar(50) DEFAULT NULL,
   `tempat` varchar(50) DEFAULT NULL,
   `provinsi` varchar(30) DEFAULT NULL,
   `kota` varchar(30) DEFAULT NULL,
   `tanggal` date DEFAULT NULL,
-  `ringkasan` text,
+  `ringkasan` text DEFAULT NULL,
   `sk_pkl` varchar(30) DEFAULT NULL,
   `laporan` varchar(30) DEFAULT NULL,
-  `status` tinyint(1) DEFAULT NULL,
-  PRIMARY KEY (`id_bks_pkl`),
-  KEY `fk_bks_pkl_mahasiswa1_idx` (`nim`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+  `status` tinyint(1) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `bks_pkl`
+-- Dumping data untuk tabel `bks_pkl`
 --
 
 INSERT INTO `bks_pkl` (`id_bks_pkl`, `nim`, `judul`, `tempat`, `provinsi`, `kota`, `tanggal`, `ringkasan`, `sk_pkl`, `laporan`, `status`) VALUES
@@ -168,12 +155,11 @@ INSERT INTO `bks_pkl` (`id_bks_pkl`, `nim`, `judul`, `tempat`, `provinsi`, `kota
 -- --------------------------------------------------------
 
 --
--- Table structure for table `bks_prestasi`
+-- Struktur dari tabel `bks_prestasi`
 --
 
-DROP TABLE IF EXISTS `bks_prestasi`;
-CREATE TABLE IF NOT EXISTS `bks_prestasi` (
-  `id_bks_prestasi` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `bks_prestasi` (
+  `id_bks_prestasi` int(11) NOT NULL,
   `nim` int(11) NOT NULL,
   `nama_lomba` varchar(50) DEFAULT NULL,
   `tahun` varchar(20) DEFAULT NULL,
@@ -181,13 +167,11 @@ CREATE TABLE IF NOT EXISTS `bks_prestasi` (
   `tingkat` varchar(20) DEFAULT NULL,
   `jenis` varchar(20) DEFAULT NULL,
   `piagam` varchar(30) DEFAULT NULL,
-  `status` tinyint(1) DEFAULT NULL,
-  PRIMARY KEY (`id_bks_prestasi`),
-  KEY `fk_bks_prestasi_mahasiswa1_idx` (`nim`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+  `status` tinyint(1) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `bks_prestasi`
+-- Dumping data untuk tabel `bks_prestasi`
 --
 
 INSERT INTO `bks_prestasi` (`id_bks_prestasi`, `nim`, `nama_lomba`, `tahun`, `juara`, `tingkat`, `jenis`, `piagam`, `status`) VALUES
@@ -196,12 +180,11 @@ INSERT INTO `bks_prestasi` (`id_bks_prestasi`, `nim`, `nama_lomba`, `tahun`, `ju
 -- --------------------------------------------------------
 
 --
--- Table structure for table `bks_wisuda`
+-- Struktur dari tabel `bks_wisuda`
 --
 
-DROP TABLE IF EXISTS `bks_wisuda`;
-CREATE TABLE IF NOT EXISTS `bks_wisuda` (
-  `id_bks_wisuda` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `bks_wisuda` (
+  `id_bks_wisuda` int(11) NOT NULL,
   `nim` int(11) NOT NULL,
   `file_ta` varchar(30) DEFAULT NULL,
   `jurnal` varchar(30) DEFAULT NULL,
@@ -217,46 +200,45 @@ CREATE TABLE IF NOT EXISTS `bks_wisuda` (
   `ukt` int(11) DEFAULT NULL,
   `pinjaman_alat` int(11) DEFAULT NULL,
   `status_baak` tinyint(1) DEFAULT NULL,
-  PRIMARY KEY (`id_bks_wisuda`),
-  KEY `fk_bks_wisuda_mahasiswa1_idx` (`nim`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
+  `status_file_ta` tinyint(1) DEFAULT NULL,
+  `status_jurnal` tinyint(1) DEFAULT NULL,
+  `status_lap_ta` tinyint(1) DEFAULT NULL,
+  `status_aplikasi` tinyint(1) DEFAULT NULL,
+  `status_ppt` tinyint(1) DEFAULT NULL,
+  `status_video` tinyint(1) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `bks_wisuda`
+-- Dumping data untuk tabel `bks_wisuda`
 --
 
-INSERT INTO `bks_wisuda` (`id_bks_wisuda`, `nim`, `file_ta`, `jurnal`, `lap_ta_prodi`, `aplikasi`, `ppt`, `video`, `foto_ijazah`, `foto_wisuda`, `status`, `laporan_perpus`, `tanggungan_perpus`, `ukt`, `pinjaman_alat`, `status_baak`) VALUES
-(13, 183307018, 'bks_wisuda-210625.pdf', 'bks_wisuda-2106251.pdf', 'bks_wisuda-2106252.pdf', 'winbox.exe', 'bks_wisuda-210625.pptx', 'bks_wisuda-210625.mp4', 'bks_wisuda-210625.jpg', 'bks_wisuda-2106251.jpg', 0, 2, 2, 0, 0, 3);
+INSERT INTO `bks_wisuda` (`id_bks_wisuda`, `nim`, `file_ta`, `jurnal`, `lap_ta_prodi`, `aplikasi`, `ppt`, `video`, `foto_ijazah`, `foto_wisuda`, `status`, `laporan_perpus`, `tanggungan_perpus`, `ukt`, `pinjaman_alat`, `status_baak`, `status_file_ta`, `status_jurnal`, `status_lap_ta`, `status_aplikasi`, `status_ppt`, `status_video`) VALUES
+(1, 183307018, 'bks_wisuda-2107031.pdf', 'bks_wisuda-2107032.pdf', NULL, 'bks_wisuda-2107033.pdf', 'bks_wisuda-2107034.pdf', 'bks_wisuda-2107035.pdf', NULL, NULL, NULL, 0, 0, 0, 0, NULL, 0, 0, 0, 0, 0, 0);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `chat`
+-- Struktur dari tabel `chat`
 --
 
-DROP TABLE IF EXISTS `chat`;
-CREATE TABLE IF NOT EXISTS `chat` (
-  `id_chat` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `chat` (
+  `id_chat` int(11) NOT NULL,
   `id_mahasiswabimbingan` int(11) NOT NULL,
   `id_pengirim` int(11) NOT NULL,
   `isi_pesan` text NOT NULL,
   `file` varchar(20) NOT NULL,
-  `tanggal` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `level` tinyint(1) NOT NULL,
-  PRIMARY KEY (`id_chat`),
-  KEY `fk_chat_dosen1_idx` (`id_pengirim`),
-  KEY `fk_chat_mahasiswa1_idx` (`id_mahasiswabimbingan`)
-) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=latin1;
+  `tanggal` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `level` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `dosen`
+-- Struktur dari tabel `dosen`
 --
 
-DROP TABLE IF EXISTS `dosen`;
-CREATE TABLE IF NOT EXISTS `dosen` (
-  `id_dosen` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `dosen` (
+  `id_dosen` int(11) NOT NULL,
   `id_prodi` int(11) NOT NULL,
   `email` varchar(50) DEFAULT NULL,
   `password` varchar(32) DEFAULT NULL,
@@ -264,43 +246,39 @@ CREATE TABLE IF NOT EXISTS `dosen` (
   `nama` varchar(100) DEFAULT NULL,
   `hp` varchar(14) DEFAULT NULL,
   `level` tinyint(1) DEFAULT NULL,
-  `aktif` tinyint(1) DEFAULT NULL,
-  PRIMARY KEY (`id_dosen`),
-  KEY `fk_dosen_prodi1_idx` (`id_prodi`)
-) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=latin1;
+  `aktif` tinyint(1) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `dosen`
+-- Dumping data untuk tabel `dosen`
 --
 
 INSERT INTO `dosen` (`id_dosen`, `id_prodi`, `email`, `password`, `nip`, `nama`, `hp`, `level`, `aktif`) VALUES
-(20, 30, 'rudy@gmail.com', '81dc9bdb52d04dc20036dbd8313ed055', '197001221995121002', 'Rudy Yuni Widiyatmoko, M.Sc.', '6285796120150', 3, 1),
-(23, 30, 'refrizal@gmail.com', '81dc9bdb52d04dc20036dbd8313ed055', '100099876545882882', 'Drs. Refrizal Amir, S.T., M.T.', '6285796120150', 3, 1),
+(20, 30, 'rudy@gmail.com', '81dc9bdb52d04dc20036dbd8313ed055', '197001221995121002', 'Rudy Yuni Widiyatmoko, M.Sc.', '6281359997740', 3, 1),
+(23, 30, 'refrizal@gmail.com', '81dc9bdb52d04dc20036dbd8313ed055', '100099876545882882', 'Drs. Refrizal Amir, S.T., M.T.', '6281217226810', 3, 1),
 (24, 30, 'riswanda@gmail.com', '81dc9bdb52d04dc20036dbd8313ed055', '100099876545882999', 'Riswanda, S.T., M.Eng.', '0987654321', 4, 1),
-(25, 28, 'taufik@gmail.com', '81dc9bdb52d04dc20036dbd8313ed055', '100099876545876546', 'Drs. Taufik Hidayat, M.T', '0987654389', 3, 1),
+(25, 30, 'taufik@gmail.com', '81dc9bdb52d04dc20036dbd8313ed055', '100099876545876546', 'Drs. Taufik Hidayat, M.T', '6281359997740', 3, 1),
 (26, 30, 'angga@gmail.com', '81dc9bdb52d04dc20036dbd8313ed055', '100099876545882000', 'Angga Yunanda', '0987654321', 1, 1),
 (27, 0, 'adminbahasa@gmail.com', '81dc9bdb52d04dc20036dbd8313ed055', '98765423567899925', 'Admin Bahasa', '098789654456', 9, 1),
 (28, 0, 'adminperpus@gmail.com', '81dc9bdb52d04dc20036dbd8313ed055', '123456789090099765', 'Admin Perpustakaan', '0987654389', 6, 1),
 (29, 0, 'adminlab@gmail.com', '81dc9bdb52d04dc20036dbd8313ed055', '9886541467999098', 'Admin Lab', '09876543235', 8, 1),
 (30, 0, 'adminkeuangan@gmail.com', '81dc9bdb52d04dc20036dbd8313ed055', '1234567890900', 'Admin Keuangan', '0987654389', 5, 1),
 (31, 0, 'adminbaak@gmail.com', '81dc9bdb52d04dc20036dbd8313ed055', '123456789090099765', 'Admin BAAK', '098789654456', 7, 1),
-(32, 29, 'abimanyu@gmail.com', '81dc9bdb52d04dc20036dbd8313ed055', '100099876545882880', 'Abimanyu S.Kom.M.Kom,', '081234567890', 3, 1);
+(32, 30, 'abimanyu@gmail.com', '81dc9bdb52d04dc20036dbd8313ed055', '100099876545882880', 'Abimanyu S.Kom.M.Kom,', '081234567890', 3, 1);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `jurusan`
+-- Struktur dari tabel `jurusan`
 --
 
-DROP TABLE IF EXISTS `jurusan`;
-CREATE TABLE IF NOT EXISTS `jurusan` (
-  `id_jurusan` int(11) NOT NULL AUTO_INCREMENT,
-  `nama_jurusan` varchar(25) DEFAULT NULL,
-  PRIMARY KEY (`id_jurusan`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+CREATE TABLE `jurusan` (
+  `id_jurusan` int(11) NOT NULL,
+  `nama_jurusan` varchar(25) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `jurusan`
+-- Dumping data untuk tabel `jurusan`
 --
 
 INSERT INTO `jurusan` (`id_jurusan`, `nama_jurusan`) VALUES
@@ -311,11 +289,10 @@ INSERT INTO `jurusan` (`id_jurusan`, `nama_jurusan`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `mahasiswa`
+-- Struktur dari tabel `mahasiswa`
 --
 
-DROP TABLE IF EXISTS `mahasiswa`;
-CREATE TABLE IF NOT EXISTS `mahasiswa` (
+CREATE TABLE `mahasiswa` (
   `nim` int(11) NOT NULL,
   `id_prodi` int(11) NOT NULL,
   `password` varchar(32) DEFAULT NULL,
@@ -325,29 +302,26 @@ CREATE TABLE IF NOT EXISTS `mahasiswa` (
   `ttl` varchar(35) DEFAULT NULL,
   `angkatan` varchar(12) DEFAULT NULL,
   `level` tinyint(1) DEFAULT NULL,
-  `aktif` tinyint(1) DEFAULT NULL,
-  PRIMARY KEY (`nim`),
-  KEY `fk_mahasiswa_prodi1_idx` (`id_prodi`)
+  `aktif` tinyint(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `mahasiswa`
+-- Dumping data untuk tabel `mahasiswa`
 --
 
 INSERT INTO `mahasiswa` (`nim`, `id_prodi`, `password`, `nama`, `alamat`, `hp`, `ttl`, `angkatan`, `level`, `aktif`) VALUES
 (183307018, 30, '81dc9bdb52d04dc20036dbd8313ed055', 'Ratna Yuniar Ardiasari', 'Jl. Diponegoro No.54 RT.01 RW.02 Kel.Sukoharjo ', '087612345678', 'Madiun, 20 Mei 1998', '2019-2020', 2, 1),
-(183307019, 24, '81dc9bdb52d04dc20036dbd8313ed055', 'Uswatun Khasanah', 'Jl. Merpati No.56 Ds. Kaliurang Yogyakarta', '087612345677', 'Madiun, 32 Maret 1999', '2019-2020', 2, 1),
+(183307019, 30, '81dc9bdb52d04dc20036dbd8313ed055', 'Uswatun Khasanah', 'Jl. Merpati No.56 Ds. Kaliurang Yogyakarta', '087612345677', 'Madiun, 32 Maret 1999', '2019-2020', 2, 1),
 (183307020, 30, NULL, 'Tasya Farasya', 'Jl.Merdeka No. 34 RT.01 RW.08 Kel. Sukajaya Jawa Timur', '08734567890', 'Surabaya, 07 Agustus 1999', '2019-2020', 2, 1);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `master_ta`
+-- Struktur dari tabel `master_ta`
 --
 
-DROP TABLE IF EXISTS `master_ta`;
-CREATE TABLE IF NOT EXISTS `master_ta` (
-  `id_master_ta` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `master_ta` (
+  `id_master_ta` int(11) NOT NULL,
   `nim` int(11) DEFAULT NULL,
   `pembimbing1` int(11) DEFAULT NULL,
   `pembimbing2` int(11) DEFAULT NULL,
@@ -357,38 +331,32 @@ CREATE TABLE IF NOT EXISTS `master_ta` (
   `penguji1_sidang` int(11) DEFAULT NULL,
   `penguji2_sidang` int(11) DEFAULT NULL,
   `penguji3_sidang` int(11) DEFAULT NULL,
-  `judul` int(11) DEFAULT NULL,
+  `judul` varchar(50) DEFAULT NULL,
   `jadwal_seminar` datetime DEFAULT NULL,
   `jadwal_sidang` datetime DEFAULT NULL,
-  PRIMARY KEY (`id_master_ta`),
-  KEY `fk_master_ta_dosen1_idx` (`pembimbing1`),
-  KEY `fk_master_ta_dosen2_idx` (`pembimbing2`),
-  KEY `fk_master_ta_dosen3_idx` (`penguji1_sempro`),
-  KEY `fk_master_ta_dosen4_idx` (`penguji1_sidang`),
-  KEY `fk_master_ta_dosen5_idx` (`penguji2_sidang`),
-  KEY `fk_master_ta_dosen6_idx` (`penguji3_sidang`),
-  KEY `fk_master_ta_dosen7_idx` (`penguji2_sempro`),
-  KEY `fk_master_ta_dosen8_idx` (`penguji3_sempro`),
-  KEY `fk_master_ta_mahasiswa1_idx` (`nim`),
-  KEY `fk_master_ta_topik1_idx` (`judul`)
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=latin1;
+  `ruang_seminar` varchar(10) DEFAULT NULL,
+  `ruang_sidang` varchar(10) DEFAULT NULL,
+  `revisi_seminar` varchar(30) DEFAULT NULL,
+  `status_seminar` varchar(25) DEFAULT NULL,
+  `revisi_sidang` varchar(20) DEFAULT NULL,
+  `status_sidang` varchar(25) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `master_ta`
+-- Dumping data untuk tabel `master_ta`
 --
 
-INSERT INTO `master_ta` (`id_master_ta`, `nim`, `pembimbing1`, `pembimbing2`, `penguji1_sempro`, `penguji2_sempro`, `penguji3_sempro`, `penguji1_sidang`, `penguji2_sidang`, `penguji3_sidang`, `judul`, `jadwal_seminar`, `jadwal_sidang`) VALUES
-(22, 183307018, 20, 23, 20, 23, 24, 32, 25, 24, NULL, '2021-06-15 10:00:00', '2021-06-17 10:00:00');
+INSERT INTO `master_ta` (`id_master_ta`, `nim`, `pembimbing1`, `pembimbing2`, `penguji1_sempro`, `penguji2_sempro`, `penguji3_sempro`, `penguji1_sidang`, `penguji2_sidang`, `penguji3_sidang`, `judul`, `jadwal_seminar`, `jadwal_sidang`, `ruang_seminar`, `ruang_sidang`, `revisi_seminar`, `status_seminar`, `revisi_sidang`, `status_sidang`) VALUES
+(3, 183307018, 20, 23, 20, 23, 24, 24, 25, 32, 'Sistem informasi market place', '2021-07-03 23:06:00', '2021-07-04 06:05:00', 'R.1', 'R.2', 'revisi_seminar-2107034.pdf', 'Lulus Dengan Revisi', 'revisi_sidang-210703', 'Lulus');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `nilai_sempro`
+-- Struktur dari tabel `nilai_sempro`
 --
 
-DROP TABLE IF EXISTS `nilai_sempro`;
-CREATE TABLE IF NOT EXISTS `nilai_sempro` (
-  `id_nilai_sempro` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `nilai_sempro` (
+  `id_nilai_sempro` int(11) NOT NULL,
   `nim` int(11) NOT NULL,
   `id_dosen` int(11) NOT NULL,
   `perumusan` int(11) NOT NULL,
@@ -399,14 +367,11 @@ CREATE TABLE IF NOT EXISTS `nilai_sempro` (
   `presentasi` int(11) NOT NULL,
   `penguasaan` int(11) NOT NULL,
   `rata` int(11) NOT NULL,
-  `nilai_akhir` int(11) NOT NULL,
-  PRIMARY KEY (`id_nilai_sempro`),
-  KEY `fk_nilai_sempro_dosen1_idx` (`id_dosen`),
-  KEY `fk_nilai_sempro_mahasiswa1_idx` (`nim`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+  `nilai_akhir` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `nilai_sempro`
+-- Dumping data untuk tabel `nilai_sempro`
 --
 
 INSERT INTO `nilai_sempro` (`id_nilai_sempro`, `nim`, `id_dosen`, `perumusan`, `teori`, `pemecahan`, `penulisan`, `pustaka`, `presentasi`, `penguasaan`, `rata`, `nilai_akhir`) VALUES
@@ -421,12 +386,11 @@ INSERT INTO `nilai_sempro` (`id_nilai_sempro`, `nim`, `id_dosen`, `perumusan`, `
 -- --------------------------------------------------------
 
 --
--- Table structure for table `nilai_sidang`
+-- Struktur dari tabel `nilai_sidang`
 --
 
-DROP TABLE IF EXISTS `nilai_sidang`;
-CREATE TABLE IF NOT EXISTS `nilai_sidang` (
-  `id_nilai_sidang` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `nilai_sidang` (
+  `id_nilai_sidang` int(11) NOT NULL,
   `nim` int(11) NOT NULL,
   `id_dosen` int(11) NOT NULL,
   `perumusan` int(11) NOT NULL,
@@ -438,14 +402,11 @@ CREATE TABLE IF NOT EXISTS `nilai_sidang` (
   `presentasi` int(11) NOT NULL,
   `penguasaan` int(11) NOT NULL,
   `rata` int(11) NOT NULL,
-  `nilai_akhir` int(11) NOT NULL,
-  PRIMARY KEY (`id_nilai_sidang`),
-  KEY `fk_nilai_ta_dosen1_idx` (`id_dosen`),
-  KEY `fk_nilai_ta_mahasiswa1_idx` (`nim`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+  `nilai_akhir` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `nilai_sidang`
+-- Dumping data untuk tabel `nilai_sidang`
 --
 
 INSERT INTO `nilai_sidang` (`id_nilai_sidang`, `nim`, `id_dosen`, `perumusan`, `teori`, `pemecahan`, `penulisan`, `pustaka`, `karya`, `presentasi`, `penguasaan`, `rata`, `nilai_akhir`) VALUES
@@ -455,20 +416,17 @@ INSERT INTO `nilai_sidang` (`id_nilai_sidang`, `nim`, `id_dosen`, `perumusan`, `
 -- --------------------------------------------------------
 
 --
--- Table structure for table `prodi`
+-- Struktur dari tabel `prodi`
 --
 
-DROP TABLE IF EXISTS `prodi`;
-CREATE TABLE IF NOT EXISTS `prodi` (
-  `id_prodi` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `prodi` (
+  `id_prodi` int(11) NOT NULL,
   `id_jurusan` int(11) NOT NULL,
-  `nama_prodi` varchar(25) DEFAULT NULL,
-  PRIMARY KEY (`id_prodi`),
-  KEY `fk_prodi_jurusan1_idx` (`id_jurusan`)
-) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=latin1;
+  `nama_prodi` varchar(25) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `prodi`
+-- Dumping data untuk tabel `prodi`
 --
 
 INSERT INTO `prodi` (`id_prodi`, `id_jurusan`, `nama_prodi`) VALUES
@@ -484,71 +442,61 @@ INSERT INTO `prodi` (`id_prodi`, `id_jurusan`, `nama_prodi`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `proposal`
+-- Struktur dari tabel `proposal`
 --
 
-DROP TABLE IF EXISTS `proposal`;
-CREATE TABLE IF NOT EXISTS `proposal` (
-  `id_proposal` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `proposal` (
+  `id_proposal` int(11) NOT NULL,
   `nim` int(11) NOT NULL,
-  `latar_belakang` text,
-  `rumusan_masalah` text,
-  `batasan_masalah` text,
-  `tujuan` text,
-  `teori` text,
-  `metode` text,
-  PRIMARY KEY (`id_proposal`),
-  KEY `fk_proposal_mahasiswa1_idx` (`nim`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+  `latar_belakang` text DEFAULT NULL,
+  `rumusan_masalah` text DEFAULT NULL,
+  `batasan_masalah` text DEFAULT NULL,
+  `tujuan` text DEFAULT NULL,
+  `teori` text DEFAULT NULL,
+  `metode` text DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `proposal`
+-- Dumping data untuk tabel `proposal`
 --
 
 INSERT INTO `proposal` (`id_proposal`, `nim`, `latar_belakang`, `rumusan_masalah`, `batasan_masalah`, `tujuan`, `teori`, `metode`) VALUES
-(2, 183307018, '     Misalkan kita membuat property line-height: 150% dan font-size: 14px pada tag <body>. Karena sifat line-height ini diturunkan ke dalam tag-tag lain (bersifat inherit) maka seluruh tag di dalam halaman HTML akan mendapatkan nilai line-height yang sama. Akan tetapi, nilai line-height yang diturunkan bukanlah line-height:150%, namun hasil perhitungannya, yakni line-height sebesar 21px (hasil dari 150%*14px).', '     Misalkan kita membuat property line-height: 150% dan font-size: 14px pada tag <body>. Karena sifat line-height ini diturunkan ke dalam tag-tag lain (bersifat inherit) maka seluruh tag di dalam halaman HTML akan mendapatkan nilai line-height yang sama. Akan tetapi, nilai line-height yang diturunkan bukanlah line-height:150%, namun hasil perhitungannya, yakni line-height sebesar 21px (hasil dari 150%*14px).\r\n     Misalkan kita membuat property line-height: 150% dan font-size: 14px pada tag <body>. Karena sifat line-height ini diturunkan ke dalam tag-tag lain (bersifat inherit) maka seluruh tag di dalam halaman HTML akan mendapatkan nilai line-height yang sama. Akan tetapi, nilai line-height yang diturunkan bukanlah line-height:150%, namun hasil perhitungannya, yakni line-height sebesar 21px (hasil dari 150%*14px).', '1. Namun hasil perhitungannya, yakni line-height sebesar 21px (hasil dari 150%*14px).\r\n2. Misalkan kita membuat property line-height: 150% dan font-size: 14px pada tag <body>\r\n3. Akan tetapi, nilai line-height yang diturunkan bukanlah line-height:150%', '1. Namun hasil perhitungannya, yakni line-height sebesar \r\n2. Maka seluruh tag di dalam halaman HTML akan mendapatkan nilai line-height yang sama', '     Dalam kasus ini, jika kita mengganti property line-height menjadi line-height:1.5 pada tag <body>, maka setiap tag dibawahnya akan mendapatkan nilai line-height:1.5. Sehingga untuk paragraf dengan font-size: 36px, efek turunan line-height:1.5 akan menghasilkan nilai line-height: 54px (hasil dari 150%*36).', '     Dalam kasus ini, jika kita mengganti property line-height menjadi line-height:1.5 pada tag <body>, maka setiap tag dibawahnya akan mendapatkan nilai line-height:1.5. Sehingga untuk paragraf dengan font-size: 36px, efek turunan line-height:1.5 akan menghasilkan nilai line-height: 54px (hasil dari 150%*36).\r\n     Dalam kasus ini, jika kita mengganti property line-height menjadi line-height:1.5 pada tag <body>, maka setiap tag dibawahnya akan mendapatkan nilai line-height:1.5. Sehingga untuk paragraf dengan font-size: 36px, efek turunan line-height:1.5 akan menghasilkan nilai line-height: 54px (hasil dari 150%*36).'),
-(3, 183307018, '     Jadi, teks cerita inspiratif merupakan teks yang berisi cerita fiksi maupun pengalaman yang benar-benar terjadi, yang mampu menggugah inspirasi dan semangat seseorang yang membacanya. Berdasarkan pengertian tersebut, tujuan teks cerita inspiratif ialah untuk menambah dan menggugah motivasi, semangat, dan rasa percaya diri untuk menghadapi semua tantangan. Adapun cerita yang disajikan dalam teks cerita inspiratif biasanya berasal dari kisah hidup seseorang, rekaan, atau kisah-kisah yang dapat diambil dari perilaku binatang di kehidupan nyata.', '     Suatu ketika, seorang pemuda yang sangat kuat meminta pekerjaan pada seorang saudagar kayu, dan dia mendapatkannya. Upah yang ditawarkan sesuai dengan keinginannya, lokasi pekerjaannya pun dekat dengan rumahnya. Oleh karena itu, sang pemuda bertekad untuk bekerja dengan sungguh-sungguh.', '1. Termotivasi oleh perkataan itu, sang pemuda menebang kayu dengan usaha yang lebih keras keesokan harinya. Tetapi, hari itu ia hanya bisa membawa 17 batang pohon. Hari ketiga dia berusaha lebih keras lagi, tetapi dia hanya bisa membawa 10 pohon. Hari demi hari, pohonnya makin berkurang.\r\n2. Termotivasi oleh perkataan itu, sang pemuda menebang kayu dengan usaha yang lebih keras keesokan harinya. Tetapi, hari itu ia hanya bisa membawa 17 batang pohon. Hari ketiga dia berusaha lebih keras lagi, tetapi dia hanya bisa membawa 10 pohon. Hari demi hari, pohonnya makin berkurang.', 'Terkadang bekerja keras saja tidaklah cukup untuk mencapai kesuksesan. Kita juga harus bekerja dengan cerdas! Pemuda itu sebetulnya memiliki potensi yang hebat untuk memotong kayu. Sayangnya, ia tidak memiliki sikap yang tepat untuk dapat berhasil dalam tugas khusus ini. Melalui kerja keras dan sikap yang cerdas, tidak ada yang mustahil dalam hidup ini.', '     white-space berfungsi untuk tidak mengabaikan spasi, jadi maksudnya ketika dalam sebuah text ada spasi maka spasi tersebut akan tampil apa adanya. Contohnya pada saat kita menggunakan text yag menjorok kedalam, sebenarnya di bagian tersebut terdapat banyak spasi yang membuat text bisa menjorok kedalam, nah dengan ini maka si spasi tersebut akan di tampilkan sesuai spasi yang sudah kita diawal, jadi gak bakal kena trim intinya. word-wrap sama seperti white-space cuma bedanya ini untuk \"enter\" atau \"baris baru\". font-family berfungsi untuk merubah tipe font style saja.', '     white-space berfungsi untuk tidak mengabaikan spasi, jadi maksudnya ketika dalam sebuah text ada spasi maka spasi tersebut akan tampil apa adanya. Contohnya pada saat kita menggunakan text yag menjorok kedalam, sebenarnya di bagian tersebut terdapat banyak spasi yang membuat text bisa menjorok kedalam, nah dengan ini maka si spasi tersebut akan di tampilkan sesuai spasi yang sudah kita diawal, jadi gak bakal kena trim intinya. word-wrap sama seperti white-space cuma bedanya ini untuk \"enter\" atau \"baris baru\". font-family berfungsi untuk merubah tipe font style saja.\r\n     white-space berfungsi untuk tidak mengabaikan spasi, jadi maksudnya ketika dalam sebuah text ada spasi maka spasi tersebut akan tampil apa adanya. Contohnya pada saat kita menggunakan text yag menjorok kedalam, sebenarnya di bagian tersebut terdapat banyak spasi yang membuat text bisa menjorok kedalam, nah dengan ini maka si spasi tersebut akan di tampilkan sesuai spasi yang sudah kita diawal, jadi gak bakal kena trim intinya. word-wrap sama seperti white-space cuma bedanya ini untuk \"enter\" atau \"baris baru\". font-family berfungsi untuk merubah tipe font style saja.'),
-(4, 183307018, '1. kkkkkkkkkkkkkk\r\n2. mmmmmmmmm\r\n9. lllllllll', '', '', '', '', ''),
-(5, 183307018, 'Di masa pandemi seperti sekarang ini mahasiswa semester 5 yang sedang menempuh mata kuliah Tugas Akhir sangat kesulitan dalam hal\r\nkomunikasi dengan dosen terkait pelaksanaan Tugas Akhir. Sehingga hal tersebut akan menimbulkan masalah dalam pengerjaan Tugas Akhir. Kendala berikutnya adalah dosen menjadi kesulitan dalam melakukan pengawasan terhadap mahasiswa yang sedang dibimbing karena jumlah mahasiswa yang banyak. ', 'Sistem Informasi bimbingan skripsi berbasis web ini dapat membantu proses bimbingan skripsi yang dilakukan oleh dosen dan mahasiswa, karena\r\nbimbingan dilakukan secara online atau tanpa tatap muka. Sistem Informasi tersebut dilengkapi dengan fitur yang dapat digunakan untuk mengirim pesan pada setiap tahap bimbingan (Kusuma, 2018).', '1. Sistem Informasi Tugas Akhir merupakan aplikasi berbasis web menggunakan framework CodeIgniter\r\n2. Sistem Informasi Tugas Akhir ini hanya digunakan dalam lingkup Politeknik Negeri Madiun.', 'Tujuan dari Tugas Akhir ini adalah menghasilkan Sistem Informasi Tugas Akhir Berbasis Web yang dapat digunakan untuk memfasilitasi dosen dan mahasiswa yang sedang melaksanakan Tugas Akhir.', 'Penyimpanan data bimbingan yang tidak teratur dan tidak terdokumentasi dengan baik akan menghambat proses bimbingan skripsi. Sehingga untuk memudahkan monitoring bimbingan skripsi maka perlu sistem informasi yang digunakan untuk mengontrol proses bimbingan skripsi yang dilakukan oleh dosen dan mahasiswa (Dimyati et all., 2018). ', 'Informasi adalah sekumpulan data atau fakta yang telah diproses dan diolah dengan baik hingga menjadi sesuatu yang mudah dimengerti\r\ndan mempunyai manfaat bagi penerima informasi (Alex, 2020). Informasi adalah data yang telah diolah menjadi suatu bentuk yang\r\ndapat digunakan untuk membuat suatu keputusan yang berguna. Dengan adanya data tersebut para pengelola dapat mengetahui keadaan yang sebenarnya (Setiawan, 2020).'),
-(6, 183307018, 'Sistem Informasi bimbingan skripsi berbasis web ini dapat membantu proses bimbingan skripsi yang dilakukan oleh dosen dan mahasiswa, karena\r\nbimbingan dilakukan secara online atau tanpa tatap muka. Sistem Informasi tersebut dilengkapi dengan fitur yang dapat digunakan untuk mengirim pesan pada setiap tahap bimbingan (Kusuma, 2018). Kemudian ada penelitian yang serupa, dimana penelitian tersebut mempunyai kesimpulan bahwa dengan menggunakan Sistem Informasi Bimbingan Skripsi Online dapat menambah kemudahan pada saat proses bimbingan mahasiswa pada program studi Sistem Informasi STMIK Nurdin Hamzah (Rini, 2019). Aplikasi Monitoring Bimbingan Skripsi Pada Sekolah Tinggi Manajemen Informatika dan Komputer (STMIK) Palangka Raya adalah aplikasi yang dibuat untuk memberi kemudahan kepada dosen dan mahasiswa dalam melakukan bimbingan secara online sehingga proses pengerjaan Tugas Akhir dapat selesai tepat waktu (Utariani & Herkules, 2017).', '1. Bagaimana membangun Sistem Informasi Tugas Akhir yang dapat memfasilitasi dosen dan mahasiswa dalam melaksanakan Tugas Akhir?\r\n2. Bagaimana membangun Sistem Informasi Tugas Akhir menggunakan framework CodeIgniter?', '1. Sistem Informasi Tugas Akhir merupakan aplikasi berbasis web menggunakan framework CodeIgniter.\r\n2. Sistem Informasi Tugas Akhir ini hanya digunakan dalam lingkup Politeknik Negeri Madiun.\r\n', 'Tujuan dari Tugas Akhir ini adalah menghasilkan Sistem Informasi Tugas Akhir Berbasis Web yang dapat digunakan untuk memfasilitasi dosen dan mahasiswa yang sedang melaksanakan Tugas Akhir.', 'Aplikasi ini dibuat karena perlu adanya peningkatan yang dapat memfasilitasi mahasiswa dalam berkonsultasi dengan dosen pembimbing. Metode yang digunakan untuk membuat sistem ini adalah metode Rapid Application Development (RAD). Aplikasi Bimbingan Skripsi Online dikerjakan dengan menggunakan bahasa pemrograman PHP dan database MySQL. Dengan adanya Sistem Informas Bimbingan Skripsi Online, diharapkan dapat menjadi media yang membantu pelaksanaan proses bimbingan skripsi oleh mahasiswa program studi Sistem Informasi di STMIK Nurdin Hamzah (Rini,\r\n2019).', 'Metode yang digunakan dalam penelitian ini adalah waterfall. Metode Waterfall adalah metode penelitian yang sering disebut siklus hidup klasik\r\n(classic life cycle), hal ini menjelaskan tentang pendekatan yang terstruktur dan juga urut pada pengembangan software, diawali dengan perincian kebutuhan pengguna kemudian berlanjut melalui tahapan persiapan (planning),permodelan(modeling), konstruksi(construction), serta pemberian sistem kepada pengguna (deployment).');
+(23, 183307018, '<p>halo</p>\r\n', '<p style=\"text-align:justify\"><span style=\"font-size:14px\"><span style=\"font-family:Times New Roman,Times,serif\">Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of &quot;de Finibus Bonorum et Malorum&quot; (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, &quot;Lorem ipsum dolor sit amet..&quot;, comes from a line in section 1.10.32.</span></span></p>\r\n', '<p style=\"text-align:justify\"><span style=\"font-size:14px\"><span style=\"font-family:Times New Roman,Times,serif\">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using &#39;Content here, content here&#39;, making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for &#39;lorem ipsum&#39; will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</span></span></p>\r\n', '<ol>\r\n	<li><span style=\"font-size:14px\"><span style=\"font-family:Times New Roman,Times,serif\">Membuat aplikasi yang bagus untuk di baca</span></span></li>\r\n	<li><span style=\"font-size:14px\"><span style=\"font-family:Times New Roman,Times,serif\">Menerapkan prinsip coding yang benar</span></span></li>\r\n	<li><span style=\"font-size:14px\"><span style=\"font-family:Times New Roman,Times,serif\">Mempunyai nilai yang berharga</span></span></li>\r\n</ol>\r\n', '<p style=\"text-align:justify\"><span style=\"font-size:14px\"><span style=\"font-family:Times New Roman,Times,serif\">Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of &quot;de Finibus Bonorum et Malorum&quot; (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, &quot;Lorem ipsum dolor sit amet..&quot;, comes from a line in section 1.10.32.</span></span></p>\r\n\r\n<p style=\"text-align:justify\"><span style=\"font-size:14px\"><span style=\"font-family:Times New Roman,Times,serif\">The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from &quot;de Finibus Bonorum et Malorum&quot; by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.</span></span></p>\r\n', '<p style=\"text-align:justify\"><span style=\"font-size:14px\"><span style=\"font-family:Times New Roman,Times,serif\">&quot;But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure rationally encounter consequences that are extremely painful. Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally circumstances occur in which toil and pain can procure him some great pleasure. To take a trivial example, which of us ever undertakes laborious physical exercise, except to obtain some advantage from it? But who has any right to find fault with a man who chooses to enjoy a pleasure that has no annoying consequences, or one who avoids a pain that produces no resultant pleasure?&quot;</span></span></p>\r\n'),
+(24, 183307018, '<p style=\"text-align:justify\"><span style=\"font-size:14px\"><span style=\"font-family:Times New Roman,Times,serif\">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don&#39;t look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn&#39;t anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.</span></span></p>\r\n', '<p style=\"text-align:justify\"><span style=\"font-size:14px\"><span style=\"font-family:Times New Roman,Times,serif\">Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of &quot;de Finibus Bonorum et Malorum&quot; (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, &quot;Lorem ipsum dolor sit amet..&quot;, comes from a line in section 1.10.32.</span></span></p>\r\n', '<p style=\"text-align:justify\"><span style=\"font-size:14px\"><span style=\"font-family:Times New Roman,Times,serif\">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using &#39;Content here, content here&#39;, making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for &#39;lorem ipsum&#39; will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</span></span></p>\r\n', '<ol>\r\n	<li><span style=\"font-size:14px\"><span style=\"font-family:Times New Roman,Times,serif\">Membuat aplikasi yang bagus untuk di baca</span></span></li>\r\n	<li><span style=\"font-size:14px\"><span style=\"font-family:Times New Roman,Times,serif\">Menerapkan prinsip coding yang benar</span></span></li>\r\n	<li><span style=\"font-size:14px\"><span style=\"font-family:Times New Roman,Times,serif\">Mempunyai nilai yang berharga</span></span></li>\r\n</ol>\r\n', '<p style=\"text-align:justify\"><span style=\"font-size:14px\"><span style=\"font-family:Times New Roman,Times,serif\">Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of &quot;de Finibus Bonorum et Malorum&quot; (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, &quot;Lorem ipsum dolor sit amet..&quot;, comes from a line in section 1.10.32.</span></span></p>\r\n\r\n<p style=\"text-align:justify\"><span style=\"font-size:14px\"><span style=\"font-family:Times New Roman,Times,serif\">The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from &quot;de Finibus Bonorum et Malorum&quot; by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.</span></span></p>\r\n', '<p style=\"text-align:justify\"><span style=\"font-size:14px\"><span style=\"font-family:Times New Roman,Times,serif\">&quot;But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure rationally encounter consequences that are extremely painful. Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally circumstances occur in which toil and pain can procure him some great pleasure. To take a trivial example, which of us ever undertakes laborious physical exercise, except to obtain some advantage from it? But who has any right to find fault with a man who chooses to enjoy a pleasure that has no annoying consequences, or one who avoids a pain that produces no resultant pleasure?&quot;</span></span></p>\r\n');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `revisi`
+-- Struktur dari tabel `revisi`
 --
 
-DROP TABLE IF EXISTS `revisi`;
-CREATE TABLE IF NOT EXISTS `revisi` (
-  `id_revisi` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `revisi` (
+  `id_revisi` int(11) NOT NULL,
   `nim` int(11) NOT NULL,
-  `penguji1` varchar(50) NOT NULL,
-  `penguji2` varchar(50) NOT NULL,
-  `penguji3` varchar(50) NOT NULL,
-  `jenis` varchar(15) NOT NULL,
-  `revisi1` text NOT NULL,
-  `revisi2` text NOT NULL,
-  `revisi3` text NOT NULL,
-  PRIMARY KEY (`id_revisi`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+  `jenis` varchar(15) DEFAULT NULL,
+  `status` int(1) NOT NULL DEFAULT 0 COMMENT '0:belum disetujui; 1:disetujui',
+  `file_revisi` varchar(255) DEFAULT NULL,
+  `penguji` varchar(80) DEFAULT NULL,
+  `revisi` varchar(100) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `revisi`
+-- Dumping data untuk tabel `revisi`
 --
 
-INSERT INTO `revisi` (`id_revisi`, `nim`, `penguji1`, `penguji2`, `penguji3`, `jenis`, `revisi1`, `revisi2`, `revisi3`) VALUES
-(2, 183307018, '20', '23', '24', 'seminar', 'Penulisan halaman', 'Penulisan daftar pustaka', 'Penulisan bahasa inggris'),
-(5, 183307018, '32', '25', '24', 'ta', 'Penulisan tanda baca', 'Penomoran halaman', 'Penulisan daftar pustaka');
+INSERT INTO `revisi` (`id_revisi`, `nim`, `jenis`, `status`, `file_revisi`, `penguji`, `revisi`) VALUES
+(17, 183307018, 'seminar', 1, '183307018_-_Revisi_Sidang.pdf', '25', 'tes aja yaa'),
+(18, 183307018, 'seminar', 1, '183307018_-_Revisi_Sidang.pdf', '32', 'tes abimanyu'),
+(20, 183307018, 'seminar', 1, '183307018_-_Revisi_Sidang.pdf', '24', ' Riswanda revisi');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `seminar_proposal`
+-- Struktur dari tabel `seminar_proposal`
 --
 
-DROP TABLE IF EXISTS `seminar_proposal`;
-CREATE TABLE IF NOT EXISTS `seminar_proposal` (
-  `id_seminar_proposal` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `seminar_proposal` (
+  `id_seminar_proposal` int(11) NOT NULL,
   `id_nilai_sempro` int(11) DEFAULT NULL,
   `nim` int(11) NOT NULL,
   `berita_acara` varchar(30) DEFAULT NULL,
@@ -559,27 +507,32 @@ CREATE TABLE IF NOT EXISTS `seminar_proposal` (
   `presentasi` varchar(30) NOT NULL,
   `rata` int(11) NOT NULL,
   `jumlah` int(11) NOT NULL,
-  PRIMARY KEY (`id_seminar_proposal`),
-  KEY `fk_seminar_proposal_mahasiswa1_idx` (`nim`),
-  KEY `fk_seminar_proposal_nilai_sempro1_idx` (`id_nilai_sempro`)
-) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=latin1;
+  `st_beritaacara` tinyint(4) DEFAULT NULL,
+  `st_persetujuan` tinyint(4) DEFAULT NULL,
+  `st_proposal` tinyint(4) DEFAULT NULL,
+  `st_monitoring` tinyint(4) DEFAULT NULL,
+  `st_presentasi` tinyint(4) DEFAULT NULL,
+  `catatan_beritaacara` varchar(100) DEFAULT NULL,
+  `tgl_beritaacara` date DEFAULT NULL,
+  `catatan_persetujuan` varchar(100) DEFAULT NULL,
+  `tgl_persetujuan` date DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `seminar_proposal`
+-- Dumping data untuk tabel `seminar_proposal`
 --
 
-INSERT INTO `seminar_proposal` (`id_seminar_proposal`, `id_nilai_sempro`, `nim`, `berita_acara`, `persetujuan`, `proposal`, `monitoring`, `status`, `presentasi`, `rata`, `jumlah`) VALUES
-(39, NULL, 183307018, 'bks_seminar-210628.docx', 'bks_seminar-2106281.docx', 'bks_seminar-210628.pdf', 'bks_seminar-2106281.pdf', 0, 'bks_seminar-210628.pptx', 0, 0);
+INSERT INTO `seminar_proposal` (`id_seminar_proposal`, `id_nilai_sempro`, `nim`, `berita_acara`, `persetujuan`, `proposal`, `monitoring`, `status`, `presentasi`, `rata`, `jumlah`, `st_beritaacara`, `st_persetujuan`, `st_proposal`, `st_monitoring`, `st_presentasi`, `catatan_beritaacara`, `tgl_beritaacara`, `catatan_persetujuan`, `tgl_persetujuan`) VALUES
+(8, NULL, 183307018, 'bks_seminar-210703.docx', 'bks_seminar-210703.pdf', 'bks_seminar-2107031.pdf', 'bks_seminar-2107032.pdf', NULL, 'bks_seminar-210703.pptx', 0, 0, 1, 0, 0, 0, 0, 'JJ', '2021-07-28', NULL, NULL);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `seminar_ta`
+-- Struktur dari tabel `seminar_ta`
 --
 
-DROP TABLE IF EXISTS `seminar_ta`;
-CREATE TABLE IF NOT EXISTS `seminar_ta` (
-  `id_seminar_ta` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `seminar_ta` (
+  `id_seminar_ta` int(11) NOT NULL,
   `id_nilai_ta` int(11) DEFAULT NULL,
   `nim` int(11) NOT NULL,
   `file_ta` varchar(30) DEFAULT NULL,
@@ -590,169 +543,380 @@ CREATE TABLE IF NOT EXISTS `seminar_ta` (
   `berita_acara` varchar(30) NOT NULL,
   `presentasi` varchar(30) NOT NULL,
   `link` varchar(20) NOT NULL,
-  PRIMARY KEY (`id_seminar_ta`),
-  KEY `fk_seminar_ta_mahasiswa1_idx` (`nim`),
-  KEY `fk_seminar_ta_nilai_ta2_idx` (`id_nilai_ta`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
+  `st_file_ta` tinyint(4) DEFAULT NULL,
+  `st_pkkmb` tinyint(4) DEFAULT NULL,
+  `st_monitoring` tinyint(4) DEFAULT NULL,
+  `st_persetujuan` tinyint(4) DEFAULT NULL,
+  `st_berita_acara` tinyint(4) DEFAULT NULL,
+  `st_presentasi` tinyint(4) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `seminar_ta`
+-- Dumping data untuk tabel `seminar_ta`
 --
 
-INSERT INTO `seminar_ta` (`id_seminar_ta`, `id_nilai_ta`, `nim`, `file_ta`, `pkkmb`, `monitoring`, `persetujuan`, `status`, `berita_acara`, `presentasi`, `link`) VALUES
-(15, NULL, 183307018, 'bks_sidang-210625.pdf', 'bks_sidang-2106251.pdf', 'bks_sidang-2106252.pdf', 'bks_sidang-210625.docx', 0, 'bks_sidang-2106251.docx', 'bks_sidang-210625.pptx', 'https://www.youtube.');
+INSERT INTO `seminar_ta` (`id_seminar_ta`, `id_nilai_ta`, `nim`, `file_ta`, `pkkmb`, `monitoring`, `persetujuan`, `status`, `berita_acara`, `presentasi`, `link`, `st_file_ta`, `st_pkkmb`, `st_monitoring`, `st_persetujuan`, `st_berita_acara`, `st_presentasi`) VALUES
+(17, NULL, 183307018, 'bks_sidang-2107032.pdf', 'bks_sidang-2107035.pdf', 'bks_sidang-2107034.pdf', 'bks_sidang-2107031.pdf', NULL, 'bks_sidang-2107026.pdf', 'bks_sidang-2107033.pdf', '', 0, 0, 0, 0, 0, 0);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `topik`
+-- Struktur dari tabel `topik`
 --
 
-DROP TABLE IF EXISTS `topik`;
-CREATE TABLE IF NOT EXISTS `topik` (
-  `id_topik` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `topik` (
+  `id_topik` int(11) NOT NULL,
   `nim` int(11) NOT NULL,
   `bidang` varchar(20) DEFAULT NULL,
   `judul` varchar(50) DEFAULT NULL,
   `lokasi` varchar(20) DEFAULT NULL,
   `status` tinyint(1) DEFAULT NULL,
-  `deskripsi` text,
-  `komentar` text NOT NULL,
-  PRIMARY KEY (`id_topik`),
-  KEY `nim` (`nim`)
-) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=latin1;
+  `deskripsi` text DEFAULT NULL,
+  `komentar` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `topik`
+-- Dumping data untuk tabel `topik`
 --
 
 INSERT INTO `topik` (`id_topik`, `nim`, `bidang`, `judul`, `lokasi`, `status`, `deskripsi`, `komentar`) VALUES
-(28, 183307018, 'Web', 'mm', 'Madiun', 4, 'nnn', 'km'),
-(29, 183307018, 'mm', 'pp', 'jj', 3, 'vv', 'bb');
+(5, 183307019, NULL, 'Android', 'Kampus', 3, 'Android untuk kampus', 'oke'),
+(7, 183307018, NULL, 'Sistem monitoring', 'Kota Madiun', 1, 'sistem untuk mengawasi', '');
 
 --
--- Constraints for dumped tables
+-- Indexes for dumped tables
 --
 
 --
--- Constraints for table `bimbingan`
+-- Indeks untuk tabel `bimbingan`
+--
+ALTER TABLE `bimbingan`
+  ADD PRIMARY KEY (`id_bimbingan`),
+  ADD KEY `fk_bimbingan_dosen1_idx` (`id_dosen`),
+  ADD KEY `fk_bimbingan_mahasiswa1_idx` (`nim`);
+
+--
+-- Indeks untuk tabel `bks_bahasa`
+--
+ALTER TABLE `bks_bahasa`
+  ADD PRIMARY KEY (`id_bks_bhs`),
+  ADD KEY `fk_bks_bahasa_mahasiswa1_idx` (`nim`);
+
+--
+-- Indeks untuk tabel `bks_keterampilan`
+--
+ALTER TABLE `bks_keterampilan`
+  ADD PRIMARY KEY (`id_bks_ket`),
+  ADD KEY `fk_bks_keterampilan_mahasiswa1_idx` (`nim`);
+
+--
+-- Indeks untuk tabel `bks_organisasi`
+--
+ALTER TABLE `bks_organisasi`
+  ADD PRIMARY KEY (`id_bks_org`),
+  ADD KEY `fk_bks_organisasi_mahasiswa1_idx` (`nim`);
+
+--
+-- Indeks untuk tabel `bks_pkl`
+--
+ALTER TABLE `bks_pkl`
+  ADD PRIMARY KEY (`id_bks_pkl`),
+  ADD KEY `fk_bks_pkl_mahasiswa1_idx` (`nim`);
+
+--
+-- Indeks untuk tabel `bks_prestasi`
+--
+ALTER TABLE `bks_prestasi`
+  ADD PRIMARY KEY (`id_bks_prestasi`),
+  ADD KEY `fk_bks_prestasi_mahasiswa1_idx` (`nim`);
+
+--
+-- Indeks untuk tabel `bks_wisuda`
+--
+ALTER TABLE `bks_wisuda`
+  ADD PRIMARY KEY (`id_bks_wisuda`),
+  ADD KEY `fk_bks_wisuda_mahasiswa1_idx` (`nim`);
+
+--
+-- Indeks untuk tabel `chat`
+--
+ALTER TABLE `chat`
+  ADD PRIMARY KEY (`id_chat`),
+  ADD KEY `fk_chat_dosen1_idx` (`id_pengirim`),
+  ADD KEY `fk_chat_mahasiswa1_idx` (`id_mahasiswabimbingan`);
+
+--
+-- Indeks untuk tabel `dosen`
+--
+ALTER TABLE `dosen`
+  ADD PRIMARY KEY (`id_dosen`),
+  ADD KEY `fk_dosen_prodi1_idx` (`id_prodi`);
+
+--
+-- Indeks untuk tabel `jurusan`
+--
+ALTER TABLE `jurusan`
+  ADD PRIMARY KEY (`id_jurusan`);
+
+--
+-- Indeks untuk tabel `mahasiswa`
+--
+ALTER TABLE `mahasiswa`
+  ADD PRIMARY KEY (`nim`),
+  ADD KEY `fk_mahasiswa_prodi1_idx` (`id_prodi`);
+
+--
+-- Indeks untuk tabel `master_ta`
+--
+ALTER TABLE `master_ta`
+  ADD PRIMARY KEY (`id_master_ta`),
+  ADD KEY `fk_master_ta_dosen1_idx` (`pembimbing1`),
+  ADD KEY `fk_master_ta_dosen2_idx` (`pembimbing2`),
+  ADD KEY `fk_master_ta_dosen3_idx` (`penguji1_sempro`),
+  ADD KEY `fk_master_ta_dosen4_idx` (`penguji1_sidang`),
+  ADD KEY `fk_master_ta_dosen5_idx` (`penguji2_sidang`),
+  ADD KEY `fk_master_ta_dosen6_idx` (`penguji3_sidang`),
+  ADD KEY `fk_master_ta_dosen7_idx` (`penguji2_sempro`),
+  ADD KEY `fk_master_ta_dosen8_idx` (`penguji3_sempro`),
+  ADD KEY `fk_master_ta_mahasiswa1_idx` (`nim`),
+  ADD KEY `fk_master_ta_topik1_idx` (`judul`);
+
+--
+-- Indeks untuk tabel `nilai_sempro`
+--
+ALTER TABLE `nilai_sempro`
+  ADD PRIMARY KEY (`id_nilai_sempro`),
+  ADD KEY `fk_nilai_sempro_dosen1_idx` (`id_dosen`),
+  ADD KEY `fk_nilai_sempro_mahasiswa1_idx` (`nim`);
+
+--
+-- Indeks untuk tabel `nilai_sidang`
+--
+ALTER TABLE `nilai_sidang`
+  ADD PRIMARY KEY (`id_nilai_sidang`),
+  ADD KEY `fk_nilai_ta_dosen1_idx` (`id_dosen`),
+  ADD KEY `fk_nilai_ta_mahasiswa1_idx` (`nim`);
+
+--
+-- Indeks untuk tabel `prodi`
+--
+ALTER TABLE `prodi`
+  ADD PRIMARY KEY (`id_prodi`),
+  ADD KEY `fk_prodi_jurusan1_idx` (`id_jurusan`);
+
+--
+-- Indeks untuk tabel `proposal`
+--
+ALTER TABLE `proposal`
+  ADD PRIMARY KEY (`id_proposal`),
+  ADD KEY `fk_proposal_mahasiswa1_idx` (`nim`);
+
+--
+-- Indeks untuk tabel `revisi`
+--
+ALTER TABLE `revisi`
+  ADD PRIMARY KEY (`id_revisi`),
+  ADD KEY `nim` (`nim`);
+
+--
+-- Indeks untuk tabel `seminar_proposal`
+--
+ALTER TABLE `seminar_proposal`
+  ADD PRIMARY KEY (`id_seminar_proposal`),
+  ADD KEY `fk_seminar_proposal_mahasiswa1_idx` (`nim`),
+  ADD KEY `fk_seminar_proposal_nilai_sempro1_idx` (`id_nilai_sempro`);
+
+--
+-- Indeks untuk tabel `seminar_ta`
+--
+ALTER TABLE `seminar_ta`
+  ADD PRIMARY KEY (`id_seminar_ta`),
+  ADD KEY `fk_seminar_ta_mahasiswa1_idx` (`nim`),
+  ADD KEY `fk_seminar_ta_nilai_ta2_idx` (`id_nilai_ta`);
+
+--
+-- Indeks untuk tabel `topik`
+--
+ALTER TABLE `topik`
+  ADD PRIMARY KEY (`id_topik`),
+  ADD KEY `nim` (`nim`);
+
+--
+-- AUTO_INCREMENT untuk tabel yang dibuang
+--
+
+--
+-- AUTO_INCREMENT untuk tabel `bimbingan`
+--
+ALTER TABLE `bimbingan`
+  MODIFY `id_bimbingan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+
+--
+-- AUTO_INCREMENT untuk tabel `bks_bahasa`
+--
+ALTER TABLE `bks_bahasa`
+  MODIFY `id_bks_bhs` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT untuk tabel `bks_keterampilan`
+--
+ALTER TABLE `bks_keterampilan`
+  MODIFY `id_bks_ket` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT untuk tabel `bks_organisasi`
+--
+ALTER TABLE `bks_organisasi`
+  MODIFY `id_bks_org` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT untuk tabel `bks_pkl`
+--
+ALTER TABLE `bks_pkl`
+  MODIFY `id_bks_pkl` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT untuk tabel `bks_prestasi`
+--
+ALTER TABLE `bks_prestasi`
+  MODIFY `id_bks_prestasi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT untuk tabel `bks_wisuda`
+--
+ALTER TABLE `bks_wisuda`
+  MODIFY `id_bks_wisuda` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT untuk tabel `chat`
+--
+ALTER TABLE `chat`
+  MODIFY `id_chat` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT untuk tabel `dosen`
+--
+ALTER TABLE `dosen`
+  MODIFY `id_dosen` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+
+--
+-- AUTO_INCREMENT untuk tabel `jurusan`
+--
+ALTER TABLE `jurusan`
+  MODIFY `id_jurusan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- AUTO_INCREMENT untuk tabel `master_ta`
+--
+ALTER TABLE `master_ta`
+  MODIFY `id_master_ta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT untuk tabel `nilai_sempro`
+--
+ALTER TABLE `nilai_sempro`
+  MODIFY `id_nilai_sempro` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- AUTO_INCREMENT untuk tabel `nilai_sidang`
+--
+ALTER TABLE `nilai_sidang`
+  MODIFY `id_nilai_sidang` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT untuk tabel `prodi`
+--
+ALTER TABLE `prodi`
+  MODIFY `id_prodi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+
+--
+-- AUTO_INCREMENT untuk tabel `proposal`
+--
+ALTER TABLE `proposal`
+  MODIFY `id_proposal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+
+--
+-- AUTO_INCREMENT untuk tabel `revisi`
+--
+ALTER TABLE `revisi`
+  MODIFY `id_revisi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+
+--
+-- AUTO_INCREMENT untuk tabel `seminar_proposal`
+--
+ALTER TABLE `seminar_proposal`
+  MODIFY `id_seminar_proposal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT untuk tabel `seminar_ta`
+--
+ALTER TABLE `seminar_ta`
+  MODIFY `id_seminar_ta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+
+--
+-- AUTO_INCREMENT untuk tabel `topik`
+--
+ALTER TABLE `topik`
+  MODIFY `id_topik` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
+--
+
+--
+-- Ketidakleluasaan untuk tabel `bimbingan`
 --
 ALTER TABLE `bimbingan`
   ADD CONSTRAINT `fk_bimbingan_dosen1` FOREIGN KEY (`id_dosen`) REFERENCES `dosen` (`id_dosen`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_bimbingan_mahasiswa1` FOREIGN KEY (`nim`) REFERENCES `mahasiswa` (`nim`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Constraints for table `bks_bahasa`
+-- Ketidakleluasaan untuk tabel `bks_bahasa`
 --
 ALTER TABLE `bks_bahasa`
   ADD CONSTRAINT `fk_bks_bahasa_mahasiswa1` FOREIGN KEY (`nim`) REFERENCES `mahasiswa` (`nim`) ON DELETE NO ACTION ON UPDATE CASCADE;
 
 --
--- Constraints for table `bks_keterampilan`
+-- Ketidakleluasaan untuk tabel `bks_keterampilan`
 --
 ALTER TABLE `bks_keterampilan`
   ADD CONSTRAINT `fk_bks_keterampilan_mahasiswa1` FOREIGN KEY (`nim`) REFERENCES `mahasiswa` (`nim`) ON DELETE NO ACTION ON UPDATE CASCADE;
 
 --
--- Constraints for table `bks_organisasi`
+-- Ketidakleluasaan untuk tabel `bks_organisasi`
 --
 ALTER TABLE `bks_organisasi`
   ADD CONSTRAINT `fk_bks_organisasi_mahasiswa1` FOREIGN KEY (`nim`) REFERENCES `mahasiswa` (`nim`) ON DELETE NO ACTION ON UPDATE CASCADE;
 
 --
--- Constraints for table `bks_pkl`
+-- Ketidakleluasaan untuk tabel `bks_pkl`
 --
 ALTER TABLE `bks_pkl`
   ADD CONSTRAINT `fk_bks_pkl_mahasiswa1` FOREIGN KEY (`nim`) REFERENCES `mahasiswa` (`nim`) ON DELETE NO ACTION ON UPDATE CASCADE;
 
 --
--- Constraints for table `bks_prestasi`
+-- Ketidakleluasaan untuk tabel `bks_prestasi`
 --
 ALTER TABLE `bks_prestasi`
   ADD CONSTRAINT `fk_bks_prestasi_mahasiswa1` FOREIGN KEY (`nim`) REFERENCES `mahasiswa` (`nim`) ON DELETE NO ACTION ON UPDATE CASCADE;
 
 --
--- Constraints for table `bks_wisuda`
+-- Ketidakleluasaan untuk tabel `bks_wisuda`
 --
 ALTER TABLE `bks_wisuda`
   ADD CONSTRAINT `fk_bks_wisuda_mahasiswa1` FOREIGN KEY (`nim`) REFERENCES `mahasiswa` (`nim`) ON DELETE NO ACTION ON UPDATE CASCADE;
 
 --
--- Constraints for table `chat`
+-- Ketidakleluasaan untuk tabel `chat`
 --
 ALTER TABLE `chat`
   ADD CONSTRAINT `fk_chat_mahasiswa1` FOREIGN KEY (`id_mahasiswabimbingan`) REFERENCES `mahasiswa` (`nim`) ON DELETE NO ACTION ON UPDATE CASCADE;
 
 --
--- Constraints for table `dosen`
---
-ALTER TABLE `dosen`
-  ADD CONSTRAINT `fk_dosen_prodi1` FOREIGN KEY (`id_prodi`) REFERENCES `prodi` (`id_prodi`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Constraints for table `mahasiswa`
+-- Ketidakleluasaan untuk tabel `mahasiswa`
 --
 ALTER TABLE `mahasiswa`
   ADD CONSTRAINT `fk_mahasiswa_prodi1` FOREIGN KEY (`id_prodi`) REFERENCES `prodi` (`id_prodi`) ON DELETE NO ACTION ON UPDATE CASCADE;
-
---
--- Constraints for table `master_ta`
---
-ALTER TABLE `master_ta`
-  ADD CONSTRAINT `fk_master_ta_dosen1` FOREIGN KEY (`pembimbing1`) REFERENCES `dosen` (`id_dosen`) ON DELETE NO ACTION,
-  ADD CONSTRAINT `fk_master_ta_dosen2` FOREIGN KEY (`pembimbing2`) REFERENCES `dosen` (`id_dosen`) ON DELETE NO ACTION,
-  ADD CONSTRAINT `fk_master_ta_dosen3` FOREIGN KEY (`penguji1_sempro`) REFERENCES `dosen` (`id_dosen`) ON DELETE NO ACTION ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_master_ta_dosen4` FOREIGN KEY (`penguji1_sidang`) REFERENCES `dosen` (`id_dosen`) ON DELETE NO ACTION ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_master_ta_dosen5` FOREIGN KEY (`penguji2_sidang`) REFERENCES `dosen` (`id_dosen`) ON DELETE NO ACTION ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_master_ta_dosen6` FOREIGN KEY (`penguji3_sidang`) REFERENCES `dosen` (`id_dosen`) ON DELETE NO ACTION ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_master_ta_dosen7` FOREIGN KEY (`penguji2_sempro`) REFERENCES `dosen` (`id_dosen`) ON DELETE NO ACTION ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_master_ta_dosen8` FOREIGN KEY (`penguji3_sempro`) REFERENCES `dosen` (`id_dosen`) ON DELETE NO ACTION ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_master_ta_mahasiswa1` FOREIGN KEY (`nim`) REFERENCES `mahasiswa` (`nim`) ON DELETE NO ACTION ON UPDATE CASCADE;
-
---
--- Constraints for table `nilai_sempro`
---
-ALTER TABLE `nilai_sempro`
-  ADD CONSTRAINT `fk_nilai_sempro_dosen1` FOREIGN KEY (`id_dosen`) REFERENCES `dosen` (`id_dosen`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_nilai_sempro_mahasiswa1` FOREIGN KEY (`nim`) REFERENCES `mahasiswa` (`nim`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Constraints for table `nilai_sidang`
---
-ALTER TABLE `nilai_sidang`
-  ADD CONSTRAINT `fk_nilai_ta_dosen1` FOREIGN KEY (`id_dosen`) REFERENCES `dosen` (`id_dosen`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_nilai_ta_mahasiswa1` FOREIGN KEY (`nim`) REFERENCES `mahasiswa` (`nim`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Constraints for table `prodi`
---
-ALTER TABLE `prodi`
-  ADD CONSTRAINT `fk_prodi_jurusan1` FOREIGN KEY (`id_jurusan`) REFERENCES `jurusan` (`id_jurusan`) ON DELETE NO ACTION ON UPDATE CASCADE;
-
---
--- Constraints for table `proposal`
---
-ALTER TABLE `proposal`
-  ADD CONSTRAINT `fk_proposal_mahasiswa1` FOREIGN KEY (`nim`) REFERENCES `mahasiswa` (`nim`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Constraints for table `seminar_proposal`
---
-ALTER TABLE `seminar_proposal`
-  ADD CONSTRAINT `fk_seminar_proposal_nilai_sempro1` FOREIGN KEY (`id_nilai_sempro`) REFERENCES `nilai_sempro` (`id_nilai_sempro`) ON DELETE NO ACTION ON UPDATE CASCADE;
-
---
--- Constraints for table `seminar_ta`
---
-ALTER TABLE `seminar_ta`
-  ADD CONSTRAINT `fk_seminar_ta_mahasiswa1` FOREIGN KEY (`nim`) REFERENCES `mahasiswa` (`nim`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_seminar_ta_nilai_ta2` FOREIGN KEY (`id_nilai_ta`) REFERENCES `nilai_sidang` (`id_nilai_sidang`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Constraints for table `topik`
---
-ALTER TABLE `topik`
-  ADD CONSTRAINT `topik_ibfk_1` FOREIGN KEY (`nim`) REFERENCES `mahasiswa` (`nim`) ON DELETE NO ACTION ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
