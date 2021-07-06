@@ -49,7 +49,7 @@
                         <td><?= $row->nim ?></td>
                         <td><?= $row->nama ?></td>
                         <td> <?php if ($row->st_file_ta == '0') {
-                                echo " <a href ='#' class ='btn btn-sm btn-danger btn-xs btn-block' data-toggle='modal' data-target='#modal_file_ta' onClick=\"SetInput('" . $row->id_seminar_ta . "','" . $row->nim . "','" . $row->nama . "')\"> Belum</a>";
+                                echo " <a href ='#' class ='btn btn-sm btn-warning btn-xs btn-block' data-toggle='modal' data-target='#modal_file_ta' onClick=\"SetInput('" . $row->id_seminar_ta . "','" . $row->nim . "','" . $row->nama . "')\"> Belum</a>";
                               } else if ($row->st_file_ta == '1') {
                                 echo " <a href='" . base_url(' bks_sidang/save_bks_kurang/' . $row->id_seminar_ta) . "' class='btn btn-xs btn-primary'>Kurang</a>";
                               } else {
@@ -65,7 +65,7 @@
                           <h6><a href="<?php echo base_url('assets/berkas/sidang/' . $row->file_ta); ?>" download><i class="far fa-file-pdf"></i></a></h6>
                         </td>
                         <td> <?php if ($row->st_persetujuan == '0') {
-                                echo " <a href ='#' class ='btn btn-sm btn-danger btn-xs btn-block' data-toggle='modal' data-target='#modal_persetujuan' onClick=\"SetInput('" . $row->id_seminar_ta . "','" . $row->nim . "','" . $row->nama . "')\"> Belum</a>";
+                                echo " <a href ='#' class ='btn btn-sm btn-warning btn-xs btn-block' data-toggle='modal' data-target='#modal_persetujuan' onClick=\"SetInput('" . $row->id_seminar_ta . "','" . $row->nim . "','" . $row->nama . "')\"> Belum</a>";
                               } else if ($row->st_persetujuan == '1') {
                                 echo " <a href='" . base_url(' bks_seminar/save_bks_kurang/' . $row->id_seminar_ta) . "' class='btn btn-xs btn-primary'>Kurang</a>";
                               } else {
@@ -81,7 +81,7 @@
                           <h6><a href="<?php echo base_url('assets/berkas/sidang/' . $row->persetujuan); ?>" download><i class="far fa-file-pdf"></i></a></h6>
                         </td>
                         <td> <?php if ($row->st_pkkmb == '0') {
-                                echo " <a href ='#' class ='btn btn-sm btn-danger btn-xs btn-block' data-toggle='modal' data-target='#modal_pkkmb' onClick=\"SetInput('" . $row->id_seminar_ta . "','" . $row->nim . "','" . $row->nama . "')\"> Belum</a>";
+                                echo " <a href ='#' class ='btn btn-sm btn-warning btn-xs btn-block' data-toggle='modal' data-target='#modal_pkkmb' onClick=\"SetInput('" . $row->id_seminar_ta . "','" . $row->nim . "','" . $row->nama . "')\"> Belum</a>";
                               } else if ($row->st_pkkmb == '1') {
                                 echo " <a href='" . base_url(' bks_seminar/save_bks_kurang/' . $row->id_seminar_ta) . "' class='btn btn-xs btn-primary'>Kurang</a>";
                               } else {
@@ -97,7 +97,7 @@
                           <h6><a href="<?php echo base_url('assets/berkas/sidang/' . $row->pkkmb); ?>" download><i class="far fa-file-pdf"></i></a></h6>
                         </td>
                         <td> <?php if ($row->st_monitoring == '0') {
-                                echo " <a href ='#' class ='btn btn-sm btn-danger btn-xs btn-block' data-toggle='modal' data-target='#modal_monitoring' onClick=\"SetInput('" . $row->id_seminar_ta . "','" . $row->nim . "','" . $row->nama . "')\"> Belum</a>";
+                                echo " <a href ='#' class ='btn btn-sm btn-warning btn-xs btn-block' data-toggle='modal' data-target='#modal_monitoring' onClick=\"SetInput('" . $row->id_seminar_ta . "','" . $row->nim . "','" . $row->nama . "')\"> Belum</a>";
                               } else if ($row->st_monitoring == '1') {
                                 echo " <a href='" . base_url(' bks_seminar/save_bks_kurang/' . $row->id_seminar_ta) . "' class='btn btn-xs btn-primary'>Kurang</a>";
                               } else {
@@ -113,7 +113,7 @@
                           <h6><a href="<?php echo base_url('assets/berkas/sidang/' . $row->monitoring); ?>" download><i class="far fa-file-pdf"></i></i></a></h6>
                         </td>
                         <td> <?php if ($row->st_presentasi == '0') {
-                                echo " <a href ='#' class ='btn btn-sm btn-danger btn-xs btn-block' data-toggle='modal' data-target='#modal_presentasi' onClick=\"SetInput('" . $row->id_seminar_ta . "','" . $row->nim . "','" . $row->nama . "')\"> Belum</a>";
+                                echo " <a href ='#' class ='btn btn-sm btn-warning btn-xs btn-block' data-toggle='modal' data-target='#modal_presentasi' onClick=\"SetInput('" . $row->id_seminar_ta . "','" . $row->nim . "','" . $row->nama . "')\"> Belum</a>";
                               } else if ($row->st_presentasi == '1') {
                                 echo " <a href='" . base_url(' bks_seminar/save_bks_kurang/' . $row->id_seminar_ta) . "' class='btn btn-xs btn-primary'>Kurang</a>";
                               } else {
@@ -129,7 +129,7 @@
                           <h6><a href="<?php echo base_url('assets/berkas/sidang/' . $row->presentasi); ?>" download><i class="far fa-file-powerpoint"></i></a></h6>
                         </td>
                         <td> <?php if ($row->st_berita_acara == '0') {
-                                echo " <a href ='#' class ='btn btn-sm btn-danger btn-xs btn-block' data-toggle='modal' data-target='#modal_berita_acara' onClick=\"SetInput('" . $row->id_seminar_ta . "','" . $row->nim . "','" . $row->nama . "')\"> Belum</a>";
+                                echo " <a href ='#' class ='btn btn-sm btn-warning btn-xs btn-block' data-toggle='modal' data-target='#modal_berita_acara' onClick=\"SetInput('" . $row->id_seminar_ta . "','" . $row->nim . "','" . $row->nama . "')\"> Belum</a>";
                               } else if ($row->st_berita_acara == '1') {
                                 echo " <a href='" . base_url(' bks_seminar/save_bks_kurang/' . $row->id_seminar_ta) . "' class='btn btn-xs btn-primary'>Kurang</a>";
                               } else {

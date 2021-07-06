@@ -61,7 +61,7 @@
                                                 } else if ($row->status == '2') {
                                                     echo '<span class="badge badge-primary">Proses</span>';
                                                 } else {
-                                                    echo '<span class="badge badge-danger">Disetujui</span>';
+                                                    echo '<span class="badge badge-success">Disetujui</span>';
                                                 }
                                                 ?>
                                             </td>
@@ -93,7 +93,7 @@
                                                 Setujui
                                                 </a>';
                                                 } else {
-                                                    echo '<a href="javascript:void(0);" class="btn btn-danger btn-sm">
+                                                    echo '<a href="javascript:void(0);" class="btn btn-success btn-sm">
                                                 Disetujui
                                                 </a>';
                                                 }
@@ -324,7 +324,10 @@
                                 <div style="text-align:right;margin-bottom: 10px ">
                                     <a href="#" class="on-default edit-row btn btn-info pull-right" data-toggle="modal" pull="right" data-target="#custom-width-modal" onclick="ResetInput()"><i class="fa fa-plus"></i> Ajukan Lembar Bimbingan</a>
                                     <a href="<?= site_url('bimbingan1/cetak_kartuta') ?>" target="_blank" type="button" class="btn btn-primary"><i class="fas fa-print"></i> &nbsp;Cetak Lembar Bimbingan</a>
-                                    <a href="https://wa.me/<?= $row->hp ?>" target="_blank" class="btn btn-success"> <i class="fab fa-whatsapp"></i></a>
+                                    <?php
+                                    foreach ($bimbingan_user_ta->result() as $row) { ?>
+                                        <a href="https://wa.me/<?= $row->hp ?>" target="_blank" class="btn btn-success"> <i class="fab fa-whatsapp"></i></a>
+                                    <?php } ?>
                                 </div>
                                 <table id="example1" class="table table-bordered table-striped">
                                     <thead>

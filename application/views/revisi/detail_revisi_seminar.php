@@ -150,7 +150,9 @@
                                     <div class="form-group row">
                                         <label for="inputEmail3" class="col-sm-5 col-form-label">Dosen</label>
                                         <div class="col-sm-5">
-                                            <input type="text" class="form-control" id="dosen" readonly name="penguji" placeholder="Nama Dosen" value=" <?php echo $this->session->userdata('nama') ?>"></td>
+                                            <!-- <input type="text" class="form-control" id="dosen" readonly name="penguji" placeholder="Nama Dosen" value=" <?php echo $this->session->userdata('nama') ?>"></td> -->
+                                            <input type="text" class="form-control" id="dosen" readonly placeholder="Nama Dosen" value=" <?php echo $this->session->userdata('nama') ?>">
+                                            <input type="hidden" name="penguji" value="<?= $this->session->userdata('id_dosen'); ?>">
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -159,58 +161,6 @@
                                             <textarea type="text" class="form-control" rows="7" id="revisi" name="revisi"></textarea>
                                         </div>
                                     </div>
-                                    <!-- <div class="form-group row">
-                                        <label for="inputEmail3" class="col-sm-5 col-form-label">Dosen Penguji 2</label>
-                                        <div class="col-sm-5">
-                                            <?php
-                                            $id_prodi = $this->session->userdata('id_prodi');
-                                            foreach ($this->m_penguji->tampil_data($id_prodi)->result() as $row) {
-                                                $data['user'] = $this->m_penguji->getmahasiswabyid($row->nim);
-                                                $data['dosen2'] = $this->m_penguji->getdosen2($row->penguji2_sempro);
-                                                echo
-                                                " 
-											<input type='text' class='form-control' id='dosen' readonly name='dosen' placeholder='Nama Dosen' value='" . $data['dosen2']->nama . "'></td>
-											<input type='hidden' class='form-control' id='id_dosen' readonly name='penguji2' placeholder='Nama Dosen' value='" . $data['dosen2']->id_dosen . "'></td>
-											";
-                                            }
-                                            ?>
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="inputEmail3" class="col-sm-5 col-form-label">Revisi Dosen Penguji 2</label>
-                                        <div class="col-sm-5">
-                                            <textarea type="text" class="form-control" rows="7" id="revisi2" name="revisi2"></textarea>
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="inputEmail3" class="col-sm-5 col-form-label">Dosen Penguji 3</label>
-                                        <div class="col-sm-5">
-                                            <?php
-                                            $id_prodi = $this->session->userdata('id_prodi');
-                                            foreach ($this->m_penguji->tampil_data($id_prodi)->result() as $row) {
-                                                $data['user'] = $this->m_penguji->getmahasiswabyid($row->nim);
-                                                $data['dosen3'] = $this->m_penguji->getdosen3($row->penguji3_sempro);
-                                                echo
-                                                " 
-											<input type='text' class='form-control' id='dosen' readonly name='dosen' placeholder='Nama Dosen' value='" . $data['dosen3']->nama . "'></td>
-											<input type='hidden' class='form-control' id='id_dosen' readonly name='penguji3' placeholder='Nama Dosen' value='" . $data['dosen3']->id_dosen . "'></td>
-											";
-                                            }
-                                            ?>
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="inputEmail3" class="col-sm-5 col-form-label">Revisi Dosen Penguji 3</label>
-                                        <div class="col-sm-5">
-                                            <textarea type="text" class="form-control" rows="7" id="revisi3" name="revisi3"></textarea>
-                                        </div>
-                                    </div> -->
-                                    <!-- <div class="form-group row">
-                                        <label for="inputEmail3" class="col-sm-5 col-form-label">Upload File Revisi</label>
-                                        <div class="col-sm-5">
-                                            <input type="file" name="file_revisi" id="file_revisi">
-                                        </div>
-                                    </div> -->
                                 </div>
                                 <div class="card-footer">
                                     <button type="submit" class="btn btn-info float-right">Simpan</button>

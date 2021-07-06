@@ -73,7 +73,6 @@ class M_bimbingan1 extends CI_Model
         $this->db->where('jenis', 'seminar');
         $this->db->where('bimbingan.nim', $this->session->userdata('email'));
         $this->db->or_where('bimbingan.id_dosen', $this->session->userdata('id_dosen'));
-
         return $this->db->get('bimbingan');
     }
 

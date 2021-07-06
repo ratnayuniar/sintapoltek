@@ -141,6 +141,7 @@
             document.getElementById('status_sidang').value = status_sidang;
         }
     </script>
+    <!-- USER DOSEN -->
 <?php } else if (($this->session->userdata('level') == 3) ||  ($this->session->userdata('level') == 4)) { ?>
     <div class="content-wrapper">
         <section class="content-header">
@@ -198,7 +199,7 @@
 											<td>" . $data['dosen2']->nama . "</td>
 											<td>" . $data['dosen3']->nama . "</td>
 											<td>
-                                            <a href='" . base_url('revisi_seminar/detail_revisi_seminar2?id=' . $row->nim) . "' class='on-default edit-row btn btn-primary btn-sm' ><i class='fa fa-search'></i> Input Revisi</a>
+                                            <a href='" . base_url('revisi_sidang/detail_revisi_sidang2?id=' . $row->nim) . "' class='on-default edit-row btn btn-primary btn-sm' ><i class='fa fa-search'></i> Input Revisi</a>
 											</td>
 									    </tr>";
                                             $no++;

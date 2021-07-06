@@ -358,6 +358,14 @@ class Bks_seminar extends CI_Controller
 		else $this->m_bks_seminar->ubah_data($id_seminar_proposal);
 	}
 
+	public function verif_persetujuan()
+	{
+		$id_seminar_proposal = $this->input->post('id_seminar_proposal');
+
+		if (empty($id_seminar_proposal)) $this->m_bks_seminar->tambah_data();
+		else $this->m_bks_seminar->ubah_data1($id_seminar_proposal);
+	}
+
 	public function delete_users($id_seminar_proposal)
 	{
 		$data = $this->m_bks_seminar->ambil_id_gambar($id_seminar_proposal);
