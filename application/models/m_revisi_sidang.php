@@ -26,10 +26,22 @@ class M_revisi_sidang extends CI_Model
     public function revisi_mhs()
     {
 
+        // $this->db->select('*');
+        // $this->db->from('mahasiswa');
+        // $this->db->join('revisi', 'mahasiswa.nim = revisi.nim', 'left');
+        // $this->db->join('master_ta', 'mahasiswa.nim = master_ta.nim', 'left');
+        // $this->db->join('dosen', 'dosen.id_dosen = revisi.penguji', 'left');
+
+        // $this->db->where('jenis', 'ta');
+        // $this->db->where('revisi.nim', $this->session->userdata('email'));
+        // $query = $this->db->get();
+        // return $query;
         $this->db->select('*');
-        $this->db->from('mahasiswa');
-        $this->db->join('revisi', 'mahasiswa.nim = revisi.nim', 'left');
+        $this->db->from('revisi');
+        $this->db->join('mahasiswa', 'revisi.nim = mahasiswa.nim', 'left');
         $this->db->join('master_ta', 'mahasiswa.nim = master_ta.nim', 'left');
+        $this->db->join('dosen', 'revisi.penguji = dosen.id_dosen', 'left');
+
         $this->db->where('jenis', 'ta');
         $this->db->where('revisi.nim', $this->session->userdata('email'));
         $query = $this->db->get();

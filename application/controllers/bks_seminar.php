@@ -360,10 +360,34 @@ class Bks_seminar extends CI_Controller
 
 	public function verif_persetujuan()
 	{
-		$id_seminar_proposal = $this->input->post('id_seminar_proposal');
+		$nim = $this->input->post('nim');
 
-		if (empty($id_seminar_proposal)) $this->m_bks_seminar->tambah_data();
-		else $this->m_bks_seminar->ubah_data1($id_seminar_proposal);
+		if (empty($nim)) $this->m_bks_seminar->tambah_data();
+		else $this->m_bks_seminar->ubah_data2($nim);
+	}
+
+	public function verif_proposal()
+	{
+		$nim = $this->input->post('nim');
+
+		if (empty($nim)) $this->m_bks_seminar->tambah_data();
+		else $this->m_bks_seminar->ubah_data3($nim);
+	}
+
+	public function verif_monitoring()
+	{
+		$nim = $this->input->post('nim');
+
+		if (empty($nim)) $this->m_bks_seminar->tambah_data();
+		else $this->m_bks_seminar->ubah_data4($nim);
+	}
+
+	public function verif_presentasi()
+	{
+		$nim = $this->input->post('nim');
+
+		if (empty($nim)) $this->m_bks_seminar->tambah_data();
+		else $this->m_bks_seminar->ubah_data5($nim);
 	}
 
 	public function delete_users($id_seminar_proposal)

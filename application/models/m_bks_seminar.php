@@ -30,9 +30,6 @@ class M_bks_seminar extends CI_Model
 			'st_beritaacara' => $this->input->post('st_beritaacara'),
 			'catatan_beritaacara' => $this->input->post('catatan_beritaacara'),
 			'tgl_beritaacara' => $this->input->post('tgl_beritaacara'),
-			'st_persetujuan' => $this->input->post('st_persetujuan'),
-			'catatan_persetujuan' => $this->input->post('catatan_persetujuan'),
-			'tgl_persetujuan' => $this->input->post('tgl_persetujuan'),
 
 		);
 		$this->db->where(array('id_seminar_proposal' => $id_seminar_proposal));
@@ -40,7 +37,7 @@ class M_bks_seminar extends CI_Model
 		redirect('/bks_seminar');
 	}
 
-	function ubah_data2($id_seminar_proposal)
+	function ubah_data2($nim)
 	{
 		$data = array(
 			'st_persetujuan' => $this->input->post('st_persetujuan'),
@@ -48,7 +45,50 @@ class M_bks_seminar extends CI_Model
 			'tgl_persetujuan' => $this->input->post('tgl_persetujuan'),
 
 		);
-		$this->db->where(array('id_seminar_proposal' => $id_seminar_proposal));
+
+		$this->db->where(array('nim' => $nim));
+		$this->db->update('seminar_proposal', $data);
+		redirect('/bks_seminar');
+	}
+
+	function ubah_data3($nim)
+	{
+		$data = array(
+			'st_proposal' => $this->input->post('st_proposal'),
+			'catatan_proposal' => $this->input->post('catatan_proposal'),
+			'tgl_proposal' => $this->input->post('tgl_proposal'),
+
+		);
+
+		$this->db->where(array('nim' => $nim));
+		$this->db->update('seminar_proposal', $data);
+		redirect('/bks_seminar');
+	}
+
+	function ubah_data4($nim)
+	{
+		$data = array(
+			'st_monitoring' => $this->input->post('st_monitoring'),
+			'catatan_monitoring' => $this->input->post('catatan_monitoring'),
+			'tgl_monitoring' => $this->input->post('tgl_monitoring'),
+
+		);
+
+		$this->db->where(array('nim' => $nim));
+		$this->db->update('seminar_proposal', $data);
+		redirect('/bks_seminar');
+	}
+
+	function ubah_data5($nim)
+	{
+		$data = array(
+			'st_presentasi' => $this->input->post('st_presentasi'),
+			'catatan_presentasi' => $this->input->post('catatan_presentasi'),
+			'tgl_presentasi' => $this->input->post('tgl_presentasi'),
+
+		);
+
+		$this->db->where(array('nim' => $nim));
 		$this->db->update('seminar_proposal', $data);
 		redirect('/bks_seminar');
 	}

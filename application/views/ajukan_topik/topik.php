@@ -376,9 +376,6 @@
                           }
                           ?>
                         </td>
-                        <!-- <td>
-                          <a href="<?= base_url('topik/detail_topik/' . $row->id_topik) ?>" class="btn btn-sm btn-info btn-xs"><i class="fa fa-search"></i> Detail</a></a>
-                        </td> -->
                       </tr>
                     <?php } ?>
                   </tbody>

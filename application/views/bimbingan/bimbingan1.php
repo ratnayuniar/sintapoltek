@@ -387,9 +387,7 @@
                                                         echo " ";
                                                     }
                                                     ?>
-                                                    <!-- <a href="https://wa.me/<?= $row->hp ?>" target="_blank" class="btn btn-info btn-sm"> <i class="fa fa-comment-dots"></i> Kirim Pesan</a> -->
                                                 </td>
-
                                             </tr>
                                         <?php } ?>
                                     </tbody>
