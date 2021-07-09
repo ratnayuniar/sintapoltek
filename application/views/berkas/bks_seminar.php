@@ -125,7 +125,7 @@
                             echo "<h6>"  . $row->catatan_presentasi . "</h6> ";
                           }
                           ?>
-                          <h6><a href="<?php echo base_url('assets/berkas/berkas/' . $row->presentasi); ?>" download><i class="far fa-file-powerpoint"></i></a></h6>
+                          <h6><a href="<?php echo base_url('assets/berkas/sidang/' . $row->presentasi); ?>" download><i class="far fa-file-powerpoint"></i></a></h6>
                         </td>
                       </tr>
                     <?php } ?>

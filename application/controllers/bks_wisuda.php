@@ -254,7 +254,7 @@ class Bks_wisuda extends CI_Controller
         if (isset($_POST['submit'])) {
             $this->form_validation->set_rules('nim', 'NIM', 'required');
             $config['upload_path'] = './assets/berkas/wisuda/';
-            $config['allowed_types'] = 'pdf|jpg|png|exe|jpeg|mp4|ppt|pptx';
+            $config['allowed_types'] = 'exe|zip|rar';
             $config['max_size']  = 50000;
             $config['file_name'] = 'bks_wisuda-' . date('ymd');
 
@@ -415,5 +415,53 @@ class Bks_wisuda extends CI_Controller
             $this->session->set_flashdata('pesan', 'dihapus');
         }
         redirect('bks_wisuda');
+    }
+
+    public function verif_fileta()
+    {
+        $id_bks_wisuda = $this->input->post('id_bks_wisuda');
+
+        if (empty($id_bks_wisuda)) $this->m_bks_wisuda->tambah_data();
+        else $this->m_bks_wisuda->ubah_data($id_bks_wisuda);
+    }
+
+    public function verif_jurnal()
+    {
+        $nim = $this->input->post('nim');
+
+        if (empty($nim)) $this->m_bks_wisuda->tambah_data();
+        else $this->m_bks_wisuda->ubah_data2($nim);
+    }
+
+    public function verif_lapta()
+    {
+        $nim = $this->input->post('nim');
+
+        if (empty($nim)) $this->m_bks_wisuda->tambah_data();
+        else $this->m_bks_wisuda->ubah_data3($nim);
+    }
+
+    public function verif_aplikasi()
+    {
+        $nim = $this->input->post('nim');
+
+        if (empty($nim)) $this->m_bks_wisuda->tambah_data();
+        else $this->m_bks_wisuda->ubah_data4($nim);
+    }
+
+    public function verif_ppt()
+    {
+        $nim = $this->input->post('nim');
+
+        if (empty($nim)) $this->m_bks_wisuda->tambah_data();
+        else $this->m_bks_wisuda->ubah_data5($nim);
+    }
+
+    public function verif_video()
+    {
+        $nim = $this->input->post('nim');
+
+        if (empty($nim)) $this->m_bks_wisuda->tambah_data();
+        else $this->m_bks_wisuda->ubah_data6($nim);
     }
 }

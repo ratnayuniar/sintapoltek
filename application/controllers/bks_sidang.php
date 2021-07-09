@@ -401,6 +401,54 @@ class Bks_sidang extends CI_Controller
 		}
 	}
 
+	public function verif_beritaacara()
+	{
+		$id_seminar_ta = $this->input->post('id_seminar_ta');
+
+		if (empty($id_seminar_ta)) $this->m_bks_sidang->tambah_data();
+		else $this->m_bks_sidang->ubah_data($id_seminar_ta);
+	}
+
+	public function verif_persetujuan()
+	{
+		$nim = $this->input->post('nim');
+
+		if (empty($nim)) $this->m_bks_sidang->tambah_data();
+		else $this->m_bks_sidang->ubah_data2($nim);
+	}
+
+	public function verif_fileta()
+	{
+		$nim = $this->input->post('nim');
+
+		if (empty($nim)) $this->m_bks_sidang->tambah_data();
+		else $this->m_bks_sidang->ubah_data3($nim);
+	}
+
+	public function verif_monitoring()
+	{
+		$nim = $this->input->post('nim');
+
+		if (empty($nim)) $this->m_bks_sidang->tambah_data();
+		else $this->m_bks_sidang->ubah_data4($nim);
+	}
+
+	public function verif_presentasi()
+	{
+		$nim = $this->input->post('nim');
+
+		if (empty($nim)) $this->m_bks_sidang->tambah_data();
+		else $this->m_bks_sidang->ubah_data5($nim);
+	}
+
+	public function verif_pkkmb()
+	{
+		$nim = $this->input->post('nim');
+
+		if (empty($nim)) $this->m_bks_sidang->tambah_data();
+		else $this->m_bks_sidang->ubah_data6($nim);
+	}
+
 	public function delete_berkas($id_seminar_ta)
 	{
 		$data = $this->m_bks_sidang->ambil_id_gambar($id_seminar_ta);

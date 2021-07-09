@@ -48,97 +48,97 @@
                                                 <td><?= $row->nim ?></td>
                                                 <td><?= $row->nama ?></td>
                                                 <td> <?php if ($row->status_file_ta == '0') {
-                                                            echo " <a href ='#' class ='btn btn-sm btn-danger btn-xs btn-block' data-toggle='modal' data-target='#modal_file_ta' onClick=\"SetInput('" . $row->id_bks_wisuda . "','" . $row->nim . "','" . $row->nama . "')\"> Belum</a>";
+                                                            echo " <a href ='#' class ='btn btn-sm btn-warning btn-xs btn-block' data-toggle='modal' data-target='#modal_file_ta' onClick=\"SetInput('" . $row->id_bks_wisuda . "','" . $row->nim . "','" . $row->nama . "','" . $row->judul . "','" . $row->status_file_ta . "','" . $row->catatan_file_ta . "','" . $row->tgl_file_ta . "')\"> Belum</a>";
                                                         } else if ($row->status_file_ta == '1') {
-                                                            echo " <a href='" . base_url(' bks_wisuda/save_bks_kurang/' . $row->id_bks_wisuda) . "' class='btn btn-xs btn-primary'>Kurang</a>";
+                                                            echo " <a href ='#' class ='btn btn-sm btn-info btn-xs btn-block' data-toggle='modal' data-target='#modal_file_ta' onClick=\"SetInput('" . $row->id_bks_wisuda . "','" . $row->nim . "','" . $row->nama . "','" . $row->judul . "','" . $row->status_file_ta . "','" . $row->catatan_file_ta . "','" . $row->tgl_file_ta . "')\"> Kurang</a>";
                                                         } else {
-                                                            echo " <a href='" . base_url(' bks_wisuda/save_bks_lengkap/' . $row->id_bks_wisuda) . "' class='btn btn-xs btn-success'>Lengkap</a>";
+                                                            echo " <a href ='#' class ='btn btn-sm btn-success btn-xs btn-block' data-toggle='modal' data-target='#modal_file_ta' onClick=\"SetInput('" . $row->id_bks_wisuda . "','" . $row->nim . "','" . $row->nama . "','" . $row->judul . "','" . $row->status_file_ta . "','" . $row->catatan_file_ta . "','" . $row->tgl_file_ta . "')\"> Lengkap</a>";
                                                         }
                                                         ?>
                                                     <?php if ($row->status_file_ta == '0') {
                                                         echo " <h6>Belum diverifikasi</h6>";
                                                     } else {
-                                                        echo " ";
+                                                        echo "<h6>" . $row->catatan_file_ta . "</h6> ";
                                                     }
                                                     ?>
                                                     <h6><a href="<?php echo base_url('assets/berkas/wisuda/' . $row->file_ta); ?>" download><i class="far fa-file-pdf"></i></a></h6>
                                                 </td>
                                                 <td> <?php if ($row->status_jurnal == '0') {
-                                                            echo " <a href ='#' class ='btn btn-sm btn-danger btn-xs btn-block' data-toggle='modal' data-target='#modal_jurnal' onClick=\"SetInput('" . $row->id_bks_wisuda . "','" . $row->nim . "','" . $row->nama . "')\"> Belum</a>";
+                                                            echo " <a href ='#' class ='btn btn-sm btn-warning btn-xs btn-block' data-toggle='modal' data-target='#modal_jurnal' onClick=\"SetInput2('" . $row->id_bks_wisuda . "','" . $row->nim . "','" . $row->nama . "','" . $row->judul . "','" . $row->status_jurnal . "','" . $row->catatan_jurnal . "','" . $row->tgl_jurnal . "')\"> Belum</a>";
                                                         } else if ($row->status_jurnal == '1') {
-                                                            echo " <a href='" . base_url(' bks_wisuda/save_bks_kurang/' . $row->id_bks_wisuda) . "' class='btn btn-xs btn-primary'>Kurang</a>";
+                                                            echo " <a href ='#' class ='btn btn-sm btn-info btn-xs btn-block' data-toggle='modal' data-target='#modal_jurnal' onClick=\"SetInput2('" . $row->id_bks_wisuda . "','" . $row->nim . "','" . $row->nama . "','" . $row->judul . "','" . $row->status_jurnal . "','" . $row->catatan_jurnal . "','" . $row->tgl_jurnal . "')\"> Kurang</a>";
                                                         } else {
-                                                            echo " <a href='" . base_url(' bks_wisuda/save_bks_lengkap/' . $row->id_bks_wisuda) . "' class='btn btn-xs btn-success'>Lengkap</a>";
+                                                            echo " <a href ='#' class ='btn btn-sm btn-success btn-xs btn-block' data-toggle='modal' data-target='#modal_jurnal' onClick=\"SetInput2('" . $row->id_bks_wisuda . "','" . $row->nim . "','" . $row->nama . "','" . $row->judul . "','" . $row->status_jurnal . "','" . $row->catatan_jurnal . "','" . $row->tgl_jurnal . "')\"> Lengkap</a>";
                                                         }
                                                         ?>
                                                     <?php if ($row->status_jurnal == '0') {
                                                         echo " <h6>Belum diverifikasi</h6>";
                                                     } else {
-                                                        echo " ";
+                                                        echo "<h6>" . $row->catatan_jurnal . "</h6> ";
                                                     }
                                                     ?>
                                                     <h6><a href="<?php echo base_url('assets/berkas/wisuda/' . $row->jurnal); ?>" download><i class="far fa-file-pdf"></i></a></h6>
                                                 </td>
                                                 <td> <?php if ($row->status_lap_ta == '0') {
-                                                            echo " <a href ='#' class ='btn btn-sm btn-danger btn-xs btn-block' data-toggle='modal' data-target='#modal_lapta' onClick=\"SetInput('" . $row->id_bks_wisuda . "','" . $row->nim . "','" . $row->nama . "')\"> Belum</a>";
+                                                            echo " <a href ='#' class ='btn btn-sm btn-warning btn-xs btn-block' data-toggle='modal' data-target='#modal_lapta' onClick=\"SetInput3('" . $row->id_bks_wisuda . "','" . $row->nim . "','" . $row->nama . "','" . $row->judul . "','" . $row->status_lap_ta . "','" . $row->catatan_lap_ta . "','" . $row->tgl_lap_ta . "')\"> Belum</a>";
                                                         } else if ($row->status_lap_ta == '1') {
-                                                            echo " <a href='" . base_url(' bks_wisuda/save_bks_kurang/' . $row->id_bks_wisuda) . "' class='btn btn-xs btn-primary'>Kurang</a>";
+                                                            echo " <a href ='#' class ='btn btn-sm btn-info btn-xs btn-block' data-toggle='modal' data-target='#modal_lapta' onClick=\"SetInput3('" . $row->id_bks_wisuda . "','" . $row->nim . "','" . $row->nama . "','" . $row->judul . "','" . $row->status_lap_ta . "','" . $row->catatan_lap_ta . "','" . $row->tgl_lap_ta . "')\"> Kurang</a>";
                                                         } else {
-                                                            echo " <a href='" . base_url(' bks_wisuda/save_bks_lengkap/' . $row->id_bks_wisuda) . "' class='btn btn-xs btn-success'>Lengkap</a>";
+                                                            echo " <a href ='#' class ='btn btn-sm btn-success btn-xs btn-block' data-toggle='modal' data-target='#modal_lapta' onClick=\"SetInput3('" . $row->id_bks_wisuda . "','" . $row->nim . "','" . $row->nama . "','" . $row->judul . "','" . $row->status_lap_ta . "','" . $row->catatan_lap_ta . "','" . $row->tgl_lap_ta . "')\"> Lengkap</a>";
                                                         }
                                                         ?>
                                                     <?php if ($row->status_lap_ta == '0') {
                                                         echo " <h6>Belum diverifikasi</h6>";
                                                     } else {
-                                                        echo " ";
+                                                        echo "<h6>" . $row->catatan_lap_ta . "</h6> ";
                                                     }
                                                     ?>
 
                                                 </td>
                                                 <td> <?php if ($row->status_aplikasi == '0') {
-                                                            echo " <a href ='#' class ='btn btn-sm btn-danger btn-xs btn-block' data-toggle='modal' data-target='#modal_aplikasi' onClick=\"SetInput('" . $row->id_bks_wisuda . "','" . $row->nim . "','" . $row->nama . "')\"> Belum</a>";
+                                                            echo " <a href ='#' class ='btn btn-sm btn-warning btn-xs btn-block' data-toggle='modal' data-target='#modal_aplikasi' onClick=\"SetInput4('" . $row->id_bks_wisuda . "','" . $row->nim . "','" . $row->nama . "','" . $row->judul . "','" . $row->status_aplikasi . "','" . $row->catatan_aplikasi . "','" . $row->tgl_aplikasi . "')\"> Belum</a>";
                                                         } else if ($row->status_aplikasi == '1') {
-                                                            echo " <a href='" . base_url(' bks_wisuda/save_bks_kurang/' . $row->id_bks_wisuda) . "' class='btn btn-xs btn-primary'>Kurang</a>";
+                                                            echo " <a href ='#' class ='btn btn-sm btn-info btn-xs btn-block' data-toggle='modal' data-target='#modal_aplikasi' onClick=\"SetInput4('" . $row->id_bks_wisuda . "','" . $row->nim . "','" . $row->nama . "','" . $row->judul . "','" . $row->status_aplikasi . "','" . $row->catatan_aplikasi . "','" . $row->tgl_aplikasi . "')\"> Kurang</a>";
                                                         } else {
-                                                            echo " <a href='" . base_url(' bks_wisuda/save_bks_lengkap/' . $row->id_bks_wisuda) . "' class='btn btn-xs btn-success'>Lengkap</a>";
+                                                            echo " <a href ='#' class ='btn btn-sm btn-success btn-xs btn-block' data-toggle='modal' data-target='#modal_aplikasi' onClick=\"SetInput4('" . $row->id_bks_wisuda . "','" . $row->nim . "','" . $row->nama . "','" . $row->judul . "','" . $row->status_aplikasi . "','" . $row->catatan_aplikasi . "','" . $row->tgl_aplikasi . "')\"> Lengkap</a>";
                                                         }
                                                         ?>
                                                     <?php if ($row->status_aplikasi == '0') {
                                                         echo " <h6>Belum diverifikasi</h6>";
                                                     } else {
-                                                        echo " ";
+                                                        echo "<h6>" . $row->catatan_aplikasi . "</h6> ";
                                                     }
                                                     ?>
-                                                    <h6><a href="<?php echo base_url('assets/berkas/wisuda/' . $row->aplikasi); ?>" download><i class="far fa-file-archive"></i></i></a></h6>
+                                                    <h6><a href="<?php echo base_url('assets/berkas/wisuda/' . $row->aplikasi); ?>" download><i class="far fa-file-archive"></i></a></h6>
                                                 </td>
                                                 <td> <?php if ($row->status_ppt == '0') {
-                                                            echo " <a href ='#' class ='btn btn-sm btn-danger btn-xs btn-block' data-toggle='modal' data-target='#modal_ppt' onClick=\"SetInput('" . $row->id_bks_wisuda . "','" . $row->nim . "','" . $row->nama . "')\"> Belum</a>";
+                                                            echo " <a href ='#' class ='btn btn-sm btn-warning btn-xs btn-block' data-toggle='modal' data-target='#modal_ppt' onClick=\"SetInput5('" . $row->id_bks_wisuda . "','" . $row->nim . "','" . $row->nama . "','" . $row->judul . "','" . $row->status_ppt . "','" . $row->catatan_ppt . "','" . $row->tgl_ppt . "')\"> Belum</a>";
                                                         } else if ($row->status_ppt == '1') {
-                                                            echo " <a href='" . base_url(' bks_wisuda/save_bks_kurang/' . $row->id_bks_wisuda) . "' class='btn btn-xs btn-primary'>Kurang</a>";
+                                                            echo " <a href ='#' class ='btn btn-sm btn-info btn-xs btn-block' data-toggle='modal' data-target='#modal_ppt' onClick=\"SetInput5('" . $row->id_bks_wisuda . "','" . $row->nim . "','" . $row->nama . "','" . $row->judul . "','" . $row->status_ppt . "','" . $row->catatan_ppt . "','" . $row->tgl_ppt . "')\"> Kurang</a>";
                                                         } else {
-                                                            echo " <a href='" . base_url(' bks_wisuda/save_bks_lengkap/' . $row->id_bks_wisuda) . "' class='btn btn-xs btn-success'>Lengkap</a>";
+                                                            echo " <a href ='#' class ='btn btn-sm btn-success btn-xs btn-block' data-toggle='modal' data-target='#modal_ppt' onClick=\"SetInput5('" . $row->id_bks_wisuda . "','" . $row->nim . "','" . $row->nama . "','" . $row->judul . "','" . $row->status_ppt . "','" . $row->catatan_ppt . "','" . $row->tgl_ppt . "')\"> Lengkap</a>";
                                                         }
                                                         ?>
                                                     <?php if ($row->status_ppt == '0') {
                                                         echo " <h6>Belum diverifikasi</h6>";
                                                     } else {
-                                                        echo " ";
+                                                        echo "<h6>" . $row->catatan_ppt . "</h6> ";
                                                     }
                                                     ?>
                                                     <h6><a href="<?php echo base_url('assets/berkas/wisuda/' . $row->ppt); ?>" download><i class="far fa-file-powerpoint"></i></a></h6>
                                                 </td>
                                                 <td> <?php if ($row->status_video == '0') {
-                                                            echo " <a href ='#' class ='btn btn-sm btn-danger btn-xs btn-block' data-toggle='modal' data-target='#modal_video' onClick=\"SetInput('" . $row->id_bks_wisuda . "','" . $row->nim . "','" . $row->nama . "')\"> Belum</a>";
+                                                            echo " <a href ='#' class ='btn btn-sm btn-warning btn-xs btn-block' data-toggle='modal' data-target='#modal_video' onClick=\"SetInput6('" . $row->id_bks_wisuda . "','" . $row->nim . "','" . $row->nama . "','" . $row->judul . "','" . $row->status_video . "','" . $row->catatan_video . "','" . $row->tgl_video . "')\"> Belum</a>";
                                                         } else if ($row->status_video == '1') {
-                                                            echo " <a href='" . base_url(' bks_wisuda/save_bks_kurang/' . $row->id_bks_wisuda) . "' class='btn btn-xs btn-primary'>Kurang</a>";
+                                                            echo " <a href ='#' class ='btn btn-sm btn-info btn-xs btn-block' data-toggle='modal' data-target='#modal_video' onClick=\"SetInput6('" . $row->id_bks_wisuda . "','" . $row->nim . "','" . $row->nama . "','" . $row->judul . "','" . $row->status_video . "','" . $row->catatan_video . "','" . $row->tgl_video . "')\"> Kurang</a>";
                                                         } else {
-                                                            echo " <a href='" . base_url(' bks_wisuda/save_bks_lengkap/' . $row->id_bks_wisuda) . "' class='btn btn-xs btn-success'>Lengkap</a>";
+                                                            echo " <a href ='#' class ='btn btn-sm btn-success btn-xs btn-block' data-toggle='modal' data-target='#modal_video' onClick=\"SetInput6('" . $row->id_bks_wisuda . "','" . $row->nim . "','" . $row->nama . "','" . $row->judul . "','" . $row->status_video . "','" . $row->catatan_video . "','" . $row->tgl_video . "')\"> Lengkap</a>";
                                                         }
                                                         ?>
                                                     <?php if ($row->status_video == '0') {
                                                         echo " <h6>Belum diverifikasi</h6>";
                                                     } else {
-                                                        echo " ";
+                                                        echo "<h6>" . $row->catatan_video . "</h6> ";
                                                     }
                                                     ?>
                                                     <h6><a href="<?php echo base_url('assets/berkas/wisuda/' . $row->video); ?>" download><i class="far fa-file-video"></i></a></h6>
@@ -165,7 +165,7 @@
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
-                <form action="<?= base_url('bks_wisuda/create') ?>" method="post" class="form-horizontal" role="form" enctype="multipart/form-data">
+                <form action="<?= base_url('bks_wisuda/verif_fileta') ?>" method="post" class="form-horizontal" role="form" enctype="multipart/form-data">
                     <div class="card-body">
                         <div class="form-group row">
                             <input type="hidden" id="id_bks_wisuda" name="id_bks_wisuda">
@@ -183,34 +183,34 @@
                         <div class="form-group row">
                             <label for="persetujuan" class="col-sm-3 col-form-label">Judul TA</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" name="judul" required>
+                                <input type="text" class="form-control" id="judul" name="judul" readonly>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="exampleInputjudul1" class="col-sm-3 col-form-label">Keterangan</label>
                             <div class="col-sm-4">
-                                <select class="form-control" data-live-search="true" data-style="btn-white" onclick="choose()" id="nim" name="nim" required>
-                                    <option>Belum</option>
-                                    <option>kurang</option>
-                                    <option>Lengkap</option>
+                                <select class="form-control" data-live-search="true" data-style="btn-white" onclick="choose()" id="status_file_ta" name="status_file_ta" required>
+                                    <option value="0">Belum</option>
+                                    <option value="1">Kurang</option>
+                                    <option value="2">Lengkap</option>
                                 </select>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="persetujuan" class="col-sm-3 col-form-label">Catatan</label>
                             <div class="col-sm-9">
-                                <textarea class="form-control" name="catatan"></textarea>
+                                <textarea class="form-control" id="catatan_file_ta" name="catatan_file_ta"></textarea>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="persetujuan" class="col-sm-3 col-form-label">Tanggal Verifikasi</label>
                             <div class="col-sm-9">
-                                <input type="date" nama="tanggal" class="form-control">
+                                <input type="date" id="tgl_file_ta" name="tgl_file_ta" class="form-control">
                             </div>
                         </div>
                     </div>
                     <div class="card-footer">
-                        <button type="submit" name="submit" class="btn btn-primary pull-right">Simpan</button>
+                        <button type="submit" name="submit" class="btn btn-primary" style="float: right;">Simpan</button>
                     </div>
                 </form>
             </div>
@@ -226,52 +226,52 @@
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
-                <form action="<?= base_url('bks_wisuda/create') ?>" method="post" class="form-horizontal" role="form" enctype="multipart/form-data">
+                <form action="<?= base_url('bks_wisuda/verif_jurnal') ?>" method="post" class="form-horizontal" role="form" enctype="multipart/form-data">
                     <div class="card-body">
                         <div class="form-group row">
                             <input type="hidden" id="id_bks_wisuda" name="id_bks_wisuda">
                             <label for="inputEmail3" class="col-sm-3 col-form-label">NIM</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" id="nim" name="nim" readonly>
+                                <input type="text" class="form-control" id="nim2" name="nim" readonly>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="inputEmail3" class="col-sm-3 col-form-label">Nama Mahasiswa</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" id="nama" name="nama" readonly>
+                                <input type="text" class="form-control" id="nama2" name="nama" readonly>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="persetujuan" class="col-sm-3 col-form-label">Judul TA</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" name="judul" required>
+                                <input type="text" class="form-control" id="judul2" name="judul" readonly>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="exampleInputjudul1" class="col-sm-3 col-form-label">Keterangan</label>
                             <div class="col-sm-4">
-                                <select class="form-control" data-live-search="true" data-style="btn-white" onclick="choose()" id="nim" name="nim" required>
-                                    <option>Belum</option>
-                                    <option>kurang</option>
-                                    <option>Lengkap</option>
+                                <select class="form-control" data-live-search="true" data-style="btn-white" onclick="choose()" id="status_jurnal" name="status_jurnal" required>
+                                    <option value="0">Belum</option>
+                                    <option value="1">Kurang</option>
+                                    <option value="2">Lengkap</option>
                                 </select>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="persetujuan" class="col-sm-3 col-form-label">Catatan</label>
                             <div class="col-sm-9">
-                                <textarea class="form-control" name="catatan"></textarea>
+                                <textarea class="form-control" id="catatan_jurnal" name="catatan_jurnal"></textarea>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="persetujuan" class="col-sm-3 col-form-label">Tanggal Verifikasi</label>
                             <div class="col-sm-9">
-                                <input type="date" nama="tanggal" class="form-control">
+                                <input type="date" id="tgl_jurnal" name="tgl_jurnal" class="form-control">
                             </div>
                         </div>
                     </div>
                     <div class="card-footer">
-                        <button type="submit" name="submit" class="btn btn-primary pull-right">Simpan</button>
+                        <button type="submit" name="submit" class="btn btn-primary" style="float: right;">Simpan</button>
                     </div>
                 </form>
             </div>
@@ -287,52 +287,52 @@
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
-                <form action="<?= base_url('bks_wisuda/create') ?>" method="post" class="form-horizontal" role="form" enctype="multipart/form-data">
+                <form action="<?= base_url('bks_wisuda/verif_lapta') ?>" method="post" class="form-horizontal" role="form" enctype="multipart/form-data">
                     <div class="card-body">
                         <div class="form-group row">
                             <input type="hidden" id="id_bks_wisuda" name="id_bks_wisuda">
                             <label for="inputEmail3" class="col-sm-3 col-form-label">NIM</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" id="nim" name="nim" readonly>
+                                <input type="text" class="form-control" id="nim3" name="nim" readonly>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="inputEmail3" class="col-sm-3 col-form-label">Nama Mahasiswa</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" id="nama" name="nama" readonly>
+                                <input type="text" class="form-control" id="nama3" name="nama" readonly>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="persetujuan" class="col-sm-3 col-form-label">Judul TA</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" name="judul" required>
+                                <input type="text" class="form-control" id="judul3" name="judul" readonly>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="exampleInputjudul1" class="col-sm-3 col-form-label">Keterangan</label>
                             <div class="col-sm-4">
-                                <select class="form-control" data-live-search="true" data-style="btn-white" onclick="choose()" id="nim" name="nim" required>
-                                    <option>Belum</option>
-                                    <option>kurang</option>
-                                    <option>Lengkap</option>
+                                <select class="form-control" data-live-search="true" data-style="btn-white" onclick="choose()" id="status_lap_ta" name="status_lap_ta" required>
+                                    <option value="0">Belum</option>
+                                    <option value="1">Kurang</option>
+                                    <option value="2">Lengkap</option>
                                 </select>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="persetujuan" class="col-sm-3 col-form-label">Catatan</label>
                             <div class="col-sm-9">
-                                <textarea class="form-control" name="catatan"></textarea>
+                                <textarea class="form-control" id="catatan_lap_ta" name="catatan_lap_ta"></textarea>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="persetujuan" class="col-sm-3 col-form-label">Tanggal Verifikasi</label>
                             <div class="col-sm-9">
-                                <input type="date" nama="tanggal" class="form-control">
+                                <input type="date" id="tgl_lap_ta" name="tgl_lap_ta" class="form-control">
                             </div>
                         </div>
                     </div>
                     <div class="card-footer">
-                        <button type="submit" name="submit" class="btn btn-primary pull-right">Simpan</button>
+                        <button type="submit" name="submit" class="btn btn-primary" style="float: right;">Simpan</button>
                     </div>
                 </form>
             </div>
@@ -348,52 +348,52 @@
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
-                <form action="<?= base_url('bks_wisuda/create') ?>" method="post" class="form-horizontal" role="form" enctype="multipart/form-data">
+                <form action="<?= base_url('bks_wisuda/verif_aplikasi') ?>" method="post" class="form-horizontal" role="form" enctype="multipart/form-data">
                     <div class="card-body">
                         <div class="form-group row">
                             <input type="hidden" id="id_bks_wisuda" name="id_bks_wisuda">
                             <label for="inputEmail3" class="col-sm-3 col-form-label">NIM</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" id="nim" name="nim" readonly>
+                                <input type="text" class="form-control" id="nim4" name="nim" readonly>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="inputEmail3" class="col-sm-3 col-form-label">Nama Mahasiswa</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" id="nama" name="nama" readonly>
+                                <input type="text" class="form-control" id="nama4" name="nama" readonly>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="persetujuan" class="col-sm-3 col-form-label">Judul TA</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" name="judul" required>
+                                <input type="text" class="form-control" id="judul4" name="judul" readonly>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="exampleInputjudul1" class="col-sm-3 col-form-label">Keterangan</label>
                             <div class="col-sm-4">
-                                <select class="form-control" data-live-search="true" data-style="btn-white" onclick="choose()" id="nim" name="nim" required>
-                                    <option>Belum</option>
-                                    <option>kurang</option>
-                                    <option>Lengkap</option>
+                                <select class="form-control" data-live-search="true" data-style="btn-white" onclick="choose()" id="status_aplikasi" name="status_aplikasi" required>
+                                    <option value="0">Belum</option>
+                                    <option value="1">Kurang</option>
+                                    <option value="2">Lengkap</option>
                                 </select>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="persetujuan" class="col-sm-3 col-form-label">Catatan</label>
                             <div class="col-sm-9">
-                                <textarea class="form-control" name="catatan"></textarea>
+                                <textarea class="form-control" id="catatan_aplikasi" name="catatan_aplikasi"></textarea>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="persetujuan" class="col-sm-3 col-form-label">Tanggal Verifikasi</label>
                             <div class="col-sm-9">
-                                <input type="date" nama="tanggal" class="form-control">
+                                <input type="date" id="tgl_aplikasi" name="tgl_aplikasi" class="form-control">
                             </div>
                         </div>
                     </div>
                     <div class="card-footer">
-                        <button type="submit" name="submit" class="btn btn-primary pull-right">Simpan</button>
+                        <button type="submit" name="submit" class="btn btn-primary" style="float: right;">Simpan</button>
                     </div>
                 </form>
             </div>
@@ -404,57 +404,57 @@
         <div class="modal-dialog" style="width:55%;">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title">Verifikasi Persyaratan PPT</h4>
+                    <h4 class="modal-title">Verifikasi Persyaratan Aplikasi</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
-                <form action="<?= base_url('bks_wisuda/create') ?>" method="post" class="form-horizontal" role="form" enctype="multipart/form-data">
+                <form action="<?= base_url('bks_wisuda/verif_ppt') ?>" method="post" class="form-horizontal" role="form" enctype="multipart/form-data">
                     <div class="card-body">
                         <div class="form-group row">
                             <input type="hidden" id="id_bks_wisuda" name="id_bks_wisuda">
                             <label for="inputEmail3" class="col-sm-3 col-form-label">NIM</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" id="nim" name="nim" readonly>
+                                <input type="text" class="form-control" id="nim5" name="nim" readonly>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="inputEmail3" class="col-sm-3 col-form-label">Nama Mahasiswa</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" id="nama" name="nama" readonly>
+                                <input type="text" class="form-control" id="nama5" name="nama" readonly>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="persetujuan" class="col-sm-3 col-form-label">Judul TA</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" name="judul" required>
+                                <input type="text" class="form-control" id="judul5" name="judul" readonly>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="exampleInputjudul1" class="col-sm-3 col-form-label">Keterangan</label>
                             <div class="col-sm-4">
-                                <select class="form-control" data-live-search="true" data-style="btn-white" onclick="choose()" id="nim" name="nim" required>
-                                    <option>Belum</option>
-                                    <option>kurang</option>
-                                    <option>Lengkap</option>
+                                <select class="form-control" data-live-search="true" data-style="btn-white" onclick="choose()" id="status_ppt" name="status_ppt" required>
+                                    <option value="0">Belum</option>
+                                    <option value="1">Kurang</option>
+                                    <option value="2">Lengkap</option>
                                 </select>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="persetujuan" class="col-sm-3 col-form-label">Catatan</label>
                             <div class="col-sm-9">
-                                <textarea class="form-control" name="catatan"></textarea>
+                                <textarea class="form-control" id="catatan_ppt" name="catatan_ppt"></textarea>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="persetujuan" class="col-sm-3 col-form-label">Tanggal Verifikasi</label>
                             <div class="col-sm-9">
-                                <input type="date" nama="tanggal" class="form-control">
+                                <input type="date" id="tgl_ppt" name="tgl_ppt" class="form-control">
                             </div>
                         </div>
                     </div>
                     <div class="card-footer">
-                        <button type="submit" name="submit" class="btn btn-primary pull-right">Simpan</button>
+                        <button type="submit" name="submit" class="btn btn-primary" style="float: right;">Simpan</button>
                     </div>
                 </form>
             </div>
@@ -465,57 +465,57 @@
         <div class="modal-dialog" style="width:55%;">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title">Verifikasi Persyaratan Video</h4>
+                    <h4 class="modal-title">Verifikasi Persyaratan Aplikasi</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
-                <form action="<?= base_url('bks_wisuda/create') ?>" method="post" class="form-horizontal" role="form" enctype="multipart/form-data">
+                <form action="<?= base_url('bks_wisuda/verif_video') ?>" method="post" class="form-horizontal" role="form" enctype="multipart/form-data">
                     <div class="card-body">
                         <div class="form-group row">
                             <input type="hidden" id="id_bks_wisuda" name="id_bks_wisuda">
                             <label for="inputEmail3" class="col-sm-3 col-form-label">NIM</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" id="nim" name="nim" readonly>
+                                <input type="text" class="form-control" id="nim6" name="nim" readonly>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="inputEmail3" class="col-sm-3 col-form-label">Nama Mahasiswa</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" id="nama" name="nama" readonly>
+                                <input type="text" class="form-control" id="nama6" name="nama" readonly>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="persetujuan" class="col-sm-3 col-form-label">Judul TA</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" name="judul" required>
+                                <input type="text" class="form-control" id="judul6" name="judul" readonly>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="exampleInputjudul1" class="col-sm-3 col-form-label">Keterangan</label>
                             <div class="col-sm-4">
-                                <select class="form-control" data-live-search="true" data-style="btn-white" onclick="choose()" id="nim" name="nim" required>
-                                    <option>Belum</option>
-                                    <option>kurang</option>
-                                    <option>Lengkap</option>
+                                <select class="form-control" data-live-search="true" data-style="btn-white" onclick="choose()" id="status_video" name="status_video" required>
+                                    <option value="0">Belum</option>
+                                    <option value="1">Kurang</option>
+                                    <option value="2">Lengkap</option>
                                 </select>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="persetujuan" class="col-sm-3 col-form-label">Catatan</label>
                             <div class="col-sm-9">
-                                <textarea class="form-control" name="catatan"></textarea>
+                                <textarea class="form-control" id="catatan_video" name="catatan_video"></textarea>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="persetujuan" class="col-sm-3 col-form-label">Tanggal Verifikasi</label>
                             <div class="col-sm-9">
-                                <input type="date" nama="tanggal" class="form-control">
+                                <input type="date" id="tgl_video" name="tgl_video" class="form-control">
                             </div>
                         </div>
                     </div>
                     <div class="card-footer">
-                        <button type="submit" name="submit" class="btn btn-primary pull-right">Simpan</button>
+                        <button type="submit" name="submit" class="btn btn-primary" style="float: right;">Simpan</button>
                     </div>
                 </form>
             </div>
@@ -525,28 +525,68 @@
 
 
     <script type="text/javascript">
-        function SetInput(id_bks_wisuda, nim, nama, alamat, hp, ttl, id_prodi) {
+        function SetInput(id_bks_wisuda, nim, nama, judul, status_file_ta, catatan_file_ta, tgl_file_ta) {
             document.getElementById('id_bks_wisuda').value = id_bks_wisuda;
             document.getElementById('nim').value = nim;
             document.getElementById('nama').value = nama;
-            document.getElementById('alamat').value = alamat;
-            document.getElementById('hp').value = hp;
-            document.getElementById('ttl').value = ttl;
-            document.getElementById('id_prodi').value = id_prodi;
+            document.getElementById('judul').value = judul;
+            document.getElementById('status_file_ta').value = status_file_ta;
+            document.getElementById('catatan_file_ta').value = catatan_file_ta;
+            document.getElementById('tgl_file_ta').value = tgl_file_ta;
         }
 
-        function SetInput2(id_bks_wisuda, nim, nama, alamat, hp, ttl, id_prodi) {
+        function SetInput2(id_bks_wisuda, nim, nama, judul, status_jurnal, catatan_jurnal, tgl_jurnal) {
             document.getElementById('id_bks_wisuda').value = id_bks_wisuda;
-            document.getElementById('nim').value = nim;
-            document.getElementById('nama').value = nama;
-            document.getElementById('alamat').value = alamat;
-            document.getElementById('hp').value = hp;
-            document.getElementById('ttl').value = ttl;
-            document.getElementById('id_prodi').value = id_prodi;
+            document.getElementById('nim2').value = nim;
+            document.getElementById('nama2').value = nama;
+            document.getElementById('judul2').value = judul;
+            document.getElementById('status_jurnal').value = status_jurnal;
+            document.getElementById('catatan_jurnal').value = catatan_jurnal;
+            document.getElementById('tgl_jurnal').value = tgl_jurnal;
+        }
+
+        function SetInput3(id_bks_wisuda, nim, nama, judul, status_lap_ta, catatan_lap_ta, tgl_lap_ta) {
+            document.getElementById('id_bks_wisuda').value = id_bks_wisuda;
+            document.getElementById('nim3').value = nim;
+            document.getElementById('nama3').value = nama;
+            document.getElementById('judul3').value = judul;
+            document.getElementById('status_lap_ta').value = status_lap_ta;
+            document.getElementById('catatan_lap_ta').value = catatan_lap_ta;
+            document.getElementById('tgl_lap_ta').value = tgl_lap_ta;
+        }
+
+        function SetInput4(id_bks_wisuda, nim, nama, judul, status_aplikasi, catatan_aplikasi, tgl_aplikasi) {
+            document.getElementById('id_bks_wisuda').value = id_bks_wisuda;
+            document.getElementById('nim4').value = nim;
+            document.getElementById('nama4').value = nama;
+            document.getElementById('judul4').value = judul;
+            document.getElementById('status_aplikasi').value = status_aplikasi;
+            document.getElementById('catatan_aplikasi').value = catatan_aplikasi;
+            document.getElementById('tgl_aplikasi').value = tgl_aplikasi;
+        }
+
+        function SetInput5(id_bks_wisuda, nim, nama, judul, status_ppt, catatan_ppt, tgl_ppt) {
+            document.getElementById('id_bks_wisuda').value = id_bks_wisuda;
+            document.getElementById('nim5').value = nim;
+            document.getElementById('nama5').value = nama;
+            document.getElementById('judul5').value = judul;
+            document.getElementById('status_ppt').value = status_ppt;
+            document.getElementById('catatan_ppt').value = catatan_ppt;
+            document.getElementById('tgl_ppt').value = tgl_ppt;
+        }
+
+        function SetInput6(id_bks_wisuda, nim, nama, judul, status_video, catatan_video, tgl_video) {
+            document.getElementById('id_bks_wisuda').value = id_bks_wisuda;
+            document.getElementById('nim6').value = nim;
+            document.getElementById('nama6').value = nama;
+            document.getElementById('judul6').value = judul;
+            document.getElementById('status_video').value = status_video;
+            document.getElementById('catatan_video').value = catatan_video;
+            document.getElementById('tgl_video').value = tgl_video;
         }
     </script>
 
-    <script script>
+    <script>
         $(document).on('click', '#btn-konfirmasi', function(e) {
             e.preventDefault();
             var link = $(this).attr('href');
