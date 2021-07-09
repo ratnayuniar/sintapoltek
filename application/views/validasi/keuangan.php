@@ -1,3 +1,4 @@
+<!-- ADMIN KEUANGAN -->
 <?php if ($this->session->userdata('level') == 5) { ?>
     <div class="content-wrapper">
         <section class="content-header">
@@ -46,8 +47,6 @@
                                             <tr>
                                                 <td><?= $no++ ?></td>
                                                 <td><?= $row->nim ?></td>
-                                                <!-- <td><?= $row->nama_jurusan ?></td>
-                                            <td><?= $row->nama_prodi ?></td> -->
                                                 <td><?= $row->nama ?></td>
                                                 <td> <?php if ($row->ukt == '0') {
                                                             echo '<span class="badge badge-info">Belum</span>';
@@ -59,9 +58,20 @@
                                                         ?>
                                                 </td>
                                                 <td>
-                                                    <a href="<?php echo site_url('verif_keuangan/save_belum/' . $row->nim); ?>" id="btn-konfirmasi" class="btn btn-outline-info btn-xs">Belum</a>
-                                                    <a href="<?php echo site_url('verif_keuangan/save_kurang/' . $row->nim); ?>" id="btn-konfirmasi" class="btn btn-outline-primary btn-xs">Kurang</a>
-                                                    <a href="<?php echo site_url('verif_keuangan/save_lengkap/' . $row->nim); ?>" id="btn-konfirmasi" class="btn btn-outline-success btn-xs">Lengkap</a>
+                                                    <?php if ($row->ukt == '0') {
+                                                        echo " <a href ='#' class ='btn btn-sm btn-warning btn-xs btn-block' data-toggle='modal' data-target='#modal_ukt' onClick=\"SetInput('" . $row->id_bks_wisuda . "','" . $row->nim . "','" . $row->nama . "','" . $row->judul . "','" . $row->ukt . "','" . $row->catatan_ukt . "')\"> Belum</a>";
+                                                    } else if ($row->ukt == '1') {
+                                                        echo " <a href ='#' class ='btn btn-sm btn-info btn-xs btn-block' data-toggle='modal' data-target='#modal_ukt' onClick=\"SetInput('" . $row->id_bks_wisuda . "','" . $row->nim . "','" . $row->nama . "','" . $row->judul . "','" . $row->ukt . "','" . $row->catatan_ukt . "')\"> Kurang</a>";
+                                                    } else {
+                                                        echo " <a href ='#' class ='btn btn-sm btn-success btn-xs btn-block' data-toggle='modal' data-target='#modal_ukt' onClick=\"SetInput('" . $row->id_bks_wisuda . "','" . $row->nim . "','" . $row->nama . "','" . $row->judul . "','" . $row->ukt . "','" . $row->catatan_ukt . "')\"> Lengkap</a>";
+                                                    }
+                                                    ?>
+                                                    <?php if ($row->ukt == '0') {
+                                                        echo " <h6>Belum diverifikasi</h6>";
+                                                    } else {
+                                                        echo "<h6>" . $row->catatan_ukt . "</h6> ";
+                                                    }
+                                                    ?>
                                                 </td>
                                             </tr>
                                         <?php } ?>
@@ -73,6 +83,61 @@
                 </div>
             </div>
         </section>
+    </div>
+
+    <div id="modal_ukt" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="custom-width-modalLabel" aria-hidden="true" style="display: none;">
+        <div class="modal-dialog" style="width:55%;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Verifikasi Keuangan</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <form action="<?= base_url('verif_keuangan/verify_keuangan') ?>" method="post" class="form-horizontal" role="form" enctype="multipart/form-data">
+                    <div class="card-body">
+                        <div class="form-group row">
+                            <input type="hidden" id="id_bks_wisuda" name="id_bks_wisuda">
+                            <label for="inputEmail3" class="col-sm-3 col-form-label">NIM</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="nim" name="nim" readonly>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="inputEmail3" class="col-sm-3 col-form-label">Nama Mahasiswa</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="nama" name="nama" readonly>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="persetujuan" class="col-sm-3 col-form-label">Judul TA</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="judul" name="judul" readonly>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="exampleInputjudul1" class="col-sm-3 col-form-label">Keterangan</label>
+                            <div class="col-sm-4">
+                                <select class="form-control" data-live-search="true" data-style="btn-white" onclick="choose()" id="ukt" name="ukt" required>
+                                    <option value="0">Belum</option>
+                                    <option value="1">Kurang</option>
+                                    <option value="2">Lengkap</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="persetujuan" class="col-sm-3 col-form-label">Catatan</label>
+                            <div class="col-sm-9">
+                                <textarea class="form-control" id="catatan_ukt" name="catatan_ukt"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <button type="submit" name="submit" class="btn btn-primary" style="float: right;">Simpan</button>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
 
 
@@ -188,11 +253,13 @@
 
 
     <script type="text/javascript">
-        function SetInput(nim, nama, id_jurusan, id_prodi) {
+        function SetInput(id_bks_wisuda, nim, nama, judul, ukt, catatan_ukt) {
+            document.getElementById('id_bks_wisuda').value = id_bks_wisuda;
             document.getElementById('nim').value = nim;
             document.getElementById('nama').value = nama;
-            document.getElementById('id_prodi').value = id_prodi;
-            document.getElementById('id_jurusan').value = id_jurusan;
+            document.getElementById('judul').value = judul;
+            document.getElementById('ukt').value = ukt;
+            document.getElementById('catatan_ukt').value = catatan_ukt;
         }
 
         function SetInputs(id_jurusan, id_prodi, nim, nama) {

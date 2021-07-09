@@ -123,4 +123,12 @@ class Verif_keuangan extends CI_Controller
             $this->load->view('templates/footer', $data);
         }
     }
+
+    public function verify_keuangan()
+    {
+        $nim = $this->input->post('nim');
+
+        if (empty($nim)) $this->m_verif_keuangan->tambah_data();
+        else $this->m_verif_keuangan->ubah_data($nim);
+    }
 }
