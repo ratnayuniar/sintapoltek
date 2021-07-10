@@ -11,7 +11,7 @@
             </div>
             <div class="info">
                 <!-- <a href="<?php echo base_url('profile'); ?>" class="d-block"><?= $this->session->nama; ?><?= $this->session->nama_mhs; ?></a> -->
-                <a href="<?php echo base_url('profile'); ?>" class="d-block"><?php echo $this->session->userdata('nama') ?></a>
+                <a href="#" class="d-block"><?php echo $this->session->userdata('nama') ?></a>
             </div>
         </div>
         <div class="form-inline">

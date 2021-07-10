@@ -41,6 +41,22 @@ class Veri_perpus extends CI_Controller
         $this->load->view('templates/footer', $data);
     }
 
+    public function verify_laporan()
+    {
+        $nim = $this->input->post('nim');
+
+        if (empty($nim)) $this->m_veri_perpus->tambah_data();
+        else $this->m_veri_perpus->ubah_data($nim);
+    }
+
+    public function verify_tanggungan()
+    {
+        $nim = $this->input->post('nim');
+
+        if (empty($nim)) $this->m_veri_perpus->tambah_data();
+        else $this->m_veri_perpus->ubah_data2($nim);
+    }
+
     public function detaildata_mhs()
     {
         $data['title'] = 'SINTA PNM';

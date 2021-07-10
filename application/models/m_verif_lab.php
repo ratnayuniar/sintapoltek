@@ -14,8 +14,22 @@ class M_verif_lab extends CI_Model
         $this->db->from('bks_wisuda');
         $this->db->join('mahasiswa', 'mahasiswa.nim = bks_wisuda.nim', 'left');
         $this->db->join('prodi', 'prodi.id_prodi = mahasiswa.id_prodi', 'left');
+        $this->db->join('master_ta', 'master_ta.nim = mahasiswa.nim', 'left');
         $this->db->where('prodi.id_prodi', $id);
         return $this->db->get()->result();
+    }
+
+    function ubah_data($nim)
+    {
+        $data = array(
+            'pinjaman_alat' => $this->input->post('pinjaman_alat'),
+            'catatan_pinjaman_alat' => $this->input->post('catatan_pinjaman_alat'),
+
+        );
+
+        $this->db->where(array('nim' => $nim));
+        $this->db->update('bks_wisuda', $data);
+        redirect('/verif_lab');
     }
 
     function tampil2()
@@ -56,16 +70,16 @@ class M_verif_lab extends CI_Model
         redirect('/veri_perpus');
     }
 
-    function ubah_data($id_perpus)
-    {
-        $data = array(
-            'nim' => $this->input->post('nim'),
-            'nama' => $this->input->post('nama'),
-            'laporan' => $this->input->post('laporan'),
-            'tanggungan' => $this->input->post('tanggungan')
-        );
-        $this->db->where(array('id_perpus' => $id_perpus));
-        $this->db->update('perpustakaan', $data);
-        redirect('/perpustakaan');
-    }
+    // function ubah_data($id_perpus)
+    // {
+    //     $data = array(
+    //         'nim' => $this->input->post('nim'),
+    //         'nama' => $this->input->post('nama'),
+    //         'laporan' => $this->input->post('laporan'),
+    //         'tanggungan' => $this->input->post('tanggungan')
+    //     );
+    //     $this->db->where(array('id_perpus' => $id_perpus));
+    //     $this->db->update('perpustakaan', $data);
+    //     redirect('/perpustakaan');
+    // }
 }

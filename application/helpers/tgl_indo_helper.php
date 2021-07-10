@@ -174,7 +174,7 @@ if (!function_exists('medium_bulan')) {
 if (!function_exists('longdate_indo')) {
     function longdate_indo($tanggal)
     {
-        $ubah = gmdate($tanggal, time() + 60 * 60 * 8);
+        $ubah = gmdate($tanggal);
         $pecah = explode("-", $ubah);
         $tgl = $pecah[2];
         $bln = $pecah[1];

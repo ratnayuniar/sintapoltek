@@ -58,7 +58,7 @@
                         } else if ($row->status == '2') {
                           echo '<span class="badge badge-primary">Proses</span>';
                         } else if ($row->status == '4') {
-                          echo '<span class="badge badge-danger">Ditolak</span>';
+                          echo '<span class="badge badge-danger">Direvisi</span>';
                         } else {
                           echo '<span class="badge badge-primary">Disetujui</span>';
                         }
@@ -93,7 +93,7 @@
                           data-tolaktopik="' . $row->id_topik . '"
                           data-closestatus="' . $row->status . '"                          
                           class="btn btn-danger btn-sm">
-                          Tolak
+                          Revisi
                           </a>';
                         } else {
                           echo '<a href="javascript:void(0);" class="btn btn-success btn-sm">
@@ -208,7 +208,7 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title">Yakin Menolak topik?</h5>
+          <h5 class="modal-title">Yakin Revisi topik?</h5>
           <button class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -219,7 +219,7 @@
               <input type="hidden" name="id_topik" id="tolaktopik" class="form-control">
               <input type="hidden" name="status" value="4" class="form-control">
             </div>
-            <button type="submit" id="tombol" class="btn btn-primary btn-sm">Ya</button>
+            <button type="submit" id="tombol" class="btn btn-primary btn-sm" style="float: right;">Ya</button>
             <button type="reset" class="btn btn-danger btn-sm">Tidak</button>
           </form>
         </div>
@@ -332,17 +332,20 @@
         </div>
         <div class="row">
           <div class="col-12">
-
             <div class="card">
               <div class="card-header">
                 <h3 class="card-title">Daftar Topik Tugas Akhir</h3>
               </div>
               <div class="card-body">
                 <div style="text-align:right;margin-bottom: 10px ">
-
                   <?php
-                  if ($topik_user->num_rows() == 0) echo "<a href='#' class='on-default edit-row btn btn-success pull-right' data-toggle='modal' pull='right' data-target='#custom-width-modal' onclick='ResetInput()'><i class='fa fa-plus'></i> Ajukan Judul</a>";
-
+                  if ($topik_user->num_rows() == 0) {
+                    echo "<a href='#' class='on-default edit-row btn btn-success pull-right' data-toggle='modal' pull='right' data-target='#custom-width-modal' onclick='ResetInput()'><i class='fa fa-plus'></i> Ajukan Judul</a>";
+                  } else if ($ditolak->num_rows() == 1) {
+                    echo "<a href='#' class='on-default edit-row btn btn-success pull-right' data-toggle='modal' pull='right' data-target='#custom-width-modal' onclick='ResetInput()'><i class='fa fa-plus'></i> Ajukan Judul</a>";
+                  } else {
+                    echo "";
+                  }
                   ?>
                 </div>
                 <table id="example1" class="table table-bordered table-striped">
@@ -370,7 +373,7 @@
                           } else if ($row->status == '2') {
                             echo '<span class="badge badge-primary">Proses</span>';
                           } else if ($row->status == '4') {
-                            echo '<span class="badge badge-danger">Ditolak</span>';
+                            echo '<span class="badge badge-danger">Direvisi</span>';
                           } else {
                             echo '<span class="badge badge-primary">Disetujui</span>';
                           }

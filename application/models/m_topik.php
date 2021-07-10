@@ -39,7 +39,6 @@ class M_topik extends CI_Model
     {
         $data = array(
             'nim' => $this->input->post('nim'),
-            'bidang' => $this->input->post('bidang'),
             'judul' => $this->input->post('judul'),
             'lokasi' => $this->input->post('lokasi'),
             'status' => 1,

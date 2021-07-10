@@ -129,9 +129,6 @@ class Proposal extends CI_Controller
     }
 
 
-
-
-
     function cetak_kartu()
     {
         $data['query'] = $this->m_proposal->tampil_data();

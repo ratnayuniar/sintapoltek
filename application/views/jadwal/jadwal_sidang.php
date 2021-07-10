@@ -86,8 +86,7 @@
               <input type="hidden" id="id_master_ta" name="id_master_ta">
               <label class="col-md-6 control-label">Nama Mahasiswa</label>
               <div class="col-md-9">
-                <!-- <input type="text" class="form-control" id="nim" name="nim" required> -->
-                <select class="form-control select2" data-live-search="true" data-style="btn-white" onclick="choose()" id="nim" name="nim" required>
+                <select class="form-control select2bs4" data-live-search="true" data-style="btn-white" id="nim" name="nim" required>
                   <option>-- Pilih Mahasiswa --</option>
                   <?php foreach ($mahasiswa->result() as $row) : ?>
                     <option value="<?php echo $row->nim; ?>"><?php echo $row->nama; ?></option>
@@ -95,14 +94,12 @@
                 </select>
               </div>
             </div>
-
             <div class="form-group">
               <label class="col-md-3 control-label">Ruang</label>
               <div class="input-group col-md-9">
                 <input type="text" name="ruang_sidang" class="form-control" id="ruang_sidang">
               </div>
             </div>
-
             <div class="form-group">
               <label class="col-md-3 control-label">Jadwal</label>
               <div class="input-group col-md-9">
@@ -112,7 +109,6 @@
                 <input type="text" name="jadwal_sidang" class="form-control" id="jadwal_sidang" value="<?php echo date("Y-m-d H:i") ?>" readonly>
               </div>
             </div>
-
             <div class="modal-footer justify-content-between">
               <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
               <button type="submit" class="btn btn-primary">Simpan</button>

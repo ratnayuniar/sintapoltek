@@ -51,6 +51,14 @@ class Verif_lab extends CI_Controller
         $this->load->view('templates/footer', $data);
     }
 
+    public function verify_lab()
+    {
+        $nim = $this->input->post('nim');
+
+        if (empty($nim)) $this->m_verif_lab->tambah_data();
+        else $this->m_verif_lab->ubah_data($nim);
+    }
+
     public function add()
     {
         $id_perpus = $this->input->post('id_perpus');

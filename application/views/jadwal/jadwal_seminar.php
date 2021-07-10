@@ -1,7 +1,5 @@
 <?php if ($this->session->userdata('level') == 1) { ?>
-  <!-- Select2 -->
-  <link rel="stylesheet" href="<?php echo base_url(); ?>admin/plugins/select2/css/select2.min.css">
-  <link rel="stylesheet" href="<?php echo base_url(); ?>admin/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
+
   <div class="content-wrapper">
     <section class="content-header">
       <div class="container-fluid">
@@ -56,7 +54,6 @@
 											      <td>" . $row->nim . "</td>
                             <td>" . $row->nama . "</td>
 										      	<td>
-                            
 												  	<a href='" . base_url('jadwal_seminar/delete/' . $row->id_master_ta) . "' id='btn-hapus' class='btn btn-sm btn-danger btn-xs' ><i class='fa fa-trash'></i> Hapus</a> 
 											      </td>									
 									    </tr>";
@@ -90,7 +87,7 @@
               <input type="hidden" id="id_master_ta" name="id_master_ta">
               <label class="col-md-6 control-label">Nama Mahasiswa</label>
               <div class="col-md-9 ">
-                <select class="form-control select2" style="width: 100%;" data-live-search="true" data-style="btn-white" onclick="choose()" id="nim" name="nim" required>
+                <select class="form-control select2bs4" style="width: 100%;" data-live-search="true" data-style="btn-white" id="nim" name="nim" required>
                   <option>-- Pilih Mahasiswa --</option>
                   <?php foreach ($mahasiswa->result() as $row) : ?>
                     <option value="<?php echo $row->nim; ?>"><?php echo $row->nama; ?></option>
@@ -170,22 +167,9 @@
     </div>
   </div>
 
-  <!-- Select2 -->
-  <!-- <script src="<?php echo base_url() ?>admin/plugins/select2/js/select2.full.min.js"></script> -->
   <link href="<?php echo base_url() ?>assets/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
   <script type="text/javascript" src="<?php echo base_url() ?>assets/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
-  <script>
-    $(function() {
-      //Initialize Select2 Elements
-      $('.select2').select2()
 
-      //Initialize Select2 Elements
-      $('.select2bs4').select2({
-        theme: 'bootstrap4'
-      })
-
-    })
-  </script>
   <script type="text/javascript">
     function choose() {
       var zoo = document.getElementById('nama').value;
