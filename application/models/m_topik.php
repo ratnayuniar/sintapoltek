@@ -56,10 +56,9 @@ class M_topik extends CI_Model
     {
         $data = array(
             'nim' => $this->input->post('nim'),
-            'bidang' => $this->input->post('bidang'),
             'judul' => $this->input->post('judul'),
             'lokasi' => $this->input->post('lokasi'),
-            'status' => $this->input->post('status'),
+            'status' => 1,
         );
         $this->db->where(array('id_topik' => $id_topik));
         $this->db->update('topik', $data);

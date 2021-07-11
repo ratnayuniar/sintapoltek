@@ -54,13 +54,13 @@
                       <td><?= $row->lokasi ?></td>
                       <td>
                         <?php if ($row->status == '1') {
-                          echo '<span class="badge badge-warning">Menunggu</span>';
+                          echo '<span class="badge badge-primary">Menunggu</span>';
                         } else if ($row->status == '2') {
-                          echo '<span class="badge badge-primary">Proses</span>';
+                          echo '<span class="badge badge-info">Diterima</span>';
                         } else if ($row->status == '4') {
-                          echo '<span class="badge badge-danger">Direvisi</span>';
+                          echo '<span class="badge badge-warning">Direvisi</span>';
                         } else {
-                          echo '<span class="badge badge-primary">Disetujui</span>';
+                          echo '<span class="badge badge-success">Disetujui</span>';
                         }
                         ?>
                       </td>
@@ -80,20 +80,11 @@
                           data-judul="' . $row->judul . '"
                           data-deskripsi="' . $row->deskripsi . '"
                           class="btn btn-info btn-sm">
-                          Komentari
+                          Validasi
                           </a>';
                         } else if ($row->status == '2') {
-                          echo '<a href="javascript:void(0);" data-toggle="modal" data-target="#modalclosetopik" id="ctopik"
-                          data-closetopik="' . $row->id_topik . '" data-closenim="' . $row->nim . '" data-closejudul="' . $row->judul . '"
-                          data-closestatus="' . $row->status . '"                          
-                          class="btn btn-primary btn-sm">
-                          Terima
-                          </a>';
-                          echo '&nbsp; <a href="javascript:void(0);" data-toggle="modal" data-target="#modaltolaktopik" id="tlktopik"
-                          data-tolaktopik="' . $row->id_topik . '"
-                          data-closestatus="' . $row->status . '"                          
-                          class="btn btn-danger btn-sm">
-                          Revisi
+                          echo '<a href="javascript:void(0);" class="btn btn-success btn-sm">
+                          Selesai
                           </a>';
                         } else {
                           echo '<a href="javascript:void(0);" class="btn btn-success btn-sm">
@@ -149,7 +140,7 @@
           </button>
         </div>
         <div class="modal-body">
-          <form action="<?= base_url('topik/save_komentar') ?>" method="POST" enctype="multipart/form-data">
+          <form action="<?= base_url('topik/save_close_topik') ?>" method="POST" enctype="multipart/form-data">
             <div class="modal-body">
               <input type="hidden" name="id_topik" id="id_topik_id" class="form-control">
               <div class="form-group">
@@ -161,11 +152,22 @@
                 <textarea id="deskripsi" class="form-control" readonly></textarea>
               </div>
               <div class="form-group">
+                <label for="deskripsi">Validasi</label>&nbsp; &nbsp; &nbsp;
+                <input class="control" type="radio" name="status" id="status" value="3">
+                <label class="form-check-label" for="denganSopir">
+                  Diterima
+                </label>
+                &nbsp; &nbsp;
+                <input class="control" type="radio" name="status" id="status" value="4">
+                <label class="form-check-label" for="status">
+                  Direvisi
+                </label>
+              </div>
+              <div class="form-group">
                 <label for="deskripsi">Komentar</label>
                 <textarea name="komentar" class="form-control"></textarea>
               </div>
             </div>
-
             <button type="submit" id="tombol" class="btn btn-primary btn-sm " style="float: right;">Kirim</button>
             <button type="reset" class="btn btn-danger btn-sm">Batal</button>
           </form>
@@ -203,7 +205,7 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title">Yakin Revisi topik?</h5>
+          <h5 class="modal-title">Yakin Menolak topik?</h5>
           <button class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -214,7 +216,7 @@
               <input type="hidden" name="id_topik" id="tolaktopik" class="form-control">
               <input type="hidden" name="status" value="4" class="form-control">
             </div>
-            <button type="submit" id="tombol" class="btn btn-primary btn-sm" style="float: right;">Ya</button>
+            <button type="submit" id="tombol" class="btn btn-primary btn-sm">Ya</button>
             <button type="reset" class="btn btn-danger btn-sm">Tidak</button>
           </form>
         </div>
@@ -327,21 +329,22 @@
         </div>
         <div class="row">
           <div class="col-12">
+
             <div class="card">
               <div class="card-header">
                 <h3 class="card-title">Daftar Topik Tugas Akhir</h3>
               </div>
               <div class="card-body">
                 <div style="text-align:right;margin-bottom: 10px ">
-                  <?php
-                  if ($topik_user->num_rows() == 0) {
-                    echo "<a href='#' class='on-default edit-row btn btn-success pull-right' data-toggle='modal' pull='right' data-target='#custom-width-modal' onclick='ResetInput()'><i class='fa fa-plus'></i> Ajukan Judul</a>";
-                  } else if ($ditolak->num_rows() == 1) {
-                    echo "<a href='#' class='on-default edit-row btn btn-success pull-right' data-toggle='modal' pull='right' data-target='#custom-width-modal' onclick='ResetInput()'><i class='fa fa-plus'></i> Ajukan Judul</a>";
-                  } else {
-                    echo "";
-                  }
-                  ?>
+
+                  <!-- ambil topik terakhir berdasarkan nim mahasiswa login -->
+                  <?php $cek = $this->db->select('*')->order_by('id_topik', 'DESC')->get_where('topik', array('nim' => $this->session->userdata('email')))->row_array(); ?>
+
+                  <!-- Jika mahasiswa belum mengajukan topik atau topik ditolak, maka tampilkan button ajukan judul -->
+                  <?php if (isset($cek['status']) == NULL) { ?>
+                    <a href='#' class='on-default edit-row btn btn-success pull-right' data-toggle='modal' pull='right' data-target='#custom-width-modal' onclick='ResetInput()'><i class='fa fa-plus'></i> Ajukan Judul</a>
+                  <?php } ?>
+
                 </div>
                 <table id="example1" class="table table-bordered table-striped">
                   <thead>
@@ -364,13 +367,19 @@
                         <td><?= $row->lokasi ?></td>
                         <td>
                           <?php if ($row->status == '1') {
-                            echo '<span class="badge badge-warning">Menunggu</span>';
+                            echo '<span class="badge badge-primary">Menunggu</span>';
                           } else if ($row->status == '2') {
-                            echo '<span class="badge badge-primary">Proses</span>';
+                            echo '<span class="badge badge-primary">Diterima</span>';
                           } else if ($row->status == '4') {
-                            echo '<span class="badge badge-danger">Direvisi</span>';
+                            echo '<span class="badge badge-warning">Direvisi</span>';
                           } else {
-                            echo '<span class="badge badge-primary">Disetujui</span>';
+                            echo '<span class="badge badge-success">Disetujui</span>';
+                          }
+                          ?>
+                          <?php if ($cek['status'] == 4) {
+                            echo " <a href ='#' class ='badge badge-success' data-toggle='modal' data-target='#custom-width-modal' onClick=\"SetInput('" . $row->id_topik . "','" . $row->nim . "','" . $row->judul . "','" . $row->deskripsi . "','" . $row->lokasi . "')\"> Edit</a>";
+                          } else {
+                            echo "";
                           }
                           ?>
                         </td>
@@ -385,15 +394,13 @@
     </section>
   </div>
 
-
   <script type="text/javascript">
-    function SetInput(id_topik, nim, bidang, judul, lokasi, deskripsi) {
+    function SetInput(id_topik, nim, judul, deskripsi, lokasi, ) {
       document.getElementById('id_topik').value = id_topik;
       document.getElementById('nim').value = nim;
-      document.getElementById('bidang').value = bidang;
       document.getElementById('judul').value = judul;
-      document.getElementById('lokasi').value = lokasi;
       document.getElementById('deskripsi').value = deskripsi;
+      document.getElementById('lokasi').value = lokasi;
     }
 
     function SetInputs(id_topik, nim, bidang, judul, lokasi, deskripsi) {

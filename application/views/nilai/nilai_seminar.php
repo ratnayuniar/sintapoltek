@@ -39,21 +39,16 @@
                     $no = 1;
                     foreach ($query->result() as $row) {
                       $data['user'] = $this->m_penguji->getmahasiswabyid($row->nim);
-                      $this->db->select('AVG(rata) as rata, sum(nilai_akhir) as jumlah,nim');
+                      $this->db->select('AVG(rata) as rata, sum(nilai_akhir) as nilaiakhir');
                       $this->db->where('nim', $row->nim);
                       $result = $this->db->get('nilai_sempro')->row();
-                      $this->db->set($result);
-                      // $this->db->insert($this->db->dbprefix . 'seminar_proposal');
-                      // $this->db->insert('seminar_proposal', $result);
-                      // $this->db->insert_id('seminar_proposal', $result);
-                      // $this->db->group_by('nim');
                       $rata = number_format($result->rata, 1, '.', '');
                     ?>
                       <tr>
                         <td><?= $no++ ?>.</td>
                         <td><?= $data['user']->nama; ?></td>
                         <td><?= $rata ?></td>
-                        <td><?= $result->jumlah ?></td>
+                        <td><?= $result->nilaiakhir ?></td>
                         <td>
                           <a href="<?= base_url('nilai_seminar/detail_nilai_seminar/' . $row->id_nilai_sempro) ?>" class="on-default edit-row btn btn-info pull-right btn-xs"><i class="fa fa-search"></i> Detail </a>
                         </td>
@@ -243,7 +238,7 @@
         <form action="<?php echo base_url() . 'nilai_seminar/add'; ?>" method="post" class="form-horizontal" role="form">
           <div class="modal-body">
             <div class="form-group">
-              <input type="hidden" id="id_nilai_seminar" name="id_nilai_seminar">
+              <input type="hidden" id="id_nilai_sempro" name="id_nilai_sempro">
               <input type="hidden" id="id_penguji" name="id_penguji">
               <label class="col-md-5 control-label">Mahasiswa</label>
               <div class="col-md-9">

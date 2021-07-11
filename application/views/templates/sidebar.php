@@ -231,7 +231,7 @@
                     </li>
                 <?php }  ?>
                 <!-- USER MAHASISWA -->
-                <?php if ($this->session->userdata('level') == 2) { ?>
+                <?php if ($this->session->userdata('level') == 2) { ?> 
                     <li class="nav-item">
                         <a href="<?php echo base_url('beranda'); ?>" class="nav-link <?= activate_menu('beranda') ?>">
                             <i class="nav-icon fas fa-home"></i>

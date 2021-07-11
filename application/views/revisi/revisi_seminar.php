@@ -236,7 +236,7 @@
                             <div class="card-header">
                                 <h3 class="card-title">Hasil Seminar :
                                     <?php
-                                    foreach ($query2->result() as $row) { ?>
+                                    foreach ($statusseminar->result() as $row) { ?>
                                         <?= $row->status_seminar ?>
                                     <?php } ?>
                                 </h3>

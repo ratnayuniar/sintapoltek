@@ -327,7 +327,7 @@
             <div class="container-fluid">
                 <?php $cek = $this->db->get_where('topik', array('nim' => $this->session->userdata('email')))->row_array(); ?>
 
-                <?php if ($cek['status'] == 3) { ?>
+                <?php if (isset($cek['status']) != NULL && $cek['status'] == 3) { ?>
 
                     <div class="row">
                         <div class="col-12">

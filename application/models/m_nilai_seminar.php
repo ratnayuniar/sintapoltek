@@ -8,6 +8,54 @@ class M_nilai_seminar extends CI_Model
 		$query = $this->db->get()->row();
 		return $query;
 	}
+	// function tambah_data()
+	// {
+	// 	$data = array(
+	// 		'nim' => $this->input->post('nim'),
+	// 		'perumusan' => $this->input->post('perumusan'),
+	// 		'teori' => $this->input->post('teori'),
+	// 		'pemecahan' => $this->input->post('pemecahan'),
+	// 		'penulisan' => $this->input->post('penulisan'),
+	// 		'pustaka' => $this->input->post('pustaka'),
+	// 		'presentasi' => $this->input->post('presentasi'),
+	// 		'penguasaan' => $this->input->post('penguasaan'),
+	// 		'rata' => $this->input->post('rata'),
+	// 		'nilai_akhir' => $this->input->post('nilai_akhir'),
+	// 		'id_dosen' => $this->session->userdata('id_dosen'),
+	// 	);
+	// 	$dataupdate = array(
+	// 		'perumusan' => $this->input->post('perumusan'),
+	// 		'teori' => $this->input->post('teori'),
+	// 		'pemecahan' => $this->input->post('pemecahan'),
+	// 		'penulisan' => $this->input->post('penulisan'),
+	// 		'pustaka' => $this->input->post('pustaka'),
+	// 		'presentasi' => $this->input->post('presentasi'),
+	// 		'penguasaan' => $this->input->post('penguasaan'),
+	// 		'rata' => $this->input->post('rata'),
+	// 		'nilai_akhir' => $this->input->post('nilai_akhir'),
+	// 	);
+
+	// 	$this->db->select('*');
+	// 	$this->db->from('nilai_sempro');
+	// 	$this->db->where(['id_dosen' => $this->session->userdata('id_dosen'), 'nim' => $this->input->post('nim')]);
+	// 	$query = $this->db->get()->row_array();
+	// 	if (!$query) {
+	// 		$this->db->set($dataupdate);
+	// 		$this->db->where(['id_dosen' => $this->session->userdata('id_dosen'), 'nim' => $this->input->post('nim')]);
+	// 		$this->db->update('nilai_sempro');
+	// 	} else {
+	// 		$this->db->insert('nilai_sempro', $data);
+
+	// 		// $idjumlah = $this
+	// 		// $data = array(
+	// 		// 	'id_nilai_sempro'	=> $idjumlah
+	// 		// );
+
+	// 		//$this->db->insert('seminar_proposal', $data);
+	// 	}
+	// 	redirect('/nilai_seminar');
+	// }
+
 	function tambah_data()
 	{
 		$data = array(
@@ -38,28 +86,25 @@ class M_nilai_seminar extends CI_Model
 		$this->db->select('*');
 		$this->db->from('nilai_sempro');
 		$this->db->where(['id_dosen' => $this->session->userdata('id_dosen'), 'nim' => $this->input->post('nim')]);
-		$query = $this->db->get()->row_array();
-		if (!$query) {
+		$query = $this->db->get()->row();
+		if (isset($query)) {
 			$this->db->set($dataupdate);
 			$this->db->where(['id_dosen' => $this->session->userdata('id_dosen'), 'nim' => $this->input->post('nim')]);
 			$this->db->update('nilai_sempro');
 		} else {
 			$this->db->insert('nilai_sempro', $data);
-
-			// $idjumlah = $this
-			// $data = array(
-			// 	'id_nilai_sempro'	=> $idjumlah
-			// );
-
-			//$this->db->insert('seminar_proposal', $data);
 		}
+
 		redirect('/nilai_seminar');
 	}
 
 	function tampil_data()
 	{
 
-		return $this->db->query("(SELECT * FROM nilai_sempro GROUP BY nim) ");
+		// return $this->db->query("(SELECT * FROM nilai_sempro GROUP BY nim) ");
+		$this->db->select("*, COUNT(*) as jumlah");
+		$this->db->group_by('nilai_sempro.nim');
+		return $this->db->get('nilai_sempro');
 	}
 	function jumlahnilai($id_mahasiswa)
 	{

@@ -28,6 +28,8 @@ class Revisi_seminar extends CI_Controller
         $data['query'] = $this->m_nilai_seminar->tampil_data();
         $data['title'] = 'SINTA PNM';
 
+        $data['statusseminar'] = $this->m_revisi_seminar->getStatusSeminar();
+
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('revisi/revisi_seminar', $data);

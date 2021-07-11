@@ -105,7 +105,7 @@ class Topik extends CI_Controller
 		} else {
 			if ($this->input->post('id_topik')) {
 				$data = array(
-					'status' => 2,
+					'status' => $this->input->post('status'),
 					'komentar' => $this->input->post('komentar'),
 				);
 				$this->m_topik->update($this->input->post('id_topik'), $data);
@@ -126,7 +126,8 @@ class Topik extends CI_Controller
 			redirect('index');
 		} else {
 			$data = array(
-				'status' => $this->input->post('status')
+				'status' => $this->input->post('status'),
+
 			);
 
 			$this->m_topik->update($this->input->post('id_topik'), $data);
