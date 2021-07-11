@@ -340,10 +340,15 @@
               <div class="card-body">
                 <div style="text-align:right;margin-bottom: 10px ">
 
-                  <?php
-                  if ($topik_user->num_rows() == 0) echo "<a href='#' class='on-default edit-row btn btn-success pull-right' data-toggle='modal' pull='right' data-target='#custom-width-modal' onclick='ResetInput()'><i class='fa fa-plus'></i> Ajukan Judul</a>";
+                <!-- ambil topik terakhir berdasarkan nim mahasiswa login -->
+                <?php $cek = $this->db->select('*')->order_by('id_topik', 'DESC')->get_where('topik', array('nim' => $this->session->userdata('email')))->row_array(); ?>
 
-                  ?>
+                <!-- Jika mahasiswa belum mengajukan topik atau topik ditolak, maka tampilkan button ajukan judul -->
+                <?php if(isset($cek['status']) == NULL || $cek['status'] == 4) { ?>
+                  <a href='#' class='on-default edit-row btn btn-success pull-right' data-toggle='modal' pull='right' data-target='#custom-width-modal' onclick='ResetInput()'><i class='fa fa-plus'></i> Ajukan Judul</a>
+
+                  <?php } ?>
+
                 </div>
                 <table id="example1" class="table table-bordered table-striped">
                   <thead>
