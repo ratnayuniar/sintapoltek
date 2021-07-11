@@ -325,43 +325,47 @@
 
         <section class="content">
             <div class="container-fluid">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="card">
-                            <div class="card-header">
-                                <h3 class="card-title">Data Pembimbing Mahasiswa</h3>
-                            </div>
-                            <div class="card-body">
-                                <table id="example1" class="table table-bordered table-striped">
-                                    <thead>
-                                        <tr>
-                                            <th>No</th>
-                                            <th>Judul</th>
-                                            <th>Dosen Pembimbing 1</th>
-                                            <th>Dosen Pembimbing 2</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php
-                                        $no = 1;
-                                        foreach ($query2->result() as $row) {
-                                            if ($row->id_master_ta != "") {
-                                                $data['user'] = $this->m_pembimbing->getmahasiswabyid($row->nim);
-                                                $data['dosen1'] = $this->m_pembimbing->getdosen1($row->pembimbing1);
-                                                if ($row->pembimbing1 != "") {
-                                                    $dosen1_nama = $data['dosen1']->nama;
-                                                } else {
-                                                    $dosen1_nama = "-";
-                                                }
-                                                $data['dosen2'] = $this->m_pembimbing->getdosen2($row->pembimbing2);
-                                                if ($row->pembimbing2 != "") {
-                                                    $dosen2_nama = $data['dosen2']->nama;
-                                                } else {
-                                                    $dosen2_nama = "-";
-                                                }
+                <?php $cek = $this->db->get_where('topik', array('nim' => $this->session->userdata('email')))->row_array(); ?>
 
-                                                echo
-                                                "<tr>
+                <?php if ($cek['status'] == 3) { ?>
+
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3 class="card-title">Data Pembimbing Mahasiswa</h3>
+                                </div>
+                                <div class="card-body">
+                                    <table id="example1" class="table table-bordered table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>No</th>
+                                                <th>Judul</th>
+                                                <th>Dosen Pembimbing 1</th>
+                                                <th>Dosen Pembimbing 2</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php
+                                            $no = 1;
+                                            foreach ($query2->result() as $row) {
+                                                if ($row->id_master_ta != "") {
+                                                    $data['user'] = $this->m_pembimbing->getmahasiswabyid($row->nim);
+                                                    $data['dosen1'] = $this->m_pembimbing->getdosen1($row->pembimbing1);
+                                                    if ($row->pembimbing1 != "") {
+                                                        $dosen1_nama = $data['dosen1']->nama;
+                                                    } else {
+                                                        $dosen1_nama = "-";
+                                                    }
+                                                    $data['dosen2'] = $this->m_pembimbing->getdosen2($row->pembimbing2);
+                                                    if ($row->pembimbing2 != "") {
+                                                        $dosen2_nama = $data['dosen2']->nama;
+                                                    } else {
+                                                        $dosen2_nama = "-";
+                                                    }
+
+                                                    echo
+                                                    "<tr>
                                                 <td>" . $no . "</td>
                                                 <td>" . $row->judul . "</td>
                                                 <td>" . $dosen1_nama . "</td>
@@ -369,16 +373,31 @@
                                                 
                                                
                                             </tr>";
-                                                $no++;
+                                                    $no++;
+                                                }
                                             }
-                                        }
-                                        ?>
-                                    </tbody>
-                                </table>
+                                            ?>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                <?php } else { ?>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card card-danger">
+                                <div class="card-header">
+                                    <h3 class="card-title"><i class="fas fa-exclamation-triangle"></i> Pemberitahuan</h3>
+                                </div>
+                                <div class="card-body">
+                                    Anda belum mengajukan judul silahkan ajukan judul terlebih dahulu
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                <?php } ?>
             </div>
         </section>
     </div>
