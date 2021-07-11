@@ -257,10 +257,10 @@
                                         foreach ($query2->result() as $row) { ?>
                                             <tr>
                                                 <td><?= $no++ ?></td>
-                                                <td><?= $row->penguji ?></td>
+                                                <td><?= $row->nama_dosen ?></td>
                                                 <td><?= $row->revisi ?></td>
 
-                                                <td><a href="<?php echo base_url('assets/berkas/seminar/' . $row->revisi_seminar); ?>" download><i class="far fa-file-pdf"></i></a></td>
+                                                <td><a href="<?php echo base_url('assets/berkas/seminar/' . $row->file); ?>" download><i class="far fa-file-pdf"></i></a></td>
                                                 </td>
                                             <?php } ?>
                                             </tr>

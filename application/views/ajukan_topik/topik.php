@@ -79,6 +79,7 @@
                           data-id_topik_id="' . $row->id_topik . '"
                           data-judul="' . $row->judul . '"
                           data-deskripsi="' . $row->deskripsi . '"
+                          data-nim="' . $row->nim . '"
                           class="btn btn-info btn-sm">
                           Validasi
                           </a>';
@@ -143,6 +144,7 @@
           <form action="<?= base_url('topik/save_close_topik') ?>" method="POST" enctype="multipart/form-data">
             <div class="modal-body">
               <input type="hidden" name="id_topik" id="id_topik_id" class="form-control">
+              <input type="hidden" name="nim" id="nim" class="form-control">
               <div class="form-group">
                 <label for="judul">Judul Topik</label>
                 <input type="text" id="judul" class="form-control" readonly>
@@ -153,13 +155,13 @@
               </div>
               <div class="form-group">
                 <label for="deskripsi">Validasi</label>&nbsp; &nbsp; &nbsp;
-                <input class="control" type="radio" name="status" id="status" value="3">
-                <label class="form-check-label" for="denganSopir">
+                <input class="control" type="radio" name="status" id="radioDiterima" value="3">
+                <label class="form-check-label" for="radioDiterima">
                   Diterima
                 </label>
                 &nbsp; &nbsp;
-                <input class="control" type="radio" name="status" id="status" value="4">
-                <label class="form-check-label" for="status">
+                <input class="control" type="radio" name="status" id="radioDirevisi" value="4">
+                <label class="form-check-label" for="radioDirevisi">
                   Direvisi
                 </label>
               </div>
@@ -239,11 +241,13 @@
         var id_topik_id = $(this).data('id_topik_id');
         var judul = $(this).data('judul');
         var deskripsi = $(this).data('deskripsi');
+        var nim = $(this).data('nim');
 
         $('#id_topik').val(id_topik);
         $('#id_topik_id').val(id_topik_id);
         $('#judul').val(judul);
         $('#deskripsi').val(deskripsi);
+        $('#nim').val(nim);
       })
 
       $(document).on('click', '#ctopik', function() {

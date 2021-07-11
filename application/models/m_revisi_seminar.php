@@ -36,7 +36,7 @@ class M_revisi_seminar extends CI_Model
         // $this->db->where('revisi.nim', $this->session->userdata('email'));
         // $query = $this->db->get();
         // return $query;
-        return $this->db->select('dosen.nama as nama_dosen, revisi.revisi as revisi,revisi.file_revisi as file')->join('dosen', 'dosen.id_dosen=revisi.penguji')
+        return $this->db->select('dosen.nama as nama_dosen, revisi.revisi as revisi, revisi.file_revisi as file')->join('dosen', 'dosen.id_dosen=revisi.penguji')
             ->get_where('revisi', array('nim' => $this->session->userdata('email')));
     }
 

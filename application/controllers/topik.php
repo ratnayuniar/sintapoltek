@@ -125,20 +125,54 @@ class Topik extends CI_Controller
 		if ($this->form_validation->run() == FALSE) {
 			redirect('index');
 		} else {
-			$data = array(
-				'status' => $this->input->post('status'),
+			// $data = array(
+			// 	'status' => $this->input->post('status'),
 
-			);
+			// );
 
-			$this->m_topik->update($this->input->post('id_topik'), $data);
+			// $this->m_topik->update($this->input->post('id_topik'), $data);
 
-			$array = array(
-				'nim' => $this->input->post('nim'),
-				'judul' => $this->input->post('judul')
-			);
+			// $array = array(
+			// 	'nim' => $this->input->post('nim'),
+			// 	'judul' => $this->input->post('judul')
+			// );
 			// print_r($array);
 			// exit();
-			$this->db->insert('master_ta', $array);
+			// $this->db->insert('master_ta', $array);
+
+			// Pertama, kita ambil semua data dari modal
+
+			$id_topik = $this->input->post('id_topik');
+			$status = $this->input->post('status');
+			$komentar = $this->input->post('komentar');
+			$nim = $this->input->post('nim');
+
+			// Kedua, lakukan perkondisian. Apabila status = 3 / diterima, maka update table topik berdasarkan id_topik dan simpan juga ke table master_ta
+			if ($status == 3) {
+				$masterTa = [
+					'nim' => $nim,
+					'judul' => $id_topik,
+				];
+
+				$this->db->insert('master_ta', $masterTa);
+
+				// lakukan update pada tabel topik
+				$topik = [
+					'status' => $status,
+					'komentar' => $komentar,
+				];
+
+				$this->db->where('id_topik', $id_topik);
+				$this->db->update('topik', $topik);
+			} else {
+				$topik = [
+					'status' => $status,
+					'komentar' => $komentar,
+				];
+
+				$this->db->where('id_topik', $id_topik);
+				$this->db->update('topik', $topik);
+			}
 
 			$this->session->set_flashdata('message', '<div class="alert alert-info">Data Berhasil Di Simpan</div>');
 			redirect('topik', 'refresh');

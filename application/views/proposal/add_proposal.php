@@ -31,17 +31,19 @@
             <?php $cek = $this->db->get_where('topik', array('nim' => $this->session->userdata('email')))->row_array(); ?>
             <?php if ($cek['status'] == 3) { ?>
                 <div class="row">
-                    <div class="col-4">
+                    <div class="col-5">
                         <div class="card card-info">
                             <div class="card-header">
-                                <h3 class="card-title">Upload Revisi</h3>
+                                <h3 class="card-title">Upload Berkas Proposal</h3>
                             </div>
-                            <?php echo form_open_multipart('revisi_upload/upload_berkas'); ?>
+                            <?php echo form_open_multipart('proposal/upload_proposal'); ?>
                             <div class="card-body">
                                 <div class="form-group row">
-                                    <label for="inputEmail3" class="col-sm-4 col-form-label">Upload Revisi</label>
+                                    <label for="inputEmail3" class="col-sm-4 col-form-label">Upload Proposal</label>
                                     <div class="col-sm-4">
-                                        <input type="file" name="file_revisi" id="file_revisi" required>
+
+                                        <input type="text" name="id_proposal" id="id_proposal">
+                                        <input type="file" name="latar_belakang" id="latar_belakang" required>
                                     </div>
                                 </div>
                             </div>
@@ -74,13 +76,6 @@
     </section>
 </div>
 <script type="text/javascript">
-    CKEDITOR.replace('latar_belakang', {
-        width: '100%',
-        height: 500,
-        enterMode: CKEDITOR.ENTER_P,
-
-    });
-
     CKEDITOR.replace('rumusan_masalah', {
         width: '100%',
         height: 500,

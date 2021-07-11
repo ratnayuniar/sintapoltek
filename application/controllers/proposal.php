@@ -138,4 +138,65 @@ class Proposal extends CI_Controller
         $this->mypdf->filename = "laporan";
         $this->mypdf->generate('proposal/proposal2', $data);
     }
+
+    public function upload_berkas()
+    {
+
+        $nim = $this->session->userdata('email');
+
+        $config['upload_path']          = './assets/berkas/seminar/';
+        $config['allowed_types']        = 'doc|pdf|docx';
+        $config['file_name']            = $nim . ' - Berkas Proposal';
+
+        $this->load->library('upload', $config);
+
+        if (!$this->upload->do_upload('latar_belakang')) {
+            $error = array('error' => $this->upload->display_error());
+            redirect('proposal');
+        } else {
+            $this->db->set('latar_belakang', $this->upload->data('file_name'))->where('nim', $nim)->update('proposal');
+            redirect('proposal');
+        }
+    }
+
+    public function upload_proposal()
+    {
+        if (isset($_POST['submit'])) {
+            $this->form_validation->set_rules('nim', 'NIM', 'required');
+            $config['upload_path'] = './assets/berkas/seminar/';
+            $config['allowed_types'] = 'pdf|jpg|png|exe|jpeg|mp4|ppt|pptx';
+            $config['max_size']  = 50000;
+            $config['file_name'] = 'bks_seminar-' . date('ymd');
+
+            $this->load->library('upload', $config);
+
+            if (!empty($_FILES['latar_belakang'])) {
+                $this->upload->do_upload('latar_belakang');
+                $data1 = $this->upload->data();
+                $latar_belakang = $data1['file_name'];
+            }
+
+            if ($this->form_validation->run()) {
+                $nim = $this->input->post('nim', TRUE);
+                $data = [
+                    'nim' => $nim,
+                    'latar_belakang' => $latar_belakang,
+                ];
+
+                $cek = $this->db->like('nim', $data['nim'])->from('proposal')->count_all_results();
+
+                if ($cek > 0) {
+                    $this->db->where('nim', $data['nim'])->update('proposal', $data);
+                    redirect('proposal');
+                } else {
+                    $this->db->insert('proposal', $data);
+                    redirect('proposal');
+                }
+            } else {
+                $this->index();
+            }
+        } else {
+            $this->index();
+        }
+    }
 }

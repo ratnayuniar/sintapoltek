@@ -77,6 +77,7 @@ class M_pembimbing extends CI_Model
         $this->db->select('*');
         $this->db->from('master_ta');
         $this->db->join('mahasiswa', 'mahasiswa.nim=master_ta.nim');
+        $this->db->join('topik', 'master_ta.judul=topik.id_topik');
         $this->db->where('master_ta.nim', $this->session->userdata('email'));
         $query = $this->db->get();
         return $query;
