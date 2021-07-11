@@ -165,12 +165,7 @@
                 <textarea name="komentar" class="form-control"></textarea>
               </div>
             </div>
-            <!-- <a href="javascript:void(0);" data-toggle="modal" data-target="#modalclosetopik" id="ctopik" data-closetopik="' . $row->id_topik . '" data-closenim="' . $row->nim . '" data-closejudul="' . $row->judul . '" data-closestatus="' . $row->status . '" class="btn btn-primary btn-sm">
-              Terima
-            </a>
-            <a href="<?= base_url('topik/save_close_topik') ?>" data-toggle="modal" data-target="#modaltolaktopik" id="tlktopik" data-tolaktopik="' . $row->id_topik . '" data-closestatus="' . $row->status . '" class="btn btn-danger btn-sm">
-              Revisi
-            </a> -->
+
             <button type="submit" id="tombol" class="btn btn-primary btn-sm " style="float: right;">Kirim</button>
             <button type="reset" class="btn btn-danger btn-sm">Batal</button>
           </form>

@@ -96,7 +96,10 @@ class Auth extends CI_Controller
         $email = htmlspecialchars($this->input->post('email', TRUE), ENT_QUOTES);
         $nim = htmlspecialchars($this->input->post('nim', TRUE), ENT_QUOTES);
         $password = htmlspecialchars($this->input->post('password', TRUE), ENT_QUOTES);
-
+        echo $email . "<br>";
+        echo $nim . "<br>";
+        echo $password . "<br>";
+        exit();
         $check_dosen = $this->m_auth->auth_dosen($email, $password);
         $check_mahasiswa = $this->m_auth->auth_mahasiswa($email, $password);
 
