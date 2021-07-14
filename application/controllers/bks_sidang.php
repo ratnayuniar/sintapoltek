@@ -65,9 +65,10 @@ class Bks_sidang extends CI_Controller
 		if (isset($_POST['submit'])) {
 			$this->form_validation->set_rules('nim', 'NIM', 'required');
 			$config['upload_path'] = './assets/berkas/sidang/';
-			$config['allowed_types'] = 'pdf|jpg|png|jpeg|ppt|pptx|doc|docx';
+			$config['allowed_types'] = 'doc|docx';
 			$config['max_size']  = 50000;
 			$config['file_name'] = 'bks_sidang-' . date('ymd');
+			$ekstensi =  array('doc', 'docx');
 
 			$this->load->library('upload', $config);
 
@@ -75,25 +76,31 @@ class Bks_sidang extends CI_Controller
 				$this->upload->do_upload('berita_acara');
 				$data1 = $this->upload->data();
 				$berita_acara = $data1['file_name'];
+				$tipe_file = pathinfo($berita_acara, PATHINFO_EXTENSION);
 			}
 
 			if ($this->form_validation->run()) {
-				$nim = $this->input->post('nim', TRUE);
-				$data = [
-					'nim' => $nim,
-					'berita_acara' => $berita_acara,
-					'st_berita_acara' => 0,
-
-				];
-
-				$cek = $this->db->like('nim', $data['nim'])->from('seminar_ta')->count_all_results();
-
-				if ($cek > 0) {
-					$this->db->where('nim', $data['nim'])->update('seminar_ta', $data);
+				if (!in_array($tipe_file, $ekstensi)) {
+					$this->session->set_flashdata('gagal', 'Tipe Yang Dimasukkan Salah');
 					redirect('bks_sidang');
 				} else {
-					$this->db->insert('seminar_ta', $data);
-					redirect('bks_sidang');
+					$nim = $this->input->post('nim', TRUE);
+					$data = [
+						'nim' => $nim,
+						'berita_acara' => $berita_acara,
+						'st_berita_acara' => 0,
+
+					];
+
+					$cek = $this->db->like('nim', $data['nim'])->from('seminar_ta')->count_all_results();
+
+					if ($cek > 0) {
+						$this->db->where('nim', $data['nim'])->update('seminar_ta', $data);
+						redirect('bks_sidang');
+					} else {
+						$this->db->insert('seminar_ta', $data);
+						redirect('bks_sidang');
+					}
 				}
 			} else {
 				$this->index();
@@ -108,9 +115,10 @@ class Bks_sidang extends CI_Controller
 		if (isset($_POST['submit'])) {
 			$this->form_validation->set_rules('nim', 'NIM', 'required');
 			$config['upload_path'] = './assets/berkas/sidang/';
-			$config['allowed_types'] = 'pdf|jpg|png|exe|jpeg|mp4|ppt|pptx';
+			$config['allowed_types'] = 'doc|docx';
 			$config['max_size']  = 50000;
 			$config['file_name'] = 'bks_sidang-' . date('ymd');
+			$ekstensi =  array('doc', 'docx');
 
 			$this->load->library('upload', $config);
 
@@ -118,70 +126,31 @@ class Bks_sidang extends CI_Controller
 				$this->upload->do_upload('persetujuan');
 				$data1 = $this->upload->data();
 				$persetujuan = $data1['file_name'];
+				$tipe_file = pathinfo($persetujuan, PATHINFO_EXTENSION);
 			}
 
 			if ($this->form_validation->run()) {
-				$nim = $this->input->post('nim', TRUE);
-				$data = [
-					'nim' => $nim,
-					'persetujuan' => $persetujuan,
-					'st_persetujuan' => 0,
-
-
-				];
-
-				$cek = $this->db->like('nim', $data['nim'])->from('seminar_ta')->count_all_results();
-
-				if ($cek > 0) {
-					$this->db->where('nim', $data['nim'])->update('seminar_ta', $data);
+				if (!in_array($tipe_file, $ekstensi)) {
+					$this->session->set_flashdata('gagal', 'Tipe Yang Dimasukkan Salah');
 					redirect('bks_sidang');
 				} else {
-					$this->db->insert('seminar_ta', $data);
-					redirect('bks_sidang');
-				}
-			} else {
-				$this->index();
-			}
-		} else {
-			$this->index();
-		}
-	}
+					$nim = $this->input->post('nim', TRUE);
+					$data = [
+						'nim' => $nim,
+						'persetujuan' => $persetujuan,
+						'st_persetujuan' => 0,
 
-	public function upload_pkkmb()
-	{
-		if (isset($_POST['submit'])) {
-			$this->form_validation->set_rules('nim', 'NIM', 'required');
-			$config['upload_path'] = './assets/berkas/sidang/';
-			$config['allowed_types'] = 'pdf|jpg|png|exe|jpeg|mp4|ppt|pptx';
-			$config['max_size']  = 50000;
-			$config['file_name'] = 'bks_sidang-' . date('ymd');
+					];
 
-			$this->load->library('upload', $config);
+					$cek = $this->db->like('nim', $data['nim'])->from('seminar_ta')->count_all_results();
 
-			if (!empty($_FILES['pkkmb'])) {
-				$this->upload->do_upload('pkkmb');
-				$data1 = $this->upload->data();
-				$pkkmb = $data1['file_name'];
-			}
-
-			if ($this->form_validation->run()) {
-				$nim = $this->input->post('nim', TRUE);
-				$data = [
-					'nim' => $nim,
-					'pkkmb' => $pkkmb,
-					'st_pkkmb' => 0,
-
-
-				];
-
-				$cek = $this->db->like('nim', $data['nim'])->from('seminar_ta')->count_all_results();
-
-				if ($cek > 0) {
-					$this->db->where('nim', $data['nim'])->update('seminar_ta', $data);
-					redirect('bks_sidang');
-				} else {
-					$this->db->insert('seminar_ta', $data);
-					redirect('bks_sidang');
+					if ($cek > 0) {
+						$this->db->where('nim', $data['nim'])->update('seminar_ta', $data);
+						redirect('bks_sidang');
+					} else {
+						$this->db->insert('seminar_ta', $data);
+						redirect('bks_sidang');
+					}
 				}
 			} else {
 				$this->index();
@@ -196,9 +165,10 @@ class Bks_sidang extends CI_Controller
 		if (isset($_POST['submit'])) {
 			$this->form_validation->set_rules('nim', 'NIM', 'required');
 			$config['upload_path'] = './assets/berkas/sidang/';
-			$config['allowed_types'] = 'pdf|jpg|png|exe|jpeg|mp4|ppt|pptx';
+			$config['allowed_types'] = 'pdf';
 			$config['max_size']  = 50000;
 			$config['file_name'] = 'bks_sidang-' . date('ymd');
+			$ekstensi =  array('pdf');
 
 			$this->load->library('upload', $config);
 
@@ -206,26 +176,31 @@ class Bks_sidang extends CI_Controller
 				$this->upload->do_upload('file_ta');
 				$data1 = $this->upload->data();
 				$file_ta = $data1['file_name'];
+				$tipe_file = pathinfo($file_ta, PATHINFO_EXTENSION);
 			}
 
 			if ($this->form_validation->run()) {
-				$nim = $this->input->post('nim', TRUE);
-				$data = [
-					'nim' => $nim,
-					'file_ta' => $file_ta,
-					'st_file_ta' => 0,
-
-
-				];
-
-				$cek = $this->db->like('nim', $data['nim'])->from('seminar_ta')->count_all_results();
-
-				if ($cek > 0) {
-					$this->db->where('nim', $data['nim'])->update('seminar_ta', $data);
+				if (!in_array($tipe_file, $ekstensi)) {
+					$this->session->set_flashdata('gagal', 'Tipe Yang Dimasukkan Salah');
 					redirect('bks_sidang');
 				} else {
-					$this->db->insert('seminar_ta', $data);
-					redirect('bks_sidang');
+					$nim = $this->input->post('nim', TRUE);
+					$data = [
+						'nim' => $nim,
+						'file_ta' => $file_ta,
+						'st_file_ta' => 0,
+
+					];
+
+					$cek = $this->db->like('nim', $data['nim'])->from('seminar_ta')->count_all_results();
+
+					if ($cek > 0) {
+						$this->db->where('nim', $data['nim'])->update('seminar_ta', $data);
+						redirect('bks_sidang');
+					} else {
+						$this->db->insert('seminar_ta', $data);
+						redirect('bks_sidang');
+					}
 				}
 			} else {
 				$this->index();
@@ -235,14 +210,66 @@ class Bks_sidang extends CI_Controller
 		}
 	}
 
+	public function upload_pkkmb()
+	{
+		if (isset($_POST['submit'])) {
+			$this->form_validation->set_rules('nim', 'NIM', 'required');
+			$config['upload_path'] = './assets/berkas/sidang/';
+			$config['allowed_types'] = 'pdf|jpg';
+			$config['max_size']  = 50000;
+			$config['file_name'] = 'bks_sidang-' . date('ymd');
+			$ekstensi =  array('pdf', 'jpg');
+
+			$this->load->library('upload', $config);
+
+			if (!empty($_FILES['pkkmb'])) {
+				$this->upload->do_upload('pkkmb');
+				$data1 = $this->upload->data();
+				$pkkmb = $data1['file_name'];
+				$tipe_file = pathinfo($pkkmb, PATHINFO_EXTENSION);
+			}
+
+			if ($this->form_validation->run()) {
+				if (!in_array($tipe_file, $ekstensi)) {
+					$this->session->set_flashdata('gagal', 'Tipe Yang Dimasukkan Salah');
+					redirect('bks_sidang');
+				} else {
+					$nim = $this->input->post('nim', TRUE);
+					$data = [
+						'nim' => $nim,
+						'pkkmb' => $pkkmb,
+						'st_pkkmb' => 0,
+
+					];
+
+					$cek = $this->db->like('nim', $data['nim'])->from('seminar_ta')->count_all_results();
+
+					if ($cek > 0) {
+						$this->db->where('nim', $data['nim'])->update('seminar_ta', $data);
+						redirect('bks_sidang');
+					} else {
+						$this->db->insert('seminar_ta', $data);
+						redirect('bks_sidang');
+					}
+				}
+			} else {
+				$this->index();
+			}
+		} else {
+			$this->index();
+		}
+	}
+
+
 	public function upload_monitoring()
 	{
 		if (isset($_POST['submit'])) {
 			$this->form_validation->set_rules('nim', 'NIM', 'required');
 			$config['upload_path'] = './assets/berkas/sidang/';
-			$config['allowed_types'] = 'pdf|jpg|png|exe|jpeg|mp4|ppt|pptx';
+			$config['allowed_types'] = 'pdf';
 			$config['max_size']  = 50000;
 			$config['file_name'] = 'bks_sidang-' . date('ymd');
+			$ekstensi =  array('pdf');
 
 			$this->load->library('upload', $config);
 
@@ -250,26 +277,31 @@ class Bks_sidang extends CI_Controller
 				$this->upload->do_upload('monitoring');
 				$data1 = $this->upload->data();
 				$monitoring = $data1['file_name'];
+				$tipe_file = pathinfo($monitoring, PATHINFO_EXTENSION);
 			}
 
 			if ($this->form_validation->run()) {
-				$nim = $this->input->post('nim', TRUE);
-				$data = [
-					'nim' => $nim,
-					'monitoring' => $monitoring,
-					'st_monitoring' => 0,
-
-
-				];
-
-				$cek = $this->db->like('nim', $data['nim'])->from('seminar_ta')->count_all_results();
-
-				if ($cek > 0) {
-					$this->db->where('nim', $data['nim'])->update('seminar_ta', $data);
+				if (!in_array($tipe_file, $ekstensi)) {
+					$this->session->set_flashdata('gagal', 'Tipe Yang Dimasukkan Salah');
 					redirect('bks_sidang');
 				} else {
-					$this->db->insert('seminar_ta', $data);
-					redirect('bks_sidang');
+					$nim = $this->input->post('nim', TRUE);
+					$data = [
+						'nim' => $nim,
+						'monitoring' => $monitoring,
+						'st_monitoring' => 0,
+
+					];
+
+					$cek = $this->db->like('nim', $data['nim'])->from('seminar_ta')->count_all_results();
+
+					if ($cek > 0) {
+						$this->db->where('nim', $data['nim'])->update('seminar_ta', $data);
+						redirect('bks_sidang');
+					} else {
+						$this->db->insert('seminar_ta', $data);
+						redirect('bks_sidang');
+					}
 				}
 			} else {
 				$this->index();
@@ -284,7 +316,7 @@ class Bks_sidang extends CI_Controller
 		if (isset($_POST['submit'])) {
 			$this->form_validation->set_rules('nim', 'NIM', 'required');
 			$config['upload_path'] = './assets/berkas/sidang/';
-			$config['allowed_types'] = 'pdf|jpg|png|exe|jpeg|mp4|ppt|pptx';
+			$config['allowed_types'] = 'ppt|pptx';
 			$config['max_size']  = 50000;
 			$config['file_name'] = 'bks_sidang-' . date('ymd');
 
@@ -302,7 +334,6 @@ class Bks_sidang extends CI_Controller
 					'nim' => $nim,
 					'presentasi' => $presentasi,
 					'st_presentasi' => 0,
-
 
 				];
 

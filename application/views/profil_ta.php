@@ -28,15 +28,10 @@
                         <div class="card-body">
                             <div class="col-md-6" style="float :left">
                                 <strong><i class="fas fa-book mr-1"></i> Judul</strong>
-
                                 <p class="text-muted">
                                     <?= $judul->row()->judul ?>
                                 </p>
-
                                 <hr>
-
-
-
                                 <?php
                                 $no = 1;
                                 foreach ($query_pembimbing->result() as $row) {
@@ -51,15 +46,10 @@
                                 <p class='text-muted'>" . $data['dosen2']->nama . "</p><hr>";
                                 }
                                 ?>
-
-
-
                             </div>
                             <div class="col-md-6" style="float :right">
                                 <strong><i class="fas fa-map-marker-alt mr-1"></i> Tempat Penelitian</strong>
-
                                 <p class="text-muted"><?= $tempat->row()->lokasi ?></p>
-
                                 <hr>
                                 <?php
                                 $no = 1;
@@ -70,21 +60,19 @@
                                     $data['dosen3'] = $this->m_penguji->getdosen3($row->penguji3_sempro);
                                     echo
                                     "
-                                <strong><i class='fas fa-user-edit'></i> Dosen Penguji 1</strong>
+                                <strong><i class='fas fa-user-edit'></i> Dosen Penguji 1 Seminar Proposal</strong>
                                 <p class='text-muted'>" . $data['dosen1']->nama . "</p><hr>
-                                <strong><i class='fas fa-user-edit'></i> Dosen Penguji 2</strong>
+                                <strong><i class='fas fa-user-edit'></i> Dosen Penguji 2 Seminar Proposal</strong>
                                 <p class='text-muted'>" . $data['dosen2']->nama . "</p><hr>
-                                <strong><i class='fas fa-user-edit'></i> Dosen Penguji 3</strong>
+                                <strong><i class='fas fa-user-edit'></i> Dosen Penguji 3 Seminar Proposal</strong>
                                 <p class='text-muted'>" . $data['dosen3']->nama . "</p><hr>
                                 ";
                                 }
                                 ?>
                             </div>
                         </div>
-
                     </div>
                 </div>
-
             </div>
         </div>
     </section>

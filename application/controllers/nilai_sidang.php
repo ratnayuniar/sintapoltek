@@ -22,6 +22,7 @@ class Nilai_sidang extends CI_Controller
 		$data['mahasiswa'] = $this->m_mahasiswa->getmahasiswa();
 		$data['dosen'] = $this->m_mahasiswa->getdosen();
 		$data['query'] = $this->m_nilai_sidang->tampil_data();
+
 		$data['title'] = 'SINTA PNM';
 
 

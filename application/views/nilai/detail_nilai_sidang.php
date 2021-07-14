@@ -45,49 +45,49 @@
                                     <div class="form-group row">
                                         <label for="inputEmail3" class="col-sm-5 col-form-label">Perumusan</label>
                                         <div class="col-sm-5">
-                                            <input type="number" class="form-control hitung" id="perumusan" name="perumusan">
+                                            <input type="number" class="form-control hitung" id="perumusan" name="perumusan" min="0" max="100" required>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label for="inputEmail3" class="col-sm-5 col-form-label">Teori</label>
                                         <div class="col-sm-5">
-                                            <input type="number" class="form-control hitung" id="teori" name="teori">
+                                            <input type="number" class="form-control hitung" id="teori" name="teori" min="0" max="100" required>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label for="inputEmail3" class="col-sm-5 col-form-label">Pemecahan</label>
                                         <div class="col-sm-5">
-                                            <input type="number" class="form-control hitung" id="pemecahan" name="pemecahan">
+                                            <input type="number" class="form-control hitung" id="pemecahan" name="pemecahan" min="0" max="100" required>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label for="inputEmail3" class="col-sm-5 col-form-label">Penulisan</label>
                                         <div class="col-sm-5">
-                                            <input type="number" class="form-control hitung" id="penulisan" name="penulisan">
+                                            <input type="number" class="form-control hitung" id="penulisan" name="penulisan" min="0" max="100" required>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label for="inputEmail3" class="col-sm-5 col-form-label">Daftar Pustaka</label>
                                         <div class="col-sm-5">
-                                            <input type="number" class="form-control hitung" id="pustaka" name="pustaka">
+                                            <input type="number" class="form-control hitung" id="pustaka" name="pustaka" min="0" max="100" required>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label for="inputEmail3" class="col-sm-5 col-form-label">Karya</label>
                                         <div class="col-sm-5">
-                                            <input type="number" class="form-control hitung" id="karya" name="karya">
+                                            <input type="number" class="form-control hitung" id="karya" name="karya" min="0" max="100" required>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label for="inputEmail3" class="col-sm-5 col-form-label">Presentasi</label>
                                         <div class="col-sm-5">
-                                            <input type="number" class="form-control hitung" id="presentasi" name="presentasi">
+                                            <input type="number" class="form-control hitung" id="presentasi" name="presentasi" min="0" max="100" required>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label for="inputEmail3" class="col-sm-5 col-form-label">Penguasaan</label>
                                         <div class="col-sm-5">
-                                            <input type="number" class="form-control hitung" id="penguasaan" name="penguasaan">
+                                            <input type="number" class="form-control hitung" id="penguasaan" name="penguasaan" min="0" max="100" required>
                                         </div>
                                     </div>
                                     <div class="form-group row">

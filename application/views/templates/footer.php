@@ -85,6 +85,14 @@
         })
     }
 
+    var flash = $('#gagal').data('flash');
+    if (flash) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Gagal',
+            text: flash
+        })
+    }
 
     $(document).on('click', '#btn-hapus', function(e) {
         e.preventDefault();
