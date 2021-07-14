@@ -231,7 +231,7 @@
                     </li>
                 <?php }  ?>
                 <!-- USER MAHASISWA -->
-                <?php if ($this->session->userdata('level') == 2) { ?> 
+                <?php if ($this->session->userdata('level') == 2) { ?>
                     <li class="nav-item">
                         <a href="<?php echo base_url('beranda'); ?>" class="nav-link <?= activate_menu('beranda') ?>">
                             <i class="nav-icon fas fa-home"></i>
@@ -284,7 +284,9 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="<?php echo base_url(''); ?>" class="nav-link ">
+                                <a href="<?php echo base_url(''); ?>" class="nav-link 
+                                
+                                ">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Bimbingan Proposal</p>
                                     <i class="fas fa-angle-left right"></i>
@@ -544,6 +546,14 @@
                                         </a>
                                     </li>
                                 </ul>
+                            </li>
+                            <li class="nav-item">
+                                <a href="<?php echo base_url('persetujuan_proposal'); ?>" class="nav-link <?php if ($this->uri->segment(1) == 'nilai_seminar') {
+                                                                                                                echo "active";
+                                                                                                            } ?>">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Persetujuan Proposal</p>
+                                </a>
                             </li>
                             <li class="nav-item">
                                 <a href="<?php echo base_url('nilai_seminar'); ?>" class="nav-link <?php if ($this->uri->segment(1) == 'nilai_seminar') {

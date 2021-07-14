@@ -24,9 +24,6 @@
                                 <h3 class="card-title">Data Pembimbing</h3>
                             </div>
                             <div class="card-body">
-                                <!-- <div style="text-align:right;margin-bottom: 10px ">
-                                    <a href="#" class="on-default edit-row btn btn-success pull-right" data-toggle="modal" pull="right" data-target="#custom-width-modal" onclick="ResetInput()"><i class="fa fa-plus"></i> Tambah Data Pembimbing</a>
-                                </div> -->
                                 <table id="example1" class="table table-bordered table-striped">
                                     <thead>
                                         <tr>
@@ -46,13 +43,17 @@
                                             if ($row->id_master_ta != "") {
                                                 $data['user'] = $this->m_pembimbing->getmahasiswabyid($row->nim);
                                                 $data['dosen1'] = $this->m_pembimbing->getdosen1($row->pembimbing1);
-                                                if ($row->pembimbing1 != "") {
+                                                if ($row->pembimbing1 == "0") {
+                                                    $dosen1_nama = "-";
+                                                } else if ($row->pembimbing1 != "") {
                                                     $dosen1_nama = $data['dosen1']->nama;
                                                 } else {
                                                     $dosen1_nama = "-";
                                                 }
                                                 $data['dosen2'] = $this->m_pembimbing->getdosen2($row->pembimbing2);
-                                                if ($row->pembimbing2 != "") {
+                                                if ($row->pembimbing2 == "0") {
+                                                    $dosen2_nama = "-";
+                                                } else if ($row->pembimbing2 != "") {
                                                     $dosen2_nama = $data['dosen2']->nama;
                                                 } else {
                                                     $dosen2_nama = "-";
@@ -66,8 +67,8 @@
                                                 <td>" . $dosen1_nama . "</td>
                                                 <td>" . $dosen2_nama . "</td>
                                                 
-                                                <td><a href ='#' class ='btn btn-sm btn-primary btn-xs' data-toggle='modal' data-target='#custom-width-modal' onClick=\"SetInput('" . $row->id_master_ta . "','" . $row->nim . "','" . $row->penguji1_sempro . "','" . $row->penguji2_sempro . "','" . $row->penguji3_sempro . "')\"><i class ='fa fa-edit'></i> Edit</a>
-                                                                                                       
+                                                <td><a href ='#' class ='btn btn-sm btn-primary btn-xs' data-toggle='modal' data-target='#custom-width-modal' onClick=\"SetInput('" . $row->id_master_ta . "','" . $row->nim . "','" . $row->pembimbing1 . "','" . $row->pembimbing2 . "')\"><i class ='fa fa-edit'></i> Edit</a>
+                                                                                                     
                                                 </td>
                                             </tr>";
                                                 $no++;
@@ -111,7 +112,7 @@
                         <div class="form-group">
                             <label class="col-md-5 control-label">Dosen Pembimbing 1</label>
                             <div class="col-md-9">
-                                <select class="form-control" data-live-search="true" data-style="btn-white" onclick="choose()" id="pembimbing1" name="pembimbing1" required>
+                                <select class="form-control" data-live-search="true" data-style="btn-white" id="pembimbing1" name="pembimbing1" required>
                                     <option value="">-- Pilih Dosen Pembimbing 1 --</option>
                                     <?php foreach ($dosen->result() as $row) : ?>
                                         <option value="<?php echo $row->id_dosen; ?>" required><?php echo $row->nama; ?></option>
@@ -120,14 +121,14 @@
                             </div>
                         </div>
 
-                        <div class="form-group">
+                        <!-- <div class="form-group">
                             <input type="hidden" name="pembimbing1" id="output" class="form-control" value="" readonly />
-                        </div>
+                        </div> -->
 
                         <div class="form-group">
                             <label class="col-md-5 control-label">Dosen Pembimbing 2</label>
                             <div class="col-md-9">
-                                <select class="form-control" data-live-search="true" data-style="btn-white" onclick="pilih()" id="pembimbing2" name="pembimbing2" required>
+                                <select class="form-control" data-live-search="true" data-style="btn-white" id="pembimbing2" name="pembimbing2" required>
                                     <option value="">-- Pilih Dosen Pembimbing 2 --</option>
                                     <?php foreach ($dosen->result() as $row) : ?>
                                         <option value="<?php echo $row->id_dosen; ?>"><?php echo $row->nama; ?></option>
@@ -136,9 +137,9 @@
                             </div>
                         </div>
 
-                        <div class="form-group">
+                        <!-- <div class="form-group">
                             <input type="hidden" name="pembimbing2" id="hasil" class="form-control" value="" readonly />
-                        </div>
+                        </div> -->
 
                         <div class="modal-footer justify-content-between">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
@@ -325,9 +326,8 @@
 
         <section class="content">
             <div class="container-fluid">
-                <?php $cek = $this->db->get_where('topik', array('nim' => $this->session->userdata('email')))->row_array(); ?>
-
-                <?php if (isset($cek['status']) != NULL && $cek['status'] == 3) { ?>
+                <?php $cek = $this->db->get_where('master_ta', array('nim' => $this->session->userdata('email')))->row_array(); ?>
+                <?php if (isset($cek['pembimbing1']) != NULL && $cek['pembimbing2'] != NULL) { ?>
 
                     <div class="row">
                         <div class="col-12">
@@ -391,7 +391,7 @@
                                     <h3 class="card-title"><i class="fas fa-exclamation-triangle"></i> Pemberitahuan</h3>
                                 </div>
                                 <div class="card-body">
-                                    Anda belum mengajukan judul silahkan ajukan judul terlebih dahulu
+                                    Pembimbing anda belum ditetapkan, silahkan hubungi admin
                                 </div>
                             </div>
                         </div>

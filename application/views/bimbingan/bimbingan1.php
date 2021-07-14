@@ -40,7 +40,6 @@
                                         <th>Tanggal</th>
                                         <th>Status</th>
                                         <th>Konfirmasi</th>
-                                        <!-- <th>Aksi</th> -->
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -57,11 +56,9 @@
                                                 <?php if ($row->status == '0') {
                                                     echo '<span class="badge badge-warning">Belum Dikomentari</span>';
                                                 } else if ($row->status == '1') {
-                                                    echo '<span class="badge badge-info">Sudah diberi solusi</span>';
-                                                } else if ($row->status == '2') {
-                                                    echo '<span class="badge badge-primary">Proses</span>';
+                                                    echo '<span class="badge badge-success">Sudah dikomentari</span>';
                                                 } else {
-                                                    echo '<span class="badge badge-success">Disetujui</span>';
+                                                    echo "";
                                                 }
                                                 ?>
                                             </td>
@@ -77,26 +74,9 @@
                                                 class="btn btn-info btn-sm">
                                                 Komentari
                                                 </a>';
-                                                } else if ($row->status == '1') {
-                                                    echo '<a href="javascript:void(0);" data-toggle="modal" data-target="#modal-reply" id="reply-message"
-                                                data-bimbingan_id="' . $row->id_bimbingan . '"
-                                                data-id_bimbingan_id="' . $row->id_bimbingan . '"
-                                                data-tanggal="' . $row->tanggal . '"
-                                                data-masalah="' . $row->masalah . '"
-                                                data-file="' . $row->file . '"
-                                                class="btn btn-info btn-sm">
-                                                Komentari
-                                                </a>';
-                                                } else if ($row->status == '2') {
-                                                    echo '<a href="javascript:void(0);" data-toggle="modal" data-target="#modalclosetopik" id="ctopik"
-                                                data-closetopik="' . $row->id_bimbingan . '"
-                                                data-closestatus="' . $row->status . '"                          
-                                                class="btn btn-primary btn-sm">
-                                                Setujui
-                                                </a>';
                                                 } else {
                                                     echo '<a href="javascript:void(0);" class="btn btn-success btn-sm">
-                                                Disetujui
+                                                Sudah Dikomentari
                                                 </a>';
                                                 }
                                                 ?>
@@ -167,10 +147,21 @@
                                 <label for="deskripsi">Masalah Yang Dikonsultasikan</label>
                                 <textarea id="masalah" rows="5" class="form-control" readonly></textarea>
                             </div>
-                            <div class="form-group">
+
+                            <?php if ($row->file != 'NULL') {
+                                echo "<div class='form-group'>
+                                <label for='deskripsi'>File Bimbingan</label><br>
+                                <a id='file' href='" . base_url('assets/berkas/bimbingan/' . $row->file) . "' class='btn btn-primary' download>Unduh</a>
+                            </div>";
+                            } else {
+                            }
+                            ?>
+
+
+                            <!-- <div class="form-group">
                                 <label for="deskripsi">File Bimbingan</label><br>
                                 <a id="file" href="<?php echo base_url('assets/berkas/bimbingan/' . $row->file); ?>" class="btn btn-primary" download>Unduh</a>
-                            </div>
+                            </div> -->
                             <div class="form-group">
                                 <label for="deskripsi">Solusi</label>
                                 <textarea name="solusi" rows="5" class="form-control"></textarea>
@@ -282,8 +273,6 @@
                                             <input type="hidden" id="id_bimbingan" name="id_bimbingan">
                                             <input type="hidden" id="minggu" name="minggu">
                                             <input type="hidden" id="judul" name="judul">
-
-                                            <!-- <label for="exampleInputjudul1">NIM</label> -->
                                             <input type="hidden" class="form-control" id="nim" name="nim" placeholder="NIM">
                                             <input type="hidden" class="form-control" id="nim2" name="nim2" readonly placeholder="NIM">
                                         </div>
@@ -314,10 +303,9 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="exampleInputjudul1">File</label><br>
-                                            <input type="file" name="file">
+                                            <input type="file" id="file" name="file">
                                         </div>
                                     </div>
-
                                     <div class="card-footer">
                                         <button type="submit" name="submit" class="btn btn-primary">Simpan</button>
                                     </div>
@@ -326,76 +314,97 @@
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-12">
-                        <div class="card">
-                            <div class="card-header">
-                                <h3 class="card-title">Ajukan Bimbingan</h3>
-                            </div>
-                            <div class="card-body">
-                                <div style="text-align:right;margin-bottom: 10px ">
-                                    <a href="#" class="on-default edit-row btn btn-info pull-right" data-toggle="modal" pull="right" data-target="#custom-width-modal" onclick="ResetInput()"><i class="fa fa-plus"></i> &nbsp;Ajukan Bimbingan</a>
-                                    <a href="<?= site_url('bimbingan1/cetak_kartu') ?>" target="_blank" type="button" class="btn btn-primary"><i class="fas fa-print"></i> &nbsp;Cetak Lembar Bimbingan</a>
-                                    <?php
-                                    foreach ($bimbingan_user->result() as $row) { ?>
-                                        <a href="https://wa.me/<?= $row->hp ?>" target="_blank" class="btn btn-success"> <i class="fab fa-whatsapp"></i></a>
-                                    <?php } ?>
+
+                <?php $cek = $this->db->get_where('master_ta', array('nim' => $this->session->userdata('email')))->row_array(); ?>
+                <?php if (isset($cek['pembimbing1']) != NULL && $cek['pembimbing2'] != NULL) { ?>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3 class="card-title">Ajukan Bimbingan</h3>
                                 </div>
-                                <table id="example1" class="table table-bordered table-striped">
-                                    <thead>
-                                        <tr>
-                                            <th>No</th>
-                                            <th>Masalah yang Dikonsultasikan</th>
-                                            <th>Solusi</th>
-                                            <th>Tanggal</th>
-                                            <th>Status</th>
-                                            <th>Aksi</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php
-                                        $no = 1;
-                                        foreach ($bimbingan_user->result() as $row) { ?>
+                                <div class="card-body">
+                                    <div style="text-align:right;margin-bottom: 10px ">
+                                        <a href="#" class="on-default edit-row btn btn-info pull-right" data-toggle="modal" pull="right" data-target="#custom-width-modal" onclick="ResetInput()"><i class="fa fa-plus"></i> &nbsp;Ajukan Bimbingan</a>
+                                        <a href="<?= site_url('bimbingan1/cetak_kartu') ?>" target="_blank" type="button" class="btn btn-primary"><i class="fas fa-print"></i> &nbsp;Cetak Lembar Bimbingan</a>
+                                        <!-- <?php
+                                                foreach ($bimbingan_user->result() as $row) { ?>
+                                            <a href="https://wa.me/<?= $row->hp ?>" target="_blank" class="btn btn-success"> <i class="fab fa-whatsapp"></i></a>
+                                        <?php } ?> -->
+
+
+                                    </div>
+                                    <table id="example1" class="table table-bordered table-striped">
+                                        <thead>
                                             <tr>
-                                                <td><?= $no++ ?></td>
-                                                <td><?= $row->masalah  ?></td>
-                                                <td><?= $row->solusi ?></td>
-                                                <td> <?php
-                                                        $waktu = explode(" ", $row->tanggal);
-                                                        echo
-                                                        ""  . shortdate_indo($waktu[0]) . " ";
+                                                <th>No</th>
+                                                <th>Masalah yang Dikonsultasikan</th>
+                                                <th>Solusi</th>
+                                                <th>Tanggal</th>
+                                                <th>Status</th>
+                                                <th>Aksi</th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php
+                                            $no = 1;
+                                            foreach ($bimbingan_user->result() as $row) { ?>
+                                                <tr>
+                                                    <td><?= $no++ ?></td>
+                                                    <td><?= $row->masalah  ?></td>
+                                                    <td><?= $row->solusi ?></td>
+                                                    <td> <?php
+                                                            $waktu = explode(" ", $row->tanggal);
+                                                            echo
+                                                            ""  . shortdate_indo($waktu[0]) . " ";
+                                                            ?>
+                                                    </td>
+                                                    <td>
+                                                        <?php if ($row->status == '0') {
+                                                            echo '<span class="badge badge-warning">Belum Dikomentasi</span>';
+                                                        } else if ($row->status == '1') {
+                                                            echo '<span class="badge badge-success">Sudah Dikomentari</span>';
+                                                        } else {
+                                                            echo "";
+                                                        }
                                                         ?>
-                                                </td>
-                                                <td>
-                                                    <?php if ($row->status == '0') {
-                                                        echo '<span class="badge badge-warning">Menunggu</span>';
-                                                    } else if ($row->status == '1') {
-                                                        echo '<span class="badge badge-info">Telah Dikonfirmasi</span>';
-                                                    } else if ($row->status == '2') {
-                                                        echo '<span class="badge badge-primary">Telah Dikomentari</span>';
-                                                    } else {
-                                                        echo '<span class="badge badge-success">Disetujui</span>';
-                                                    }
-                                                    ?>
-                                                </td>
-                                                <td>
-                                                    <?php if ($row->status == '0') {
-                                                        echo "  <a onclick='return confirm('Yakin akan hapus?');' href='" . base_url('bimbingan1/delete_bimbingan_ta/' . $row->id_bimbingan) . "' id='btn-hapus' class='btn btn-danger btn-sm'>
+                                                    </td>
+                                                    <td>
+                                                        <?php if ($row->status == '0') {
+                                                            echo "<a onclick='return confirm('Yakin akan hapus?');' href='" . base_url('bimbingan1/delete_bimbingan_ta/' . $row->id_bimbingan) . "' id='btn-hapus' class='btn btn-danger btn-sm'>
                                                             <i class='fa fa-trash'></i>
                                                         </a>";
-                                                    } else {
-                                                        echo " ";
-                                                    }
-                                                    ?>
-                                                </td>
-                                            </tr>
-                                        <?php } ?>
-                                    </tbody>
-                                </table>
+                                                        } else {
+                                                            echo " ";
+                                                        }
+                                                        ?>
+                                                    </td>
+                                                </tr>
+                                            <?php } ?>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                <?php } else { ?>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card card-danger">
+                                <div class="card-header">
+                                    <h3 class="card-title"><i class="fas fa-exclamation-triangle"></i> Pemberitahuan</h3>
+                                </div>
+                                <div class="card-body">
+                                    Pembimbing anda belum ditetapkan, silahkan hubungi admin
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                <?php } ?>
 
                 <div id="delete-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="custom-width-modalLabel" aria-hidden="true" style="display: none;">
                     <div class="modal-dialog">

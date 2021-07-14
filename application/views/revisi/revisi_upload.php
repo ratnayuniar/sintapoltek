@@ -34,68 +34,59 @@
                 <?php } else { ?>
                     <div class="row">
                         <div class="col-4">
-
                             <div class="card card-info">
                                 <div class="card-header">
                                     <h3 class="card-title">Upload Revisi</h3>
+                                    <?php echo form_open_multipart('revisi_upload/upload_berkas'); ?>
+                                    <div class="card-body">
+                                        <div class="form-group row">
+                                            <label for="inputEmail3" class="col-sm-4 col-form-label">Upload Revisi</label>
+                                            <div class="col-sm-4">
+                                                <input type="file" name="file_revisi" id="file_revisi" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-footer">
+                                        <button type="submit" class="btn btn-info">Simpan</button>
+                                    </div>
+                                    </form>
                                 </div>
-                                <!-- <form action="<?php echo base_url() . 'revisi_upload/add'; ?>" method="post" class="form-horizontal" role="form"> -->
-
-                                <?php echo form_open_multipart('revisi_upload/upload_berkas'); ?>
+                            </div>
 
 
-                                <div class="card-body">
-                                    <!-- <iframe id="iframe" title="prayerWidget" class="widget-m-top" style=" height: 358px; border: 1px solid #ddd;" scrolling="no" src="https://www.islamicfinder.org/prayer-widget/1631761/shafi/11/0/20.0/18.0"> </iframe> -->
+                            <?php if ($ambilBerkas['file_revisi']  != "") { ?>
 
-                                    <div class="form-group row">
-                                        <label for="inputEmail3" class="col-sm-4 col-form-label">Upload Revisi</label>
-                                        <div class="col-sm-4">
-                                            <input type="file" name="file_revisi" id="file_revisi" required>
+                                <div class="col-8">
+                                    <div class="card card-success">
+                                        <div class="card-header">
+                                            <h3 class="card-title"><i class="fas fa-check-double"></i> Preview Berkas</h3>
+                                        </div>
+                                        <div class="card-body">
+                                            <!-- <a href="<?= base_url('') ?>assets/berkas/sidang/<?= $ambilBerkas['file_revisi']; ?>" class="btn btn-sm btn-info"><i class="fas fa-download"></i> Download</a> -->
+                                            <iframe type="application/pdf" src="<?= base_url('') ?>assets/berkas/sidang/<?= $ambilBerkas['file_revisi']; ?>" width="100%" height="600"></iframe><br>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="card-footer">
-                                    <button type="submit" class="btn btn-info">Simpan</button>
+
+                            <?php } else { ?>
+
+                                <div class="col-8">
+                                    <div class="card card-success">
+                                        <div class="card-header">
+                                            <h3 class="card-title"><i class="fas fa-check-double"></i> Preview Berkas</h3>
+                                        </div>
+                                        <div class="card-body">
+                                            Belum ada file yang di upload
+                                        </div>
+                                    </div>
                                 </div>
-
-
-                                </form>
-                            </div>
                         </div>
-
-
-                        <?php if ($ambilBerkas['file_revisi']  != "") { ?>
-
-                            <div class="col-8">
-                                <div class="card card-success">
-                                    <div class="card-header">
-                                        <h3 class="card-title"><i class="fas fa-check-double"></i> Preview Berkas</h3>
-                                    </div>
-                                    <div class="card-body">
-                                        <!-- <a href="<?= base_url('') ?>assets/berkas/sidang/<?= $ambilBerkas['file_revisi']; ?>" class="btn btn-sm btn-info"><i class="fas fa-download"></i> Download</a> -->
-                                        <iframe type="application/pdf" src="<?= base_url('') ?>assets/berkas/sidang/<?= $ambilBerkas['file_revisi']; ?>" width="100%" height="600"></iframe><br>
-                                    </div>
-                                </div>
-                            </div>
-
-                        <?php } else { ?>
-
-                            <div class="col-8">
-                                <div class="card card-success">
-                                    <div class="card-header">
-                                        <h3 class="card-title"><i class="fas fa-check-double"></i> Preview Berkas</h3>
-                                    </div>
-                                    <div class="card-body">
-                                        Belum ada file yang di upload
-                                    </div>
-                                </div>
-                            </div>
-                    </div>
+                    <?php } ?>
                 <?php } ?>
-            <?php } ?>
-            </div>
+                    </div>
         </section>
     </div>
+
 <?php } else { ?>
     <div class="content-wrapper">
         <section class="content-header">
@@ -151,9 +142,7 @@
                                                     } ?></td>
                                                 <td>
                                                     <div class="form-check form-check-inline">
-
                                                         <input type="checkbox" class="form-check-input" name="status" id="inlinecheckbox1" <?= approve_revisi($row['id_revisi']); ?> data-revisi="<?= $row['id_revisi']; ?>">
-
                                                         <?php if (approve_revisi($row['id_revisi']) == "checked") { ?>
                                                             <label class="form-check-label" for="inlinecheckbox1"> Batalkan</label>
                                                         <?php } else { ?>

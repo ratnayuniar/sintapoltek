@@ -1,4 +1,7 @@
 <?php
+
+use FontLib\Table\Type\post;
+
 defined('BASEPATH') or exit('No direct script access allowed');
 
 class Proposal extends CI_Controller
@@ -142,11 +145,13 @@ class Proposal extends CI_Controller
     public function upload_berkas()
     {
 
-        $nim = $this->session->userdata('email');
 
-        $config['upload_path']          = './assets/berkas/seminar/';
+        // $nim = $this->session->userdata('email');
+        $nim = $this->input->post('nim');
+
+        $config['upload_path']          = './assets/berkas/sidang/';
         $config['allowed_types']        = 'doc|pdf|docx';
-        $config['file_name']            = $nim . ' - Berkas Proposal';
+        $config['file_name']            = $nim . ' - Revisi Sidang';
 
         $this->load->library('upload', $config);
 
@@ -154,7 +159,15 @@ class Proposal extends CI_Controller
             $error = array('error' => $this->upload->display_error());
             redirect('proposal');
         } else {
-            $this->db->set('latar_belakang', $this->upload->data('file_name'))->where('nim', $nim)->update('proposal');
+            $array = array(
+                'latar_belakang' => $this->upload->data('file_name'),
+                'nim' => $this->input->post('nim'),
+
+            );
+
+            $this->db->set($array);
+            $this->db->insert('proposal');
+            // $this->db->set('latar_belakang', $this->upload->data('file_name'))->where('nim', $nim)->insert('proposal');
             redirect('proposal');
         }
     }

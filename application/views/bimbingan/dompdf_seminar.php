@@ -267,7 +267,7 @@
                         <td>
                             <p class="tabel2">
                                 <?php
-                                $waktu = explode(" ", $get_tanggal->tanggal);
+                                $waktu = explode(" ", $row->tanggal);
                                 echo
                                 ""  . shortdate_indo($waktu[0]) . " ";
                                 ?>

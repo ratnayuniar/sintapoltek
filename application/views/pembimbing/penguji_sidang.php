@@ -26,9 +26,6 @@
                                 <h3 class="card-title">Data Penguji Sidang</h3>
                             </div>
                             <div class="card-body">
-                                <!-- <div style="text-align:right;margin-bottom: 10px ">
-                                    <a href="#" class="on-default edit-row btn btn-success pull-right" data-toggle="modal" pull="right" data-target="#custom-width-modal" onclick="ResetInput()"><i class="fa fa-plus"></i> Tambah Data Penguji</a>
-                                </div> -->
                                 <table id="example1" class="table table-bordered table-striped">
                                     <thead>
                                         <tr>
@@ -49,19 +46,25 @@
                                             if ($row->id_master_ta != "") {
                                                 $data['user'] = $this->m_penguji_sidang->getmahasiswabyid($row->nim);
                                                 $data['dosen1'] = $this->m_penguji_sidang->getdosen1($row->penguji1_sidang);
-                                                if ($row->penguji1_sidang != "") {
+                                                if ($row->penguji1_sidang == "0") {
+                                                    $dosen1_nama = "-";
+                                                } else if ($row->penguji1_sidang != "") {
                                                     $dosen1_nama = $data['dosen1']->nama;
                                                 } else {
                                                     $dosen1_nama = "-";
                                                 }
                                                 $data['dosen2'] = $this->m_penguji_sidang->getdosen2($row->penguji2_sidang);
-                                                if ($row->penguji2_sidang != "") {
+                                                if ($row->penguji1_sidang == "0") {
+                                                    $dosen2_nama = "-";
+                                                } else if ($row->penguji2_sidang != "") {
                                                     $dosen2_nama = $data['dosen2']->nama;
                                                 } else {
                                                     $dosen2_nama = "-";
                                                 }
                                                 $data['dosen3'] = $this->m_penguji_sidang->getdosen3($row->penguji3_sidang);
-                                                if ($row->penguji3_sidang != "") {
+                                                if ($row->penguji3_sidang == "0") {
+                                                    $dosen3_nama = "-";
+                                                } else if ($row->penguji3_sidang != "") {
                                                     $dosen3_nama = $data['dosen3']->nama;
                                                 } else {
                                                     $dosen3_nama = "-";
@@ -74,7 +77,7 @@
                                                 <td>" . $dosen1_nama . "</td>
                                                 <td>" . $dosen2_nama . "</td>
                                                 <td>" . $dosen3_nama . "</td>
-                                                <td><a href ='#' class ='btn btn-sm btn-primary btn-xs' data-toggle='modal' data-target='#custom-width-modal' onClick=\"SetInput('" . $row->id_master_ta . "','" . $row->nim . "','" . $row->penguji1_sempro . "','" . $row->penguji2_sempro . "','" . $row->penguji3_sempro . "')\"><i class ='fa fa-edit'></i> Edit</a>
+                                                <td><a href ='#' class ='btn btn-sm btn-primary btn-xs' data-toggle='modal' data-target='#custom-width-modal' onClick=\"SetInput('" . $row->id_master_ta . "','" . $row->nim . "','" . $row->penguji1_sidang . "','" . $row->penguji2_sidang . "','" . $row->penguji3_sidang . "')\"><i class ='fa fa-edit'></i> Edit</a>
                                                                                                        
                                                 </td>
                                             </tr>";
@@ -119,8 +122,8 @@
                         <div class="form-group">
                             <label class="col-md-5 control-label">Dosen penguji 1</label>
                             <div class="col-md-9">
-                                <select class="form-control" data-live-search="true" data-style="btn-white" onclick="choose()" id="penguji1_sidang" name="penguji1_sidang" required>
-                                    <option>-- Pilih Dosen penguji 1 --</option>
+                                <select class="form-control" data-live-search="true" data-style="btn-white" id="penguji1_sidang" name="penguji1_sidang" required>
+                                    <option value="">-- Pilih Dosen penguji 1 --</option>
                                     <?php foreach ($dosen->result() as $row) : ?>
                                         <option value="<?php echo $row->id_dosen; ?>"><?php echo $row->nama; ?></option>
                                     <?php endforeach; ?>
@@ -128,15 +131,15 @@
                             </div>
                         </div>
 
-                        <div class="form-group">
+                        <!-- <div class="form-group">
                             <input type="hidden" name="penguji1_sidang" id="output" class="form-control" value="" readonly />
-                        </div>
+                        </div> -->
 
                         <div class="form-group">
                             <label class="col-md-5 control-label">Dosen penguji 2</label>
                             <div class="col-md-9">
-                                <select class="form-control" data-live-search="true" data-style="btn-white" onclick="pilih()" id="penguji2_sidang" name="penguji2_sidang" required>
-                                    <option>-- Pilih Dosen penguji 2 --</option>
+                                <select class="form-control" data-live-search="true" data-style="btn-white" id="penguji2_sidang" name="penguji2_sidang" required>
+                                    <option value="">-- Pilih Dosen penguji 2 --</option>
                                     <?php foreach ($dosen->result() as $row) : ?>
                                         <option value="<?php echo $row->id_dosen; ?>"><?php echo $row->nama; ?></option>
                                     <?php endforeach; ?>
@@ -144,15 +147,15 @@
                             </div>
                         </div>
 
-                        <div class="form-group">
+                        <!-- <div class="form-group">
                             <input type="hidden" name="penguji2_sidang" id="hasil" class="form-control" value="" readonly />
-                        </div>
+                        </div> -->
 
                         <div class="form-group">
                             <label class="col-md-5 control-label">Dosen penguji 3</label>
                             <div class="col-md-9">
-                                <select class="form-control" data-live-search="true" data-style="btn-white" onclick="pilih2()" id="penguji3_sidang" name="penguji3_sidang" required>
-                                    <option>-- Pilih Dosen penguji 3 --</option>
+                                <select class="form-control" data-live-search="true" data-style="btn-white" id="penguji3_sidang" name="penguji3_sidang" required>
+                                    <option value="">-- Pilih Dosen penguji 3 --</option>
                                     <?php foreach ($dosen->result() as $row) : ?>
                                         <option value="<?php echo $row->id_dosen; ?>"><?php echo $row->nama; ?></option>
                                     <?php endforeach; ?>
@@ -160,9 +163,9 @@
                             </div>
                         </div>
 
-                        <div class="form-group">
+                        <!-- <div class="form-group">
                             <input type="hidden" name="penguji3_sidang" id="hasil3" class="form-control" value="" readonly />
-                        </div>
+                        </div> -->
 
                         <div class="modal-footer justify-content-between">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>

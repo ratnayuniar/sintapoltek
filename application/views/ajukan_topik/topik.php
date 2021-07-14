@@ -79,6 +79,7 @@
                           data-id_topik_id="' . $row->id_topik . '"
                           data-judul="' . $row->judul . '"
                           data-deskripsi="' . $row->deskripsi . '"
+                          data-lokasi="' . $row->lokasi . '"
                           data-nim="' . $row->nim . '"
                           class="btn btn-info btn-sm">
                           Validasi
@@ -135,7 +136,7 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title">Komentar Topik</h5>
+          <h5 class="modal-title">Validasi Topik</h5>
           <button class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -147,11 +148,15 @@
               <input type="hidden" name="nim" id="nim" class="form-control">
               <div class="form-group">
                 <label for="judul">Judul Topik</label>
-                <input type="text" id="judul" class="form-control" readonly>
+                <textarea id="judul" class="form-control" readonly></textarea>
               </div>
               <div class="form-group">
                 <label for="deskripsi">Deskripsi</label>
                 <textarea id="deskripsi" class="form-control" readonly></textarea>
+              </div>
+              <div class="form-group">
+                <label for="deskripsi">Tempat Penelitian</label>
+                <input type="text" id="lokasi" class="form-control" readonly>
               </div>
               <div class="form-group">
                 <label for="deskripsi">Validasi</label>&nbsp; &nbsp; &nbsp;
@@ -241,12 +246,14 @@
         var id_topik_id = $(this).data('id_topik_id');
         var judul = $(this).data('judul');
         var deskripsi = $(this).data('deskripsi');
+        var lokasi = $(this).data('lokasi');
         var nim = $(this).data('nim');
 
         $('#id_topik').val(id_topik);
         $('#id_topik_id').val(id_topik_id);
         $('#judul').val(judul);
         $('#deskripsi').val(deskripsi);
+        $('#lokasi').val(lokasi);
         $('#nim').val(nim);
       })
 
@@ -333,31 +340,34 @@
         </div>
         <div class="row">
           <div class="col-12">
-
             <div class="card">
               <div class="card-header">
                 <h3 class="card-title">Daftar Topik Tugas Akhir</h3>
               </div>
               <div class="card-body">
                 <div style="text-align:right;margin-bottom: 10px ">
-
                   <!-- ambil topik terakhir berdasarkan nim mahasiswa login -->
                   <?php $cek = $this->db->select('*')->order_by('id_topik', 'DESC')->get_where('topik', array('nim' => $this->session->userdata('email')))->row_array(); ?>
-
                   <!-- Jika mahasiswa belum mengajukan topik atau topik ditolak, maka tampilkan button ajukan judul -->
                   <?php if (isset($cek['status']) == NULL) { ?>
                     <a href='#' class='on-default edit-row btn btn-success pull-right' data-toggle='modal' pull='right' data-target='#custom-width-modal' onclick='ResetInput()'><i class='fa fa-plus'></i> Ajukan Judul</a>
                   <?php } ?>
-
                 </div>
                 <table id="example1" class="table table-bordered table-striped">
                   <thead>
                     <tr>
                       <th>No</th>
                       <th>Topik Tugas Akhir</th>
-                      <th>Deskripsi</th>
                       <th>Tempat Penelitian</th>
+                      <th>Komentar</th>
                       <th>Status</th>
+                      <?php if ($cek['status'] == 4) {
+                        echo " 
+                          <th>Aksi</th>";
+                      } else {
+                        echo "";
+                      }
+                      ?>
                     </tr>
                   </thead>
                   <tbody>
@@ -367,8 +377,8 @@
                       <tr>
                         <td><?= $no++ ?></td>
                         <td><?= $row->judul ?></td>
-                        <td><?= $row->deskripsi ?></td>
                         <td><?= $row->lokasi ?></td>
+                        <td><?= $row->komentar ?></td>
                         <td>
                           <?php if ($row->status == '1') {
                             echo '<span class="badge badge-primary">Menunggu</span>';
@@ -380,13 +390,14 @@
                             echo '<span class="badge badge-success">Disetujui</span>';
                           }
                           ?>
-                          <?php if ($cek['status'] == 4) {
-                            echo " <a href ='#' class ='badge badge-success' data-toggle='modal' data-target='#custom-width-modal' onClick=\"SetInput('" . $row->id_topik . "','" . $row->nim . "','" . $row->judul . "','" . $row->deskripsi . "','" . $row->lokasi . "')\"> Edit</a>";
-                          } else {
-                            echo "";
-                          }
-                          ?>
                         </td>
+                        <?php if ($cek['status'] == 4) {
+                          echo " 
+                          <td> <a href ='#' class ='badge badge-success' data-toggle='modal' data-target='#custom-width-modal' onClick=\"SetInput('" . $row->id_topik . "','" . $row->nim . "','" . $row->judul . "','" . $row->deskripsi . "','" . $row->lokasi . "')\"> Edit</a></td>";
+                        } else {
+                          echo "";
+                        }
+                        ?>
                       </tr>
                     <?php } ?>
                   </tbody>

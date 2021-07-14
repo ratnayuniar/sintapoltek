@@ -89,8 +89,8 @@ class Bimbingan1 extends CI_Controller
                     'status_dosen' => 1,
                     'jenis' => "seminar",
                 ];
-                // print_r($data);
-                // exit();
+                print_r($data);
+                exit();
                 // var_dump($data);
                 $insert = $this->db->insert('bimbingan', $data);
                 if ($insert) {
@@ -200,7 +200,7 @@ class Bimbingan1 extends CI_Controller
         } else {
             if ($this->input->post('id_bimbingan')) {
                 $data = array(
-                    'status' => 2,
+                    'status' => 1,
                     'solusi' => $this->input->post('solusi'),
                 );
                 $this->m_bimbingan1->update($this->input->post('id_bimbingan'), $data);
