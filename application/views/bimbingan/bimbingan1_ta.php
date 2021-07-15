@@ -37,72 +37,23 @@
                                         <th>No</th>
                                         <th>NIM</th>
                                         <th>Nama Mahasiswa</th>
-                                        <th>Tanggal</th>
+                                        <th>Judul</th>
+                                        <th>Detail</th>
                                         <th>Status</th>
-                                        <th>Konfirmasi</th>
-                                        <!-- <th>Aksi</th> -->
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php
                                     $no = 1;
-                                    foreach ($bimbingan_user_dosen->result() as $row) :
+                                    foreach ($mahasiswaBimbinganTA as $row) :
                                     ?>
                                         <tr>
-                                            <td><?= $no++ ?></td>
-                                            <td><?= $row->nim ?></td>
-                                            <td><?= $row->nama ?></td>
-                                            <td><?= $row->tanggal ?></td>
-                                            <td>
-                                                <?php if ($row->status == '0') {
-                                                    echo '<span class="badge badge-warning">Belum Dikomentari</span>';
-                                                } else if ($row->status == '1') {
-                                                    echo '<span class="badge badge-info">Sudah diberi solusi</span>';
-                                                } else if ($row->status == '2') {
-                                                    echo '<span class="badge badge-primary">Proses</span>';
-                                                } else {
-                                                    echo '<span class="badge badge-success">Disetujui</span>';
-                                                }
-                                                ?>
-                                            </td>
-                                            <td>
-                                                <?php
-                                                if ($row->status == '0') {
-                                                    echo '<a href="javascript:void(0);" data-toggle="modal" data-target="#modal-reply" id="reply-message"
-                                                data-bimbingan_id="' . $row->id_bimbingan . '"
-                                                data-id_bimbingan_id="' . $row->id_bimbingan . '"
-                                                data-tanggal="' . $row->tanggal . '"
-                                                data-masalah="' . $row->masalah . '"
-                                                class="btn btn-info btn-sm">
-                                                Komentari
-                                                </a>';
-                                                } else if ($row->status == '1') {
-                                                    echo '<a href="javascript:void(0);" data-toggle="modal" data-target="#modal-reply" id="reply-message"
-                                                data-bimbingan_id="' . $row->id_bimbingan . '"
-                                                data-id_bimbingan_id="' . $row->id_bimbingan . '"
-                                                data-tanggal="' . $row->tanggal . '"
-                                                data-masalah="' . $row->masalah . '"
-                                                class="btn btn-info btn-sm">
-                                                Komentari
-                                                </a>';
-                                                } else if ($row->status == '2') {
-                                                    echo '<a href="javascript:void(0);" data-toggle="modal" data-target="#modalclosetopik" id="ctopik"
-                                                data-closetopik="' . $row->id_bimbingan . '"
-                                                data-closestatus="' . $row->status . '"                          
-                                                class="btn btn-primary btn-sm">
-                                                Setujui
-                                                </a>';
-                                                } else {
-                                                    echo '<a href="javascript:void(0);" class="btn btn-success btn-sm">
-                                                Disetujui
-                                                </a>';
-                                                }
-                                                ?>
-                                            </td>
-                                            <!-- <td>
-                                                <a href="<?= base_url('bimbingan1/detail_bimbingan/' . $row->id_bimbingan) ?>" class="btn btn-primary btn-sm">
-                                                    <i class="fa fa-search"></i>
-                                            </td> -->
+                                            <td><?= $no++; ?></td>
+                                            <td><?= $row['nim']; ?></td>
+                                            <td><?= $row['nama_mahasiswa']; ?></td>
+                                            <td><?= $row['judul']; ?></td>
+                                            <td><a class="btn btn-sm btn-info" href="<?= base_url('bimbingan1/detailTA/' . $row['nim']); ?>">Detail</a></td>
+                                            <td>--</td>
                                         </tr>
                                     <?php
                                         $no++;
@@ -263,20 +214,19 @@
                         <div class="modal-dialog" style="width:55%;">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h4 class="modal-title">Ajukan Lembar Bimbingan</h4>
+                                    <h4 class="modal-title">Ajukan Bimbingan</h4>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">×</span>
                                     </button>
                                 </div>
-                                <form action="<?php echo base_url() . 'bimbingan1/add_ta'; ?>" method="post" class="form-horizontal" role="form">
+                                <form action="<?= base_url('bimbingan1/add_ta') ?>" method="post" class="form-horizontal" role="form" enctype="multipart/form-data">
                                     <div class="card-body">
                                         <div class="form-group">
                                             <input type="hidden" id="id_bimbingan" name="id_bimbingan">
-                                            <input type="hidden" id="jenis" name="jenis">
-
-                                            <label for="exampleInputjudul1">NIM</label>
+                                            <input type="hidden" id="minggu" name="minggu">
+                                            <input type="hidden" id="judul" name="judul">
                                             <input type="hidden" class="form-control" id="nim" name="nim" placeholder="NIM">
-                                            <input type="text" class="form-control" id="nim2" name="nim2" readonly placeholder="NIM">
+                                            <input type="hidden" class="form-control" id="nim2" name="nim2" readonly placeholder="NIM">
                                         </div>
                                         <div class="form-group">
                                             <label for="exampleInputjudul1">Dosen</label>
@@ -294,19 +244,22 @@
                                             ?>
                                         </div>
                                         <div class="form-group">
-                                            <label class="col-md-3 control-label">Tanggal</label>
+                                            <label for="exampleInputjudul1">Tanggal</label>
                                             <div class="input-group col-md-9">
-                                                <input type="date" name="tanggal" placeholder="Tanggal" id="tanggal" value="<?= set_value('tanggal') ?>" class="form-control" />
+                                                <input class="form-control" type="date" name="tanggal" placeholder="Tanggal" id="tanggal" value="<?= set_value('tanggal') ?>" class="form-control" />
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label for="exampleInputjudul1">Masalah Yang Dikonsultasikan</label>
-                                            <textarea class="form-control" rows="3" id="masalah" name="masalah" placeholder="Masukkan Deskripsi Tugas Akhir"></textarea>
+                                            <textarea class="form-control" rows="3" id="masalah" name="masalah" placeholder="Masukkan Masalah Yang Dikonsultasikan"></textarea>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="exampleInputjudul1">File</label><br>
+                                            <input type="file" id="file" name="file">
                                         </div>
                                     </div>
-
                                     <div class="card-footer">
-                                        <button type="submit" class="btn btn-primary">Simpan</button>
+                                        <button type="submit" name="submit" class="btn btn-primary">Simpan</button>
                                     </div>
                                 </form>
                             </div>

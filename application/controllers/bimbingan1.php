@@ -31,6 +31,10 @@ class Bimbingan1 extends CI_Controller
         $data['dosen'] = $this->m_mahasiswa->getdosen();
         $data['title'] = 'SINTA PNM';
 
+        // 
+        $data['mahasiswaBimbingan'] = $this->m_pembimbing->getMahasiswaByidDosen();
+
+
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('bimbingan/bimbingan1', $data);
@@ -47,6 +51,8 @@ class Bimbingan1 extends CI_Controller
         $data['mahasiswa'] = $this->m_mahasiswa->getmahasiswa();
         $data['dosen'] = $this->m_mahasiswa->getdosen();
         $data['title'] = 'SINTA PNM';
+
+        $data['mahasiswaBimbinganTA'] = $this->m_pembimbing->getMahasiswaByidDosenTA();
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
@@ -89,8 +95,8 @@ class Bimbingan1 extends CI_Controller
                     'status_dosen' => 1,
                     'jenis' => "seminar",
                 ];
-                print_r($data);
-                exit();
+                // print_r($data);
+                // exit();
                 // var_dump($data);
                 $insert = $this->db->insert('bimbingan', $data);
                 if ($insert) {
@@ -240,7 +246,7 @@ class Bimbingan1 extends CI_Controller
         $this->load->library('mypdf');
         $this->mypdf->setPaper('A4', 'potrait');
         $this->mypdf->filename = "laporan";
-        $this->mypdf->generate('bimbingan/dompdf_seminar', $data);
+        $this->mypdf->generate('bimbingan/dompdf_seminar', $data, TRUE);
     }
 
     function cetak_kartuta()
@@ -253,6 +259,69 @@ class Bimbingan1 extends CI_Controller
         $this->load->library('mypdf');
         $this->mypdf->setPaper('A4', 'potrait');
         $this->mypdf->filename = "laporan";
-        $this->mypdf->generate('bimbingan/dompdf2', $data);
+        $this->mypdf->generate('bimbingan/dompdf2', $data, TRUE);
+    }
+
+
+    // Detail Bimbingan 1
+    public function detail($nim)
+    {
+        $data['table_bimbingan'] = $this->m_pembimbing->getBimbinganByNim($nim);
+        $data['table_bimbinganTA'] = $this->m_pembimbing->getBimbinganByNimTA($nim);
+        $data['info_judul'] = $this->m_pembimbing->getJudulByNim($nim);
+
+        $this->load->view('templates/header');
+        $this->load->view('templates/sidebar');
+        $this->load->view('bimbingan/detail1', $data);
+        $this->load->view('templates/footer');
+    }
+
+    // Detail Bimbingan 1 untuk Tugas Akhir
+    public function detailTA($nim)
+    {
+        $data['table_bimbingan'] = $this->m_pembimbing->getBimbinganByNim($nim);
+        $data['table_bimbinganTA'] = $this->m_pembimbing->getBimbinganByNimTA($nim);
+        $data['info_judul'] = $this->m_pembimbing->getJudulByNim($nim);
+
+        $this->load->view('templates/header');
+        $this->load->view('templates/sidebar');
+        $this->load->view('bimbingan/detail1TA', $data);
+        $this->load->view('templates/footer');
+    }
+
+    // Menyimpan solusi dari bimbingan
+    public function simpan_solusi_bimbingan()
+    {
+        $nim = $this->input->post('nim');
+        $id_bimbingan = $this->input->post('id_bimbingan');
+
+        $data = [
+            'solusi' => $this->input->post('solusi'),
+            'status' => 1,
+            'status_dosen' => 1,
+        ];
+
+        $this->db->where('id_bimbingan', $id_bimbingan);
+        $this->db->update('bimbingan', $data);
+
+        redirect('bimbingan1/detail/' . $nim);
+    }
+
+    // Menyimpan solusi dari bimbingan TA
+    public function simpan_solusi_bimbinganTA()
+    {
+        $nim = $this->input->post('nim');
+        $id_bimbingan = $this->input->post('id_bimbingan');
+
+        $data = [
+            'solusi' => $this->input->post('solusi'),
+            'status' => 1,
+            'status_dosen' => 1,
+        ];
+
+        $this->db->where('id_bimbingan', $id_bimbingan);
+        $this->db->update('bimbingan', $data);
+
+        redirect('bimbingan1/detailTA/' . $nim);
     }
 }

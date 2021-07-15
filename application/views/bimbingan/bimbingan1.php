@@ -37,54 +37,23 @@
                                         <th>No</th>
                                         <th>NIM</th>
                                         <th>Nama Mahasiswa</th>
-                                        <th>Tanggal</th>
+                                        <th>Judul</th>
+                                        <th>Detail</th>
                                         <th>Status</th>
-                                        <th>Konfirmasi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php
                                     $no = 1;
-                                    foreach ($bimbingan_user_dosen->result() as $row) :
+                                    foreach ($mahasiswaBimbingan as $row) :
                                     ?>
                                         <tr>
-                                            <td><?= $no++ ?></td>
-                                            <td><?= $row->nim ?></td>
-                                            <td><?= $row->nama ?></td>
-                                            <td><?= $row->tanggal ?></td>
-                                            <td>
-                                                <?php if ($row->status == '0') {
-                                                    echo '<span class="badge badge-warning">Belum Dikomentari</span>';
-                                                } else if ($row->status == '1') {
-                                                    echo '<span class="badge badge-success">Sudah dikomentari</span>';
-                                                } else {
-                                                    echo "";
-                                                }
-                                                ?>
-                                            </td>
-                                            <td>
-                                                <?php
-                                                if ($row->status == '0') {
-                                                    echo '<a href="javascript:void(0);" data-toggle="modal" data-target="#modal-reply" id="reply-message"
-                                                data-bimbingan_id="' . $row->id_bimbingan . '"
-                                                data-id_bimbingan_id="' . $row->id_bimbingan . '"
-                                                data-tanggal="' . $row->tanggal . '"
-                                                data-masalah="' . $row->masalah . '"
-                                                data-file="' . $row->file . '"
-                                                class="btn btn-info btn-sm">
-                                                Komentari
-                                                </a>';
-                                                } else {
-                                                    echo '<a href="javascript:void(0);" class="btn btn-success btn-sm">
-                                                Sudah Dikomentari
-                                                </a>';
-                                                }
-                                                ?>
-                                            </td>
-                                            <!-- <td>
-                                                <a href="<?= base_url('bimbingan1/detail_bimbingan/' . $row->id_bimbingan) ?>" class="btn btn-primary btn-sm">
-                                                    <i class="fa fa-search"></i>
-                                            </td> -->
+                                            <td><?= $no++; ?></td>
+                                            <td><?= $row['nim']; ?></td>
+                                            <td><?= $row['nama_mahasiswa']; ?></td>
+                                            <td><?= $row['judul']; ?></td>
+                                            <td><a class="btn btn-sm btn-info" href="<?= base_url('bimbingan1/detail/' . $row['nim']); ?>">Detail</a></td>
+                                            <td>--</td>
                                         </tr>
                                     <?php
                                         $no++;
@@ -237,6 +206,8 @@
             })
         })
     </script>
+
+
     <!-- USER MAHASISWA -->
 <?php } else { ?>
     <div class="content-wrapper">

@@ -30,6 +30,8 @@ class Bimbingan2 extends CI_Controller
         $data['dosen'] = $this->m_mahasiswa->getdosen();
         $data['title'] = 'SINTA PNM';
 
+        $data['mahasiswaBimbingan'] = $this->m_pembimbing->getMahasiswaByidDosen2();
+
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('bimbingan/bimbingan14_2', $data);
@@ -46,6 +48,8 @@ class Bimbingan2 extends CI_Controller
         $data['mahasiswa'] = $this->m_mahasiswa->getmahasiswa();
         $data['dosen'] = $this->m_mahasiswa->getdosen();
         $data['title'] = 'SINTA PNM';
+
+        $data['mahasiswaBimbingan'] = $this->m_pembimbing->getMahasiswaByidDosen2();
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
@@ -231,40 +235,62 @@ class Bimbingan2 extends CI_Controller
         $this->mypdf->generate('bimbingan/dompdf2', $data);
     }
 
-    // public function delete()
-    // {
-    //     $id_topik = $this->input->post('id_topik2');
-    //     $this->m_bimbingan2->hapus_data($id_topik);
-    // }
+    // Detail Bimbingan 1
+    public function detail($nim)
+    {
+        $data['table_bimbingan'] = $this->m_pembimbing->getBimbinganByNim2($nim);
+        $data['info_judul'] = $this->m_pembimbing->getJudulByNim($nim);
 
-    // public function minggu14()
-    // {
+        $this->load->view('templates/header');
+        $this->load->view('templates/sidebar');
+        $this->load->view('bimbingan/detail2', $data);
+        $this->load->view('templates/footer');
+    }
 
-    //     $data['query'] = $this->m_bimbingan2->tampil_data(); 
+    // Detail Bimbingan 2 TA
+    public function detailTA($nim)
+    {
+        $data['table_bimbinganTA'] = $this->m_pembimbing->getBimbinganByNim2TA($nim);
+        $data['info_judul'] = $this->m_pembimbing->getJudulByNim($nim);
 
-    //     // dipake ini 
-    //     $data['bimbingan_user'] = $this->m_bimbingan2->bimbingan_user();
-    //     $data['bimbingan_user_dosen'] = $this->m_bimbingan2->bimbingan_user_dosen();
+        $this->load->view('templates/header');
+        $this->load->view('templates/sidebar');
+        $this->load->view('bimbingan/detail2TA', $data);
+        $this->load->view('templates/footer');
+    }
 
-    //     // $data['topik_user'] = $this->m_profile->topik_user();
-    //     $data['query2'] = $this->m_pembimbing->bimbingan_mhs();
+    // Menyimpan solusi dari bimbingan
+    public function simpan_solusi_bimbingan()
+    {
+        $nim = $this->input->post('nim');
+        $id_bimbingan = $this->input->post('id_bimbingan');
 
-    //     // ini juga pake
-    //     $data['query3'] = $this->m_pembimbing->bimbingan_dosen1();
+        $data = [
+            'solusi' => $this->input->post('solusi'),
+            'status' => 1,
+            'status_dosen' => 2,
+        ];
 
-    //     $data['mahasiswa'] = $this->m_mahasiswa->getmahasiswa();
-    //     $data['dosen'] = $this->m_mahasiswa->getdosen();
+        $this->db->where('id_bimbingan', $id_bimbingan);
+        $this->db->update('bimbingan', $data);
 
-    //     $data['title'] = 'SINTA PNM';
-    //     $data['user'] = $this->db->get_where(
-    //         'user',
-    //         ['email' => $this->session->userdata('email')],
-    //     )->row_array();
+        redirect('bimbingan2/detail/' . $nim);
+    }
 
+    public function simpan_solusi_bimbinganTA()
+    {
+        $nim = $this->input->post('nim');
+        $id_bimbingan = $this->input->post('id_bimbingan');
 
-    //     $this->load->view('templates/header', $data);
-    //     $this->load->view('templates/sidebar', $data);
-    //     $this->load->view('bimbingan/bimbingan14_2', $data);
-    //     $this->load->view('templates/footer', $data);
-    // }
+        $data = [
+            'solusi' => $this->input->post('solusi'),
+            'status' => 1,
+            'status_dosen' => 2,
+        ];
+
+        $this->db->where('id_bimbingan', $id_bimbingan);
+        $this->db->update('bimbingan', $data);
+
+        redirect('bimbingan2/detailTA/' . $nim);
+    }
 }

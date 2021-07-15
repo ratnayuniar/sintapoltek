@@ -37,78 +37,23 @@
                                         <th>No</th>
                                         <th>NIM</th>
                                         <th>Nama Mahasiswa</th>
-                                        <th>Tanggal</th>
+                                        <th>Judul</th>
+                                        <th>Detail</th>
                                         <th>Status</th>
-                                        <th>Konfirmasi</th>
-                                        <!-- <th>Aksi</th> -->
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php
                                     $no = 1;
-                                    foreach ($bimbingan_user_dosen->result() as $row) :
-                                        // $data['query'] = $this->m_bimbingan2->tampil_data();
+                                    foreach ($mahasiswaBimbingan as $row) :
                                     ?>
                                         <tr>
-                                            <td><?= $no++ ?></td>
-                                            <td><?= $row->nim ?></td>
-                                            <td><?= $row->nama ?></td>
-                                            <td> <?php
-                                                    $waktu = explode(" ", $row->tanggal);
-                                                    echo
-                                                    ""  . shortdate_indo($waktu[0]) . " ";
-                                                    ?>
-                                            </td>
-                                            <td>
-                                                <?php if ($row->status == '0') {
-                                                    echo '<span class="badge badge-warning">Belum Dikomentari</span>';
-                                                } else if ($row->status == '1') {
-                                                    echo '<span class="badge badge-info">Sudah diberi solusi</span>';
-                                                } else if ($row->status == '2') {
-                                                    echo '<span class="badge badge-primary">Proses</span>';
-                                                } else {
-                                                    echo '<span class="badge badge-success">Disetujui</span>';
-                                                }
-                                                ?>
-                                            </td>
-                                            <td>
-                                                <?php
-                                                if ($row->status == '0') {
-                                                    echo '<a href="javascript:void(0);" data-toggle="modal" data-target="#modal-reply" id="reply-message"
-                                                data-bimbingan_id="' . $row->id_bimbingan . '"
-                                                data-id_bimbingan_id="' . $row->id_bimbingan . '"
-                                                data-tanggal="' . $row->tanggal . '"
-                                                data-masalah="' . $row->masalah . '"
-                                                class="btn btn-info btn-sm">
-                                                Komentari
-                                                </a>';
-                                                } else if ($row->status == '1') {
-                                                    echo '<a href="javascript:void(0);" data-toggle="modal" data-target="#modal-reply" id="reply-message"
-                                                data-bimbingan_id="' . $row->id_bimbingan . '"
-                                                data-id_bimbingan_id="' . $row->id_bimbingan . '"
-                                                data-tanggal="' . $row->tanggal . '"
-                                                data-masalah="' . $row->masalah . '"
-                                                class="btn btn-info btn-sm">
-                                                Komentari
-                                                </a>';
-                                                } else if ($row->status == '2') {
-                                                    echo '<a href="javascript:void(0);" data-toggle="modal" data-target="#modalclosetopik" id="ctopik"
-                                                data-closetopik="' . $row->id_bimbingan . '"
-                                                data-closestatus="' . $row->status . '"                          
-                                                class="btn btn-primary btn-sm">
-                                                Setujui
-                                                </a>';
-                                                } else {
-                                                    echo '<a href="javascript:void(0);" class="btn btn-success btn-sm">
-                                                Disetujui
-                                                </a>';
-                                                }
-                                                ?>
-                                            </td>
-                                            <!-- <td>
-                                                <a href="<?= base_url('bimbingan2/detail_bimbingan/' . $row->id_bimbingan) ?>" class="btn btn-primary btn-sm">
-                                                    <i class="fa fa-search"></i>
-                                            </td> -->
+                                            <td><?= $no++; ?></td>
+                                            <td><?= $row['nim']; ?></td>
+                                            <td><?= $row['nama_mahasiswa']; ?></td>
+                                            <td><?= $row['judul']; ?></td>
+                                            <td><a class="btn btn-sm btn-info" href="<?= base_url('bimbingan2/detail/' . $row['nim']); ?>">Detail</a></td>
+                                            <td>--</td>
                                         </tr>
                                     <?php
                                         $no++;
@@ -377,13 +322,11 @@
                                                     </td>
                                                     <td>
                                                         <?php if ($row->status == '0') {
-                                                            echo '<span class="badge badge-warning">Menunggu</span>';
+                                                            echo '<span class="badge badge-warning">Belum Dikomentasi</span>';
                                                         } else if ($row->status == '1') {
-                                                            echo '<span class="badge badge-info">Telah Dikonfirmasi</span>';
-                                                        } else if ($row->status == '2') {
-                                                            echo '<span class="badge badge-primary">Telah Dikomentari</span>';
+                                                            echo '<span class="badge badge-success">Sudah Dikomentari</span>';
                                                         } else {
-                                                            echo '<span class="badge badge-success">Disetujui</span>';
+                                                            echo "";
                                                         }
                                                         ?>
                                                     </td>

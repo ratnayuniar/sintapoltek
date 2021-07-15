@@ -41,7 +41,7 @@
                             </div>
                             <form action="<?php echo base_url() . 'nilai_sidang/add'; ?>" method="post" class="form-horizontal" role="form">
                                 <div class="card-body">
-                                    <input type="hidden" id="nim" name="nim" value="<?php echo $nim; ?>">
+                                    <input type="text" id="nim" name="nim" value="<?php echo $nim; ?>">
                                     <div class="form-group row">
                                         <label for="inputEmail3" class="col-sm-5 col-form-label">Perumusan</label>
                                         <div class="col-sm-5">

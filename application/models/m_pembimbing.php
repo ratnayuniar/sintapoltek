@@ -178,4 +178,58 @@ class M_pembimbing extends CI_Model
         $this->db->or_where('master_ta.pembimbing2', $this->session->userdata('id_dosen'));
         return $this->db->get('master_ta');
     }
+
+    // mengambil data mahasiswa untuk bimbingan 1 per id dosen
+
+    function getMahasiswaByidDosen()
+    {
+        return $this->db->select('mahasiswa.nama as nama_mahasiswa, mahasiswa.nim as nim, topik.judul as judul')
+            ->join('mahasiswa', 'mahasiswa.nim = master_ta.nim')
+            ->join('topik', 'topik.id_topik = master_ta.judul')
+            ->where('master_ta.pembimbing1', $this->session->userdata('id_dosen'))
+            ->get('master_ta')->result_array();
+    }
+
+    function getMahasiswaByidDosenTA()
+    {
+        return $this->db->select('mahasiswa.nama as nama_mahasiswa, mahasiswa.nim as nim, topik.judul as judul')
+            ->join('mahasiswa', 'mahasiswa.nim = master_ta.nim')
+            ->join('topik', 'topik.id_topik = master_ta.judul')
+            ->where('master_ta.pembimbing1', $this->session->userdata('id_dosen'), array('jenis' => 'ta'))
+            ->get('master_ta')->result_array();
+    }
+
+    function getMahasiswaByidDosen2()
+    {
+        return $this->db->select('mahasiswa.nama as nama_mahasiswa, mahasiswa.nim as nim, topik.judul as judul')
+            ->join('mahasiswa', 'mahasiswa.nim = master_ta.nim')
+            ->join('topik', 'topik.id_topik = master_ta.judul')
+            ->where('master_ta.pembimbing2', $this->session->userdata('id_dosen'))
+            ->get('master_ta')->result_array();
+    }
+
+    function getBimbinganByNim($nim)
+    {
+        return $this->db->order_by('tanggal', 'DESC')->get_where('bimbingan', array('nim' => $nim, 'status_dosen' => '1', 'jenis' => 'seminar'))->result_array();
+    }
+
+    function getBimbinganByNimTA($nim)
+    {
+        return $this->db->order_by('tanggal', 'DESC')->get_where('bimbingan', array('nim' => $nim, 'status_dosen' => '1', 'jenis' => 'ta'))->result_array();
+    }
+
+    function getBimbinganByNim2($nim)
+    {
+        return $this->db->order_by('tanggal', 'DESC')->get_where('bimbingan', array('nim' => $nim, 'status_dosen' => '2'))->result_array();
+    }
+
+    function getBimbinganByNim2TA($nim)
+    {
+        return $this->db->order_by('tanggal', 'DESC')->get_where('bimbingan', array('nim' => $nim, 'status_dosen' => '2', 'jenis' => 'ta'))->result_array();
+    }
+
+    function getJudulByNim($nim)
+    {
+        return $this->db->join('mahasiswa', 'mahasiswa.nim = topik.nim')->get_where('topik', array('topik.nim' => $nim))->row_array();
+    }
 }

@@ -25,7 +25,6 @@
             left: 0px;
             top: -430px;
             right: 0px;
-            /* height: 400px; */
             text-align: center;
             margin-bottom: 2cm;
 
