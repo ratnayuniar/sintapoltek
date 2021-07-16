@@ -235,10 +235,10 @@
                                     <div style="text-align:right;margin-bottom: 10px ">
                                         <a href="#" class="on-default edit-row btn btn-info pull-right" data-toggle="modal" pull="right" data-target="#custom-width-modal" onclick="ResetInput()"><i class="fa fa-plus"></i> Ajukan Bimbingan</a>
                                         <a href="<?= site_url('bimbingan2/cetak_kartu') ?>" target="_blank" type="button" class="btn btn-primary"><i class="fas fa-print"></i> &nbsp;Cetak Lembar Bimbingan</a>
-                                        <?php
-                                        foreach ($bimbingan_user->result() as $row) { ?>
+                                        <!-- <?php
+                                                foreach ($bimbingan_user->result() as $row) { ?>
                                             <a href="https://wa.me/<?= $row->hp ?>" target="_blank" class="btn btn-success"> <i class="fab fa-whatsapp"></i></a>
-                                        <?php } ?>
+                                        <?php } ?> -->
                                     </div>
                                     <table id="example1" class="table table-bordered table-striped">
                                         <thead>
@@ -309,9 +309,6 @@
                             </div>
                         </div>
                     </div>
-
-
-
                 <?php } ?>
 
                 <div id="delete-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="custom-width-modalLabel" aria-hidden="true" style="display: none;">

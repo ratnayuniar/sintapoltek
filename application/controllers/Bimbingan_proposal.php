@@ -196,6 +196,7 @@ class Bimbingan_proposal extends CI_Controller
         $data['table_bimbingan'] = $this->m_pembimbing->getBimbinganByNim($nim);
         $data['table_bimbinganTA'] = $this->m_pembimbing->getBimbinganByNimTA($nim);
         $data['info_judul'] = $this->m_pembimbing->getJudulByNim($nim);
+        $data['title'] = 'SINTA PNM';
 
         $data['cekJumlahBimbingan'] = $this->m_pembimbing->cekJumlahBimbinganSeminarDospem1($nim);
 
@@ -246,8 +247,9 @@ class Bimbingan_proposal extends CI_Controller
     {
         $data['table_bimbingan'] = $this->m_pembimbing->getBimbinganByNim2($nim);
         $data['info_judul'] = $this->m_pembimbing->getJudulByNim($nim);
+        $data['title'] = 'SINTA PNM';
 
-        $data['cekJumlahBimbingan'] = $this->m_pembimbing->cekJumlahBimbinganSeminarDospem2($nim);
+        $data['cekJumlahBimbingan2'] = $this->m_pembimbing->cekJumlahBimbinganSeminarDospem2($nim);
 
         $data['cekPersetujuanBimbingan2'] = $this->m_pembimbing->cekPersetujuanBimbingan2($nim);
 
@@ -287,6 +289,21 @@ class Bimbingan_proposal extends CI_Controller
 
         $this->db->insert('persetujuan', $data);
         redirect('bimbingan_proposal/mabim1_detail/' . $nim);
+    }
+
+    public function persetujuanProposal2($nim, $judul, $id_dosen, $status_dosen, $tanggal_persetujuan)
+    {
+        $data = [
+            'nim' => $nim,
+            'judul' => urldecode($judul),
+            'id_dosen' => $id_dosen,
+            'status_dosen' => $status_dosen,
+            'tanggal_persetujuan' => $tanggal_persetujuan,
+            'jenis' => 'proposal'
+        ];
+
+        $this->db->insert('persetujuan', $data);
+        redirect('bimbingan_proposal/mabim2_detail/' . $nim);
     }
 
     function cetak_kartu()

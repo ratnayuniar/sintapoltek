@@ -49,7 +49,7 @@
             <!-- Section Persetujuan -->
 
             <!-- // dibuat pada tanggal 16-07-2021, 01:07 WIB -->
-            <?php if ($cekJumlahBimbingan >= 16) { ?>
+            <?php if ($cekJumlahBimbingan2 > 16) { ?>
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="card">
@@ -57,7 +57,7 @@
                                 <h5 class="m-0">Persetujuan Seminar</h5>
                             </div>
                             <div class="card-body">
-                                <p class="card-text">Jumlah bimbingan sudah memenuhi syarat untuk pendaftaran seminar. Klik tombol dibawah ini untuk menyetujui <br><a href="<?= base_url('bimbingan_proposal/persetujuan/' . $info_judul['nim'] . '/' . $info_judul['judul'] . '/' . $this->session->userdata('id_dosen') . '/' . '2' . '/' . date('Y-m-d')); ?>" onclick="return confirm('Apakah Anda sudah yakin dengan mahasiswa ini?')" class="btn btn-sm btn-success mt-2">Setujui</a></p>
+                                <p class="card-text">Jumlah bimbingan sudah memenuhi syarat untuk pendaftaran seminar. Klik tombol dibawah ini untuk menyetujui <br><a href="<?= base_url('bimbingan_proposal/persetujuanProposal2/' . $info_judul['nim'] . '/' . $info_judul['judul'] . '/' . $this->session->userdata('id_dosen') . '/' . '2' . '/' . date('Y-m-d')); ?>" onclick="return confirm('Apakah Anda sudah yakin dengan mahasiswa ini?')" class="btn btn-sm btn-success mt-2">Setujui</a></p>
                             </div>
                         </div>
                     </div>
@@ -69,7 +69,6 @@
 
             <!-- // dibuat pada tanggal 16-07-2021, 01:07 WIB -->
             <?php if ($cekPersetujuanBimbingan2 == 1) { ?>
-
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="card">
@@ -77,7 +76,6 @@
                                 <h5 class="m-0">Bimbingan Sudah Disetujui</h5>
                             </div>
                             <div class="card-body">
-
                                 <p class="card-text">Bimbingan dengan mahasiswa ini sudah disetujui, mahasiswa sudah berhak untuk lanjut seminar</p>
                             </div>
                         </div>
@@ -88,21 +86,6 @@
             <!-- End sudah disetujui -->
 
             <!-- Sudah disetujui -->
-
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <h5 class="m-0">Bimbingan Sudah Disetujui</h5>
-                        </div>
-                        <div class="card-body">
-
-                            <p class="card-text">Bimbingan dengan mahasiswa ini sudah disetujui, mahasiswa sudah berhak untuk lanjut seminar</p>
-                        </div>
-                    </div>
-                </div>
-                <!-- /.col-md-6 -->
-            </div>
 
             <!-- End sudah disetujui -->
             <div class="row">
