@@ -16,7 +16,6 @@
                 </div>
             </div>
         </section>
-
         <section class="content">
             <div class="container-fluid">
                 <div class="row">
@@ -52,7 +51,7 @@
                                             <td><?= $row['nim']; ?></td>
                                             <td><?= $row['nama_mahasiswa']; ?></td>
                                             <td><?= $row['judul']; ?></td>
-                                            <td><a class="btn btn-sm btn-info" href="<?= base_url('bimbingan1/detailTA/' . $row['nim']); ?>">Detail</a></td>
+                                            <td><a class="btn btn-sm btn-info" href="<?= base_url('bimbingan_ta/mabim1_detail/' . $row['nim']); ?>">Detail</a></td>
                                             <td>--</td>
                                         </tr>
                                     <?php
@@ -219,7 +218,7 @@
                                         <span aria-hidden="true">×</span>
                                     </button>
                                 </div>
-                                <form action="<?= base_url('bimbingan1/add_ta') ?>" method="post" class="form-horizontal" role="form" enctype="multipart/form-data">
+                                <form action="<?= base_url('bimbingan_ta/dospem1_simpanbimbingan') ?>" method="post" class="form-horizontal" role="form" enctype="multipart/form-data">
                                     <div class="card-body">
                                         <div class="form-group">
                                             <input type="hidden" id="id_bimbingan" name="id_bimbingan">
@@ -407,5 +406,15 @@
         $(".tanggal").datepicker({
             dateFormat: "dd/mm/yyyy"
         });
+    </script>
+    <script>
+        var date = new Date();
+        var day = date.getDate();
+        var month = date.getMonth() + 1;
+        var year = date.getFullYear();
+        if (month < 10) month = "0" + month;
+        if (day < 10) day = "0" + day;
+        var today = year + "-" + month + "-" + day;
+        document.getElementById('tanggal').value = today;
     </script>
 <?php } ?>

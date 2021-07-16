@@ -62,7 +62,6 @@
                                             <h3 class="card-title"><i class="fas fa-check-double"></i> Preview Berkas</h3>
                                         </div>
                                         <div class="card-body">
-                                            <!-- <a href="<?= base_url('') ?>assets/berkas/sidang/<?= $ambilBerkas['file_revisi']; ?>" class="btn btn-sm btn-info"><i class="fas fa-download"></i> Download</a> -->
                                             <iframe type="application/pdf" src="<?= base_url('') ?>assets/berkas/sidang/<?= $ambilBerkas['file_revisi']; ?>" width="100%" height="600"></iframe><br>
                                         </div>
                                     </div>

@@ -111,21 +111,21 @@ class Bimbingan1 extends CI_Controller
         }
     }
 
-    public function add()
-    {
-        $id_bimbingan = $this->input->post('id_bimbingan');
+    // public function add()
+    // {
+    //     $id_bimbingan = $this->input->post('id_bimbingan');
 
-        if (empty($id_bimbingan)) $this->m_bimbingan1->tambah_data();
-        else $this->m_bimbingan1->ubah_data($id_bimbingan);
-    }
+    //     if (empty($id_bimbingan)) $this->m_bimbingan1->tambah_data();
+    //     else $this->m_bimbingan1->ubah_data($id_bimbingan);
+    // }
 
-    public function add_ta()
-    {
-        $id_bimbingan = $this->input->post('id_bimbingan');
+    // public function add_ta()
+    // {
+    //     $id_bimbingan = $this->input->post('id_bimbingan');
 
-        if (empty($id_bimbingan)) $this->m_bimbingan1->tambah_data_ta();
-        else $this->m_bimbingan1->ubah_data($id_bimbingan);
-    }
+    //     if (empty($id_bimbingan)) $this->m_bimbingan1->tambah_data_ta();
+    //     else $this->m_bimbingan1->ubah_data($id_bimbingan);
+    // }
 
     public function delete()
     {
@@ -133,21 +133,21 @@ class Bimbingan1 extends CI_Controller
         $this->m_bimbingan1->hapus_data($id_topik);
     }
 
-    function detail_bimbingan($nim)
-    {
-        $data['bimbingan'] = $this->m_bimbingan1->get_nim($nim);
+    // function detail_bimbingan($nim)
+    // {
+    //     $data['bimbingan'] = $this->m_bimbingan1->get_nim($nim);
 
-        $data['user'] = $this->db->get_where('user', ['email' =>
-        $this->session->userdata('email')])->row_array();
+    //     $data['user'] = $this->db->get_where('user', ['email' =>
+    //     $this->session->userdata('email')])->row_array();
 
-        if ($data['bimbingan']) {
-            $data['title'] = 'SINTA PNM';
-            $this->load->view('templates/header', $data);
-            $this->load->view('templates/sidebar', $data);
-            $this->load->view('bimbingan/detail_bimbingan1', $data);
-            $this->load->view('templates/footer', $data);
-        }
-    }
+    //     if ($data['bimbingan']) {
+    //         $data['title'] = 'SINTA PNM';
+    //         $this->load->view('templates/header', $data);
+    //         $this->load->view('templates/sidebar', $data);
+    //         $this->load->view('bimbingan/detail_bimbingan1', $data);
+    //         $this->load->view('templates/footer', $data);
+    //     }
+    // }
 
     function delete_bimbingan($id)
     {
@@ -323,5 +323,20 @@ class Bimbingan1 extends CI_Controller
         $this->db->update('bimbingan', $data);
 
         redirect('bimbingan1/detailTA/' . $nim);
+    }
+
+    // Persetujuan bimbingan dosen 1
+    public function persetujuan($nim, $judul, $id_dosen, $status_dosen, $tanggal_persetujuan)
+    {
+        $data = [
+            'nim' => $nim,
+            'judul' => urldecode($judul),
+            'id_dosen' => $id_dosen,
+            'status_dosen' => $status_dosen,
+            'tanggal_persetujuan' => $tanggal_persetujuan,
+        ];
+
+        $this->db->insert('persetujuan_seminar', $data);
+        redirect('bimbingan1/detail/' . $nim);
     }
 }

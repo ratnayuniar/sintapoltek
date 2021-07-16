@@ -153,7 +153,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="<?= base_url('bimbingan1/simpan_solusi_bimbinganTA'); ?>" method="post" enctype="multipart/form-data" role="form">
+                <form action="<?= base_url('bimbingan_ta/mabim1_simpansolusi'); ?>" method="post" enctype="multipart/form-data" role="form">
                     <div class="row">
                         <div class="col-sm-12">
                             <div class="form-group">

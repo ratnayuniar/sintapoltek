@@ -208,6 +208,15 @@ class M_pembimbing extends CI_Model
             ->get('master_ta')->result_array();
     }
 
+    function getMahasiswaByidDosen2TA()
+    {
+        return $this->db->select('mahasiswa.nama as nama_mahasiswa, mahasiswa.nim as nim, topik.judul as judul')
+            ->join('mahasiswa', 'mahasiswa.nim = master_ta.nim')
+            ->join('topik', 'topik.id_topik = master_ta.judul')
+            ->where('master_ta.pembimbing2', $this->session->userdata('id_dosen'), array('jenis' => 'ta'))
+            ->get('master_ta')->result_array();
+    }
+
     function getBimbinganByNim($nim)
     {
         return $this->db->order_by('tanggal', 'DESC')->get_where('bimbingan', array('nim' => $nim, 'status_dosen' => '1', 'jenis' => 'seminar'))->result_array();
@@ -220,7 +229,7 @@ class M_pembimbing extends CI_Model
 
     function getBimbinganByNim2($nim)
     {
-        return $this->db->order_by('tanggal', 'DESC')->get_where('bimbingan', array('nim' => $nim, 'status_dosen' => '2'))->result_array();
+        return $this->db->order_by('tanggal', 'DESC')->get_where('bimbingan', array('nim' => $nim, 'status_dosen' => '2', 'jenis' => 'seminar'))->result_array();
     }
 
     function getBimbinganByNim2TA($nim)
@@ -231,5 +240,43 @@ class M_pembimbing extends CI_Model
     function getJudulByNim($nim)
     {
         return $this->db->join('mahasiswa', 'mahasiswa.nim = topik.nim')->get_where('topik', array('topik.nim' => $nim))->row_array();
+    }
+
+    function cekJumlahBimbinganSeminarDospem1($nim)
+    {
+        return $this->db->select('status')
+            ->where('status', 1)
+            ->where('id_dosen', $this->session->userdata('id_dosen'))
+            ->where('nim', $nim)
+            ->where('status_dosen', 1)
+            ->count_all_results('bimbingan');
+    }
+
+    function cekJumlahBimbinganSeminarDospem2($nim)
+    {
+        return $this->db->select('status')
+            ->where('status', 1)
+            ->where('id_dosen', $this->session->userdata('id_dosen'))
+            ->where('nim', $nim)
+            ->where('status_dosen', 2)
+            ->count_all_results('bimbingan');
+    }
+
+    function cekPersetujuanBimbingan($nim)
+    {
+        return $this->db->where('nim', $nim)
+            ->where('id_dosen', $this->session->userdata('id_dosen'))
+            ->where('status_dosen', 1)
+            ->where('jenis', 'proposal')
+            ->count_all_results('persetujuan');
+    }
+
+    function cekPersetujuanBimbingan2($nim)
+    {
+        return $this->db->where('nim', $nim)
+            ->where('id_dosen', $this->session->userdata('id_dosen'))
+            ->where('status_dosen', 2)
+            ->where('jenis', 'proposal')
+            ->count_all_results('persetujuan');
     }
 }

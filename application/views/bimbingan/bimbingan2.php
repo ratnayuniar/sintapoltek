@@ -52,7 +52,7 @@
                                             <td><?= $row['nim']; ?></td>
                                             <td><?= $row['nama_mahasiswa']; ?></td>
                                             <td><?= $row['judul']; ?></td>
-                                            <td><a class="btn btn-sm btn-info" href="<?= base_url('bimbingan2/detail/' . $row['nim']); ?>">Detail</a></td>
+                                            <td><a class="btn btn-sm btn-info" href="<?= base_url('bimbingan_proposal/mabim2_detail/' . $row['nim']); ?>">Detail</a></td>
                                             <td>--</td>
                                         </tr>
                                     <?php
@@ -68,31 +68,7 @@
         </section>
     </div>
 
-    <div class="modal fade" id="modal-topik">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Yakin konfirmasi bimbingan?</h5>
-                    <button class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form action="<?= base_url('bimbingan2/save_topik_waiting') ?>" method="POST" enctype="multipart/form-data">
 
-                        <div class="modal-body">
-                            <input type="hidden" name="id_bimbingan" id="id_bimbingan" class="form-control">
-                            <input type="hidden" name="status" value="1" class="form-control">
-                        </div>
-
-                        <button type="submit" id="tombol" class="btn btn-primary btn-sm">Ya</button>
-                        <button type="reset" class="btn btn-danger btn-sm">Tidak</button>
-
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <div class="modal fade" id="modal-reply">
         <div class="modal-dialog">
@@ -135,31 +111,7 @@
         </div>
     </div>
 
-    <div class="modal fade" id="modalclosetopik">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Yakin Menyetujui Bimbingan?</h5>
-                    <button class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form action="<?= base_url('bimbingan2/save_close_topik') ?>" method="POST" enctype="multipart/form-data">
 
-                        <div class="modal-body">
-                            <input type="hidden" name="id_bimbingan" id="closetopik" class="form-control">
-                            <input type="hidden" name="status" value="3" class="form-control">
-                        </div>
-
-                        <button type="submit" id="tombol" class="btn btn-primary btn-sm">Ya</button>
-                        <button type="reset" class="btn btn-danger btn-sm">Tidak</button>
-
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <script>
         $(document).ready(function() {
@@ -224,14 +176,12 @@
                                         <span aria-hidden="true">×</span>
                                     </button>
                                 </div>
-                                <form action="<?= base_url('bimbingan2/create') ?>" method="post" class="form-horizontal" role="form" enctype="multipart/form-data">
+                                <form action="<?= base_url('bimbingan_proposal/dospem2_simpanbimbingan') ?>" method="post" class="form-horizontal" role="form" enctype="multipart/form-data">
                                     <div class="card-body">
                                         <div class="form-group">
                                             <input type="hidden" id="id_bimbingan" name="id_bimbingan">
                                             <input type="hidden" id="minggu" name="minggu">
                                             <input type="hidden" id="judul" name="judul">
-
-                                            <!-- <label for="exampleInputjudul1">NIM</label> -->
                                             <input type="hidden" class="form-control" id="nim" name="nim" placeholder="NIM">
                                             <input type="hidden" class="form-control" id="nim2" name="nim2" readonly placeholder="NIM">
                                         </div>
@@ -265,11 +215,9 @@
                                             <input type="file" name="file">
                                         </div>
                                     </div>
-
                                     <div class="card-footer">
                                         <button type="submit" name="submit" class="btn btn-primary">Simpan</button>
                                     </div>
-
                                 </form>
                             </div>
                         </div>
@@ -433,5 +381,15 @@
         $(".tanggal").datepicker({
             dateFormat: "dd/mm/yyyy"
         });
+    </script>
+    <script>
+        var date = new Date();
+        var day = date.getDate();
+        var month = date.getMonth() + 1;
+        var year = date.getFullYear();
+        if (month < 10) month = "0" + month;
+        if (day < 10) day = "0" + day;
+        var today = year + "-" + month + "-" + day;
+        document.getElementById('tanggal').value = today;
     </script>
 <?php } ?>

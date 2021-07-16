@@ -45,14 +45,14 @@
                                 <tbody>
                                     <?php
                                     $no = 1;
-                                    foreach ($mahasiswaBimbingan as $row) :
+                                    foreach ($mahasiswaBimbinganTA as $row) :
                                     ?>
                                         <tr>
                                             <td><?= $no++; ?></td>
                                             <td><?= $row['nim']; ?></td>
                                             <td><?= $row['nama_mahasiswa']; ?></td>
                                             <td><?= $row['judul']; ?></td>
-                                            <td><a class="btn btn-sm btn-info" href="<?= base_url('bimbingan2/detailTA/' . $row['nim']); ?>">Detail</a></td>
+                                            <td><a class="btn btn-sm btn-info" href="<?= base_url('bimbingan_ta/mabim2_detail/' . $row['nim']); ?>">Detail</a></td>
                                             <td>--</td>
                                         </tr>
                                     <?php
@@ -408,5 +408,15 @@
         $(".tanggal").datepicker({
             dateFormat: "dd/mm/yyyy"
         });
+    </script>
+    <script>
+        var date = new Date();
+        var day = date.getDate();
+        var month = date.getMonth() + 1;
+        var year = date.getFullYear();
+        if (month < 10) month = "0" + month;
+        if (day < 10) day = "0" + day;
+        var today = year + "-" + month + "-" + day;
+        document.getElementById('tanggal').value = today;
     </script>
 <?php } ?>

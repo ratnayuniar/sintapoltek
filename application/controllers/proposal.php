@@ -19,6 +19,8 @@ class Proposal extends CI_Controller
     {
         $data['query'] = $this->m_proposal->tampil_data();
         $data['proposal_user'] = $this->m_proposal->proposal_user();
+
+        $data['ambilBerkas'] = $this->db->get_where('proposal', array('nim' => $this->session->userdata('email')))->row_array();
         $data['title'] = 'SINTA PNM';
 
         $this->load->view('templates/header', $data);
@@ -149,9 +151,9 @@ class Proposal extends CI_Controller
         // $nim = $this->session->userdata('email');
         $nim = $this->input->post('nim');
 
-        $config['upload_path']          = './assets/berkas/sidang/';
+        $config['upload_path']          = './assets/berkas/seminar/';
         $config['allowed_types']        = 'doc|pdf|docx';
-        $config['file_name']            = $nim . ' - Revisi Sidang';
+        $config['file_name']            = $nim . ' - Proposal';
 
         $this->load->library('upload', $config);
 

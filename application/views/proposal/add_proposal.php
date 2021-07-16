@@ -20,7 +20,7 @@
             <?php $cek = $this->db->get_where('master_ta', array('nim' => $this->session->userdata('email')))->row_array(); ?>
             <?php if (isset($cek['pembimbing1']) != NULL && $cek['pembimbing2'] != NULL) { ?>
                 <div class="row">
-                    <div class="col-5">
+                    <div class="col-4">
                         <div class="card card-info">
                             <div class="card-header">
                                 <h3 class="card-title">Upload Berkas Proposal</h3>
@@ -42,26 +42,50 @@
                         </div>
                         </form>
                     </div>
+                    <?php if ($ambilBerkas['latar_belakang']  != "") { ?>
+                        <div class="col-8">
+                            <div class="card card-success">
+                                <div class="card-header">
+                                    <h3 class="card-title"><i class="fas fa-check-double"></i> Preview Berkas</h3>
+                                </div>
+                                <div class="card-body">
+                                    <iframe type="application/pdf" src="<?= base_url('') ?>assets/berkas/seminar/<?= $ambilBerkas['latar_belakang']; ?>" width="100%" height="600"></iframe><br>
+                                </div>
+                            </div>
+                        </div>
+                    <?php } else { ?>
+                        <div class="col-8">
+                            <div class="card card-success">
+                                <div class="card-header">
+                                    <h3 class="card-title"><i class="fas fa-check-double"></i> Preview Berkas</h3>
+                                </div>
+                                <div class="card-body">
+                                    Belum ada file yang di upload
+                                </div>
+                            </div>
+                        </div>
                 </div>
+            <?php } ?>
         </div>
+</div>
 
-    <?php } else { ?>
-        <div class="row">
-            <div class="col-12">
-                <div class="card card-danger">
-                    <div class="card-header">
-                        <h3 class="card-title"><i class="fas fa-exclamation-triangle"></i> Pemberitahuan</h3>
-                    </div>
-                    <div class="card-body">
-                        Pembimbing anda belum ditetapkan, silahkan hubungi admin
-                    </div>
+<?php } else { ?>
+    <div class="row">
+        <div class="col-12">
+            <div class="card card-danger">
+                <div class="card-header">
+                    <h3 class="card-title"><i class="fas fa-exclamation-triangle"></i> Pemberitahuan</h3>
+                </div>
+                <div class="card-body">
+                    Pembimbing anda belum ditetapkan, silahkan hubungi admin
                 </div>
             </div>
         </div>
+    </div>
 
 
 
-    <?php } ?>
+<?php } ?>
 </div>
 </section>
 </div>

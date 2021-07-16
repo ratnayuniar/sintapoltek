@@ -186,47 +186,6 @@
                                     <p>Jadwal Wisuda</p>
                                 </a>
                             </li>
-                            <!--                           
-                            <li class="nav-item">
-                                <a href="<?php echo base_url('bks_wisuda'); ?>" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Berkas Wisuda
-                                        <i class="fas fa-angle-left right"></i>
-                                    </p>
-                                </a>
-                                <ul class="nav nav-treeview">
-                                    <li class="nav-item">
-                                        <a href="<?php echo base_url('bks_wisuda'); ?>" class="nav-link">
-                                            <i class="far fa-dot-circle nav-icon"></i>
-                                            <p>Daftar Wisuda</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="<?php echo base_url('bks_pkl'); ?>" class="nav-link">
-                                            <i class="far fa-dot-circle nav-icon"></i>
-                                            <p>Magang / PKL</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="<?php echo base_url('bks_keterampilan'); ?>" class="nav-link">
-                                            <i class="far fa-dot-circle nav-icon"></i>
-                                            <p>Keterampilan</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="<?php echo base_url('bks_prestasi'); ?>" class="nav-link">
-                                            <i class="far fa-dot-circle nav-icon"></i>
-                                            <p>Prestasi</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="<?php echo base_url('bks_organisasi'); ?>" class="nav-link">
-                                            <i class="far fa-dot-circle nav-icon"></i>
-                                            <p>Organisasi</p>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li> -->
                         </ul>
                     </li>
                 <?php }  ?>
@@ -293,7 +252,7 @@
                                 </a>
                                 <ul class="nav nav-treeview">
                                     <li class="nav-item">
-                                        <a href="<?php echo base_url('bimbingan1'); ?>" class="nav-link ">
+                                        <a href="<?php echo base_url('bimbingan_proposal/dospem1'); ?>" class="nav-link ">
                                             <i class="far fa-dot-circle nav-icon"></i>
                                             <p>Dosen Pembimbing 1</p>
                                         </a>
@@ -301,7 +260,7 @@
                                 </ul>
                                 <ul class="nav nav-treeview">
                                     <li class="nav-item">
-                                        <a href="<?php echo base_url('bimbingan2'); ?>" class="nav-link ">
+                                        <a href="<?php echo base_url('bimbingan_proposal/dospem2'); ?>" class="nav-link ">
                                             <i class="far fa-dot-circle nav-icon"></i>
                                             <p>Dosen Pembimbing 2</p>
                                         </a>
@@ -367,7 +326,7 @@
                                 </a>
                                 <ul class="nav nav-treeview">
                                     <li class="nav-item">
-                                        <a href="<?php echo base_url('bimbingan1/bimbingan1_ta'); ?>" class="nav-link ">
+                                        <a href="<?php echo base_url('bimbingan_ta/dospem1'); ?>" class="nav-link ">
                                             <i class="far fa-dot-circle nav-icon"></i>
                                             <p>Dosen Pembimbing 1</p>
                                         </a>
@@ -375,7 +334,7 @@
                                 </ul>
                                 <ul class="nav nav-treeview">
                                     <li class="nav-item">
-                                        <a href="<?php echo base_url('bimbingan2/bimbingan2_ta'); ?>" class="nav-link ">
+                                        <a href="<?php echo base_url('bimbingan_ta/dospem2'); ?>" class="nav-link ">
                                             <i class="far fa-dot-circle nav-icon"></i>
                                             <p>Dosen Pembimbing 2</p>
                                         </a>
@@ -532,7 +491,7 @@
                                 </a>
                                 <ul class="nav nav-treeview">
                                     <li class="nav-item">
-                                        <a href="<?php echo base_url('bimbingan1'); ?>" class="nav-link">
+                                        <a href="<?php echo base_url('bimbingan_proposal/mabim1'); ?>" class="nav-link">
                                             <i class="far fa-dot-circle nav-icon"></i>
                                             <p>Dosen Pembimbing 1</p>
                                         </a>
@@ -540,7 +499,7 @@
                                 </ul>
                                 <ul class="nav nav-treeview">
                                     <li class="nav-item">
-                                        <a href="<?php echo base_url('bimbingan2'); ?>" class="nav-link">
+                                        <a href="<?php echo base_url('bimbingan_proposal/mabim2'); ?>" class="nav-link">
                                             <i class="far fa-dot-circle nav-icon"></i>
                                             <p>Dosen Pembimbing 2</p>
                                         </a>
@@ -601,7 +560,7 @@
                                 </a>
                                 <ul class="nav nav-treeview">
                                     <li class="nav-item">
-                                        <a href="<?php echo base_url('bimbingan1/bimbingan1_ta'); ?>" class="nav-link">
+                                        <a href="<?php echo base_url('bimbingan_ta/mabim1'); ?>" class="nav-link">
                                             <i class="far fa-dot-circle nav-icon"></i>
                                             <p>Dosen Pembimbing 1</p>
                                         </a>
@@ -609,7 +568,7 @@
                                 </ul>
                                 <ul class="nav nav-treeview">
                                     <li class="nav-item">
-                                        <a href="<?php echo base_url('bimbingan2/bimbingan2_ta'); ?>" class="nav-link">
+                                        <a href="<?php echo base_url('bimbingan_ta/mabim2'); ?>" class="nav-link">
                                             <i class="far fa-dot-circle nav-icon"></i>
                                             <p>Dosen Pembimbing 2</p>
                                         </a>
