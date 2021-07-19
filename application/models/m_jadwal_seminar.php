@@ -4,10 +4,15 @@ class M_jadwal_seminar extends CI_Model
 
 	function tampil_data()
 	{
-		$this->db->select('*');
-		$this->db->join('mahasiswa', 'mahasiswa.nim=master_ta.nim', 'left');
-		$this->db->order_by('ruang_seminar', 'asc');
-		$this->db->where('jadwal_seminar is NOT NULL', NULL, FALSE);
+		// $this->db->select('*');
+		// $this->db->join('mahasiswa', 'mahasiswa.nim=master_ta.nim', 'left');
+		// $this->db->order_by('ruang_seminar', 'asc');
+		// $this->db->where('jadwal_seminar is NOT NULL', NULL, FALSE);
+
+		// Diubah pada 19-07-2021, perbaikan query. Ambil data dari table master_ta
+		$this->db->join('mahasiswa', 'master_ta.nim = mahasiswa.nim')
+			->order_by('ruang_seminar', 'ASC')
+			->where('jadwal_seminar !=', NULL);
 
 
 		$query = $this->db->get('master_ta');
@@ -78,5 +83,27 @@ class M_jadwal_seminar extends CI_Model
 	{
 		$this->db->where('id_jadwal', $id_jadwal);
 		return $this->db->get('jadwal');
+	}
+
+	// Dibuat pada 18-07-2021, ambil data id_dosen
+	function getDataDosen1($id)
+	{
+		return $this->db->select('dosen.id_dosen, master_ta.penguji1_sempro, dosen.nama')
+			->join('dosen', 'dosen.id_dosen = master_ta.penguji1_sempro')
+			->get_where('master_ta', ['nim' => $id])->result_array();
+	}
+
+	function getDataDosen2($id)
+	{
+		return $this->db->select('dosen.id_dosen, master_ta.penguji2_sempro, dosen.nama')
+			->join('dosen', 'dosen.id_dosen = master_ta.penguji2_sempro')
+			->get_where('master_ta', ['nim' => $id])->result_array();
+	}
+
+	function getDataDosen3($id)
+	{
+		return $this->db->select('dosen.id_dosen, master_ta.penguji3_sempro, dosen.nama')
+			->join('dosen', 'dosen.id_dosen = master_ta.penguji3_sempro')
+			->get_where('master_ta', ['nim' => $id])->result_array();
 	}
 }

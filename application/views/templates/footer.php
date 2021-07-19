@@ -33,8 +33,7 @@
 <script src="<?php echo base_url(); ?>admin/dist/js/demo.js"></script>
 <!-- sweet alert -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.all.min.js"></script>
-<!-- date-range-picker -->
-<script src="<?php echo base_url(); ?>admin/plugins/daterangepicker/daterangepicker.js"></script>
+
 <!-- Select2 -->
 <script src="<?php echo base_url(); ?>admin/plugins/select2/js/select2.full.min.js"></script>
 <!-- sweet alert2 -->
@@ -57,6 +56,7 @@
             "responsive": true,
             "lengthChange": false,
             "autoWidth": false,
+            "pageLength": 20,
 
         }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
         $('#example2').DataTable({
@@ -69,8 +69,7 @@
             "responsive": true,
         });
 
-        //Date range picker
-        // $('#reservation').daterangepicker()
+
     });
 </script>
 

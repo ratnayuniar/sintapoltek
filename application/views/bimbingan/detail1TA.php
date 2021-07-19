@@ -50,39 +50,41 @@
 
             <!-- Section Persetujuan -->
 
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <h5 class="m-0">Persetujuan Seminar</h5>
-                        </div>
-                        <div class="card-body">
-
-                            <p class="card-text">Jumlah bimbingan sudah memenuhi syarat untuk pendaftaran seminar. Klik tombol dibawah ini untuk menyetujui blablalba.... <br><a href="<?= base_url('bimbingan1/persetujuan/' . $info_judul['nim'] . '/' . $info_judul['judul'] . '/' . $this->session->userdata('id_dosen') . '/' . '1' . '/' . date('Y-m-d')); ?>" onclick="return confirm('Apakah Anda sudah yakin dengan mahasiswa ini?')" class="btn btn-sm btn-success mt-2">Setujui</a></p>
+            <?php if ($cekJumlahBimbingan > 17) { ?>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="m-0">Persetujuan Seminar</h5>
+                            </div>
+                            <div class="card-body">
+                                <p class="card-text">Jumlah bimbingan sudah memenuhi syarat untuk pendaftaran seminar. Klik tombol dibawah ini untuk menyetujui <br>
+                                    <a href="<?= base_url('bimbingan_ta/persetujuan/' . $info_judul['nim'] . '/' . $info_judul['judul'] . '/' . $this->session->userdata('id_dosen') . '/' . '1' . '/' . date('Y-m-d')); ?>" onclick="return confirm('Apakah Anda sudah yakin dengan mahasiswa ini?')" class="btn btn-sm btn-success mt-2">Setujui</a>
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <!-- /.col-md-6 -->
-            </div>
+            <?php } ?>
 
             <!-- End section persetujuan -->
 
             <!-- Sudah disetujui -->
 
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <h5 class="m-0">Bimbingan Sudah Disetujui</h5>
-                        </div>
-                        <div class="card-body">
-
-                            <p class="card-text">Bimbingan dengan mahasiswa ini sudah disetujui, mahasiswa sudah berhak untuk lanjut seminar</p>
+            <?php if ($cekPersetujuanBimbinganTA == 1) { ?>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="m-0">Bimbingan Sudah Disetujui</h5>
+                            </div>
+                            <div class="card-body">
+                                <p class="card-text">Bimbingan dengan mahasiswa ini sudah disetujui, mahasiswa sudah berhak untuk lanjut seminar</p>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <!-- /.col-md-6 -->
-            </div>
+            <?php } ?>
 
             <!-- End sudah disetujui -->
 
@@ -153,17 +155,21 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="<?= base_url('bimbingan_ta/mabim1_simpansolusi'); ?>" method="post" enctype="multipart/form-data" role="form">
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <div class="form-group">
-                                <label for="solusi">Solusi</label>
-                                <input type="hidden" id="id_bimbingan" name="id_bimbingan">
-                                <input type="hidden" id="nim" name="nim">
-                                <textarea name="solusi" id="solusi" class="form-control" cols="30" rows="10"></textarea>
-                            </div>
+                <?php echo form_open_multipart('bimbingan_ta/mabim1_simpansolusi'); ?>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label for="solusi">Solusi</label>
+                            <input type="hidden" id="id_bimbingan" name="id_bimbingan">
+                            <input type="hidden" id="nim" name="nim">
+                            <textarea name="solusi" id="solusi" class="form-control" cols="30" rows="10"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="upload_file">Upload File</label>
+                            <input type="file" class="form-control-file" id="upload_file" name="file_dosen">
                         </div>
                     </div>
+                </div>
             </div>
             <div class="modal-footer justify-content-between">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

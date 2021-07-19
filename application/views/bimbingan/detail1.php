@@ -156,17 +156,22 @@
         </button>
       </div>
       <div class="modal-body">
-        <form action="<?= base_url('bimbingan_proposal/mabim1_simpansolusi'); ?>" method="post" enctype="multipart/form-data" role="form">
-          <div class="row">
-            <div class="col-sm-12">
-              <div class="form-group">
-                <label for="solusi">Solusi</label>
-                <input type="hidden" id="id_bimbingan" name="id_bimbingan">
-                <input type="hidden" id="nim" name="nim">
-                <textarea name="solusi" id="solusi" class="form-control" cols="30" rows="10"></textarea>
-              </div>
+        <!-- Dibuat pada 17-7-2021, 09:19 WIB -->
+        <?php echo form_open_multipart('bimbingan_proposal/mabim1_simpansolusi'); ?>
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="form-group">
+              <label for="solusi">Solusi</label>
+              <input type="hidden" id="id_bimbingan" name="id_bimbingan">
+              <input type="hidden" id="nim" name="nim">
+              <textarea name="solusi" id="solusi" class="form-control" cols="30" rows="10"></textarea>
+            </div>
+            <div class="form-group">
+              <label for="upload_file">Upload File</label>
+              <input type="file" class="form-control-file" id="upload_file" name="file_dosen">
             </div>
           </div>
+        </div>
       </div>
       <div class="modal-footer justify-content-between">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

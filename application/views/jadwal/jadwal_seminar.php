@@ -35,7 +35,8 @@
                       <tr>
                         <th>No</th>
                         <th>Ruang</th>
-                        <th>Jadwal</th>
+                        <th>Hari</th>
+                        <th>Waktu</th>
                         <th>NIM</th>
                         <th>Nama</th>
                         <th>Aksi</th>
@@ -50,7 +51,8 @@
                         " <tr>
 											      <td>" . $no . "</td>
 											      <td>" . $row->ruang_seminar . "</td>
-										      	<td>" . longdate_indo($waktu[0]) . " " . $waktu[1] . "</td>
+										      	<td>" . longdate_indo($waktu[0]) . "</td>
+                            <td>" . $row->jam . "</td>
 											      <td>" . $row->nim . "</td>
                             <td>" . $row->nama . "</td>
 										      	<td>
@@ -80,37 +82,65 @@
             <span aria-hidden="true">×</span>
           </button>
         </div>
-        <form action="<?php echo base_url() . 'jadwal_seminar/add'; ?>" method="post" class="form-horizontal" role="form">
+        <form action="<?php echo base_url() . 'jadwal_seminar/cek_jadwal_seminar'; ?>" method="post" class="form-horizontal" role="form">
           <div class="card-body">
-
             <div class="form-group">
               <input type="hidden" id="id_master_ta" name="id_master_ta">
-              <label class="col-md-6 control-label">Nama Mahasiswa</label>
-              <div class="col-md-9 ">
-                <select class="form-control select2bs4" style="width: 100%;" data-live-search="true" data-style="btn-white" id="nim" name="nim" required>
-                  <option>-- Pilih Mahasiswa --</option>
-                  <?php foreach ($mahasiswa->result() as $row) : ?>
-                    <option value="<?php echo $row->nim; ?>"><?php echo $row->nama; ?></option>
-                  <?php endforeach; ?>
-                </select>
-              </div>
+              <label class="control-label">Nama Mahasiswa</label>
+              <select class="nim form-control select2bs4" style="width: 100%;" data-live-search="true" data-style="btn-white" id="nim" name="nim" required>
+                <option>-- Pilih Mahasiswa --</option>
+                <?php foreach ($mahasiswa->result() as $row) : ?>
+                  <option value="<?php echo $row->nim; ?>"><?php echo $row->nama; ?></option>
+                <?php endforeach; ?>
+              </select>
             </div>
 
             <div class="form-group">
-              <label class="col-md-3 control-label">Ruang</label>
-              <div class="input-group col-md-9">
-                <input type="text" name="ruang_seminar" class="form-control" id="ruang_seminar">
-              </div>
+              <label for="" class="control-label">Penguji 1</label>
+              <select class="penguji1_sempro form-control" name="penguji1_sempro" id="penguji1_sempro" readonly>
+                <option value="">Pilih Mahasiswa Terlebih Dahulu</option>
+              </select>
             </div>
 
             <div class="form-group">
-              <label class="col-md-3 control-label">Jadwal</label>
-              <div class="input-group col-md-9">
-                <div class="input-group-append" data-target="#jadwal" data-toggle="datetimepicker">
-                  <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                </div>
-                <input type="text" name="jadwal_seminar" class="form-control" id="jadwal_seminar" value="<?php echo date("Y-m-d H:i") ?>" readonly>
+              <label for="penguji2_sempro" class="ccontrol-label">Penguji 2</label>
+              <select class="penguji2_sempro form-control" name="penguji2_sempro" id="penguji2_sempro" readonly>
+                <option value="">Pilih Mahasiswa Terlebih Dahulu</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="" class="control-label">Penguji 3</label>
+              <select class="penguji3_sidang form-control" name="penguji3_sidang" id="penguji3_sidang" readonly>
+                <option value="">Pilih Mahasiswa Terlebih Dahulu</option>
+              </select>
+            </div>
+
+            <!-- <div class="form-group">
+              <label class="control-label">Jadwal</label>
+              <div class="input-group-append" data-target="#jadwal" data-toggle="datetimepicker">
+                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                <input type="text" name="jadwal_sidang" class="form-control" id="jadwal_sidang">
               </div>
+            </div> -->
+
+            <div class="form-group">
+              <label class="control-label">Jadwal</label>
+              <input type="date" name="jadwal_seminar" class="form-control" id="jadwal_seminar">
+            </div>
+
+            <div class="form-group">
+              <label class="control-label">Waktu</label>
+              <input type="time" name="waktu_mulai" class="form-control col-md-3">
+            </div>
+
+            <div class="form-group">
+              <input type="time" name="waktu_akhir" class="form-control col-md-3">
+            </div>
+
+            <div class="form-group">
+              <label class="control-label">Ruang</label>
+              <input type="text" name="ruang_seminar" class="form-control" id="ruang_seminar">
             </div>
 
             <div class="modal-footer justify-content-between">
@@ -167,8 +197,84 @@
     </div>
   </div>
 
+  <!-- <script src="<?php echo base_url(); ?>admin/plugins/jquery/jquery.min.js"></script>
   <link href="<?php echo base_url() ?>assets/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
-  <script type="text/javascript" src="<?php echo base_url() ?>assets/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
+  <script type="text/javascript" src="<?php echo base_url() ?>assets/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js" charset="UTF-8"></script> -->
+  <!-- jQuery -->
+
+  <!-- ajax untuk ambil dosen penguji -->
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $('.nim').change(function() {
+        var id = $(this).val();
+        $.ajax({
+          url: "<?= base_url('jadwal_seminar/getDosenPenguji'); ?>",
+          method: "POST",
+          data: {
+            id: id
+          },
+          async: true,
+          dataType: "JSON",
+          success: function(data) {
+            var html = '';
+            var i;
+            for (i = 0; i < data.length; i++) {
+              html += '<option value="' + data[i].penguji1_sempro + '">' + data[i].nama + '</option>';
+            }
+            $('.penguji1_sempro').html(html);
+          }
+        });
+      });
+    });
+  </script>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $('.nim').change(function() {
+        var id = $(this).val();
+        $.ajax({
+          url: "<?= base_url('jadwal_seminar/getDosenPenguji2'); ?>",
+          method: "POST",
+          data: {
+            id: id
+          },
+          async: true,
+          dataType: "JSON",
+          success: function(data) {
+            var html = '';
+            var i;
+            for (i = 0; i < data.length; i++) {
+              html += '<option value="' + data[i].penguji2_sempro + '">' + data[i].nama + '</option>';
+            }
+            $('.penguji2_sempro').html(html);
+          }
+        });
+      });
+    });
+  </script>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $('.nim').change(function() {
+        var id = $(this).val();
+        $.ajax({
+          url: "<?= base_url('jadwal_seminar/getDosenPenguji3'); ?>",
+          method: "POST",
+          data: {
+            id: id
+          },
+          async: true,
+          dataType: "JSON",
+          success: function(data) {
+            var html = '';
+            var i;
+            for (i = 0; i < data.length; i++) {
+              html += '<option value="' + data[i].penguji3_sidang + '">' + data[i].nama + '</option>';
+            }
+            $('.penguji3_sidang').html(html);
+          }
+        });
+      });
+    });
+  </script>
 
   <script type="text/javascript">
     function choose() {
@@ -176,6 +282,8 @@
       document.getElementById('output').value = zoo;
     }
   </script>
+
+
 
   <script type="text/javascript">
     function SetInput(id_master_ta, nim, jadwal) {
@@ -199,12 +307,25 @@
   </script>
 
   <script>
-    $('#jadwal_seminar').datetimepicker({
-      format: "yyyy-mm-dd HH:ii",
-      autoclose: 1,
-      startView: 2,
-      showMeridian: 0
+    // $('#jadwal_sidang').datetimepicker({
+    //   format: "yyyy-mm-dd",
+    //   autoclose: 1,
+    //   startView: 2,
+    //   showMeridian: 0
+    // })
+
+    //Timepicker
+    $('#timepicker').datetimepicker({
+      format: 'LT'
     })
+
+
+
+
+    //Date range picker
+    $('#hari').datetimepicker({
+      format: 'L'
+    });
   </script>
 <?php } else { ?>
   <!-- USER MAHASISWA -->
@@ -251,7 +372,6 @@
                       "<tr>
 											    <td>" . $no . "</td>
 											    <td>" . $row->nim . "</td>
-                          
                           <td>" . $row->penguji1_sempro . "</td>
 											    <td>"  . longdate_indo($waktu[0]) . " " . $waktu[1] . "</td>				
 									    </tr>";

@@ -14,6 +14,7 @@ class Bimbingan_proposal extends CI_Controller
         $this->load->model('m_profile');
         $this->load->model('m_pembimbing');
         $this->load->model('m_mahasiswa');
+        $this->load->helper("file");
         $this->load->helper(array('form', 'url'));
         $this->load->helper('tgl_indo');
         $this->load->library('form_validation');
@@ -49,52 +50,49 @@ class Bimbingan_proposal extends CI_Controller
 
     public function dospem1_simpanbimbingan()
     {
-        if (isset($_POST['submit'])) {
-            $this->form_validation->set_rules('nim', 'NIM', 'required');
-            $this->form_validation->set_rules('id_dosen', 'id_dosen', 'required');
-            $this->form_validation->set_rules('masalah', 'masalah', 'required');
-            $this->form_validation->set_rules('tanggal', 'tanggal', 'required');
-            $config['upload_path'] = './assets/berkas/bimbingan/';
-            $config['allowed_types'] = 'pdf';
-            $config['max_size']  = 2048;
-            $config['file_name'] = 'bks_bimbingan-' . date('ymd');
 
-            $this->load->library('upload', $config);
+        $nim = $this->input->post('nim');
+        $filename = "bks_bimbingan-" . $nim . "" . date('ymd');
 
-            if (!empty($_FILES['file'])) {
-                $this->upload->do_upload('file');
-                $data1 = $this->upload->data();
-                $file = $data1['file_name'];
-            }
+        $config['upload_path'] = './assets/berkas/bimbingan/';
+        $config['allowed_types'] = 'pdf';
+        $config['max_size']  = 5000;
+        $config['file_name']  = $filename;
+        $config['file_name'] = $filename;
 
-            if ($this->form_validation->run()) {
-                $nim = $this->input->post('nim', TRUE);
-                $id_dosen = $this->input->post('id_dosen', TRUE);
-                $masalah = $this->input->post('masalah', TRUE);
-                $tanggal = $this->input->post('tanggal', TRUE);
-                $data = [
-                    'nim' => $nim,
-                    'id_dosen' => $id_dosen,
-                    'masalah' => $masalah,
-                    'tanggal' => $tanggal,
-                    'file' => $file,
-                    'status' => 0,
-                    'status_dosen' => 1,
-                    'jenis' => "seminar",
-                ];
-                // print_r($data);
-                // exit();
-                // var_dump($data);
-                $insert = $this->db->insert('bimbingan', $data);
-                if ($insert) {
-                    $this->session->set_flashdata('pesan', 'Data berhasil disimpan');
-                    redirect('bimbingan_proposal/dospem1');
-                }
-            } else {
-                $this->index();
-            }
+        $this->load->library('upload', $config);
+
+        if (!$this->upload->do_upload('file')) {
+            $data = [
+                'nim' => $this->input->post('nim'),
+                'id_dosen' => $this->input->post('id_dosen'),
+                'masalah' => $this->input->post('masalah'),
+                'tanggal' => $this->input->post('tanggal'),
+                'status' => 0,
+                'status_dosen' => 1,
+                'jenis' => "seminar",
+            ];
         } else {
-            $this->index();
+            // Jika name="file_dosen di view berisi file, maka update row tabel bimbingan berdasarkan isi array dibawah ini
+            $data = [
+                'nim' => $this->input->post('nim'),
+                'id_dosen' => $this->input->post('id_dosen'),
+                'masalah' => $this->input->post('masalah'),
+                'tanggal' => $this->input->post('tanggal'),
+                'status' => 0,
+                'status_dosen' => 1,
+                'jenis' => "seminar",
+                // nama file digabung dengan properti mahasiswa, bisa dicek di atas
+                'file' => $filename
+            ];
+        }
+        // print_r($data);
+        // exit();
+        // var_dump($data);
+        $insert = $this->db->insert('bimbingan', $data);
+        if ($insert) {
+            $this->session->set_flashdata('pesan', 'Data berhasil disimpan');
+            redirect('bimbingan_proposal/dospem1');
         }
     }
 
@@ -119,52 +117,47 @@ class Bimbingan_proposal extends CI_Controller
 
     public function dospem2_simpanbimbingan()
     {
-        if (isset($_POST['submit'])) {
-            $this->form_validation->set_rules('nim', 'NIM', 'required');
-            $this->form_validation->set_rules('id_dosen', 'id_dosen', 'required');
-            $this->form_validation->set_rules('masalah', 'masalah', 'required');
-            $this->form_validation->set_rules('tanggal', 'tanggal', 'required');
-            $config['upload_path'] = './assets/berkas/bimbingan/';
-            $config['allowed_types'] = 'pdf';
-            $config['max_size']  = 2048;
-            $config['file_name'] = 'bks_bimbingan-' . date('ymd');
+        $nim = $this->input->post('nim');
+        $filename = "bks_bimbingan-" . $nim . "" . date('ymd');
 
-            $this->load->library('upload', $config);
+        $config['upload_path'] = './assets/berkas/bimbingan/';
+        $config['allowed_types'] = 'pdf';
+        $config['max_size']  = 5000;
+        $config['file_name'] = $filename;
 
-            if (!empty($_FILES['file'])) {
-                $this->upload->do_upload('file');
-                $data1 = $this->upload->data();
-                $file = $data1['file_name'];
-            }
+        $this->load->library('upload', $config);
 
-            if ($this->form_validation->run()) {
-                $nim = $this->input->post('nim', TRUE);
-                $id_dosen = $this->input->post('id_dosen', TRUE);
-                $masalah = $this->input->post('masalah', TRUE);
-                $tanggal = $this->input->post('tanggal', TRUE);
-                $data = [
-                    'nim' => $nim,
-                    'id_dosen' => $id_dosen,
-                    'masalah' => $masalah,
-                    'tanggal' => $tanggal,
-                    'file' => $file,
-                    'status' => 0,
-                    'status_dosen' => 2,
-                    'jenis' => "seminar",
-                ];
-                // print_r($data);
-                // exit();
-                // var_dump($data);
-                $insert = $this->db->insert('bimbingan', $data);
-                if ($insert) {
-                    $this->session->set_flashdata('pesan', 'Data berhasil disimpan');
-                    redirect('bimbingan_proposal/dospem2');
-                }
-            } else {
-                $this->index();
-            }
+        if (!$this->upload->do_upload('file')) {
+            $data = [
+                'nim' => $this->input->post('nim'),
+                'id_dosen' => $this->input->post('id_dosen'),
+                'masalah' => $this->input->post('masalah'),
+                'tanggal' => $this->input->post('tanggal'),
+                'status' => 0,
+                'status_dosen' => 2,
+                'jenis' => "seminar",
+            ];
         } else {
-            $this->index();
+            // Jika name="file_dosen di view berisi file, maka update row tabel bimbingan berdasarkan isi array dibawah ini
+            $data = [
+                'nim' => $this->input->post('nim'),
+                'id_dosen' => $this->input->post('id_dosen'),
+                'masalah' => $this->input->post('masalah'),
+                'tanggal' => $this->input->post('tanggal'),
+                'status' => 0,
+                'status_dosen' => 2,
+                'jenis' => "seminar",
+                // nama file digabung dengan properti mahasiswa, bisa dicek di atas
+                'file' => $filename
+            ];
+        }
+        // print_r($data);
+        // exit();
+        // var_dump($data);
+        $insert = $this->db->insert('bimbingan', $data);
+        if ($insert) {
+            $this->session->set_flashdata('pesan', 'Data berhasil disimpan');
+            redirect('bimbingan_proposal/dospem2');
         }
     }
 
@@ -212,17 +205,38 @@ class Bimbingan_proposal extends CI_Controller
     {
         $nim = $this->input->post('nim');
         $id_bimbingan = $this->input->post('id_bimbingan');
+        $filename = "bks_bimbingan-" . $nim . "-";
 
-        $data = [
-            'solusi' => $this->input->post('solusi'),
-            'status' => 1,
-            'status_dosen' => 1,
-        ];
+        // config file
+        $config['upload_path']          = './assets/berkas/bimbingan/';
+        $config['allowed_types']        = 'pdf|docx|doc';
+
+        $this->load->library('upload', $config);
+
+        // cek name="file_dosen" di view, jika tidak berisi file maka update row tabel bimbingan berdasarkan isi array data dibawah ini
+        if (!$this->upload->do_upload('file_dosen')) {
+            $data = [
+                'solusi' => $this->input->post('solusi'),
+                'status' => 1,
+                'status_dosen' => 1,
+            ];
+        } else {
+            // Jika name="file_dosen di view berisi file, maka update row tabel bimbingan berdasarkan isi array dibawah ini
+            $data = [
+                'solusi' => $this->input->post('solusi'),
+                'status' => 1,
+                'status_dosen' => 1,
+                // nama file digabung dengan properti mahasiswa, bisa dicek di atas
+                'file_solusi' => $filename . $this->upload->data('file_name')
+            ];
+        }
 
         $this->db->where('id_bimbingan', $id_bimbingan);
         $this->db->update('bimbingan', $data);
 
         redirect('bimbingan_proposal/mabim1_detail/' . $nim);
+
+        // Note : error handlingnya nanti dulu yaakk wkwk
     }
 
     public function mabim2()
@@ -263,12 +277,31 @@ class Bimbingan_proposal extends CI_Controller
     {
         $nim = $this->input->post('nim');
         $id_bimbingan = $this->input->post('id_bimbingan');
+        $filename = "bks_bimbingan-" . $nim . "-";
 
-        $data = [
-            'solusi' => $this->input->post('solusi'),
-            'status' => 1,
-            'status_dosen' => 2,
-        ];
+        // config file
+        $config['upload_path']          = './assets/berkas/bimbingan/';
+        $config['allowed_types']        = 'pdf|docx|doc';
+
+        $this->load->library('upload', $config);
+
+        // cek name="file_dosen" di view, jika tidak berisi file maka update row tabel bimbingan berdasarkan isi array data dibawah ini
+        if (!$this->upload->do_upload('file_dosen')) {
+            $data = [
+                'solusi' => $this->input->post('solusi'),
+                'status' => 1,
+                'status_dosen' => 2,
+            ];
+        } else {
+            // Jika name="file_dosen di view berisi file, maka update row tabel bimbingan berdasarkan isi array dibawah ini
+            $data = [
+                'solusi' => $this->input->post('solusi'),
+                'status' => 1,
+                'status_dosen' => 2,
+                // nama file digabung dengan properti mahasiswa, bisa dicek di atas
+                'file_solusi' => $filename . $this->upload->data('file_name')
+            ];
+        }
 
         $this->db->where('id_bimbingan', $id_bimbingan);
         $this->db->update('bimbingan', $data);

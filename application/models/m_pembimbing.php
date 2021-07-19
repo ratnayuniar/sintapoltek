@@ -279,4 +279,32 @@ class M_pembimbing extends CI_Model
             ->where('jenis', 'proposal')
             ->count_all_results('persetujuan');
     }
+
+    function cekPersetujuanBimbinganTA($nim)
+    {
+        return $this->db->where('nim', $nim)
+            ->where('id_dosen', $this->session->userdata('id_dosen'))
+            ->where('status_dosen', 1)
+            ->where('jenis', 'ta')
+            ->count_all_results('persetujuan');
+    }
+
+    function cekPersetujuanBimbinganTA2($nim)
+    {
+        return $this->db->where('nim', $nim)
+            ->where('id_dosen', $this->session->userdata('id_dosen'))
+            ->where('status_dosen', 2)
+            ->where('jenis', 'ta')
+            ->count_all_results('persetujuan');
+    }
+
+    function cekJumlahBimbinganTADospem2($nim)
+    {
+        return $this->db->select('status')
+            ->where('status', 1)
+            ->where('id_dosen', $this->session->userdata('id_dosen'))
+            ->where('nim', $nim)
+            ->where('status_dosen', 2)
+            ->count_all_results('bimbingan');
+    }
 }

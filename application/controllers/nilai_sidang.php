@@ -68,8 +68,6 @@ class Nilai_sidang extends CI_Controller
 		$data['query'] = $this->m_nilai_sidang->tampil_data2($data['nim']);
 		$data['query3'] = $this->m_penguji_sidang->bimbingan_dosen();
 
-
-
 		$this->load->view('templates/header', $data);
 		$this->load->view('templates/sidebar', $data);
 		$this->load->view('nilai/detail_nilai_sidang', $data);
