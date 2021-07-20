@@ -19,6 +19,16 @@ class M_jadwal_seminar extends CI_Model
 		return $query;
 	}
 
+	function getmahasiswa()
+	{
+		$this->db->select('*');
+		$this->db->from('master_ta');
+		$this->db->join('mahasiswa', 'master_ta.nim = mahasiswa.nim', 'left');
+		// $this->db->where('master_ta.id_prodi', $this->session->userdata('id_prodi'));
+		$query = $this->db->get();
+		return $query;
+	}
+
 	function jadwal_seminar_user()
 	{
 		$this->db->select('*');

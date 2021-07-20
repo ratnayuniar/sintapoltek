@@ -20,6 +20,7 @@ class M_bks_seminar extends CI_Model
 		$this->db->select('*');
 		$this->db->join('mahasiswa', 'seminar_proposal.nim=mahasiswa.nim', 'left');
 		$this->db->join('master_ta', 'mahasiswa.nim = master_ta.nim', 'left');
+		$this->db->join('topik', 'master_ta.nim = topik.nim', 'left');
 		$this->db->where(array('mahasiswa.id_prodi' => $id_prodi));
 		return $this->db->get('seminar_proposal');
 	}

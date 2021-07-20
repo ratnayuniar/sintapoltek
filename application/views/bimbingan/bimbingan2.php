@@ -189,7 +189,7 @@
                                     <div style="text-align:right;margin-bottom: 10px ">
                                         <a href="#" class="on-default edit-row btn btn-info pull-right" data-toggle="modal" pull="right" data-target="#custom-width-modal" onclick="ResetInput()"><i class="fa fa-plus"></i> Ajukan Bimbingan</a>
                                         <a href="<?= site_url('bimbingan2/cetak_kartu') ?>" target="_blank" type="button" class="btn btn-primary"><i class="fas fa-print"></i> &nbsp;Cetak Lembar Bimbingan</a>
-                                        <a href="https://wa.me/<?= $query2->first_row()->hp ?>" target="_blank" class="btn btn-success"> <i class="fab fa-whatsapp"></i></a>
+                                        <a href="https://wa.me/<?= $hp->first_row()->hp ?>" target="_blank" class="btn btn-success"> <i class="fab fa-whatsapp"></i></a>
                                     </div>
                                     <table id="example1" class="table table-bordered table-striped">
                                         <thead>
@@ -215,12 +215,11 @@
                                                 <tr>
                                                     <td><?= $no++ ?></td>
                                                     <td><?= $row->masalah  ?></td>
-                                                    <td><?= $row->file  ?></td>
                                                     <td style="text-align: center;">
                                                         <?php if ($row->file == null) {
                                                             echo " ";
                                                         } else {
-                                                            echo '<a href="' . base_url('assets/berkas/bimbingan/' . $row->file) . '" download><i class="far fa-file-pdf"></i></a> ';
+                                                            echo '<a href="' . base_url('assets/berkas/bimbingan/' . $row->file) . '" target="_blank"><i class="far fa-file-pdf"></i></a> ';
                                                         }
                                                         ?>
                                                     </td>
@@ -229,7 +228,7 @@
                                                         <?php if ($row->file_solusi == null) {
                                                             echo " ";
                                                         } else {
-                                                            echo '<a href="' . base_url('assets/berkas/bimbingan/' . $row->file_solusi) . '" download><i class="far fa-file-pdf"></i></a> ';
+                                                            echo '<a href="' . base_url('assets/berkas/bimbingan/' . $row->file_solusi) . '" target="_blank"><i class="far fa-file-pdf"></i></a> ';
                                                         }
                                                         ?>
                                                     </td>

@@ -116,14 +116,6 @@
               </select>
             </div>
 
-            <!-- <div class="form-group">
-              <label class="control-label">Jadwal</label>
-              <div class="input-group-append" data-target="#jadwal" data-toggle="datetimepicker">
-                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                <input type="text" name="jadwal_sidang" class="form-control" id="jadwal_sidang">
-              </div>
-            </div> -->
-
             <div class="form-group">
               <label class="control-label">Jadwal</label>
               <input type="date" name="jadwal_seminar" class="form-control" id="jadwal_seminar">
@@ -143,9 +135,8 @@
               <input type="text" name="ruang_seminar" class="form-control" id="ruang_seminar">
             </div>
 
-            <div class="modal-footer justify-content-between">
-              <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
-              <button type="submit" class="btn btn-primary">Simpan</button>
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-primary" style="float: right;">Simpan</button>
             </div>
           </div>
         </form>
@@ -274,6 +265,17 @@
         });
       });
     });
+  </script>
+
+  <script>
+    var date = new Date();
+    var day = date.getDate();
+    var month = date.getMonth() + 1;
+    var year = date.getFullYear();
+    if (month < 10) month = "0" + month;
+    if (day < 10) day = "0" + day;
+    var today = year + "-" + month + "-" + day;
+    document.getElementById('jadwal_seminar').value = today;
   </script>
 
   <script type="text/javascript">

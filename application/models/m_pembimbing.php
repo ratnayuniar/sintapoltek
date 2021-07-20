@@ -78,6 +78,18 @@ class M_pembimbing extends CI_Model
         $this->db->from('master_ta');
         $this->db->join('mahasiswa', 'mahasiswa.nim=master_ta.nim');
         $this->db->join('topik', 'master_ta.judul=topik.id_topik');
+        $this->db->join('dosen', 'master_ta.pembimbing1 = dosen.id_dosen', 'left');
+        $this->db->where('master_ta.nim', $this->session->userdata('email'));
+        $query = $this->db->get();
+        return $query;
+    }
+
+    function hp()
+    {
+        $this->db->select('*');
+        $this->db->from('master_ta');
+        $this->db->join('mahasiswa', 'mahasiswa.nim=master_ta.nim');
+        $this->db->join('dosen', 'master_ta.pembimbing2 = dosen.id_dosen', 'left');
         $this->db->where('master_ta.nim', $this->session->userdata('email'));
         $query = $this->db->get();
         return $query;

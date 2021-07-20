@@ -61,7 +61,7 @@
                             echo "<h6>" . $row->catatan_beritaacara . "</h6> ";
                           }
                           ?>
-                          <h6><a href="<?php echo base_url('assets/berkas/seminar/' . $row->berita_acara); ?>" download><i class="far fa-file-pdf"></i></a></h6>
+                          <h6><a href="<?php echo base_url('assets/berkas/seminar/' . $row->berita_acara); ?>" download><i class="far fa-file-word"></i></a></h6>
                         </td>
                         <td> <?php if ($row->st_persetujuan == '0') {
                                 echo " <a href ='#' class ='btn btn-sm btn-warning btn-xs btn-block' data-toggle='modal' data-target='#modal_persetujuan' onClick=\"SetInput2('" . $row->id_seminar_proposal . "','" . $row->nim . "','" . $row->nama . "','" . $row->judul . "','" . $row->st_persetujuan . "','" . $row->catatan_persetujuan . "','" . $row->tgl_persetujuan . "')\"> Belum</a>";
@@ -77,7 +77,7 @@
                             echo "<h6>"  . $row->catatan_persetujuan . "</h6> ";
                           }
                           ?>
-                          <h6><a href="<?php echo base_url('assets/berkas/seminar/' . $row->persetujuan); ?>" download><i class="far fa-file-pdf"></i></a></h6>
+                          <h6><a href="<?php echo base_url('assets/berkas/seminar/' . $row->persetujuan); ?>" download><i class="far fa-file-word"></i></a></h6>
                         </td>
                         <td> <?php if ($row->st_proposal == '0') {
                                 echo " <a href ='#' class ='btn btn-sm btn-warning btn-xs btn-block' data-toggle='modal' data-target='#modal_proposal' onClick=\"SetInput3('" . $row->id_seminar_proposal . "','" . $row->nim . "','" . $row->nama . "','" . $row->judul . "','" . $row->st_proposal . "','" . $row->catatan_proposal . "','" . $row->tgl_proposal . "')\"> Belum</a>";
@@ -125,7 +125,7 @@
                             echo "<h6>"  . $row->catatan_presentasi . "</h6> ";
                           }
                           ?>
-                          <h6><a href="<?php echo base_url('assets/berkas/sidang/' . $row->presentasi); ?>" download><i class="far fa-file-powerpoint"></i></a></h6>
+                          <h6><a href="<?php echo base_url('assets/berkas/seminar/' . $row->presentasi); ?>" download><i class="far fa-file-powerpoint"></i></a></h6>
                         </td>
                       </tr>
                     <?php } ?>
@@ -166,7 +166,7 @@
             <div class="form-group row">
               <label for="persetujuan" class="col-sm-3 col-form-label">Judul TA</label>
               <div class="col-sm-9">
-                <input type="text" class="form-control" id="judul" name="judul" readonly>
+                <textarea type="text" class="form-control" id="judul" name="judul" readonly></textarea>
               </div>
             </div>
             <div class="form-group row">
@@ -188,12 +188,12 @@
             <div class="form-group row">
               <label for="persetujuan" class="col-sm-3 col-form-label">Tanggal Verifikasi</label>
               <div class="col-sm-9">
-                <input type="date" name="tgl_beritaacara" id="tgl_beritaacara" class="form-control">
+                <input class="form-control" type="date" name="tgl_beritaacara" placeholder="Tanggal" id="tgl_beritaacara" value="<?= date('d - m - Y') ?>" class="form-control" />
               </div>
             </div>
-          </div>
-          <div class="card-footer">
-            <button type="submit" name="submit" class="btn btn-primary pull-right">Simpan</button>
+            <div class="card-footer">
+              <button type="submit" name="submit" class="btn btn-primary" style="float: right;">Simpan</button>
+            </div>
           </div>
         </form>
       </div>
@@ -226,7 +226,7 @@
             <div class="form-group row">
               <label for="persetujuan" class="col-sm-3 col-form-label">Judul TA</label>
               <div class="col-sm-9">
-                <input type="text" class="form-control" id="judul2" name="judul" readonly>
+                <textarea type="text" class="form-control" id="judul2" name="judul" readonly></textarea>
               </div>
             </div>
             <div class="form-group row">
@@ -251,9 +251,9 @@
                 <input type="date" name="tgl_persetujuan" id="tgl_persetujuan" class="form-control">
               </div>
             </div>
-          </div>
-          <div class="card-footer">
-            <button type="submit" name="submit" class="btn btn-primary pull-right">Simpan</button>
+            <div class="card-footer">
+              <button type="submit" name="submit" class="btn btn-primary" style="float: right;">Simpan</button>
+            </div>
           </div>
         </form>
       </div>
@@ -286,7 +286,7 @@
             <div class="form-group row">
               <label for="persetujuan" class="col-sm-3 col-form-label">Judul TA</label>
               <div class="col-sm-9">
-                <input type="text" class="form-control" id="judul3" name="judul" readonly>
+                <textarea type="text" class="form-control" id="judul3" name="judul" readonly></textarea>
               </div>
             </div>
             <div class="form-group row">
@@ -311,9 +311,9 @@
                 <input type="date" name="tgl_proposal" id="tgl_proposal" class="form-control">
               </div>
             </div>
-          </div>
-          <div class="card-footer">
-            <button type="submit" name="submit" class="btn btn-primary pull-right">Simpan</button>
+            <div class="card-footer">
+              <button type="submit" name="submit" class="btn btn-primary" style="float: right;">Simpan</button>
+            </div>
           </div>
         </form>
       </div>
@@ -346,7 +346,7 @@
             <div class="form-group row">
               <label for="persetujuan" class="col-sm-3 col-form-label">Judul TA</label>
               <div class="col-sm-9">
-                <input type="text" class="form-control" id="judul4" name="judul" readonly>
+                <textarea type="text" class="form-control" id="judul4" name="judul" readonly></textarea>
               </div>
             </div>
             <div class="form-group row">
@@ -371,9 +371,9 @@
                 <input type="date" name="tgl_monitoring" id="tgl_monitoring" class="form-control">
               </div>
             </div>
-          </div>
-          <div class="card-footer">
-            <button type="submit" name="submit" class="btn btn-primary pull-right">Simpan</button>
+            <div class="card-footer">
+              <button type="submit" name="submit" class="btn btn-primary" style="float: right;">Simpan</button>
+            </div>
           </div>
         </form>
       </div>
@@ -406,7 +406,7 @@
             <div class="form-group row">
               <label for="persetujuan" class="col-sm-3 col-form-label">Judul TA</label>
               <div class="col-sm-9">
-                <input type="text" class="form-control" id="judul5" name="judul" readonly>
+                <textarea type="text" class="form-control" id="judul5" name="judul" readonly></textarea>
               </div>
             </div>
             <div class="form-group row">
@@ -431,9 +431,9 @@
                 <input type="date" id="tgl_presentasi" nama="tgl_presentasi" class="form-control">
               </div>
             </div>
-          </div>
-          <div class="card-footer">
-            <button type="submit" name="submit" class="btn btn-primary pull-right">Simpan</button>
+            <div class="card-footer">
+              <button type="submit" name="submit" class="btn btn-primary" style="float: right;">Simpan</button>
+            </div>
           </div>
         </form>
       </div>
@@ -441,6 +441,15 @@
   </div>
 
   <script type="text/javascript">
+    var date = new Date();
+    var day = date.getDate();
+    var month = date.getMonth() + 1;
+    var year = date.getFullYear();
+    if (month < 10) month = "0" + month;
+    if (day < 10) day = "0" + day;
+    var today = year + "-" + month + "-" + day;
+
+
     function SetInput(id_seminar_proposal, nim, nama, judul, st_beritaacara, catatan_beritaacara, tgl_beritaacara) {
       document.getElementById('id_seminar_proposal').value = id_seminar_proposal;
       document.getElementById('nim').value = nim;
@@ -448,7 +457,7 @@
       document.getElementById('judul').value = judul;
       document.getElementById('st_beritaacara').value = st_beritaacara;
       document.getElementById('catatan_beritaacara').value = catatan_beritaacara;
-      document.getElementById('tgl_beritaacara').value = tgl_beritaacara;
+      document.getElementById('tgl_beritaacara').value = today;
     }
 
     function SetInput2(id_seminar_proposal, nim, nama, judul, st_persetujuan, catatan_persetujuan, tgl_persetujuan) {
@@ -458,7 +467,7 @@
       document.getElementById('judul2').value = judul;
       document.getElementById('st_persetujuan').value = st_persetujuan;
       document.getElementById('catatan_persetujuan').value = catatan_persetujuan;
-      document.getElementById('tgl_persetujuan').value = tgl_persetujuan;
+      document.getElementById('tgl_persetujuan').value = today;
     }
 
     function SetInput3(id_seminar_proposal, nim, nama, judul, st_proposal, catatan_proposal, tgl_proposal) {
@@ -468,7 +477,7 @@
       document.getElementById('judul3').value = judul;
       document.getElementById('st_proposal').value = st_proposal;
       document.getElementById('catatan_proposal').value = catatan_proposal;
-      document.getElementById('tgl_proposal').value = tgl_proposal;
+      document.getElementById('tgl_proposal').value = today;
     }
 
     function SetInput4(id_seminar_proposal, nim, nama, judul, st_monitoring, catatan_monitoring, tgl_monitoring) {
@@ -478,7 +487,7 @@
       document.getElementById('judul4').value = judul;
       document.getElementById('st_monitoring').value = st_monitoring;
       document.getElementById('catatan_monitoring').value = catatan_monitoring;
-      document.getElementById('tgl_monitoring').value = tgl_monitoring;
+      document.getElementById('tgl_monitoring').value = today;
     }
 
     function SetInput5(id_seminar_proposal, nim, nama, judul, st_presentasi, catatan_presentasi, tgl_presentasi) {
@@ -488,7 +497,7 @@
       document.getElementById('judul5').value = judul;
       document.getElementById('st_presentasi').value = st_presentasi;
       document.getElementById('catatan_presentasi').value = catatan_presentasi;
-      document.getElementById('tgl_presentasi').value = tgl_presentasi;
+      document.getElementById('tgl_presentasi').value = today;
     }
   </script>
   <script>
@@ -537,30 +546,30 @@
       <div class="container-fluid">
         <div class="row">
           <div class="col-12">
-            <div class="card">
-              <div class="card-header">
-                <h3 class="card-title">Data Berkas Seminar Proposal</h3>
-              </div>
-              <div class="card-body">
-                <div id="flash" data-flash="<?= $this->session->flashdata('pesan'); ?>">
-                  <div id="gagal" data-flash="<?= $this->session->flashdata('gagal'); ?>">
-                  </div>
-                  <?php
-                  $cek = $this->db->get_where('persetujuan', array('nim' => $this->session->userdata('email'))) ?>
-                  <?php if ($cek->num_rows() < 2) { ?>
-                    <div class="row">
-                      <div class="col-12">
-                        <div class="card card-danger">
-                          <div class="card-header">
-                            <h3 class="card-title"><i class="fas fa-exclamation-triangle"></i> Pemberitahuan</h3>
-                          </div>
-                          <div class="card-body">
-                            Proposal Anda belum di Setujui, silahkan hubungi dosen pembimbing
-                          </div>
-                        </div>
-                      </div>
+            <?php
+            $cek = $this->db->get_where('persetujuan', array('nim' => $this->session->userdata('email'))) ?>
+            <?php if ($cek->num_rows() < 2) { ?>
+              <div class="row">
+                <div class="col-12">
+                  <div class="card card-danger">
+                    <div class="card-header">
+                      <h3 class="card-title"><i class="fas fa-exclamation-triangle"></i> Pemberitahuan</h3>
                     </div>
-                  <?php } else { ?>
+                    <div class="card-body">
+                      Anda belum berhak melakukan registrasi seminar proposal
+                    </div>
+                  </div>
+                </div>
+              </div>
+            <?php } else { ?>
+              <div class="card">
+                <div class="card-header">
+                  <h3 class="card-title">Data Berkas Seminar Proposal</h3>
+                </div>
+                <div class="card-body">
+                  <div id="flash" data-flash="<?= $this->session->flashdata('pesan'); ?>">
+                    <div id="gagal" data-flash="<?= $this->session->flashdata('gagal'); ?>">
+                    </div>
                     <form action="" method="post" class="form-horizontal" role="form">
                       <table id="example1" class="table table-bordered table-striped">
                         <thead>
@@ -729,12 +738,10 @@
                         </tbody>
                       </table>
                     </form>
-
-
                   <?php } ?>
+                  </div>
                 </div>
               </div>
-            </div>
           </div>
         </div>
     </section>

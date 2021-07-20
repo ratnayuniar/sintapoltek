@@ -108,7 +108,7 @@
                 <font size="4,5" face="Times New Roman" color="black">KEMENTERIAN PENDIDIKAN DAN KEBUDAYAAN</font>
                 <p class="spasi">
                     <font size="4"><b>POLITEKNIK NEGERI MADIUN</b><br></font>
-                    <font size="4"><b>JURUSAN TEKNIK</b><br></font>
+                    <font size="4" style="text-transform: uppercase;"><b>JURUSAN <?= $get_mahasiswa->nama_jurusan; ?></b><br></font>
                     Jalan Serayu Nomor 84 Madiun Kode Pos 63133<br>
                     Telepon +62 351 452970 Faksimile +62 351 492960<br>
                     www.pnm.ac.id

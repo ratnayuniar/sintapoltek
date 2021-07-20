@@ -60,6 +60,15 @@ class M_nilai_sidang extends CI_Model
 		return $this->db->get('nilai_sidang');
 	}
 
+	function tampilRatadanNilai()
+	{
+		$this->db->select('*');
+		$this->db->from('nilai_sidang');
+		// $this->db->join('mahasiswa', 'mahasiswa.nim=user.nim');
+		$this->db->where(array('id_dosen' => $this->session->userdata('id_dosen')));
+		return $this->db->get()->row();
+	}
+
 	function checkDuplicate()
 	{
 		// SELECT *, COUNT(*) AS jumlah

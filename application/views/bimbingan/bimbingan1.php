@@ -220,7 +220,7 @@
                                                         <?php if ($row->file == null) {
                                                             echo " ";
                                                         } else {
-                                                            echo '<a href="' . base_url('assets/berkas/bimbingan/' . $row->file) . '" download><i class="far fa-file-pdf"></i></a> ';
+                                                            echo '<a href="' . base_url('assets/berkas/bimbingan/' . $row->file) . '" target="_blank"><i class="far fa-file-pdf"></i></a> ';
                                                         }
                                                         ?>
                                                     </td>
@@ -229,7 +229,7 @@
                                                         <?php if ($row->file_solusi == null) {
                                                             echo " ";
                                                         } else {
-                                                            echo '<a href="' . base_url('assets/berkas/bimbingan/' . $row->file_solusi) . '" download><i class="far fa-file-pdf"></i></a> ';
+                                                            echo '<a href="' . base_url('assets/berkas/bimbingan/' . $row->file_solusi) . '" target="_blank"><i class="far fa-file-pdf"></i></a> ';
                                                         }
                                                         ?>
                                                     </td>

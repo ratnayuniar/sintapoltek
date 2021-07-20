@@ -103,8 +103,8 @@
                       <th>No</th>
                       <th>Tanggal</th>
                       <th>Masalah</th>
-                      <th>Solusi</th>
                       <th>File</th>
+                      <th>Solusi</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -115,6 +115,14 @@
                         <td><?= date('d-m-Y', strtotime($row['tanggal'])); ?></td>
                         <td><?= $row['masalah']; ?></td>
                         <td>
+                          <?php if ($row['file'] == "") {
+                            echo " ";
+                          } else {
+                            echo '<a href="' . base_url('assets/berkas/bimbingan/' . $row['file']) . '" target="_blank"><i class="far fa-file-pdf"></i></a> ';
+                          }
+                          ?>
+                        </td>
+                        <td>
                           <?php if ($row['solusi'] == "") {
                             echo " <a href ='#' class ='btn btn-sm btn-info' data-toggle='modal' data-target='#modal_solusi' onClick=\"SetInput('" . $row['id_bimbingan'] . "','" . $row['nim'] . "')\"> Berikan Solusi</a>";
                           ?>
@@ -122,7 +130,6 @@
                             echo $row['solusi'];
                           } ?>
                         </td>
-                        <td><?= $row['file']; ?></td>
                       </tr>
                     <?php endforeach; ?>
                   </tbody>
@@ -173,9 +180,8 @@
           </div>
         </div>
       </div>
-      <div class="modal-footer justify-content-between">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary">Simpan</button>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-primary" style="float: right;">Simpan</button>
         </form>
       </div>
     </div>

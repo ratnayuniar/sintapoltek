@@ -20,7 +20,7 @@ class Proposal extends CI_Controller
         $data['query'] = $this->m_proposal->tampil_data();
         $data['proposal_user'] = $this->m_proposal->proposal_user();
 
-        $data['ambilBerkas'] = $this->db->get_where('proposal', array('nim' => $this->session->userdata('email')))->row_array();
+        $data['ambilBerkas'] = $this->db->order_by('id_proposal', 'desc')->get_where('proposal', array('nim' => $this->session->userdata('email')))->row_array();
         $data['title'] = 'SINTA PNM';
 
         $this->load->view('templates/header', $data);
@@ -157,19 +157,19 @@ class Proposal extends CI_Controller
 
         $this->load->library('upload', $config);
 
-        if (!$this->upload->do_upload('latar_belakang')) {
+        if (!$this->upload->do_upload('file_proposal')) {
             $error = array('error' => $this->upload->display_error());
             redirect('proposal');
         } else {
             $array = array(
-                'latar_belakang' => $this->upload->data('file_name'),
+                'file_proposal' => $this->upload->data('file_name'),
                 'nim' => $this->input->post('nim'),
 
             );
 
             $this->db->set($array);
             $this->db->insert('proposal');
-            // $this->db->set('latar_belakang', $this->upload->data('file_name'))->where('nim', $nim)->insert('proposal');
+            // $this->db->set('file_proposal', $this->upload->data('file_name'))->where('nim', $nim)->insert('proposal');
             redirect('proposal');
         }
     }
@@ -185,17 +185,17 @@ class Proposal extends CI_Controller
 
             $this->load->library('upload', $config);
 
-            if (!empty($_FILES['latar_belakang'])) {
-                $this->upload->do_upload('latar_belakang');
+            if (!empty($_FILES['file_proposal'])) {
+                $this->upload->do_upload('file_proposal');
                 $data1 = $this->upload->data();
-                $latar_belakang = $data1['file_name'];
+                $file_proposal = $data1['file_name'];
             }
 
             if ($this->form_validation->run()) {
                 $nim = $this->input->post('nim', TRUE);
                 $data = [
                     'nim' => $nim,
-                    'latar_belakang' => $latar_belakang,
+                    'file_proposal' => $file_proposal,
                 ];
 
                 $cek = $this->db->like('nim', $data['nim'])->from('proposal')->count_all_results();

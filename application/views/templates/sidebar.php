@@ -285,6 +285,12 @@
                                     <p>Hasil Seminar</p>
                                 </a>
                             </li>
+                            <li class="nav-item">
+                                <a href="<?php echo base_url('revisi_upload_seminar'); ?>" class="nav-link <?= activate_menu('revisi_upload_seminar') ?>">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Revisi</p>
+                                </a>
+                            </li>
                         </ul>
                     </li>
                     <li class="nav-item 
@@ -528,6 +534,14 @@
                                                                                                     } ?>">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Hasil Seminar</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="<?php echo base_url('revisi_upload_seminar'); ?>" class="nav-link <?php if ($this->uri->segment(1) == 'revisi_upload_seminar') {
+                                                                                                                echo "active";
+                                                                                                            } ?>">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Revisi</p>
                                 </a>
                             </li>
                         </ul>

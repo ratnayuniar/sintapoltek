@@ -32,7 +32,7 @@
                                     <div class="col-sm-4">
                                         <input type="hidden" name="id_proposal" id="id_proposal" required>
                                         <input type="hidden" value="<?php echo $this->session->userdata('email'); ?>" class="form-control" id="nim" name="nim" placeholder="NIM">
-                                        <input type="file" name="latar_belakang" id="latar_belakang" required>
+                                        <input type="file" name="file_proposal" id="file_proposal" required>
                                     </div>
                                 </div>
                             </div>
@@ -42,14 +42,14 @@
                         </div>
                         </form>
                     </div>
-                    <?php if ($ambilBerkas['latar_belakang']  != "") { ?>
+                    <?php if ($ambilBerkas['file_proposal']  != "") { ?>
                         <div class="col-8">
                             <div class="card card-success">
                                 <div class="card-header">
                                     <h3 class="card-title"><i class="fas fa-check-double"></i> Preview Berkas</h3>
                                 </div>
                                 <div class="card-body">
-                                    <iframe type="application/pdf" src="<?= base_url('') ?>assets/berkas/seminar/<?= $ambilBerkas['latar_belakang']; ?>" width="100%" height="600"></iframe><br>
+                                    <iframe type="application/pdf" src="<?= base_url('') ?>assets/berkas/seminar/<?= $ambilBerkas['file_proposal']; ?>" width="100%" height="600"></iframe><br>
                                 </div>
                             </div>
                         </div>

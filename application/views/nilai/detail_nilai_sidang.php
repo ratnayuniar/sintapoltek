@@ -43,7 +43,6 @@
                                     <?php
                                     $this->db->select('*');
                                     $this->db->from('nilai_sidang');
-                                    // $this->db->join('mahasiswa', 'mahasiswa.nim=user.nim');
                                     $this->db->where(array('id_dosen' => $this->session->userdata('id_dosen')));
                                     $result = $this->db->get()->row();
                                     ?>
@@ -51,60 +50,48 @@
                                     <div class="form-group row">
                                         <label for="inputEmail3" class="col-sm-5 col-form-label">Perumusan</label>
                                         <div class="col-sm-5">
-                                            <input type="number" class="form-control hitung" id="perumusan" name="perumusan" min="0" max="100" value="
-                                            <?php if ($result == "") {
-                                                echo "";
-                                            } else {
-                                                echo $result->perumusan;
-                                            }
-                                            ?>" required>
+                                            <input type="number" class="form-control hitung" id="perumusan" name="perumusan" min="0" max="100" value="<?php if (empty($result->perumusan)) {
+                                                                                                                                                            echo "";
+                                                                                                                                                        } else {
+                                                                                                                                                            echo $result->perumusan;
+                                                                                                                                                        } ?>" required>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label for="inputEmail3" class="col-sm-5 col-form-label">Teori</label>
                                         <div class="col-sm-5">
-                                            <input type="number" class="form-control hitung" id="teori" name="teori" min="0" max="100" value="
-                                            <?php if ($result == "") {
-                                                echo "";
-                                            } else {
-                                                echo $result->teori;
-                                            }
-                                            ?>" required>
+                                            <input type="number" class="form-control hitung" id="teori" name="teori" min="0" max="100" value="<?php if (empty($result->teori)) {
+                                                                                                                                                    echo "";
+                                                                                                                                                } else {
+                                                                                                                                                    echo $result->teori;
+                                                                                                                                                } ?>" required>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label for="inputEmail3" class="col-sm-5 col-form-label">Pemecahan</label>
                                         <div class="col-sm-5">
-                                            <input type="number" class="form-control hitung" id="pemecahan" name="pemecahan" min="0" max="100" value="
-                                            <?php if ($result == "") {
-                                                echo "";
-                                            } else {
-                                                echo $result->pemecahan;
-                                            }
-                                            ?>" required>
+                                            <input type="number" class="form-control hitung" id="pemecahan" name="pemecahan" min="0" max="100" value="<?php if (empty($result->pemecahan)) {
+                                                                                                                                                            echo "";
+                                                                                                                                                        } else {
+                                                                                                                                                            echo $result->pemecahan;
+                                                                                                                                                        } ?>" required>
                                         </div>
                                     </div>
                                     <div class=" form-group row">
                                         <label for="inputEmail3" class="col-sm-5 col-form-label">Penulisan</label>
                                         <div class="col-sm-5">
-                                            <input type="number" class="form-control hitung" id="penulisan" name="penulisan" min="0" max="100" value="
-                                                <?php if ($result == "") {
-                                                    echo "";
-                                                } else {
-                                                    echo $result->perumusan;
-                                                }
-                                                ?>" required>
+                                            <input type="number" class="form-control hitung" id="penulisan" name="penulisan" min="0" max="100" value="<?php if (empty($result->penulisan)) {
+                                                                                                                                                            echo "";
+                                                                                                                                                        } else {
+                                                                                                                                                            echo $result->penulisan;
+                                                                                                                                                        } ?>" required>
                                         </div>
                                     </div>
                                     <div class=" form-group row">
                                         <label for="inputEmail3" class="col-sm-5 col-form-label">Daftar Pustaka</label>
                                         <div class="col-sm-5">
-                                            <input type="number" class="form-control hitung" id="pustaka" name="pustaka" min="0" max="100" value="<?php if (empty($result->pustaka)) {
-                                                                                                                                                        echo "";
-                                                                                                                                                    } else {
-                                                                                                                                                        echo $result->pustaka;
-                                                                                                                                                    } ?>" required>
-
+                                            <input type="number" class="form-control hitung" id="pustaka" name="pustaka" min="0" max="100" value="<?php if (empty($result->pustaka)) echo "";
+                                                                                                                                                    else echo $result->pustaka ?>" required>
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -144,8 +131,8 @@
                                     </div>
                                 </div>
                                 <div class="card-footer">
-                                    <button type="submit" onclick="jumlahnilai()" class="btn btn-info">Simpan</button>
-                                    <button type="submit" class="btn btn-default float-right">Batal</button>
+                                    <button type="submit" class="btn btn-default ">Batal</button>
+                                    <button type="submit" onclick="jumlahnilai()" class="btn btn-primary float-right">Simpan</button>
                                 </div>
                             </form>
                         </div>

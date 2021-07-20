@@ -16,7 +16,6 @@
                 </div>
             </div>
         </section>
-
         <section class="content">
             <div class="container-fluid">
                 <div class="row">
@@ -69,6 +68,14 @@
                                                 } else {
                                                     $dosen3_nama = "-";
                                                 }
+                                                $data['dosen3'] = $this->m_penguji->getdosen3($row->penguji3_sempro);
+                                                if ($row->penguji3_sempro == "0") {
+                                                    $dosen3_nama = "-";
+                                                } else if ($row->penguji3_sempro != "") {
+                                                    $dosen3_nama = $data['dosen3']->nama;
+                                                } else {
+                                                    $dosen3_nama = "-";
+                                                }
                                                 echo
                                                 "<tr>
                                                 <td>" . $no . "</td>
@@ -77,7 +84,9 @@
                                                 <td>" . $dosen1_nama . "</td>
                                                 <td>" . $dosen2_nama . "</td>
                                                 <td>" . $dosen3_nama . "</td>
-                                                <td><a href ='#' class ='btn btn-sm btn-primary btn-xs' data-toggle='modal' data-target='#custom-width-modal' onClick=\"SetInput('" . $row->id_master_ta . "','" . $row->nim . "','" . $row->penguji1_sempro . "','" . $row->penguji2_sempro . "','" . $row->penguji3_sempro . "')\"><i class ='fa fa-edit'></i> Edit</a>
+                                                <td>
+                                                
+                                                <a href ='#' class ='btn btn-sm btn-primary btn-xs' data-toggle='modal' data-target='#custom-width-modal' onClick=\"SetInput('" . $row->id_master_ta . "','" . $row->nim . "','" . $row->penguji1_sempro . "','" . $row->penguji2_sempro . "','" . $row->penguji3_sempro . "')\"><i class ='fa fa-edit'></i> Edit</a>
                                                                                                        
                                                 </td>
                                             </tr>";
@@ -130,11 +139,6 @@
                                 </select>
                             </div>
                         </div>
-
-                        <!-- <div class="form-group">
-                            <input type="text" name="penguji1_sempro" id="output" class="form-control" value="" readonly />
-                        </div> -->
-
                         <div class="form-group">
                             <label class="col-md-5 control-label">Dosen penguji 2</label>
                             <div class="col-md-9">
@@ -146,11 +150,6 @@
                                 </select>
                             </div>
                         </div>
-
-                        <!-- <div class="form-group">
-                            <input type="text" name="penguji2_sempro" id="hasil" class="form-control" value="" readonly />
-                        </div> -->
-
                         <div class="form-group">
                             <label class="col-md-5 control-label">Dosen penguji 3</label>
                             <div class="col-md-9">
@@ -162,14 +161,8 @@
                                 </select>
                             </div>
                         </div>
-
-                        <!-- <div class="form-group">
-                            <input type="text" name="penguji3_sempro" id="hasil3" class="form-control" value="" readonly />
-                        </div> -->
-
-                        <div class="modal-footer justify-content-between">
-                            <button type="button" class="btn btn-primary" data-dismiss="modal">Batal</button>
-                            <button type="submit" class="btn btn-default">Simpan</button>
+                        <div class="modal-footer ">
+                            <button type="submit" class="btn btn-primary" style="float: right;">Simpan</button>
                         </div>
 
                     </div>
@@ -261,73 +254,6 @@
             document.getElementById('penguji3_sempro').value = "";
         }
     </script>
-    <!-- USER DOSEN -->
-<?php } else if (($this->session->userdata('level') == 3) ||  ($this->session->userdata('level') == 4)) { ?>
-    <div class="content-wrapper">
-        <section class="content-header">
-            <div class="container-fluid">
-                <div class="row mb-2">
-                    <div class="col-sm-6">
-                        <h1>Data Penguji</h1>
-                    </div>
-                    <div class="col-sm-6">
-                        <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="<?php echo base_url('Beranda'); ?>">Beranda</a></li>
-                            <li class="breadcrumb-item active">Data Penguji</li>
-                        </ol>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="content">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="card">
-                            <div class="card-header">
-                                <h3 class="card-title">Data Penguji</h3>
-                            </div>
-                            <div class="card-body">
-                                <table id="example1" class="table table-bordered table-striped">
-                                    <thead>
-                                        <tr>
-                                            <th>No</th>
-                                            <th>Nama Mahasiswa</th>
-                                            <th>Dosen Penguji 1</th>
-                                            <th>Dosen Penguji 2</th>
-                                            <th>Dosen Penguji 3</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php
-                                        $no = 1;
-                                        foreach ($query3->result() as $row) {
-                                            $data['user'] = $this->m_penguji->getmahasiswabyid($row->nim);
-                                            $data['dosen1'] = $this->m_penguji->getdosen1($row->penguji1_sempro);
-                                            $data['dosen2'] = $this->m_penguji->getdosen2($row->penguji2_sempro);
-                                            $data['dosen3'] = $this->m_penguji->getdosen2($row->penguji3_sempro);
-                                            echo
-                                            "<tr>
-											<td>" . $no . "</td>
-                                        	<td>" . $data['user']->nama   . "</td>
-											<td>" . $data['dosen1']->nama . "</td>
-											<td>" . $data['dosen2']->nama . "</td>
-											<td>" . $data['dosen3']->nama . "</td>
-																				    </tr>";
-                                            $no++;
-                                        }
-                                        ?>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </div>
-
 <?php } else { ?>
     <!-- USER MAHASISWA -->
     <div class="content-wrapper">
@@ -351,46 +277,66 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-12">
-                        <div class="card">
-                            <div class="card-header">
-                                <h3 class="card-title">Data Penguji dan Jadwal Seminar</h3>
-                            </div>
-                            <div class="card-body">
-                                <table id="example1" class="table table-bordered table-striped">
-                                    <thead>
-                                        <tr>
-                                            <th>No</th>
-                                            <th>Jadwal </th>
-                                            <th>Dosen Penguji 1</th>
-                                            <th>Dosen Penguji 2</th>
-                                            <th>Dosen Penguji 3</th>
+                        <?php $cek = $this->db->get_where('master_ta', array('nim' => $this->session->userdata('email')))->row_array(); ?>
+                        <?php if (isset($cek['jadwal_seminar']) != NULL && $cek['jam'] != NULL && $cek['ruang_seminar'] != NULL) { ?>
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3 class="card-title">Data Penguji dan Jadwal Seminar</h3>
+                                </div>
+                                <div class="card-body">
+                                    <table id="example1" class="table table-bordered table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>No</th>
+                                                <th>Ruang</th>
+                                                <th>Jadwal</th>
+                                                <th>Waktu</th>
+                                                <th>Dosen Penguji 1</th>
+                                                <th>Dosen Penguji 2</th>
+                                                <th>Dosen Penguji 3</th>
 
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php
-                                        $no = 1;
-                                        foreach ($query2->result() as $row) {
-                                            $waktu = explode(" ", $row->jadwal_seminar);
-                                            $data['user'] = $this->m_penguji->getmahasiswabyid($row->nim);
-                                            $data['dosen1'] = $this->m_penguji->getdosen1($row->penguji1_sempro);
-                                            $data['dosen2'] = $this->m_penguji->getdosen2($row->penguji2_sempro);
-                                            $data['dosen3'] = $this->m_penguji->getdosen3($row->penguji3_sempro);
-                                            echo
-                                            "<tr>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php
+                                            $no = 1;
+                                            foreach ($query2->result() as $row) {
+                                                $waktu = explode(" ", $row->jadwal_seminar);
+                                                $data['user'] = $this->m_penguji->getmahasiswabyid($row->nim);
+                                                $data['dosen1'] = $this->m_penguji->getdosen1($row->penguji1_sempro);
+                                                $data['dosen2'] = $this->m_penguji->getdosen2($row->penguji2_sempro);
+                                                $data['dosen3'] = $this->m_penguji->getdosen3($row->penguji3_sempro);
+                                                echo
+                                                "<tr>
 											<td>" . $no . "</td>
-                                        	<td>" . longdate_indo($waktu[0]) . " " . $waktu[1] . "</td>
+                                            <td>" . $row->ruang_seminar . "</td>
+                                        	<td>" . longdate_indo($waktu[0]) . "</td>
+                                            <td>" . $row->jam . "</td>
 											<td>" . $data['dosen1']->nama . "</td>
 											<td>" . $data['dosen2']->nama . "</td>
 											<td>" . $data['dosen3']->nama . "</td>									
 											</tr>";
-                                            $no++;
-                                        }
-                                        ?>
-                                    </tbody>
-                                </table>
+                                                $no++;
+                                            }
+                                            ?>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
-                        </div>
+                        <?php } else { ?>
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="card card-danger">
+                                        <div class="card-header">
+                                            <h3 class="card-title"><i class="fas fa-exclamation-triangle"></i> Pemberitahuan</h3>
+                                        </div>
+                                        <div class="card-body">
+                                            Jadwal seminar belum ditentukan
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php } ?>
                     </div>
                 </div>
             </div>

@@ -133,10 +133,8 @@
             document.getElementById('revisi_seminar').value = revisi_seminar;
         }
     </script>
-
     <!-- User Dosen -->
 <?php } else if (($this->session->userdata('level') == 3) ||  ($this->session->userdata('level') == 4)) { ?>
-
     <div class="content-wrapper">
         <section class="content-header">
             <div class="container-fluid">
@@ -193,7 +191,7 @@
 											<td>" . $data['dosen2']->nama . "</td>
 											<td>" . $data['dosen3']->nama . "</td>
 											<td>
-                                            <a href='" . base_url('revisi_seminar/detail_revisi_seminar2?id=' . $row->nim) . "' class='on-default edit-row btn btn-primary btn-sm' ><i class='fa fa-search'></i> Input Revisi</a>
+                                            <a href='" . base_url('revisi_seminar/detail_revisi_seminar2?id=' . $row->nim) . "' class='on-default edit-row btn btn-primary btn-sm' >Tambah Revisi</a>
 											</td>
 									    </tr>";
                                             $no++;
@@ -232,45 +230,58 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-12">
-                        <div class="card">
-                            <div class="card-header">
-                                <h3 class="card-title">Hasil Seminar :
-                                    <?php
-                                    foreach ($statusseminar->result() as $row) { ?>
-                                        <?= $row->status_seminar ?>
-                                    <?php } ?>
-                                </h3>
-                            </div>
-                            <div class="card-body">
-                                <table id="example1" class="table table-bordered table-striped">
-                                    <thead>
-                                        <tr>
-                                            <th>No</th>
-                                            <th>Dosen Penguji</th>
-                                            <th>Revisi</th>
-                                            <th>Download Revisi</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
+                        <?php $cek = $this->db->get_where('revisi', array('nim' => $this->session->userdata('email')))->row_array(); ?>
+                        <?php if (isset($cek['revisi']) != NULL && $cek['file_revisi'] != NULL && $cek['status'] != NULL) { ?>
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3 class="card-title">Hasil Seminar :
                                         <?php
-                                        $no = 1;
-                                        foreach ($query2->result() as $row) { ?>
+                                        foreach ($statusseminar->result() as $row) { ?>
+                                            <?= $row->status_seminar ?>
+                                        <?php } ?>
+                                    </h3>
+                                </div>
+                                <div class="card-body">
+                                    <table id="example1" class="table table-bordered table-striped">
+                                        <thead>
                                             <tr>
-                                                <td><?= $no++ ?></td>
-                                                <td><?= $row->nama_dosen ?></td>
-                                                <td><?= $row->revisi ?></td>
-
-                                                <td><a href="<?php echo base_url('assets/berkas/seminar/' . $row->file); ?>" download><i class="far fa-file-pdf"></i></a></td>
-                                                </td>
-                                            <?php } ?>
+                                                <th>No</th>
+                                                <th>Dosen Penguji</th>
+                                                <th>Revisi</th>
+                                                <th>Download Revisi</th>
                                             </tr>
-
-                                            </tr>
-
-                                    </tbody>
-                                </table>
+                                        </thead>
+                                        <tbody>
+                                            <?php
+                                            $no = 1;
+                                            foreach ($query2->result() as $row) { ?>
+                                                <tr>
+                                                    <td><?= $no++ ?></td>
+                                                    <td><?= $row->nama_dosen ?></td>
+                                                    <td><?= $row->revisi ?></td>
+                                                    <td><a href="<?php echo base_url('assets/berkas/seminar/' . $row->file); ?>" download><i class="far fa-file-pdf"></i></a></td>
+                                                    </td>
+                                                <?php } ?>
+                                                </tr>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
-                        </div>
+                        <?php } else { ?>
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="card card-danger">
+                                        <div class="card-header">
+                                            <h3 class="card-title"><i class="fas fa-exclamation-triangle"></i> Pemberitahuan</h3>
+                                        </div>
+                                        <div class="card-body">
+                                            Hasil revisi seminar proposal belum tersedia
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php } ?>
                     </div>
                 </div>
             </div>

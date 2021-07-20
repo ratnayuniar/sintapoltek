@@ -15,7 +15,6 @@
                 </div>
             </div>
         </section>
-
         <section class="content">
             <div class="container-fluid">
                 <?php if ($cekRevisi->num_rows() < 3) { ?>

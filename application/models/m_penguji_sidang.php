@@ -11,11 +11,13 @@ class M_penguji_sidang extends CI_Model
         return $query;
     }
 
+    // edit dijoin dengan nilai_sidang
     function bimbingan_dosen()
     {
 
         $this->db->select('*');
         $this->db->from('master_ta');
+        $this->db->join('nilai_sidang', 'master_ta.penguji1_sidang = nilai_sidang.id_dosen', 'left');
         $this->db->join('dosen', 'dosen.id_dosen=master_ta.penguji1_sidang');
         $this->db->where('master_ta.penguji1_sidang', $this->session->userdata('id_dosen'));
         $this->db->or_where('master_ta.penguji2_sidang', $this->session->userdata('id_dosen'));

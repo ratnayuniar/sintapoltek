@@ -50,11 +50,12 @@ class Bimbingan_ta extends CI_Controller
     public function dospem1_simpanbimbingan()
     {
         $nim = $this->input->post('nim');
-        $filename = "bks_bimbingan-" . $nim . "-";
+        $filename =  'bks-bimbingan' . '-' . substr(md5(rand()), 0, 10);
 
         $config['upload_path'] = './assets/berkas/bimbingan/';
-        $config['allowed_types'] = 'pdf';
+        $config['allowed_types'] = 'pdf|doc|docx';
         $config['max_size']  = 5000;
+        $config['file_name']  = $filename;
 
         $this->load->library('upload', $config);
 
@@ -79,7 +80,7 @@ class Bimbingan_ta extends CI_Controller
                 'status_dosen' => 1,
                 'jenis' => "ta",
                 // nama file digabung dengan properti mahasiswa, bisa dicek di atas
-                'file' => $filename . $this->upload->data('file_name')
+                'file' => $filename
             ];
         }
         // print_r($data);
@@ -98,6 +99,7 @@ class Bimbingan_ta extends CI_Controller
         $data['bimbingan_user_ta'] = $this->m_bimbingan2->bimbingan_user_ta();
         $data['bimbingan_user_dosen'] = $this->m_bimbingan2->bimbingan_user_dosen();
         $data['query2'] = $this->m_pembimbing->bimbingan_mhs();
+        $data['hp'] = $this->m_pembimbing->hp();
         $data['query3'] = $this->m_pembimbing->bimbingan_dosen1();
         $data['mahasiswa'] = $this->m_mahasiswa->getmahasiswa();
         $data['dosen'] = $this->m_mahasiswa->getdosen();
@@ -113,52 +115,45 @@ class Bimbingan_ta extends CI_Controller
 
     public function dospem2_simpanbimbingan()
     {
-        if (isset($_POST['submit'])) {
-            $this->form_validation->set_rules('nim', 'NIM', 'required');
-            $this->form_validation->set_rules('id_dosen', 'id_dosen', 'required');
-            $this->form_validation->set_rules('masalah', 'masalah', 'required');
-            $this->form_validation->set_rules('tanggal', 'tanggal', 'required');
-            $config['upload_path'] = './assets/berkas/bimbingan/';
-            $config['allowed_types'] = 'pdf';
-            $config['max_size']  = 2048;
-            $config['file_name'] = 'bks_bimbingan-' . date('ymd');
+        $nim = $this->input->post('nim');
+        $filename =  'bks-bimbingan' . '-' . substr(md5(rand()), 0, 10);
 
-            $this->load->library('upload', $config);
+        $config['upload_path'] = './assets/berkas/bimbingan/';
+        $config['allowed_types'] = 'pdf|doc|docx';
+        $config['max_size']  = 5000;
+        $config['file_name']  = $filename;
 
-            if (!empty($_FILES['file'])) {
-                $this->upload->do_upload('file');
-                $data1 = $this->upload->data();
-                $file = $data1['file_name'];
-            }
+        $this->load->library('upload', $config);
 
-            if ($this->form_validation->run()) {
-                $nim = $this->input->post('nim', TRUE);
-                $id_dosen = $this->input->post('id_dosen', TRUE);
-                $masalah = $this->input->post('masalah', TRUE);
-                $tanggal = $this->input->post('tanggal', TRUE);
-                $data = [
-                    'nim' => $nim,
-                    'id_dosen' => $id_dosen,
-                    'masalah' => $masalah,
-                    'tanggal' => $tanggal,
-                    'file' => $file,
-                    'status' => 0,
-                    'status_dosen' => 2,
-                    'jenis' => "seminar",
-                ];
-                // print_r($data);
-                // exit();
-                // var_dump($data);
-                $insert = $this->db->insert('bimbingan', $data);
-                if ($insert) {
-                    $this->session->set_flashdata('pesan', 'Data berhasil disimpan');
-                    redirect('bimbingan_proposal/dospem2');
-                }
-            } else {
-                $this->index();
-            }
+        if (!$this->upload->do_upload('file')) {
+            $data = [
+                'nim' => $this->input->post('nim'),
+                'id_dosen' => $this->input->post('id_dosen'),
+                'masalah' => $this->input->post('masalah'),
+                'tanggal' => $this->input->post('tanggal'),
+                'status' => 0,
+                'status_dosen' => 2,
+                'jenis' => "ta",
+            ];
         } else {
-            $this->index();
+            // Jika name="file_dosen di view berisi file, maka update row tabel bimbingan berdasarkan isi array dibawah ini
+            $data = [
+                'nim' => $this->input->post('nim'),
+                'id_dosen' => $this->input->post('id_dosen'),
+                'masalah' => $this->input->post('masalah'),
+                'tanggal' => $this->input->post('tanggal'),
+                'status' => 0,
+                'status_dosen' => 2,
+                'jenis' => "ta",
+                // nama file digabung dengan properti mahasiswa, bisa dicek di atas
+                'file' => $filename
+            ];
+        }
+
+        $insert = $this->db->insert('bimbingan', $data);
+        if ($insert) {
+            $this->session->set_flashdata('pesan', 'Data berhasil disimpan');
+            redirect('bimbingan_ta/dospem2');
         }
     }
 
@@ -190,12 +185,13 @@ class Bimbingan_ta extends CI_Controller
         $data['table_bimbingan'] = $this->m_pembimbing->getBimbinganByNim($nim);
         $data['table_bimbinganTA'] = $this->m_pembimbing->getBimbinganByNimTA($nim);
         $data['info_judul'] = $this->m_pembimbing->getJudulByNim($nim);
+        $data['title'] = 'SINTA PNM';
 
         $data['cekJumlahBimbingan'] = $this->m_pembimbing->cekJumlahBimbinganSeminarDospem1($nim);
 
         $data['cekPersetujuanBimbinganTA'] = $this->m_pembimbing->cekPersetujuanBimbinganTA($nim);
 
-        $this->load->view('templates/header');
+        $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar');
         $this->load->view('bimbingan/detail1TA', $data);
         $this->load->view('templates/footer');
@@ -205,11 +201,12 @@ class Bimbingan_ta extends CI_Controller
     {
         $nim = $this->input->post('nim');
         $id_bimbingan = $this->input->post('id_bimbingan');
-        $filename = "bks_bimbingan-" . $nim . "-";
+        $filename =  'bks-bimbingan' . '-' . substr(md5(rand()), 0, 10);
 
         // config file
         $config['upload_path']          = './assets/berkas/bimbingan/';
         $config['allowed_types']        = 'pdf|docx|doc';
+        $config['file_name']  = $filename;
 
         $this->load->library('upload', $config);
 
@@ -227,7 +224,7 @@ class Bimbingan_ta extends CI_Controller
                 'status' => 1,
                 'status_dosen' => 1,
                 // nama file digabung dengan properti mahasiswa, bisa dicek di atas
-                'file_solusi' => $filename . $this->upload->data('file_name')
+                'file_solusi' => $filename
             ];
         }
 
@@ -259,12 +256,13 @@ class Bimbingan_ta extends CI_Controller
     {
         $data['table_bimbinganTA'] = $this->m_pembimbing->getBimbinganByNim2TA($nim);
         $data['info_judul'] = $this->m_pembimbing->getJudulByNim($nim);
+        $data['title'] = 'SINTA PNM';
 
         $data['cekJumlahBimbingan'] = $this->m_pembimbing->cekJumlahBimbinganTADospem2($nim);
 
         $data['cekPersetujuanBimbinganTA2'] = $this->m_pembimbing->cekPersetujuanBimbinganTA2($nim);
 
-        $this->load->view('templates/header');
+        $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar');
         $this->load->view('bimbingan/detail2TA', $data);
         $this->load->view('templates/footer');
@@ -274,11 +272,12 @@ class Bimbingan_ta extends CI_Controller
     {
         $nim = $this->input->post('nim');
         $id_bimbingan = $this->input->post('id_bimbingan');
-        $filename = "bks_bimbingan-" . $nim . "-";
+        $filename =  'bks-bimbingan' . '-' . substr(md5(rand()), 0, 10);
 
         // config file
         $config['upload_path']          = './assets/berkas/bimbingan/';
         $config['allowed_types']        = 'pdf|docx|doc';
+        $config['file_name']  = $filename;
 
         $this->load->library('upload', $config);
 
@@ -296,7 +295,7 @@ class Bimbingan_ta extends CI_Controller
                 'status' => 1,
                 'status_dosen' => 2,
                 // nama file digabung dengan properti mahasiswa, bisa dicek di atas
-                'file_solusi' => $filename . $this->upload->data('file_name')
+                'file_solusi' => $filename
             ];
         }
 

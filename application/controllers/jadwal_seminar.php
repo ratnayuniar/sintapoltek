@@ -17,7 +17,7 @@ class Jadwal_seminar extends CI_Controller
 	{
 		$data['query'] = $this->m_jadwal_seminar->tampil_data();
 		$data['jadwal_seminar_user'] = $this->m_jadwal_seminar->jadwal_seminar_user();
-		$data['mahasiswa'] = $this->m_mahasiswa->getmahasiswa();
+		$data['mahasiswa'] = $this->m_jadwal_seminar->getmahasiswa();
 		$data['title'] = 'SINTA PNM';
 
 		$this->load->view('templates/header', $data);

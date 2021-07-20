@@ -52,13 +52,14 @@ class Bimbingan_proposal extends CI_Controller
     {
 
         $nim = $this->input->post('nim');
-        $filename = "bks_bimbingan-" . $nim . "" . date('ymd');
+        $filename =  'bks-bimbingan' . '-' . substr(md5(rand()), 0, 10);
 
         $config['upload_path'] = './assets/berkas/bimbingan/';
         $config['allowed_types'] = 'pdf';
         $config['max_size']  = 5000;
         $config['file_name']  = $filename;
-        $config['file_name'] = $filename;
+        // $config['encrypt_name'] = TRUE;
+
 
         $this->load->library('upload', $config);
 
@@ -86,9 +87,7 @@ class Bimbingan_proposal extends CI_Controller
                 'file' => $filename
             ];
         }
-        // print_r($data);
-        // exit();
-        // var_dump($data);
+
         $insert = $this->db->insert('bimbingan', $data);
         if ($insert) {
             $this->session->set_flashdata('pesan', 'Data berhasil disimpan');
@@ -102,6 +101,7 @@ class Bimbingan_proposal extends CI_Controller
         $data['bimbingan_user'] = $this->m_bimbingan2->bimbingan_user();
         $data['bimbingan_user_dosen'] = $this->m_bimbingan2->bimbingan_user_dosen();
         $data['query2'] = $this->m_pembimbing->bimbingan_mhs();
+        $data['hp'] = $this->m_pembimbing->hp();
         $data['query3'] = $this->m_pembimbing->bimbingan_dosen1();
         $data['mahasiswa'] = $this->m_mahasiswa->getmahasiswa();
         $data['dosen'] = $this->m_mahasiswa->getdosen();
@@ -118,7 +118,7 @@ class Bimbingan_proposal extends CI_Controller
     public function dospem2_simpanbimbingan()
     {
         $nim = $this->input->post('nim');
-        $filename = "bks_bimbingan-" . $nim . "" . date('ymd');
+        $filename =  'bks-bimbingan' . '-' . substr(md5(rand()), 0, 10);
 
         $config['upload_path'] = './assets/berkas/bimbingan/';
         $config['allowed_types'] = 'pdf';
@@ -151,9 +151,8 @@ class Bimbingan_proposal extends CI_Controller
                 'file' => $filename
             ];
         }
-        // print_r($data);
-        // exit();
-        // var_dump($data);
+
+
         $insert = $this->db->insert('bimbingan', $data);
         if ($insert) {
             $this->session->set_flashdata('pesan', 'Data berhasil disimpan');
@@ -195,7 +194,7 @@ class Bimbingan_proposal extends CI_Controller
 
         $data['cekPersetujuanBimbingan'] = $this->m_pembimbing->cekPersetujuanBimbingan($nim);
 
-        $this->load->view('templates/header');
+        $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar');
         $this->load->view('bimbingan/detail1', $data);
         $this->load->view('templates/footer');
@@ -205,11 +204,13 @@ class Bimbingan_proposal extends CI_Controller
     {
         $nim = $this->input->post('nim');
         $id_bimbingan = $this->input->post('id_bimbingan');
-        $filename = "bks_bimbingan-" . $nim . "-";
+        $filename =  'bks-bimbingan' . '-' . substr(md5(rand()), 0, 10);
 
         // config file
         $config['upload_path']          = './assets/berkas/bimbingan/';
         $config['allowed_types']        = 'pdf|docx|doc';
+        $config['max_size']  = 5000;
+        $config['file_name'] = $filename;
 
         $this->load->library('upload', $config);
 
@@ -227,7 +228,7 @@ class Bimbingan_proposal extends CI_Controller
                 'status' => 1,
                 'status_dosen' => 1,
                 // nama file digabung dengan properti mahasiswa, bisa dicek di atas
-                'file_solusi' => $filename . $this->upload->data('file_name')
+                'file_solusi' => $filename
             ];
         }
 
@@ -267,7 +268,7 @@ class Bimbingan_proposal extends CI_Controller
 
         $data['cekPersetujuanBimbingan2'] = $this->m_pembimbing->cekPersetujuanBimbingan2($nim);
 
-        $this->load->view('templates/header');
+        $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar');
         $this->load->view('bimbingan/detail2', $data);
         $this->load->view('templates/footer');
@@ -277,11 +278,13 @@ class Bimbingan_proposal extends CI_Controller
     {
         $nim = $this->input->post('nim');
         $id_bimbingan = $this->input->post('id_bimbingan');
-        $filename = "bks_bimbingan-" . $nim . "-";
+        $filename =  'bks-bimbingan' . '-' . substr(md5(rand()), 0, 10);
 
         // config file
         $config['upload_path']          = './assets/berkas/bimbingan/';
         $config['allowed_types']        = 'pdf|docx|doc';
+        $config['max_size']  = 5000;
+        $config['file_name'] = $filename;
 
         $this->load->library('upload', $config);
 
@@ -299,7 +302,7 @@ class Bimbingan_proposal extends CI_Controller
                 'status' => 1,
                 'status_dosen' => 2,
                 // nama file digabung dengan properti mahasiswa, bisa dicek di atas
-                'file_solusi' => $filename . $this->upload->data('file_name')
+                'file_solusi' => $filename
             ];
         }
 

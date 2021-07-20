@@ -44,4 +44,19 @@ class M_revisi_seminar extends CI_Model
     {
         return $this->db->get_where('master_ta', array('nim' => $this->session->userdata('email')));
     }
+
+    function getAllMahasiswaRevisiBydIdDosen()
+    {
+        $dosen_id = $this->session->userdata('id_dosen');
+
+        $query = $this->db->select('revisi.*, mahasiswa.nama, dospen1.nama as dospen1, dospen2.nama as dospen2, dospen3.nama as dospen3, master_ta.nim')
+            ->from('revisi')
+            ->join('mahasiswa', 'mahasiswa.nim = revisi.nim')
+            ->join('master_ta', 'master_ta.nim = revisi.nim')
+            ->join('dosen as dospen1', 'dospen1.id_dosen = master_ta.penguji1_sempro')
+            ->join('dosen as dospen2', 'dospen2.id_dosen = master_ta.penguji2_sempro')
+            ->join('dosen as dospen3', 'dospen3.id_dosen = master_ta.penguji3_sempro')
+            ->where('penguji', $dosen_id)->get()->result_array();
+        return $query;
+    }
 }
