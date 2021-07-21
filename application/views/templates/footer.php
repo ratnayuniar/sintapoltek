@@ -128,6 +128,21 @@
             }
         });
     });
+
+    $('.form-check-input-seminar').on('click', function() {
+        const revisiId = $(this).data('revisi');
+
+        $.ajax({
+            url: "<?= base_url('revisi_upload/approve'); ?>",
+            type: 'post',
+            data: {
+                revisiId: revisiId,
+            },
+            success: function() {
+                document.location.href = "<?= base_url('revisi_upload_seminar'); ?>";
+            }
+        });
+    });
 </script>
 
 </body>

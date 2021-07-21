@@ -103,7 +103,7 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">Data Penguji Mahasiswaaaa</h3>
+                                <h3 class="card-title">Data Penguji Mahasiswa</h3>
                             </div>
                             <div class="card-body">
                                 <table id="example1" class="table table-bordered table-striped">
@@ -134,7 +134,7 @@
                                                     } ?></td>
                                                 <td>
                                                     <div class="form-check form-check-inline">
-                                                        <input type="checkbox" class="form-check-input" name="status" id="inlinecheckbox1" <?= approve_revisi($row['id_revisi']); ?> data-revisi="<?= $row['id_revisi']; ?>">
+                                                        <input type="checkbox" class="form-check-input-seminar" name="status" id="inlinecheckbox1" <?= approve_revisi($row['id_revisi']); ?> data-revisi="<?= $row['id_revisi']; ?>">
                                                         <?php if (approve_revisi($row['id_revisi']) == "checked") { ?>
                                                             <label class="form-check-label" for="inlinecheckbox1"> Batalkan</label>
                                                         <?php } else { ?>

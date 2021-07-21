@@ -50,7 +50,7 @@
 
             <!-- Section Persetujuan -->
 
-            <?php if ($cekJumlahBimbingan > 17) { ?>
+            <?php if ($cekJumlahBimbingan >= 16) { ?>
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="card">

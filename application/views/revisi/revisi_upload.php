@@ -36,52 +36,53 @@
                             <div class="card card-info">
                                 <div class="card-header">
                                     <h3 class="card-title">Upload Revisi</h3>
-                                    <?php echo form_open_multipart('revisi_upload/upload_berkas'); ?>
-                                    <div class="card-body">
-                                        <div class="form-group row">
-                                            <label for="inputEmail3" class="col-sm-4 col-form-label">Upload Revisi</label>
-                                            <div class="col-sm-4">
-                                                <input type="file" name="file_revisi" id="file_revisi" required>
-                                            </div>
+                                </div>
+                                <?php echo form_open_multipart('revisi_upload/upload_berkas'); ?>
+                                <div class="card-body">
+                                    <div class="form-group row">
+                                        <label for="inputEmail3" class="col-sm-4 col-form-label">Upload Revisi</label>
+                                        <div class="col-sm-4">
+                                            <input type="file" name="file_revisi" id="file_revisi" required>
                                         </div>
                                     </div>
-                                    <div class="card-footer">
-                                        <button type="submit" class="btn btn-info">Simpan</button>
+                                </div>
+                                <div class="card-footer">
+                                    <button type="submit" class="btn btn-info">Simpan</button>
+                                </div>
+                                </form>
+                            </div>
+                        </div>
+
+
+                        <?php if ($ambilBerkas['file_revisi']  != "") { ?>
+
+                            <div class="col-8">
+                                <div class="card card-success">
+                                    <div class="card-header">
+                                        <h3 class="card-title"><i class="fas fa-check-double"></i> Preview Berkas</h3>
                                     </div>
-                                    </form>
+                                    <div class="card-body">
+                                        <iframe type="application/pdf" src="<?= base_url('') ?>assets/berkas/sidang/<?= $ambilBerkas['file_revisi']; ?>" width="100%" height="600"></iframe><br>
+                                    </div>
                                 </div>
                             </div>
 
+                        <?php } else { ?>
 
-                            <?php if ($ambilBerkas['file_revisi']  != "") { ?>
-
-                                <div class="col-8">
-                                    <div class="card card-success">
-                                        <div class="card-header">
-                                            <h3 class="card-title"><i class="fas fa-check-double"></i> Preview Berkas</h3>
-                                        </div>
-                                        <div class="card-body">
-                                            <iframe type="application/pdf" src="<?= base_url('') ?>assets/berkas/sidang/<?= $ambilBerkas['file_revisi']; ?>" width="100%" height="600"></iframe><br>
-                                        </div>
+                            <div class="col-8">
+                                <div class="card card-success">
+                                    <div class="card-header">
+                                        <h3 class="card-title"><i class="fas fa-check-double"></i> Preview Berkas</h3>
+                                    </div>
+                                    <div class="card-body">
+                                        Belum ada file yang di upload
                                     </div>
                                 </div>
-
-                            <?php } else { ?>
-
-                                <div class="col-8">
-                                    <div class="card card-success">
-                                        <div class="card-header">
-                                            <h3 class="card-title"><i class="fas fa-check-double"></i> Preview Berkas</h3>
-                                        </div>
-                                        <div class="card-body">
-                                            Belum ada file yang di upload
-                                        </div>
-                                    </div>
-                                </div>
-                        </div>
-                    <?php } ?>
-                <?php } ?>
+                            </div>
                     </div>
+                <?php } ?>
+            <?php } ?>
+            </div>
         </section>
     </div>
 

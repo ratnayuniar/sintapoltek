@@ -26,7 +26,7 @@ class Revisi_upload extends CI_Controller
         $data['title'] = 'SINTA PNM';
 
         // menghitung apakah revisinya sudah mencapai 3 dosen
-        $data['cekRevisi'] = $this->db->get_where('revisi', array('nim' => $this->session->userdata('email'), 'status' => 1));
+        $data['cekRevisi'] = $this->db->get_where('revisi', array('nim' => $this->session->userdata('email'), 'status' => 1, 'jenis' => 'ta'));
 
         // ambil berkas
         $data['ambilBerkas'] = $this->db->get_where('revisi', array('nim' => $this->session->userdata('email')))->row_array();

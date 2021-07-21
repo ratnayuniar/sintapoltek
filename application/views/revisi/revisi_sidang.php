@@ -237,39 +237,73 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-12">
-                        <div class="card">
-                            <div class="card-header">
-                                <h3 class="card-title">Hasil Sidang : </h3>
-                            </div>
-                            <div class="card-body">
-                                <table id="example1" class="table table-bordered table-striped">
-                                    <thead>
-                                        <tr>
-                                            <th>No</th>
-                                            <th>Dosen Penguji</th>
-                                            <th>Revisi</th>
-                                            <th>Download Revisi</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php
-                                        $no = 1;
-                                        foreach ($query2->result() as $row) { ?>
+                        <?php $cek = $this->db->get_where('master_ta', array('nim' => $this->session->userdata('email')))->row_array(); ?>
+                        <?php if (isset($cek['revisi_sidang']) != NULL &&  $cek['status_sidang'] != NULL) { ?>
+                            <div class="card">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="card">
+                                            <div class="card-header">
+                                                <h5 class="m-0">Revisi Mahasiswa</h5>
+                                            </div>
+                                            <div class="card-body">
+                                                <?php
+                                                foreach ($statusseminar->result() as $row) { ?>
+                                                    <div class="form-group row">
+                                                        <label for="nama" class="col-sm-2 col-form-label">Hasil</label>
+                                                        <div class="col-sm-10">
+                                                            <input type="text" class="form-control" id="nama" value="<?= $row->status_sidang ?>" readonly>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label for="nama" class="col-sm-2 col-form-label">File Revisi</label>
+                                                        <div class="col-sm-10">
+                                                            <a href="<?php echo base_url('assets/berkas/sidang/' . $row->revisi_sidang); ?>" target="_blank"><i class="far fa-file-pdf"> Download File Revisi</i></a>
+                                                        </div>
+                                                    </div>
+                                            </div>
+                                        <?php } ?>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <table id="example1" class="table table-bordered table-striped">
+                                        <thead>
                                             <tr>
-                                                <td><?= $no++ ?></td>
-                                                <td><?= $row->penguji ?></td>
-                                                <td><?= $row->revisi ?></td>
-                                                <td><a href="<?php echo base_url('assets/berkas/seminar/' . $row->revisi_seminar); ?>" download><i class="far fa-file-pdf"></i></a></td>
-                                                </td>
-                                            <?php } ?>
+                                                <th>No</th>
+                                                <th>Dosen Penguji</th>
+                                                <th>Revisi</th>
                                             </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php
+                                            $no = 1;
+                                            foreach ($query2->result() as $row) { ?>
+                                                <tr>
+                                                    <td><?= $no++ ?></td>
+                                                    <td><?= $row->nama_dosen ?></td>
+                                                    <td><?= $row->revisi ?></td>
+                                                <?php } ?>
+                                                </tr>
+                                        </tbody>
+                                    </table>
 
-                                            </tr>
-
-                                    </tbody>
-                                </table>
+                                </div>
                             </div>
-                        </div>
+                        <?php } else { ?>
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="card card-danger">
+                                        <div class="card-header">
+                                            <h3 class="card-title"><i class="fas fa-exclamation-triangle"></i> Pemberitahuan</h3>
+                                        </div>
+                                        <div class="card-body">
+                                            Hasil revisi sidang tugas akhir belum tersedia
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php } ?>
                     </div>
                 </div>
             </div>
