@@ -683,214 +683,227 @@
       <div class="container-fluid">
         <div class="row">
           <div class="col-12">
-            <!-- <div style="text-align:right;margin-bottom: 10px ">
-              <a href="#" class="on-default edit-row btn btn-success pull-right" data-toggle="modal" pull="right" data-target="#custom-width-modal" onclick="ResetInput()"><i class="fa fa-plus"></i> Tambah Berkas</a>
-            </div> -->
-            <div class="card">
-              <div class="card-header">
-                <h3 class="card-title">Data Berkas Sidang Tugas Akhir</h3>
-              </div>
-              <div class="card-body">
-                <div id="flash" data-flash="<?= $this->session->flashdata('pesan'); ?>">
-                  <div id="gagal" data-flash="<?= $this->session->flashdata('gagal'); ?>">
-                    <form action="" method="post" class="form-horizontal" role="form">
-                      <table id="example1" class="table table-bordered table-striped">
-                        <thead>
-                          <tr>
-                            <th>No</th>
-                            <th>Persyaratan</th>
-                            <th>Unggah Bukti</th>
-                            <th>Status</th>
-                            <th>Keterangan</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <td>1.</td>
-                            <td>Berita Acara</td>
-                            <td>
-                              <a href="#" class="btn btn-info" data-toggle="modal" pull="right" data-target="#file_ba" onclick="ResetInput()"><i class="fa fa-file"></i> Unggah</a>
-                            </td>
-                            <td>
-                              <?php
-                              if ($bks_sidang == "") {
-                                echo "";
-                              } else {
-                                echo "$bks_sidang->berita_acara";
-                              }
-                              ?>
-                            </td>
-                            <td align="center">
-                              <?php
-                              if ($bks_sidang == "") {
-                                echo "";
-                              } else {
-                                if ($bks_sidang->st_berita_acara == '0') {
-                                  echo '<span class="badge badge-warning">Belum Diverifikasi</span>';
-                                } else if ($bks_sidang->st_berita_acara == '1') {
-                                  echo '<span class="badge badge-info">Kurang Lengkap</span>';
-                                } else if ($bks_sidang->st_berita_acara == '2') {
-                                  echo '<span class="badge badge-success">Lengkap</span>';
-                                }
-                              }
-                              ?>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>2.</td>
-                            <td>Persetujuan</td>
-                            <td>
-                              <a href="#" class="btn btn-info" data-toggle="modal" pull="right" data-target="#file_persetujuan" onclick="ResetInput()"><i class="fa fa-file"></i> Unggah</a>
-                            </td>
-                            <td><?php
-                                if ($bks_sidang == "") {
-                                  echo "";
-                                } else {
-                                  echo "$bks_sidang->persetujuan";
-                                }
-                                ?></td>
-                            <td align="center">
-                              <?php
-                              if ($bks_sidang == "") {
-                                echo "";
-                              } else {
-                                if ($bks_sidang->st_persetujuan == '0') {
-                                  echo '<span class="badge badge-warning">Belum Diverifikasi</span>';
-                                } else if ($bks_sidang->st_persetujuan == '1') {
-                                  echo '<span class="badge badge-info">Kurang Lengkap</span>';
-                                } else if ($bks_sidang->st_persetujuan == '2') {
-                                  echo '<span class="badge badge-success">Lengkap</span>';
-                                }
-                              }
-
-                              ?>
-                            </td>
-                          </tr>
-
-                          <tr>
-                            <td>3.</td>
-                            <td>File TA</td>
-                            <td>
-                              <a href="#" class="btn btn-info" data-toggle="modal" pull="right" data-target="#file_ta" onclick="ResetInput()"><i class="fa fa-file"></i> Unggah</a>
-                            </td>
-                            <td><?php
-                                if ($bks_sidang == "") {
-                                  echo "";
-                                } else {
-                                  echo "$bks_sidang->file_ta";
-                                }
-                                ?></td>
-                            <td align="center">
-                              <?php
-                              if ($bks_sidang == "") {
-                                echo "";
-                              } else {
-                                if ($bks_sidang->st_file_ta == '0') {
-                                  echo '<span class="badge badge-warning">Belum Diverifikasi</span>';
-                                } else if ($bks_sidang->st_file_ta == '1') {
-                                  echo '<span class="badge badge-info">Kurang Lengkap</span>';
-                                } else if ($bks_sidang->st_file_ta == '2') {
-                                  echo '<span class="badge badge-success">Lengkap</span>';
-                                }
-                              }
-                              ?>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>4.</td>
-                            <td>Presentasi</td>
-                            <td>
-                              <a href="#" class="btn btn-info" data-toggle="modal" pull="right" data-target="#file_presentasi" onclick="ResetInput()"><i class="fa fa-file"></i> Unggah</a>
-                            </td>
-                            <td><?php
-                                if ($bks_sidang == "") {
-                                  echo "";
-                                } else {
-                                  echo "$bks_sidang->presentasi";
-                                }
-                                ?></td>
-                            <td align="center">
-                              <?php
-                              if ($bks_sidang == "") {
-                                echo "";
-                              } else {
-                                if ($bks_sidang->st_presentasi == '0') {
-                                  echo '<span class="badge badge-warning">Belum Diverifikasi</span>';
-                                } else if ($bks_sidang->st_presentasi == '1') {
-                                  echo '<span class="badge badge-info">Kurang Lengkap</span>';
-                                } else if ($bks_sidang->st_presentasi == '2') {
-                                  echo '<span class="badge badge-success">Lengkap</span>';
-                                }
-                              }
-                              ?>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>5.</td>
-                            <td>Monitoring</td>
-                            <td>
-                              <a href="#" class="btn btn-info" data-toggle="modal" pull="right" data-target="#file_monitoring" onclick="ResetInput()"><i class="fa fa-file"></i> Unggah</a>
-                            </td>
-                            <td><?php
-                                if ($bks_sidang == "") {
-                                  echo "";
-                                } else {
-                                  echo "$bks_sidang->monitoring";
-                                }
-                                ?></td>
-                            <td align="center">
-                              <?php
-                              if ($bks_sidang == "") {
-                                echo "";
-                              } else {
-                                if ($bks_sidang->st_monitoring == '0') {
-                                  echo '<span class="badge badge-warning">Belum Diverifikasi</span>';
-                                } else if ($bks_sidang->st_monitoring == '1') {
-                                  echo '<span class="badge badge-info">Kurang Lengkap</span>';
-                                } else if ($bks_sidang->st_monitoring == '2') {
-                                  echo '<span class="badge badge-success">Lengkap</span>';
-                                }
-                              }
-                              ?>
-
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>6.</td>
-                            <td>PKKMB</td>
-                            <td>
-                              <a href="#" class="btn btn-info" data-toggle="modal" pull="right" data-target="#file_pkkmb" onclick="ResetInput()"><i class="fa fa-file"></i> Unggah</a>
-                            </td>
-                            <td><?php
-                                if ($bks_sidang == "") {
-                                  echo "";
-                                } else {
-                                  echo "$bks_sidang->pkkmb";
-                                }
-                                ?></td>
-                            <td align="center">
-                              <?php
-                              if ($bks_sidang == "") {
-                                echo "";
-                              } else {
-                                if ($bks_sidang->st_pkkmb == '0') {
-                                  echo '<span class="badge badge-warning">Belum Diverifikasi</span>';
-                                } else if ($bks_sidang->st_pkkmb == '1') {
-                                  echo '<span class="badge badge-info">Kurang Lengkap</span>';
-                                } else  if ($bks_sidang->st_pkkmb == '2') {
-                                  echo '<span class="badge badge-success">Lengkap</span>';
-                                }
-                              }
-                              ?>
-                            </td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </form>
+            <?php $cek = $this->db->get_where('persetujuan', array('nim' => $this->session->userdata('email'), 'jenis', 'ta')) ?>
+            <?php if ($cek->num_rows() < 2) { ?>
+              <div class="row">
+                <div class="col-12">
+                  <div class="card card-danger">
+                    <div class="card-header">
+                      <h3 class="card-title"><i class="fas fa-exclamation-triangle"></i> Pemberitahuan</h3>
+                    </div>
+                    <div class="card-body">
+                      Anda belum berhak melakukan registrasi seminar proposal
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
+            <?php } else { ?>
+              <div class="card">
+                <div class="card-header">
+                  <h3 class="card-title">Data Berkas Sidang Tugas Akhir</h3>
+                </div>
+                <div class="card-body">
+                  <div id="flash" data-flash="<?= $this->session->flashdata('pesan'); ?>">
+                    <div id="gagal" data-flash="<?= $this->session->flashdata('gagal'); ?>">
+                      <form action="" method="post" class="form-horizontal" role="form">
+                        <table id="example1" class="table table-bordered table-striped">
+                          <thead>
+                            <tr>
+                              <th>No</th>
+                              <th>Persyaratan</th>
+                              <th>Unggah Bukti</th>
+                              <th>Status</th>
+                              <th>Keterangan</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td>1.</td>
+                              <td>Berita Acara</td>
+                              <td>
+                                <a href="#" class="btn btn-info" data-toggle="modal" pull="right" data-target="#file_ba" onclick="ResetInput()"><i class="fa fa-file"></i> Unggah</a>
+                              </td>
+                              <td>
+                                <?php
+                                if ($bks_sidang == "") {
+                                  echo "";
+                                } else {
+                                  echo "$bks_sidang->berita_acara";
+                                }
+                                ?>
+                              </td>
+                              <td align="center">
+                                <?php
+                                if ($bks_sidang == "") {
+                                  echo "";
+                                } else {
+                                  if ($bks_sidang->st_berita_acara == '0') {
+                                    echo '<span class="badge badge-warning">Belum Diverifikasi</span>';
+                                  } else if ($bks_sidang->st_berita_acara == '1') {
+                                    echo '<span class="badge badge-info">Kurang Lengkap</span>';
+                                  } else if ($bks_sidang->st_berita_acara == '2') {
+                                    echo '<span class="badge badge-success">Lengkap</span>';
+                                  }
+                                }
+                                ?>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>2.</td>
+                              <td>Persetujuan</td>
+                              <td>
+                                <a href="#" class="btn btn-info" data-toggle="modal" pull="right" data-target="#file_persetujuan" onclick="ResetInput()"><i class="fa fa-file"></i> Unggah</a>
+                              </td>
+                              <td><?php
+                                  if ($bks_sidang == "") {
+                                    echo "";
+                                  } else {
+                                    echo "$bks_sidang->persetujuan";
+                                  }
+                                  ?></td>
+                              <td align="center">
+                                <?php
+                                if ($bks_sidang == "") {
+                                  echo "";
+                                } else {
+                                  if ($bks_sidang->st_persetujuan == '0') {
+                                    echo '<span class="badge badge-warning">Belum Diverifikasi</span>';
+                                  } else if ($bks_sidang->st_persetujuan == '1') {
+                                    echo '<span class="badge badge-info">Kurang Lengkap</span>';
+                                  } else if ($bks_sidang->st_persetujuan == '2') {
+                                    echo '<span class="badge badge-success">Lengkap</span>';
+                                  }
+                                }
+
+                                ?>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>3.</td>
+                              <td>File TA</td>
+                              <td>
+                                <a href="#" class="btn btn-info" data-toggle="modal" pull="right" data-target="#file_ta" onclick="ResetInput()"><i class="fa fa-file"></i> Unggah</a>
+                              </td>
+                              <td><?php
+                                  if ($bks_sidang == "") {
+                                    echo "";
+                                  } else {
+                                    echo "$bks_sidang->file_ta";
+                                  }
+                                  ?></td>
+                              <td align="center">
+                                <?php
+                                if ($bks_sidang == "") {
+                                  echo "";
+                                } else {
+                                  if ($bks_sidang->st_file_ta == '0') {
+                                    echo '<span class="badge badge-warning">Belum Diverifikasi</span>';
+                                  } else if ($bks_sidang->st_file_ta == '1') {
+                                    echo '<span class="badge badge-info">Kurang Lengkap</span>';
+                                  } else if ($bks_sidang->st_file_ta == '2') {
+                                    echo '<span class="badge badge-success">Lengkap</span>';
+                                  }
+                                }
+                                ?>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>4.</td>
+                              <td>Presentasi</td>
+                              <td>
+                                <a href="#" class="btn btn-info" data-toggle="modal" pull="right" data-target="#file_presentasi" onclick="ResetInput()"><i class="fa fa-file"></i> Unggah</a>
+                              </td>
+                              <td><?php
+                                  if ($bks_sidang == "") {
+                                    echo "";
+                                  } else {
+                                    echo "$bks_sidang->presentasi";
+                                  }
+                                  ?></td>
+                              <td align="center">
+                                <?php
+                                if ($bks_sidang == "") {
+                                  echo "";
+                                } else {
+                                  if ($bks_sidang->st_presentasi == '0') {
+                                    echo '<span class="badge badge-warning">Belum Diverifikasi</span>';
+                                  } else if ($bks_sidang->st_presentasi == '1') {
+                                    echo '<span class="badge badge-info">Kurang Lengkap</span>';
+                                  } else if ($bks_sidang->st_presentasi == '2') {
+                                    echo '<span class="badge badge-success">Lengkap</span>';
+                                  }
+                                }
+                                ?>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>5.</td>
+                              <td>Monitoring</td>
+                              <td>
+                                <a href="#" class="btn btn-info" data-toggle="modal" pull="right" data-target="#file_monitoring" onclick="ResetInput()"><i class="fa fa-file"></i> Unggah</a>
+                              </td>
+                              <td><?php
+                                  if ($bks_sidang == "") {
+                                    echo "";
+                                  } else {
+                                    echo "$bks_sidang->monitoring";
+                                  }
+                                  ?></td>
+                              <td align="center">
+                                <?php
+                                if ($bks_sidang == "") {
+                                  echo "";
+                                } else {
+                                  if ($bks_sidang->st_monitoring == '0') {
+                                    echo '<span class="badge badge-warning">Belum Diverifikasi</span>';
+                                  } else if ($bks_sidang->st_monitoring == '1') {
+                                    echo '<span class="badge badge-info">Kurang Lengkap</span>';
+                                  } else if ($bks_sidang->st_monitoring == '2') {
+                                    echo '<span class="badge badge-success">Lengkap</span>';
+                                  }
+                                }
+                                ?>
+
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>6.</td>
+                              <td>PKKMB</td>
+                              <td>
+                                <a href="#" class="btn btn-info" data-toggle="modal" pull="right" data-target="#file_pkkmb" onclick="ResetInput()"><i class="fa fa-file"></i> Unggah</a>
+                              </td>
+                              <td><?php
+                                  if ($bks_sidang == "") {
+                                    echo "";
+                                  } else {
+                                    echo "$bks_sidang->pkkmb";
+                                  }
+                                  ?></td>
+                              <td align="center">
+                                <?php
+                                if ($bks_sidang == "") {
+                                  echo "";
+                                } else {
+                                  if ($bks_sidang->st_pkkmb == '0') {
+                                    echo '<span class="badge badge-warning">Belum Diverifikasi</span>';
+                                  } else if ($bks_sidang->st_pkkmb == '1') {
+                                    echo '<span class="badge badge-info">Kurang Lengkap</span>';
+                                  } else  if ($bks_sidang->st_pkkmb == '2') {
+                                    echo '<span class="badge badge-success">Lengkap</span>';
+                                  }
+                                }
+                                ?>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </form>
+                    <?php } ?>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
           </div>
     </section>
   </div>

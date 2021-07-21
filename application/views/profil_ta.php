@@ -22,7 +22,7 @@
             <div class="row">
                 <div class="col-12">
                     <?php $cek = $this->db->get_where('revisi', array('nim' => $this->session->userdata('email')))->row_array(); ?>
-                    <?php if (isset($cek['hasil']) != NULL && $cek['file_revisi'] != NULL && $cek['status'] != NULL) { ?>
+                    <?php if (isset($cek['status']) != NULL && $cek['file_revisi'] != NULL) { ?>
                         <div class="card card-primary">
                             <div class="card-header">
                                 <h3 class="card-title">Profil Tugas Akhir</h3>
@@ -82,7 +82,7 @@
                                         <h3 class="card-title"><i class="fas fa-exclamation-triangle"></i> Pemberitahuan</h3>
                                     </div>
                                     <div class="card-body">
-                                        Halaman profil Tugas Akhir belum dapat diakses
+                                        Halaman profil Tugas Akhir belum dapat diakses, silahkan upload file revisi seminar proposal terlebih dahulu
                                     </div>
                                 </div>
                             </div>

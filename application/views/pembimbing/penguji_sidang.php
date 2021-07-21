@@ -346,48 +346,66 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-12">
-                        <div class="card">
-                            <div class="card-header">
-                                <h3 class="card-title">Data Penguji Sidang</h3>
-                            </div>
-                            <div class="card-body">
-                                <table id="example1" class="table table-bordered table-striped">
-                                    <thead>
-                                        <tr>
-                                            <th>No</th>
-                                            <th>Jadwal</th>
-                                            <th>Dosen Penguji 1</th>
-                                            <th>Dosen Penguji 2</th>
-                                            <th>Dosen Penguji 3</th>
+                        <?php $cek = $this->db->get_where('master_ta', array('nim' => $this->session->userdata('email')))->row_array(); ?>
+                        <?php if (isset($cek['jadwal_sidang']) != NULL && $cek['jam'] != NULL && $cek['ruang_sidang'] != NULL) { ?>
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3 class="card-title">Data Penguji dan Jadwal Sidang</h3>
+                                </div>
+                                <div class="card-body">
+                                    <table id="example1" class="table table-bordered table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>No</th>
+                                                <th>Ruang</th>
+                                                <th>Jadwal</th>
+                                                <th>Waktu</th>
+                                                <th>Dosen Penguji 1</th>
+                                                <th>Dosen Penguji 2</th>
+                                                <th>Dosen Penguji 3</th>
 
-
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php
-                                        $no = 1;
-                                        foreach ($query2->result() as $row) {
-                                            $waktu = explode(" ", $row->jadwal_sidang);
-                                            $data['user'] = $this->m_penguji_sidang->getmahasiswabyid($row->nim);
-                                            $data['dosen1'] = $this->m_penguji_sidang->getdosen1($row->penguji1_sidang);
-                                            $data['dosen2'] = $this->m_penguji_sidang->getdosen2($row->penguji2_sidang);
-                                            $data['dosen3'] = $this->m_penguji_sidang->getdosen3($row->penguji3_sidang);
-                                            echo
-                                            "<tr>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php
+                                            $no = 1;
+                                            foreach ($query2->result() as $row) {
+                                                $waktu = explode(" ", $row->jadwal_sidang);
+                                                $data['user'] = $this->m_penguji->getmahasiswabyid($row->nim);
+                                                $data['dosen1'] = $this->m_penguji->getdosen1($row->penguji1_sidang);
+                                                $data['dosen2'] = $this->m_penguji->getdosen2($row->penguji2_sidang);
+                                                $data['dosen3'] = $this->m_penguji->getdosen3($row->penguji3_sidang);
+                                                echo
+                                                "<tr>
 											<td>" . $no . "</td>
-                                            <td>" . longdate_indo($waktu[0]) . " " . $waktu[1] . "</td>
+                                            <td>" . $row->ruang_sidang . "</td>
+                                        	<td>" . longdate_indo($waktu[0]) . "</td>
+                                            <td>" . $row->jam . "</td>
 											<td>" . $data['dosen1']->nama . "</td>
 											<td>" . $data['dosen2']->nama . "</td>
-											<td>" . $data['dosen3']->nama . "</td>
-                                            
-																				    </tr>";
-                                            $no++;
-                                        }
-                                        ?>
-                                    </tbody>
-                                </table>
+											<td>" . $data['dosen3']->nama . "</td>									
+											</tr>";
+                                                $no++;
+                                            }
+                                            ?>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
-                        </div>
+                        <?php } else { ?>
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="card card-danger">
+                                        <div class="card-header">
+                                            <h3 class="card-title"><i class="fas fa-exclamation-triangle"></i> Pemberitahuan</h3>
+                                        </div>
+                                        <div class="card-body">
+                                            Jadwal sidang belum ditentukan
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php } ?>
                     </div>
                 </div>
             </div>

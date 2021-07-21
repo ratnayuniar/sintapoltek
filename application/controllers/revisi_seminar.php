@@ -62,7 +62,12 @@ class Revisi_seminar extends CI_Controller
     }
     public function add()
     {
-        $this->m_revisi_seminar->tambah_data();
+        $id_revisi = $this->input->post('id_revisi');
+
+        if (empty($id_revisi)) $this->m_revisi_seminar->tambah_data();
+        else $this->m_revisi_seminar->ubah_data($id_revisi);
+
+        // $this->m_revisi_seminar->tambah_data();
     }
 
     public function upload_revisi_seminar()

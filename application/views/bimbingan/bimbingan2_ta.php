@@ -266,94 +266,110 @@
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-12">
 
-                        <div class="card">
-                            <div class="card-header">
-                                <h3 class="card-title">Ajukan Lembar Bimbingan</h3>
-                            </div>
-                            <div class="card-body">
-                                <div style="text-align:right;margin-bottom: 10px ">
-                                    <a href="#" class="on-default edit-row btn btn-info pull-right" data-toggle="modal" pull="right" data-target="#custom-width-modal" onclick="ResetInput()"><i class="fa fa-plus"></i> Ajukan Lembar Bimbingan</a>
-                                    <a href="<?= site_url('bimbingan2/cetak_kartuta') ?>" target="_blank" type="button" class="btn btn-primary"><i class="fas fa-print"></i> &nbsp;Cetak Lembar Bimbingan</a>
-                                    <a href="https://wa.me/<?= $hp->first_row()->hp ?>" target="_blank" class="btn btn-success"> <i class="fab fa-whatsapp"></i></a>
+                <?php $cek = $this->db->get_where('revisi', array('nim' => $this->session->userdata('email')))->row_array(); ?>
+                <?php if (isset($cek['file_revisi']) != NULL) { ?>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3 class="card-title">Ajukan Lembar Bimbingan</h3>
                                 </div>
-                                <table id="example1" class="table table-bordered table-striped">
-                                    <thead>
-                                        <tr style="text-align: center; ">
-                                            <th rowspan="2">No</th>
-                                            <th colspan="2">Masalah yang Dikonsultasikan</th>
-                                            <th colspan="2">Hasil Bimbingan</th>
-                                            <th rowspan="2">Tanggal</th>
-                                            <th rowspan="2">Status</th>
-                                            <th rowspan="2">Aksi</th>
-                                        </tr>
-                                        <tr style="text-align: center;">
-                                            <th>Masalah</th>
-                                            <th>File</th>
-                                            <th>Solusi</th>
-                                            <th>File</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php
-                                        $no = 1;
-                                        foreach ($bimbingan_user_ta->result() as $row) { ?>
-                                            <tr>
-                                                <td><?= $no++ ?></td>
-                                                <td><?= $row->masalah  ?></td>
-                                                <td style="text-align: center;">
-                                                    <?php if ($row->file == null) {
-                                                        echo " ";
-                                                    } else {
-                                                        echo '<a href="' . base_url('assets/berkas/bimbingan/' . $row->file) . '" target="_blank"><i class="far fa-file-pdf"></i></a> ';
-                                                    }
-                                                    ?>
-                                                </td>
-                                                <td><?= $row->solusi ?></td>
-                                                <td style="text-align: center;">
-                                                    <?php if ($row->file_solusi == null) {
-                                                        echo " ";
-                                                    } else {
-                                                        echo '<a href="' . base_url('assets/berkas/bimbingan/' . $row->file_solusi) . '" target="_blank"><i class="far fa-file-pdf"></i></a> ';
-                                                    }
-                                                    ?>
-                                                </td>
-                                                <td> <?php
-                                                        $waktu = explode(" ", $row->tanggal);
-                                                        echo
-                                                        ""  . shortdate_indo($waktu[0]) . " ";
+                                <div class="card-body">
+                                    <div style="text-align:right;margin-bottom: 10px ">
+                                        <a href="#" class="on-default edit-row btn btn-info pull-right" data-toggle="modal" pull="right" data-target="#custom-width-modal" onclick="ResetInput()"><i class="fa fa-plus"></i> Ajukan Lembar Bimbingan</a>
+                                        <a href="<?= site_url('bimbingan2/cetak_kartuta') ?>" target="_blank" type="button" class="btn btn-primary"><i class="fas fa-print"></i> &nbsp;Cetak Lembar Bimbingan</a>
+                                        <a href="https://wa.me/<?= $hp->first_row()->hp ?>" target="_blank" class="btn btn-success"> <i class="fab fa-whatsapp"></i></a>
+                                    </div>
+                                    <table id="example1" class="table table-bordered table-striped">
+                                        <thead>
+                                            <tr style="text-align: center; ">
+                                                <th rowspan="2">No</th>
+                                                <th colspan="2">Masalah yang Dikonsultasikan</th>
+                                                <th colspan="2">Hasil Bimbingan</th>
+                                                <th rowspan="2">Tanggal</th>
+                                                <th rowspan="2">Status</th>
+                                                <th rowspan="2">Aksi</th>
+                                            </tr>
+                                            <tr style="text-align: center;">
+                                                <th>Masalah</th>
+                                                <th>File</th>
+                                                <th>Solusi</th>
+                                                <th>File</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php
+                                            $no = 1;
+                                            foreach ($bimbingan_user_ta->result() as $row) { ?>
+                                                <tr>
+                                                    <td><?= $no++ ?></td>
+                                                    <td><?= $row->masalah  ?></td>
+                                                    <td style="text-align: center;">
+                                                        <?php if ($row->file == null) {
+                                                            echo " ";
+                                                        } else {
+                                                            echo '<a href="' . base_url('assets/berkas/bimbingan/' . $row->file) . '" target="_blank"><i class="far fa-file-pdf"></i></a> ';
+                                                        }
                                                         ?>
-                                                </td>
-                                                <td>
-                                                    <?php if ($row->status == '0') {
-                                                        echo '<span class="badge badge-warning">Belum Dikomentasi</span>';
-                                                    } else if ($row->status == '1') {
-                                                        echo '<span class="badge badge-success">Sudah Dikomentari</span>';
-                                                    } else {
-                                                        echo "";
-                                                    }
-                                                    ?>
-                                                </td>
-                                                <td>
-                                                    <?php if ($row->status == '0') {
-                                                        echo "<a onclick='return confirm('Yakin akan hapus?');' href='" . base_url('bimbingan1/delete_bimbingan_ta/' . $row->id_bimbingan) . "' id='btn-hapus' class='btn btn-danger btn-sm'>
+                                                    </td>
+                                                    <td><?= $row->solusi ?></td>
+                                                    <td style="text-align: center;">
+                                                        <?php if ($row->file_solusi == null) {
+                                                            echo " ";
+                                                        } else {
+                                                            echo '<a href="' . base_url('assets/berkas/bimbingan/' . $row->file_solusi) . '" target="_blank"><i class="far fa-file-pdf"></i></a> ';
+                                                        }
+                                                        ?>
+                                                    </td>
+                                                    <td> <?php
+                                                            $waktu = explode(" ", $row->tanggal);
+                                                            echo
+                                                            ""  . shortdate_indo($waktu[0]) . " ";
+                                                            ?>
+                                                    </td>
+                                                    <td>
+                                                        <?php if ($row->status == '0') {
+                                                            echo '<span class="badge badge-warning">Belum Dikomentasi</span>';
+                                                        } else if ($row->status == '1') {
+                                                            echo '<span class="badge badge-success">Sudah Dikomentari</span>';
+                                                        } else {
+                                                            echo "";
+                                                        }
+                                                        ?>
+                                                    </td>
+                                                    <td>
+                                                        <?php if ($row->status == '0') {
+                                                            echo "<a onclick='return confirm('Yakin akan hapus?');' href='" . base_url('bimbingan1/delete_bimbingan_ta/' . $row->id_bimbingan) . "' id='btn-hapus' class='btn btn-danger btn-sm'>
                                                             <i class='fa fa-trash'></i>
                                                         </a>";
-                                                    } else {
-                                                        echo " ";
-                                                    }
-                                                    ?>
-                                                </td>
-                                            </tr>
-                                        <?php } ?>
-                                    </tbody>
-                                </table>
+                                                        } else {
+                                                            echo " ";
+                                                        }
+                                                        ?>
+                                                    </td>
+                                                </tr>
+                                            <?php } ?>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                <?php } else { ?>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card card-danger">
+                                <div class="card-header">
+                                    <h3 class="card-title"><i class="fas fa-exclamation-triangle"></i> Pemberitahuan</h3>
+                                </div>
+                                <div class="card-body">
+                                    Halaman bimbingan belum dapat diakses, silahkan upload file revisi seminar proposal terlebih dahulu
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <?php } ?>
 
                 <div id="delete-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="custom-width-modalLabel" aria-hidden="true" style="display: none;">
                     <div class="modal-dialog">

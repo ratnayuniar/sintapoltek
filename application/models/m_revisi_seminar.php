@@ -16,6 +16,19 @@ class M_revisi_seminar extends CI_Model
         redirect('/revisi_seminar');
     }
 
+    function ubah_data($id_revisi)
+    {
+        $data = array(
+            'nim' => $this->input->post('nim'),
+            'penguji' =>  $this->input->post('penguji'),
+            'revisi' =>  $this->input->post('revisi'),
+            'jenis' => "seminar",
+        );
+        $this->db->where(array('id_revisi' => $id_revisi));
+        $this->db->update('revisi', $data);
+        redirect('/revisi_seminar');
+    }
+
 
     function get_nim($id_revisi)
     {
@@ -45,6 +58,7 @@ class M_revisi_seminar extends CI_Model
         return $this->db->get_where('master_ta', array('nim' => $this->session->userdata('email')));
     }
 
+
     function getAllMahasiswaRevisiBydIdDosen()
     {
         $dosen_id = $this->session->userdata('id_dosen');
@@ -56,7 +70,8 @@ class M_revisi_seminar extends CI_Model
             ->join('dosen as dospen1', 'dospen1.id_dosen = master_ta.penguji1_sempro')
             ->join('dosen as dospen2', 'dospen2.id_dosen = master_ta.penguji2_sempro')
             ->join('dosen as dospen3', 'dospen3.id_dosen = master_ta.penguji3_sempro')
-            ->where('penguji', $dosen_id)->get()->result_array();
+            ->where('jenis', 'seminar')
+            ->where('penguji', $dosen_id, array('jenis' => 'seminar'))->get()->result_array();
         return $query;
     }
 }

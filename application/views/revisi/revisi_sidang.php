@@ -206,7 +206,6 @@
                                         }
                                         ?>
                                     </tbody>
-
                                 </table>
                             </div>
                         </div>
@@ -260,7 +259,6 @@
                                                 <td><?= $no++ ?></td>
                                                 <td><?= $row->penguji ?></td>
                                                 <td><?= $row->revisi ?></td>
-
                                                 <td><a href="<?php echo base_url('assets/berkas/seminar/' . $row->revisi_seminar); ?>" download><i class="far fa-file-pdf"></i></a></td>
                                                 </td>
                                             <?php } ?>

@@ -59,6 +59,7 @@ class M_revisi_sidang extends CI_Model
             ->join('dosen as dospen1', 'dospen1.id_dosen = master_ta.penguji1_sidang')
             ->join('dosen as dospen2', 'dospen2.id_dosen = master_ta.penguji2_sidang')
             ->join('dosen as dospen3', 'dospen3.id_dosen = master_ta.penguji3_sidang')
+            ->where('jenis', 'ta')
             ->where('penguji', $dosen_id)->get()->result_array();
         return $query;
     }
