@@ -82,7 +82,7 @@
                                         <h3 class="card-title"><i class="fas fa-exclamation-triangle"></i> Pemberitahuan</h3>
                                     </div>
                                     <div class="card-body">
-                                        Hasil seminar proposal belum ditentukan
+                                        Halaman profil Tugas Akhir belum dapat diakses
                                     </div>
                                 </div>
                             </div>

@@ -341,7 +341,7 @@ class Bimbingan_ta extends CI_Controller
 
     function cetak_kartu()
     {
-        $data['bimbingan_user'] = $this->m_bimbingan1->bimbingan_user();
+        $data['bimbingan_user_ta'] = $this->m_bimbingan1->bimbingan_user_ta();
         $data['get_dosen'] = $this->m_bimbingan1->get_dosen();
         $data['get_tanggal'] = $this->m_bimbingan1->get_tanggal();
         $data['get_mahasiswa'] = $this->m_bimbingan1->get_mahasiswa();
@@ -349,7 +349,7 @@ class Bimbingan_ta extends CI_Controller
         $this->load->library('mypdf');
         $this->mypdf->setPaper('A4', 'potrait');
         $this->mypdf->filename = "laporan";
-        $this->mypdf->generate('bimbingan/dompdf_seminar', $data, TRUE);
+        $this->mypdf->generate('bimbingan/dompdf2', $data, TRUE);
     }
 }
 

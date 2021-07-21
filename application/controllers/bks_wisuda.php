@@ -305,57 +305,6 @@ class Bks_wisuda extends CI_Controller
         }
     }
 
-    // public function upload_ppt()
-    // {
-    //     if (isset($_POST['submit'])) {
-    //         $this->form_validation->set_rules('nim', 'NIM', 'required');
-    //         $config['upload_path'] = './assets/berkas/wisuda/';
-    //         $config['allowed_types'] = 'ppt|pptx';
-    //         $config['max_size']  = 50000;
-    //         $config['file_name'] = 'bks_wisuda-' . date('ymd');
-    //         $ekstensi =  array('zip', 'rar');
-
-    //         $this->load->library('upload', $config);
-
-    //         if (!empty($_FILES['ppt'])) {
-    //             $this->upload->do_upload('ppt');
-    //             $data1 = $this->upload->data();
-    //             $ppt = $data1['file_name'];
-    //             $tipe_file = pathinfo($ppt, PATHINFO_EXTENSION);
-    //         }
-
-    //         if ($this->form_validation->run()) {
-    //             if (!in_array($tipe_file, $ekstensi)) {
-    //                 $this->session->set_flashdata('gagal', 'Tipe Yang Dimasukkan Salah');
-    //                 redirect('bks_wisuda');
-    //             } else {
-    //                 $nim = $this->input->post('nim', TRUE);
-    //                 $data = [
-    //                     'nim' => $nim,
-    //                     'ppt' => $ppt,
-    //                     'status_ppt' => 0,
-
-    //                 ];
-
-    //                 $cek = $this->db->like('nim', $data['nim'])->from('bks_wisuda')->count_all_results();
-
-    //                 if ($cek > 0) {
-    //                     $this->db->where('nim', $data['nim'])->update('bks_wisuda', $data);
-    //                     redirect('bks_wisuda');
-    //                 } else {
-    //                     $this->db->insert('bks_wisuda', $data);
-    //                     redirect('bks_wisuda');
-    //                 }
-    //             }
-    //         } else {
-    //             $this->index();
-    //         }
-    //     } else {
-    //         $this->index();
-    //     }
-    // }
-
-
     public function upload_video()
     {
         if (isset($_POST['submit'])) {
@@ -385,6 +334,7 @@ class Bks_wisuda extends CI_Controller
                         'nim' => $nim,
                         'video' => $video,
                         'status_video' => 0,
+                        'status_lap_ta' => 0,
 
                     ];
 
@@ -411,9 +361,10 @@ class Bks_wisuda extends CI_Controller
         if (isset($_POST['submit'])) {
             $this->form_validation->set_rules('nim', 'NIM', 'required');
             $config['upload_path'] = './assets/berkas/wisuda/';
-            $config['allowed_types'] = 'pdf|jpg|png|exe|jpeg|mp4|ppt|pptx';
+            $config['allowed_types'] = 'ppt|pptx';
             $config['max_size']  = 50000;
-            $config['file_name'] = 'bks_wisuda-' . date('ymd');
+            $config['file_name'] = 'bks_sidang-' . date('ymd');
+            $ekstensi =  array('ppt', 'pptx');
 
             $this->load->library('upload', $config);
 
@@ -421,25 +372,31 @@ class Bks_wisuda extends CI_Controller
                 $this->upload->do_upload('ppt');
                 $data1 = $this->upload->data();
                 $ppt = $data1['file_name'];
+                $tipe_file = pathinfo($ppt, PATHINFO_EXTENSION);
             }
 
             if ($this->form_validation->run()) {
-                $nim = $this->input->post('nim', TRUE);
-                $data = [
-                    'nim' => $nim,
-                    'ppt' => $ppt,
-                    'status_ppt' => 0,
-
-                ];
-
-                $cek = $this->db->like('nim', $data['nim'])->from('bks_wisuda')->count_all_results();
-
-                if ($cek > 0) {
-                    $this->db->where('nim', $data['nim'])->update('bks_wisuda', $data);
+                if (!in_array($tipe_file, $ekstensi)) {
+                    $this->session->set_flashdata('gagal', 'Tipe Yang Dimasukkan Salah');
                     redirect('bks_wisuda');
                 } else {
-                    $this->db->insert('bks_wisuda', $data);
-                    redirect('bks_wisuda');
+                    $nim = $this->input->post('nim', TRUE);
+                    $data = [
+                        'nim' => $nim,
+                        'ppt' => $ppt,
+                        'status_ppt' => 0,
+
+                    ];
+
+                    $cek = $this->db->like('nim', $data['nim'])->from('bks_wisuda')->count_all_results();
+
+                    if ($cek > 0) {
+                        $this->db->where('nim', $data['nim'])->update('bks_wisuda', $data);
+                        redirect('bks_wisuda');
+                    } else {
+                        $this->db->insert('bks_wisuda', $data);
+                        redirect('bks_wisuda');
+                    }
                 }
             } else {
                 $this->index();
@@ -448,6 +405,8 @@ class Bks_wisuda extends CI_Controller
             $this->index();
         }
     }
+
+
 
     // public function upload_video()
     // {

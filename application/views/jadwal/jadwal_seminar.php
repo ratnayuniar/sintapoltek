@@ -111,7 +111,7 @@
 
             <div class="form-group">
               <label for="" class="control-label">Penguji 3</label>
-              <select class="penguji3_sidang form-control" name="penguji3_sidang" id="penguji3_sidang" readonly>
+              <select class="penguji3_sempro form-control" name="penguji3_sempro" id="penguji3_sempro" readonly>
                 <option value="">Pilih Mahasiswa Terlebih Dahulu</option>
               </select>
             </div>

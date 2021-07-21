@@ -144,9 +144,18 @@
                                 <h3 class="card-title">Data Revisi Seminar Proposal</h3>
                             </div>
                             <form action="<?php echo base_url() . 'revisi_seminar/add'; ?>" method="post" class="form-horizontal" role="form">
+                                <?php
+                                $this->db->select('*');
+                                $this->db->from('revisi');
+                                $this->db->where(array('penguji' => $this->session->userdata('id_dosen')));
+                                $result = $this->db->get()->row();
+                                ?>
                                 <div class="card-body">
                                     <input type="hidden" id="nim" name="nim" value="<?php echo $nim; ?>">
-                                    <input type="hidden" id="jenis" name="jenis">
+                                    <input type="hidden" id="id_revisi" name="id_revisi" value="<?php if (empty($result->id_revisi)) echo "";
+                                                                                                else echo $result->id_revisi ?>">
+                                    <input type="hidden" id="jenis" name="jenis" value="<?php if (empty($result->jenis)) echo "";
+                                                                                        else echo $result->jenis ?>">
                                     <div class="form-group row">
                                         <label for="inputEmail3" class="col-sm-5 col-form-label">Dosen</label>
                                         <div class="col-sm-5">
@@ -158,7 +167,8 @@
                                     <div class="form-group row">
                                         <label for="inputEmail3" class="col-sm-5 col-form-label">Revisi</label>
                                         <div class="col-sm-5">
-                                            <textarea type="text" class="form-control" rows="7" id="revisi" name="revisi"></textarea>
+                                            <textarea type="text" class="form-control" rows="7" id="revisi" name="revisi"><?php if (empty($result->revisi)) echo "";
+                                                                                                                            else echo $result->revisi ?></textarea>
                                         </div>
                                     </div>
                                 </div>

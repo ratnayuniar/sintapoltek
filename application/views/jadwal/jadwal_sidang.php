@@ -74,44 +74,66 @@
     <div class="modal-dialog" style="width:55%;">
       <div class="modal-content">
         <div class="modal-header">
-          <h4 class="modal-title">Jadwal Sidang Tugas Akhir</h4>
+          <h4 class="modal-title">Jadwal Sidaang Tugas Akhir</h4>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">×</span>
           </button>
         </div>
-        <form action="<?php echo base_url() . 'jadwal_sidang/add'; ?>" method="post" class="form-horizontal" role="form">
+        <form action="<?php echo base_url() . 'jadwal_sidang/cek_jadwal_sidang'; ?>" method="post" class="form-horizontal" role="form">
           <div class="card-body">
-
             <div class="form-group">
               <input type="hidden" id="id_master_ta" name="id_master_ta">
-              <label class="col-md-6 control-label">Nama Mahasiswa</label>
-              <div class="col-md-9">
-                <select class="form-control select2bs4" data-live-search="true" data-style="btn-white" id="nim" name="nim" required>
-                  <option>-- Pilih Mahasiswa --</option>
-                  <?php foreach ($mahasiswa->result() as $row) : ?>
-                    <option value="<?php echo $row->nim; ?>"><?php echo $row->nama; ?></option>
-                  <?php endforeach; ?>
-                </select>
-              </div>
+              <label class="control-label">Nama Mahasiswa</label>
+              <select class="nim form-control select2bs4" style="width: 100%;" data-live-search="true" data-style="btn-white" id="nim" name="nim" required>
+                <option>-- Pilih Mahasiswa --</option>
+                <?php foreach ($mahasiswa->result() as $row) : ?>
+                  <option value="<?php echo $row->nim; ?>"><?php echo $row->nama; ?></option>
+                <?php endforeach; ?>
+              </select>
             </div>
+
             <div class="form-group">
-              <label class="col-md-3 control-label">Ruang</label>
-              <div class="input-group col-md-9">
-                <input type="text" name="ruang_sidang" class="form-control" id="ruang_sidang">
-              </div>
+              <label for="" class="control-label">Penguji 1</label>
+              <select class="penguji1_sidang form-control" name="penguji1_sidang" id="penguji1_sidang" readonly>
+                <option value="">Pilih Mahasiswa Terlebih Dahulu</option>
+              </select>
             </div>
+
             <div class="form-group">
-              <label class="col-md-3 control-label">Jadwal</label>
-              <div class="input-group col-md-9">
-                <div class="input-group-append" data-target="#jadwal" data-toggle="datetimepicker">
-                  <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                </div>
-                <input type="text" name="jadwal_sidang" class="form-control" id="jadwal_sidang" value="<?php echo date("Y-m-d H:i") ?>" readonly>
-              </div>
+              <label for="penguji2_sidang" class="ccontrol-label">Penguji 2</label>
+              <select class="penguji2_sidang form-control" name="penguji2_sidang" id="penguji2_sidang" readonly>
+                <option value="">Pilih Mahasiswa Terlebih Dahulu</option>
+              </select>
             </div>
-            <div class="modal-footer justify-content-between">
-              <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
-              <button type="submit" class="btn btn-primary">Simpan</button>
+
+            <div class="form-group">
+              <label for="" class="control-label">Penguji 3</label>
+              <select class="penguji3_sidang form-control" name="penguji3_sidang" id="penguji3_sidang" readonly>
+                <option value="">Pilih Mahasiswa Terlebih Dahulu</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="control-label">Jadwal</label>
+              <input type="date" name="jadwal_seminar" class="form-control" id="jadwal_seminar">
+            </div>
+
+            <div class="form-group">
+              <label class="control-label">Waktu</label>
+              <input type="time" name="waktu_mulai" class="form-control col-md-3">
+            </div>
+
+            <div class="form-group">
+              <input type="time" name="waktu_akhir" class="form-control col-md-3">
+            </div>
+
+            <div class="form-group">
+              <label class="control-label">Ruang</label>
+              <input type="text" name="ruang_seminar" class="form-control" id="ruang_seminar">
+            </div>
+
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-primary" style="float: right;">Simpan</button>
             </div>
           </div>
         </form>

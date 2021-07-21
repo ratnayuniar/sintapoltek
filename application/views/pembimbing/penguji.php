@@ -68,14 +68,6 @@
                                                 } else {
                                                     $dosen3_nama = "-";
                                                 }
-                                                $data['dosen3'] = $this->m_penguji->getdosen3($row->penguji3_sempro);
-                                                if ($row->penguji3_sempro == "0") {
-                                                    $dosen3_nama = "-";
-                                                } else if ($row->penguji3_sempro != "") {
-                                                    $dosen3_nama = $data['dosen3']->nama;
-                                                } else {
-                                                    $dosen3_nama = "-";
-                                                }
                                                 echo
                                                 "<tr>
                                                 <td>" . $no . "</td>

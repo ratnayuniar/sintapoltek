@@ -32,6 +32,7 @@ class M_bks_wisuda extends CI_Model
         $this->db->select('*');
         $this->db->join('mahasiswa', 'bks_wisuda.nim=mahasiswa.nim', 'left');
         $this->db->join('master_ta', 'mahasiswa.nim = master_ta.nim', 'left');
+        $this->db->join('topik', 'master_ta.nim = topik.nim', 'left');
         $this->db->where(array('mahasiswa.id_prodi' => $id_prodi));
         return $this->db->get('bks_wisuda');
     }

@@ -51,8 +51,10 @@
                               echo " <a href ='#' class ='btn btn-sm btn-warning btn-xs btn-block' data-toggle='modal' data-target='#modal_berita_acara' onClick=\"SetInput('" . $row->id_seminar_proposal . "','" . $row->nim . "','" . $row->nama . "','" . $row->judul . "','" . $row->st_beritaacara . "','" . $row->catatan_beritaacara . "','" . $row->tgl_beritaacara . "')\"> Belum</a>";
                             } else if ($row->st_beritaacara == '1') {
                               echo " <a href ='#' class ='btn btn-sm btn-info btn-xs btn-block' data-toggle='modal' data-target='#modal_berita_acara' onClick=\"SetInput('" . $row->id_seminar_proposal . "','" . $row->nim . "','" . $row->nama . "','" . $row->judul . "','" . $row->st_beritaacara . "','" . $row->catatan_beritaacara . "','" . $row->tgl_beritaacara . "')\"> Kurang</a>";
-                            } else {
+                            } else  if ($row->st_beritaacara == '2') {
                               echo " <a href ='#' class ='btn btn-sm btn-success btn-xs btn-block' data-toggle='modal' data-target='#modal_berita_acara' onClick=\"SetInput('" . $row->id_seminar_proposal . "','" . $row->nim . "','" . $row->nama . "','" . $row->judul . "','" . $row->st_beritaacara . "','" . $row->catatan_beritaacara . "','" . $row->tgl_beritaacara . "')\"> Lengkap</a>";
+                            } else {
+                              echo "";
                             }
                             ?>
                           <?php if ($row->st_beritaacara == '0') {
@@ -61,14 +63,21 @@
                             echo "<h6>" . $row->catatan_beritaacara . "</h6> ";
                           }
                           ?>
-                          <h6><a href="<?php echo base_url('assets/berkas/seminar/' . $row->berita_acara); ?>" download><i class="far fa-file-word"></i></a></h6>
+                          <?php if ($row->berita_acara != NULL) {
+                            echo "  <h6><a href='" . base_url('assets/berkas/seminar/' . $row->berita_acara) . "' download><i class='far fa-file-pdf'></i></i></a></h6>";
+                          } else {
+                            echo " ";
+                          }
+                          ?>
                         </td>
                         <td> <?php if ($row->st_persetujuan == '0') {
                                 echo " <a href ='#' class ='btn btn-sm btn-warning btn-xs btn-block' data-toggle='modal' data-target='#modal_persetujuan' onClick=\"SetInput2('" . $row->id_seminar_proposal . "','" . $row->nim . "','" . $row->nama . "','" . $row->judul . "','" . $row->st_persetujuan . "','" . $row->catatan_persetujuan . "','" . $row->tgl_persetujuan . "')\"> Belum</a>";
                               } else if ($row->st_persetujuan == '1') {
                                 echo " <a href ='#' class ='btn btn-sm btn-info btn-xs btn-block' data-toggle='modal' data-target='#modal_persetujuan' onClick=\"SetInput2('" . $row->id_seminar_proposal . "','" . $row->nim . "','" . $row->nama . "','" . $row->judul . "','" . $row->st_persetujuan . "','" . $row->catatan_persetujuan . "','" . $row->tgl_persetujuan . "')\"> Kurang</a>";
-                              } else {
+                              } else if ($row->st_persetujuan == '2') {
                                 echo " <a href ='#' class ='btn btn-sm btn-success btn-xs btn-block' data-toggle='modal' data-target='#modal_persetujuan' onClick=\"SetInput2('" . $row->id_seminar_proposal . "','" . $row->nim . "','" . $row->nama . "','" . $row->judul . "','" . $row->st_persetujuan . "','" . $row->catatan_persetujuan . "','" . $row->tgl_persetujuan . "')\"> Lengkap</a>";
+                              } else {
+                                echo "";
                               }
                               ?>
                           <?php if ($row->st_persetujuan == '0') {
@@ -77,14 +86,21 @@
                             echo "<h6>"  . $row->catatan_persetujuan . "</h6> ";
                           }
                           ?>
-                          <h6><a href="<?php echo base_url('assets/berkas/seminar/' . $row->persetujuan); ?>" download><i class="far fa-file-word"></i></a></h6>
+                          <?php if ($row->persetujuan != NULL) {
+                            echo "  <h6><a href='" . base_url('assets/berkas/seminar/' . $row->persetujuan) . "' download><i class='far fa-file-pdf'></i></i></a></h6>";
+                          } else {
+                            echo " ";
+                          }
+                          ?>
                         </td>
                         <td> <?php if ($row->st_proposal == '0') {
                                 echo " <a href ='#' class ='btn btn-sm btn-warning btn-xs btn-block' data-toggle='modal' data-target='#modal_proposal' onClick=\"SetInput3('" . $row->id_seminar_proposal . "','" . $row->nim . "','" . $row->nama . "','" . $row->judul . "','" . $row->st_proposal . "','" . $row->catatan_proposal . "','" . $row->tgl_proposal . "')\"> Belum</a>";
                               } else if ($row->st_proposal == '1') {
                                 echo " <a href ='#' class ='btn btn-sm btn-info btn-xs btn-block' data-toggle='modal' data-target='#modal_proposal' onClick=\"SetInput3('" . $row->id_seminar_proposal . "','" . $row->nim . "','" . $row->nama . "','" . $row->judul . "','" . $row->st_proposal . "','" . $row->catatan_proposal . "','" . $row->tgl_proposal . "')\"> Kurang</a>";
-                              } else {
+                              } else if ($row->st_proposal == '2') {
                                 echo " <a href ='#' class ='btn btn-sm btn-success btn-xs btn-block' data-toggle='modal' data-target='#modal_proposal' onClick=\"SetInput3('" . $row->id_seminar_proposal . "','" . $row->nim . "','" . $row->nama . "','" . $row->judul . "','" . $row->st_proposal . "','" . $row->catatan_proposal . "','" . $row->tgl_proposal . "')\"> Lengkap</a>";
+                              } else {
+                                echo "";
                               }
                               ?>
                           <?php if ($row->st_proposal == '0') {
@@ -93,13 +109,18 @@
                             echo "<h6>"  . $row->catatan_proposal . "</h6> ";
                           }
                           ?>
-                          <h6><a href="<?php echo base_url('assets/berkas/seminar/' . $row->proposal); ?>" download><i class="far fa-file-pdf"></i></a></h6>
+                          <?php if ($row->proposal != NULL) {
+                            echo "  <h6><a href='" . base_url('assets/berkas/seminar/' . $row->proposal) . "' download><i class='far fa-file-pdf'></i></i></a></h6>";
+                          } else {
+                            echo " ";
+                          }
+                          ?>
                         </td>
                         <td> <?php if ($row->st_monitoring == '0') {
                                 echo " <a href ='#' class ='btn btn-sm btn-warning btn-xs btn-block' data-toggle='modal' data-target='#modal_monitoring' onClick=\"SetInput4('" . $row->id_seminar_proposal . "','" . $row->nim . "','" . $row->nama . "','" . $row->judul . "','" . $row->st_monitoring . "','" . $row->catatan_monitoring . "','" . $row->tgl_monitoring . "')\"> Belum</a>";
                               } else if ($row->st_monitoring == '1') {
                                 echo " <a href ='#' class ='btn btn-sm btn-info btn-xs btn-block' data-toggle='modal' data-target='#modal_monitoring' onClick=\"SetInput4('" . $row->id_seminar_proposal . "','" . $row->nim . "','" . $row->nama . "','" . $row->judul . "','" . $row->st_monitoring . "','" . $row->catatan_monitoring . "','" . $row->tgl_monitoring . "')\"> Kurang</a>";
-                              } else {
+                              } else if ($row->st_monitoring == '2') {
                                 echo " <a href ='#' class ='btn btn-sm btn-success btn-xs btn-block' data-toggle='modal' data-target='#modal_monitoring' onClick=\"SetInput4('" . $row->id_seminar_proposal . "','" . $row->nim . "','" . $row->nama . "','" . $row->judul . "','" . $row->st_monitoring . "','" . $row->catatan_monitoring . "','" . $row->tgl_monitoring . "')\"> Lengkap</a>";
                               }
                               ?>
@@ -109,14 +130,21 @@
                             echo "<h6>"  . $row->catatan_monitoring . "</h6> ";
                           }
                           ?>
-                          <h6><a href="<?php echo base_url('assets/berkas/seminar/' . $row->monitoring); ?>" download><i class="far fa-file-pdf"></i></i></a></h6>
+                          <?php if ($row->monitoring != NULL) {
+                            echo "  <h6><a href='" . base_url('assets/berkas/seminar/' . $row->monitoring) . "' download><i class='far fa-file-pdf'></i></i></a></h6>";
+                          } else {
+                            echo " ";
+                          }
+                          ?>
                         </td>
                         <td> <?php if ($row->st_presentasi == '0') {
                                 echo " <a href ='#' class ='btn btn-sm btn-warning btn-xs btn-block' data-toggle='modal' data-target='#modal_presentasi' onClick=\"SetInput5('" . $row->id_seminar_proposal . "','" . $row->nim . "','" . $row->nama . "','" . $row->judul . "','" . $row->st_presentasi . "','" . $row->catatan_presentasi . "','" . $row->tgl_presentasi . "')\"> Belum</a>";
                               } else if ($row->st_presentasi == '1') {
                                 echo " <a href ='#' class ='btn btn-sm btn-info btn-xs btn-block' data-toggle='modal' data-target='#modal_presentasi' onClick=\"SetInput5('" . $row->id_seminar_proposal . "','" . $row->nim . "','" . $row->nama . "','" . $row->judul . "','" . $row->st_presentasi . "','" . $row->catatan_presentasi . "','" . $row->tgl_presentasi . "')\"> Kurang</a>";
-                              } else {
+                              } else if ($row->st_presentasi == '2') {
                                 echo " <a href ='#' class ='btn btn-sm btn-success btn-xs btn-block' data-toggle='modal' data-target='#modal_presentasi' onClick=\"SetInput5('" . $row->id_seminar_proposal . "','" . $row->nim . "','" . $row->nama . "','" . $row->judul . "','" . $row->st_presentasi . "','" . $row->catatan_presentasi . "','" . $row->tgl_presentasi . "')\"> Lengkap</a>";
+                              } else {
+                                echo "";
                               }
                               ?>
                           <?php if ($row->st_presentasi == '0') {
@@ -125,7 +153,12 @@
                             echo "<h6>"  . $row->catatan_presentasi . "</h6> ";
                           }
                           ?>
-                          <h6><a href="<?php echo base_url('assets/berkas/seminar/' . $row->presentasi); ?>" download><i class="far fa-file-powerpoint"></i></a></h6>
+                          <?php if ($row->presentasi != NULL) {
+                            echo "  <h6><a href='" . base_url('assets/berkas/seminar/' . $row->presentasi) . "' download><i class='far fa-file-pdf'></i></i></a></h6>";
+                          } else {
+                            echo " ";
+                          }
+                          ?>
                         </td>
                       </tr>
                     <?php } ?>

@@ -513,14 +513,6 @@
                                 </ul>
                             </li>
                             <li class="nav-item">
-                                <a href="<?php echo base_url('persetujuan_proposal'); ?>" class="nav-link <?php if ($this->uri->segment(1) == 'nilai_seminar') {
-                                                                                                                echo "active";
-                                                                                                            } ?>">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Persetujuan Proposal</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
                                 <a href="<?php echo base_url('nilai_seminar'); ?>" class="nav-link <?php if ($this->uri->segment(1) == 'nilai_seminar') {
                                                                                                         echo "active";
                                                                                                     } ?>">
@@ -739,7 +731,7 @@
                                 </a>
                                 <ul class="nav nav-treeview">
                                     <li class="nav-item">
-                                        <a href="<?php echo base_url('bimbingan1'); ?>" class="nav-link">
+                                        <a href="<?php echo base_url('bimbingan_proposal/mabim1'); ?>" class="nav-link">
                                             <i class="far fa-dot-circle nav-icon"></i>
                                             <p>Dosen Pembimbing 1</p>
                                         </a>
@@ -747,7 +739,7 @@
                                 </ul>
                                 <ul class="nav nav-treeview">
                                     <li class="nav-item">
-                                        <a href="<?php echo base_url('bimbingan2'); ?>" class="nav-link">
+                                        <a href="<?php echo base_url('bimbingan_proposal/mabim2'); ?>" class="nav-link">
                                             <i class="far fa-dot-circle nav-icon"></i>
                                             <p>Dosen Pembimbing 2</p>
                                         </a>
@@ -804,7 +796,7 @@
                                 </a>
                                 <ul class="nav nav-treeview">
                                     <li class="nav-item">
-                                        <a href="<?php echo base_url('bimbingan1'); ?>" class="nav-link">
+                                        <a href="<?php echo base_url('bimbingan_ta/mabim1'); ?>" class="nav-link">
                                             <i class="far fa-dot-circle nav-icon"></i>
                                             <p>Dosen Pembimbing 1</p>
                                         </a>
@@ -812,7 +804,7 @@
                                 </ul>
                                 <ul class="nav nav-treeview">
                                     <li class="nav-item">
-                                        <a href="<?php echo base_url('bimbingan2'); ?>" class="nav-link">
+                                        <a href="<?php echo base_url('bimbingan_ta/mabim2'); ?>" class="nav-link">
                                             <i class="far fa-dot-circle nav-icon"></i>
                                             <p>Dosen Pembimbing 2</p>
                                         </a>

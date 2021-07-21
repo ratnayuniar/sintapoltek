@@ -18,6 +18,9 @@ class M_penguji extends CI_Model
     {
 
         $this->db->join('mahasiswa', 'mahasiswa.nim=master_ta.nim', 'left');
+        //revisi di hide karena bikin tmbah penguji error
+        // $this->db->join('revisi', 'master_ta.penguji1_sempro = revisi.penguji', 'left');
+
         $this->db->where(array('mahasiswa.id_prodi' => $id_prodi));
         return $this->db->get('master_ta');
     }

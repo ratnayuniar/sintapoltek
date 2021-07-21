@@ -52,8 +52,10 @@
                               echo " <a href ='#' class ='btn btn-sm btn-warning btn-xs btn-block' data-toggle='modal' data-target='#modal_berita_acara' onClick=\"SetInput('" . $row->id_seminar_ta . "','" . $row->nim . "','" . $row->nama . "','" . $row->judul . "','" . $row->st_berita_acara . "','" . $row->catatan_berita_acara . "','" . $row->tgl_berita_acara . "')\"> Belum</a>";
                             } else if ($row->st_berita_acara == '1') {
                               echo " <a href ='#' class ='btn btn-sm btn-info btn-xs btn-block' data-toggle='modal' data-target='#modal_berita_acara' onClick=\"SetInput('" . $row->id_seminar_ta . "','" . $row->nim . "','" . $row->nama . "','" . $row->judul . "','" . $row->st_berita_acara . "','" . $row->catatan_berita_acara . "','" . $row->tgl_berita_acara . "')\"> Kurang</a>";
-                            } else {
+                            } else if ($row->st_berita_acara == '2') {
                               echo " <a href ='#' class ='btn btn-sm btn-success btn-xs btn-block' data-toggle='modal' data-target='#modal_berita_acara' onClick=\"SetInput('" . $row->id_seminar_ta . "','" . $row->nim . "','" . $row->nama . "','" . $row->judul . "','" . $row->st_berita_acara . "','" . $row->catatan_berita_acara . "','" . $row->tgl_berita_acara . "')\"> Lengkap</a>";
+                            } else {
+                              echo "";
                             }
                             ?>
                           <?php if ($row->st_berita_acara == '0') {
@@ -62,14 +64,21 @@
                             echo "<h6>" . $row->catatan_berita_acara . "</h6> ";
                           }
                           ?>
-                          <h6><a href="<?php echo base_url('assets/berkas/sidang/' . $row->berita_acara); ?>" download><i class="far fa-file-pdf"></i></a></h6>
+                          <?php if ($row->berita_acara != NULL) {
+                            echo "  <h6><a href='" . base_url('assets/berkas/sidang/' . $row->berita_acara) . "' download><i class='far fa-file-pdf'></i></i></a></h6>";
+                          } else {
+                            echo " ";
+                          }
+                          ?>
                         </td>
                         <td> <?php if ($row->st_persetujuan == '0') {
                                 echo " <a href ='#' class ='btn btn-sm btn-warning btn-xs btn-block' data-toggle='modal' data-target='#modal_persetujuan' onClick=\"SetInput2('" . $row->id_seminar_ta . "','" . $row->nim . "','" . $row->nama . "','" . $row->judul . "','" . $row->st_persetujuan . "','" . $row->catatan_persetujuan . "','" . $row->tgl_persetujuan . "')\"> Belum</a>";
                               } else if ($row->st_persetujuan == '1') {
                                 echo " <a href ='#' class ='btn btn-sm btn-info btn-xs btn-block' data-toggle='modal' data-target='#modal_persetujuan' onClick=\"SetInput2('" . $row->id_seminar_ta . "','" . $row->nim . "','" . $row->nama . "','" . $row->judul . "','" . $row->st_persetujuan . "','" . $row->catatan_persetujuan . "','" . $row->tgl_persetujuan . "')\"> Kurang</a>";
-                              } else {
+                              } else  if ($row->st_persetujuan == '2') {
                                 echo " <a href ='#' class ='btn btn-sm btn-success btn-xs btn-block' data-toggle='modal' data-target='#modal_persetujuan' onClick=\"SetInput2('" . $row->id_seminar_ta . "','" . $row->nim . "','" . $row->nama . "','" . $row->judul . "','" . $row->st_persetujuan . "','" . $row->catatan_persetujuan . "','" . $row->tgl_persetujuan . "')\"> Lengkap</a>";
+                              } else {
+                                echo "";
                               }
                               ?>
                           <?php if ($row->st_persetujuan == '0') {
@@ -78,14 +87,21 @@
                             echo "<h6>"  . $row->catatan_persetujuan . "</h6> ";
                           }
                           ?>
-                          <h6><a href="<?php echo base_url('assets/berkas/sidang/' . $row->persetujuan); ?>" download><i class="far fa-file-pdf"></i></a></h6>
+                          <?php if ($row->persetujuan != NULL) {
+                            echo "  <h6><a href='" . base_url('assets/berkas/sidang/' . $row->persetujuan) . "' download><i class='far fa-file-pdf'></i></i></a></h6>";
+                          } else {
+                            echo " ";
+                          }
+                          ?>
                         </td>
                         <td> <?php if ($row->st_file_ta == '0') {
                                 echo " <a href ='#' class ='btn btn-sm btn-warning btn-xs btn-block' data-toggle='modal' data-target='#modal_file_ta' onClick=\"SetInput3('" . $row->id_seminar_ta . "','" . $row->nim . "','" . $row->nama . "','" . $row->judul . "','" . $row->st_file_ta . "','" . $row->catatan_file_ta . "','" . $row->tgl_file_ta . "')\"> Belum</a>";
                               } else if ($row->st_file_ta == '1') {
                                 echo " <a href ='#' class ='btn btn-sm btn-info btn-xs btn-block' data-toggle='modal' data-target='#modal_file_ta' onClick=\"SetInput3('" . $row->id_seminar_ta . "','" . $row->nim . "','" . $row->nama . "','" . $row->judul . "','" . $row->st_file_ta . "','" . $row->catatan_file_ta . "','" . $row->tgl_file_ta . "')\"> Kurang</a>";
-                              } else {
+                              } else if ($row->st_file_ta == '2') {
                                 echo " <a href ='#' class ='btn btn-sm btn-success btn-xs btn-block' data-toggle='modal' data-target='#modal_file_ta' onClick=\"SetInput3('" . $row->id_seminar_ta . "','" . $row->nim . "','" . $row->nama . "','" . $row->judul . "','" . $row->st_file_ta . "','" . $row->catatan_file_ta . "','" . $row->tgl_file_ta . "')\"> Lengkap</a>";
+                              } else {
+                                echo "";
                               }
                               ?>
                           <?php if ($row->st_file_ta == '0') {
@@ -94,14 +110,21 @@
                             echo "<h6>"  . $row->catatan_file_ta . "</h6> ";
                           }
                           ?>
-                          <h6><a href="<?php echo base_url('assets/berkas/sidang/' . $row->file_ta); ?>" download><i class="far fa-file-pdf"></i></a></h6>
+                          <?php if ($row->file_ta != NULL) {
+                            echo "  <h6><a href='" . base_url('assets/berkas/sidang/' . $row->file_ta) . "' download><i class='far fa-file-pdf'></i></i></a></h6>";
+                          } else {
+                            echo " ";
+                          }
+                          ?>
                         </td>
                         <td> <?php if ($row->st_monitoring == '0') {
                                 echo " <a href ='#' class ='btn btn-sm btn-warning btn-xs btn-block' data-toggle='modal' data-target='#modal_monitoring' onClick=\"SetInput4('" . $row->id_seminar_ta . "','" . $row->nim . "','" . $row->nama . "','" . $row->judul . "','" . $row->st_monitoring . "','" . $row->catatan_monitoring . "','" . $row->tgl_monitoring . "')\"> Belum</a>";
                               } else if ($row->st_monitoring == '1') {
                                 echo " <a href ='#' class ='btn btn-sm btn-info btn-xs btn-block' data-toggle='modal' data-target='#modal_monitoring' onClick=\"SetInput4('" . $row->id_seminar_ta . "','" . $row->nim . "','" . $row->nama . "','" . $row->judul . "','" . $row->st_monitoring . "','" . $row->catatan_monitoring . "','" . $row->tgl_monitoring . "')\"> Kurang</a>";
-                              } else {
+                              } else  if ($row->st_monitoring == '2') {
                                 echo " <a href ='#' class ='btn btn-sm btn-success btn-xs btn-block' data-toggle='modal' data-target='#modal_monitoring' onClick=\"SetInput4('" . $row->id_seminar_ta . "','" . $row->nim . "','" . $row->nama . "','" . $row->judul . "','" . $row->st_monitoring . "','" . $row->catatan_monitoring . "','" . $row->tgl_monitoring . "')\"> Lengkap</a>";
+                              } else {
+                                echo "";
                               }
                               ?>
                           <?php if ($row->st_monitoring == '0') {
@@ -110,14 +133,21 @@
                             echo "<h6>"  . $row->catatan_monitoring . "</h6> ";
                           }
                           ?>
-                          <h6><a href="<?php echo base_url('assets/berkas/sidang/' . $row->monitoring); ?>" download><i class="far fa-file-pdf"></i></i></a></h6>
+                          <?php if ($row->monitoring != NULL) {
+                            echo "  <h6><a href='" . base_url('assets/berkas/sidang/' . $row->monitoring) . "' download><i class='far fa-file-pdf'></i></i></a></h6>";
+                          } else {
+                            echo " ";
+                          }
+                          ?>
                         </td>
                         <td> <?php if ($row->st_presentasi == '0') {
                                 echo " <a href ='#' class ='btn btn-sm btn-warning btn-xs btn-block' data-toggle='modal' data-target='#modal_presentasi' onClick=\"SetInput5('" . $row->id_seminar_ta . "','" . $row->nim . "','" . $row->nama . "','" . $row->judul . "','" . $row->st_presentasi . "','" . $row->catatan_presentasi . "','" . $row->tgl_presentasi . "')\"> Belum</a>";
                               } else if ($row->st_presentasi == '1') {
                                 echo " <a href ='#' class ='btn btn-sm btn-info btn-xs btn-block' data-toggle='modal' data-target='#modal_presentasi' onClick=\"SetInput5('" . $row->id_seminar_ta . "','" . $row->nim . "','" . $row->nama . "','" . $row->judul . "','" . $row->st_presentasi . "','" . $row->catatan_presentasi . "','" . $row->tgl_presentasi . "')\"> Kurang</a>";
-                              } else {
+                              } else if ($row->st_presentasi == '2') {
                                 echo " <a href ='#' class ='btn btn-sm btn-success btn-xs btn-block' data-toggle='modal' data-target='#modal_presentasi' onClick=\"SetInput5('" . $row->id_seminar_ta . "','" . $row->nim . "','" . $row->nama . "','" . $row->judul . "','" . $row->st_presentasi . "','" . $row->catatan_presentasi . "','" . $row->tgl_presentasi . "')\"> Lengkap</a>";
+                              } else {
+                                echo "";
                               }
                               ?>
                           <?php if ($row->st_presentasi == '0') {
@@ -126,14 +156,21 @@
                             echo "<h6>"  . $row->catatan_presentasi . "</h6> ";
                           }
                           ?>
-                          <h6><a href="<?php echo base_url('assets/berkas/sidang/' . $row->presentasi); ?>" download><i class="far fa-file-powerpoint"></i></a></h6>
+                          <?php if ($row->presentasi != NULL) {
+                            echo "  <h6><a href='" . base_url('assets/berkas/sidang/' . $row->presentasi) . "' download><i class='far fa-file-pdf'></i></i></a></h6>";
+                          } else {
+                            echo " ";
+                          }
+                          ?>
                         </td>
                         <td> <?php if ($row->st_pkkmb == '0') {
                                 echo " <a href ='#' class ='btn btn-sm btn-warning btn-xs btn-block' data-toggle='modal' data-target='#modal_pkkmb' onClick=\"SetInput6('" . $row->id_seminar_ta . "','" . $row->nim . "','" . $row->nama . "','" . $row->judul . "','" . $row->st_pkkmb . "','" . $row->catatan_pkkmb . "','" . $row->tgl_pkkmb . "')\"> Belum</a>";
                               } else if ($row->st_pkkmb == '1') {
                                 echo " <a href ='#' class ='btn btn-sm btn-info btn-xs btn-block' data-toggle='modal' data-target='#modal_pkkmb' onClick=\"SetInput6('" . $row->id_seminar_ta . "','" . $row->nim . "','" . $row->nama . "','" . $row->judul . "','" . $row->st_pkkmb . "','" . $row->catatan_pkkmb . "','" . $row->tgl_pkkmb . "')\"> Kurang</a>";
-                              } else {
+                              } else if ($row->st_pkkmb == '2') {
                                 echo " <a href ='#' class ='btn btn-sm btn-success btn-xs btn-block' data-toggle='modal' data-target='#modal_pkkmb' onClick=\"SetInput6('" . $row->id_seminar_ta . "','" . $row->nim . "','" . $row->nama . "','" . $row->judul . "','" . $row->st_pkkmb . "','" . $row->catatan_pkkmb . "','" . $row->tgl_pkkmb . "')\"> Lengkap</a>";
+                              } else {
+                                echo "";
                               }
                               ?>
                           <?php if ($row->st_pkkmb == '0') {
@@ -142,7 +179,12 @@
                             echo "<h6>"  . $row->catatan_pkkmb . "</h6> ";
                           }
                           ?>
-                          <h6><a href="<?php echo base_url('assets/berkas/sidang/' . $row->presentasi); ?>" download><i class="far fa-file-powerpoint"></i></a></h6>
+                          <?php if ($row->pkkmb != NULL) {
+                            echo "  <h6><a href='" . base_url('assets/berkas/sidang/' . $row->pkkmb) . "' download><i class='far fa-file-pdf'></i></i></a></h6>";
+                          } else {
+                            echo " ";
+                          }
+                          ?>
                         </td>
                       </tr>
                     <?php } ?>
@@ -183,7 +225,7 @@
             <div class="form-group row">
               <label for="persetujuan" class="col-sm-3 col-form-label">Judul TA</label>
               <div class="col-sm-9">
-                <input type="text" class="form-control" id="judul" name="judul" readonly>
+                <textarea type="text" class="form-control" id="judul" name="judul" readonly></textarea>
               </div>
             </div>
             <div class="form-group row">
@@ -216,6 +258,7 @@
       </div>
     </div>
   </div>
+
   <div id="modal_persetujuan" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="custom-width-modalLabel" aria-hidden="true" style="display: none;">
     <div class="modal-dialog" style="width:55%;">
       <div class="modal-content">
@@ -243,7 +286,7 @@
             <div class="form-group row">
               <label for="persetujuan" class="col-sm-3 col-form-label">Judul TA</label>
               <div class="col-sm-9">
-                <input type="text" class="form-control" id="judul2" name="judul" readonly>
+                <textarea type="text" class="form-control" id="judul2" name="judul" readonly></textarea>
               </div>
             </div>
             <div class="form-group row">
@@ -276,6 +319,7 @@
       </div>
     </div>
   </div>
+
   <div id="modal_file_ta" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="custom-width-modalLabel" aria-hidden="true" style="display: none;">
     <div class="modal-dialog" style="width:55%;">
       <div class="modal-content">
@@ -303,7 +347,7 @@
             <div class="form-group row">
               <label for="persetujuan" class="col-sm-3 col-form-label">Judul TA</label>
               <div class="col-sm-9">
-                <input type="text" class="form-control" id="judul3" name="judul" readonly>
+                <textarea type="text" class="form-control" id="judul3" name="judul" readonly></textarea>
               </div>
             </div>
             <div class="form-group row">
@@ -336,6 +380,7 @@
       </div>
     </div>
   </div>
+
   <div id="modal_monitoring" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="custom-width-modalLabel" aria-hidden="true" style="display: none;">
     <div class="modal-dialog" style="width:55%;">
       <div class="modal-content">
@@ -363,7 +408,7 @@
             <div class="form-group row">
               <label for="persetujuan" class="col-sm-3 col-form-label">Judul TA</label>
               <div class="col-sm-9">
-                <input type="text" class="form-control" id="judul4" name="judul" readonly>
+                <textarea type="text" class="form-control" id="judul4" name="judul" readonly></textarea>
               </div>
             </div>
             <div class="form-group row">
@@ -396,6 +441,7 @@
       </div>
     </div>
   </div>
+
   <div id="modal_presentasi" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="custom-width-modalLabel" aria-hidden="true" style="display: none;">
     <div class="modal-dialog" style="width:55%;">
       <div class="modal-content">
@@ -423,7 +469,7 @@
             <div class="form-group row">
               <label for="persetujuan" class="col-sm-3 col-form-label">Judul TA</label>
               <div class="col-sm-9">
-                <input type="text" class="form-control" id="judul5" name="judul" readonly>
+                <textarea type="text" class="form-control" id="judul5" name="judul" readonly></textarea>
               </div>
             </div>
             <div class="form-group row">
@@ -456,6 +502,7 @@
       </div>
     </div>
   </div>
+
   <div id="modal_pkkmb" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="custom-width-modalLabel" aria-hidden="true" style="display: none;">
     <div class="modal-dialog" style="width:55%;">
       <div class="modal-content">
@@ -483,7 +530,7 @@
             <div class="form-group row">
               <label for="persetujuan" class="col-sm-3 col-form-label">Judul TA</label>
               <div class="col-sm-9">
-                <input type="text" class="form-control" id="judul6" name="judul" readonly>
+                <textarea type="text" class="form-control" id="judul6" name="judul" readonly></textarea>
               </div>
             </div>
             <div class="form-group row">
@@ -519,6 +566,14 @@
 
 
   <script type="text/javascript">
+    var date = new Date();
+    var day = date.getDate();
+    var month = date.getMonth() + 1;
+    var year = date.getFullYear();
+    if (month < 10) month = "0" + month;
+    if (day < 10) day = "0" + day;
+    var today = year + "-" + month + "-" + day;
+
     function SetInput(id_seminar_ta, nim, nama, judul, st_berita_acara, catatan_berita_acara, tgl_berita_acara) {
       document.getElementById('id_seminar_ta').value = id_seminar_ta;
       document.getElementById('nim').value = nim;
@@ -526,7 +581,8 @@
       document.getElementById('judul').value = judul;
       document.getElementById('st_berita_acara').value = st_berita_acara;
       document.getElementById('catatan_berita_acara').value = catatan_berita_acara;
-      document.getElementById('tgl_berita_acara').value = tgl_berita_acara;
+      document.getElementById('tgl_berita_acara').value = today;
+
     }
 
     function SetInput2(id_seminar_ta, nim, nama, judul, st_persetujuan, catatan_persetujuan, tgl_persetujuan) {
@@ -536,7 +592,7 @@
       document.getElementById('judul2').value = judul;
       document.getElementById('st_persetujuan').value = st_persetujuan;
       document.getElementById('catatan_persetujuan').value = catatan_persetujuan;
-      document.getElementById('tgl_persetujuan').value = tgl_persetujuan;
+      document.getElementById('tgl_persetujuan').value = today;
     }
 
     function SetInput3(id_seminar_ta, nim, nama, judul, st_proposal, catatan_proposal, tgl_proposal) {
@@ -546,7 +602,7 @@
       document.getElementById('judul3').value = judul;
       document.getElementById('st_proposal').value = st_proposal;
       document.getElementById('catatan_proposal').value = catatan_proposal;
-      document.getElementById('tgl_proposal').value = tgl_proposal;
+      document.getElementById('tgl_proposal').value = today;
     }
 
     function SetInput4(id_seminar_ta, nim, nama, judul, st_monitoring, catatan_monitoring, tgl_monitoring) {
@@ -556,7 +612,7 @@
       document.getElementById('judul4').value = judul;
       document.getElementById('st_monitoring').value = st_monitoring;
       document.getElementById('catatan_monitoring').value = catatan_monitoring;
-      document.getElementById('tgl_monitoring').value = tgl_monitoring;
+      document.getElementById('tgl_monitoring').value = today;
     }
 
     function SetInput5(id_seminar_ta, nim, nama, judul, st_presentasi, catatan_presentasi, tgl_presentasi) {
@@ -566,7 +622,7 @@
       document.getElementById('judul5').value = judul;
       document.getElementById('st_presentasi').value = st_presentasi;
       document.getElementById('catatan_presentasi').value = catatan_presentasi;
-      document.getElementById('tgl_presentasi').value = tgl_presentasi;
+      document.getElementById('tgl_presentasi').value = today;
     }
 
     function SetInput6(id_seminar_ta, nim, nama, judul, st_pkkmb, catatan_pkkmb, tgl_pkkmb) {
@@ -576,7 +632,7 @@
       document.getElementById('judul6').value = judul;
       document.getElementById('st_pkkmb').value = st_pkkmb;
       document.getElementById('catatan_pkkmb').value = catatan_pkkmb;
-      document.getElementById('tgl_pkkmb').value = tgl_pkkmb;
+      document.getElementById('tgl_pkkmb').value = today;
     }
   </script>
 
