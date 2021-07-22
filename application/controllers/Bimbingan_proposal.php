@@ -367,6 +367,19 @@ class Bimbingan_proposal extends CI_Controller
             redirect('bimbingan_proposal/dospem1', 'refresh');
         }
     }
+
+    function delete_bimbingan2($id)
+    {
+        $delete = $this->m_bimbingan1->get_id_bimbingan($id);
+        if ($delete) {
+            $this->m_bimbingan1->delete($id);
+            $this->session->set_flashdata('message', '<div class="alert alert-danger">Data Berhasil di Hapus</div>');
+            redirect('bimbingan_proposal/dospem2', 'refresh');
+        } else {
+            $this->session->set_flashdata('message', '<div class="alert alert-danger">Data Tidak ada</div>');
+            redirect('bimbingan_proposal/dospem2', 'refresh');
+        }
+    }
 }
 
 /* End of file Bimbingan_proposal.php */

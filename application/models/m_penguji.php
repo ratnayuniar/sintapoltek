@@ -37,6 +37,20 @@ class M_penguji extends CI_Model
         return $query;
     }
 
+    function bimbingan_nilai_dosen()
+    {
+        $this->db->select('*');
+        $this->db->from('master_ta');
+        $this->db->join('dosen', 'dosen.id_dosen=master_ta.penguji1_sempro');
+        $this->db->join('nilai_sempro', 'master_ta.nim = nilai_sempro.nim', 'left');
+        $this->db->where('master_ta.penguji1_sempro', $this->session->userdata('id_dosen'));
+        $this->db->or_where('master_ta.penguji2_sempro', $this->session->userdata('id_dosen'));
+        $this->db->or_where('master_ta.penguji3_sempro', $this->session->userdata('id_dosen'));
+        $this->db->where('nilai_sempro.id_dosen', $this->session->userdata('id_dosen'));
+        $query = $this->db->get();
+        return $query;
+    }
+
 
 
     function bimbingan_mhs()

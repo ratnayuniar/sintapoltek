@@ -211,7 +211,7 @@
 											<td>" . $data['dosen1']->nama . "</td>
 											<td>" . $data['dosen2']->nama . "</td>
 											<td>" . $data['dosen3']->nama . "</td>
-                      <td></td>
+                      <td>" . $row->rata . "</td>
                       <td></td>
                       <td>
                       <a href='" . base_url('nilai_seminar/detail_nilai_seminar2?id=' . $row->nim) . "' class='on-default edit-row btn btn-primary btn-sm' > Input Nilai</a>

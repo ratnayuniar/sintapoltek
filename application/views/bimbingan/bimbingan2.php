@@ -66,39 +66,6 @@
             </div>
         </section>
     </div>
-
-    <!-- <script>
-        $(document).ready(function() {
-            $(document).on('click', '#select_topik', function() {
-                var id_bimbingan = $(this).data('id_bimbingan');
-                var status = $(this).data('status');
-
-                $('#id_bimbingan').val(id_bimbingan);
-                $('#status').val(status);
-            })
-
-            $(document).on('click', '#reply-message', function() {
-                var id_bimbingan = $(this).data('id_bimbingan');
-                var id_bimbingan_id = $(this).data('id_bimbingan_id');
-                var tanggal = $(this).data('tanggal');
-                var masalah = $(this).data('masalah');
-
-                $('#id_bimbingan').val(id_bimbingan);
-                $('#id_bimbingan_id').val(id_bimbingan_id);
-                $('#tanggal').val(tanggal);
-                $('#masalah').val(masalah);
-            })
-
-            $(document).on('click', '#ctopik', function() {
-                var closetopik = $(this).data('closetopik');
-                var closestatus = $(this).data('closestatus');
-
-                $('#closetopik').val(closetopik);
-                $('#closestatus').val(closestatus);
-
-            })
-        })
-    </script> -->
     <!-- USER MAHASISWA -->
 <?php } else { ?>
     <div class="content-wrapper">
@@ -250,7 +217,7 @@
                                                     </td>
                                                     <td>
                                                         <?php if ($row->status == '0') {
-                                                            echo "<a onclick='return confirm('Yakin akan hapus?');' href='" . base_url('bimbingan1/delete_bimbingan_ta/' . $row->id_bimbingan) . "' id='btn-hapus' class='btn btn-danger btn-sm'>
+                                                            echo "<a onclick='return confirm('Yakin akan hapus?');' href='" . base_url('bimbingan_proposal/delete_bimbingan2/' . $row->id_bimbingan) . "' id='btn-hapus' class='btn btn-danger btn-sm'>
                                                             <i class='fa fa-trash'></i>
                                                         </a>";
                                                         } else {

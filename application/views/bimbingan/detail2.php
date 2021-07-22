@@ -49,19 +49,23 @@
             <!-- Section Persetujuan -->
 
             <!-- // dibuat pada tanggal 16-07-2021, 01:07 WIB -->
-            <?php if ($cekJumlahBimbingan2 >= 5) { ?>
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="card">
-                            <div class="card-header">
-                                <h5 class="m-0">Persetujuan Seminar</h5>
-                            </div>
-                            <div class="card-body">
-                                <p class="card-text">Jumlah bimbingan sudah memenuhi syarat untuk pendaftaran seminar. Klik tombol dibawah ini untuk menyetujui <br><a href="<?= base_url('bimbingan_proposal/persetujuanProposal2/' . $info_judul['nim'] . '/' . $info_judul['judul'] . '/' . $this->session->userdata('id_dosen') . '/' . '2' . '/' . date('Y-m-d')); ?>" onclick="return confirm('Apakah Anda sudah yakin dengan mahasiswa ini?')" class="btn btn-sm btn-success mt-2">Setujui</a></p>
+            <?php $cek = $this->db->get_where('persetujuan', array('id_dosen' => $this->session->userdata('id_dosen'), 'jenis' => 'proposal'))->row_array(); ?>
+            <?php if (isset($cek['nim']) == "") { ?>
+                <?php if ($cekJumlahBimbingan2 >= 5) { ?>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5 class="m-0">Persetujuan Seminar</h5>
+                                </div>
+                                <div class="card-body">
+                                    <p class="card-text">Jumlah bimbingan sudah memenuhi syarat untuk pendaftaran seminar. Klik tombol dibawah ini untuk menyetujui <br><a href="<?= base_url('bimbingan_proposal/persetujuanProposal2/' . $info_judul['nim'] . '/' . $info_judul['judul'] . '/' . $this->session->userdata('id_dosen') . '/' . '2' . '/' . date('Y-m-d')); ?>" onclick="return confirm('Apakah Anda sudah yakin dengan mahasiswa ini?')" class="btn btn-sm btn-success mt-2">Setujui</a></p>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                <?php } ?>
+            <?php } else { ?>
             <?php } ?>
             <!-- End section persetujuan -->
 
