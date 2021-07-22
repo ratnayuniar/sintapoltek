@@ -36,6 +36,7 @@
                                                 <th>NIM</th>
                                                 <th>Nama</th>
                                                 <th>Jadwal</th>
+                                                <th>Tempat</th>
                                                 <th>Aksi</th>
                                             </tr>
                                         </thead>
@@ -43,15 +44,15 @@
                                             <?php
                                             $no = 1;
                                             foreach ($query->result() as $row) {
-                                                $waktu = explode(" ", $row->jadwal_sidang);
+                                                $waktu = explode(" ", $row->jadwal_wisuda);
                                                 echo "
-                      <tr>
+                                            <tr>
 											<td>" . $no . "</td>
 											<td>" . $row->nim . "</td>
 											<td>" . $row->nama . "</td>
-											<td>" . longdate_indo($waktu[0]) . " " . $waktu[1] . "</td>
+											<td>" . longdate_indo($waktu[0]) . "</td>
+                                            <td>" . $row->tempat_wisuda . "</td>
 											<td>
-                          <a href ='#' class ='btn btn-sm btn-primary btn-xs' data-toggle='modal' data-target='#custom-width-modal' onClick=\"SetInput('" . $row->id_master_ta . "','" . $row->nim . "','" . $row->jadwal_sidang . "')\"><i class ='fa fa-edit'></i> Edit</a>
 													<a href='" . base_url('jadwal_sidang/delete2/' . $row->id_master_ta) . "' id='btn-hapus' class='btn btn-sm btn-danger btn-xs' ><i class='fa fa-trash'></i> Hapus</a>
 											</td>									
 									    </tr>";
@@ -78,30 +79,30 @@
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
-                <form action="<?php echo base_url() . 'jadwal_sidang/add'; ?>" method="post" class="form-horizontal" role="form">
+                <form action="<?php echo base_url() . 'jadwal_wisuda/add'; ?>" method="post" class="form-horizontal" role="form">
                     <div class="card-body">
-
                         <div class="form-group">
                             <input type="hidden" id="id_master_ta" name="id_master_ta">
-                            <label class="col-md-6 control-label">Nama Mahasiswa</label>
-                            <div class="col-md-9">
-                                <!-- <input type="text" class="form-control" id="nim" name="nim" required> -->
-                                <select class="form-control" data-live-search="true" data-style="btn-white" onclick="choose()" id="nim" name="nim" required>
-                                    <option>-- Pilih Mahasiswa --</option>
-                                    <?php foreach ($mahasiswa->result() as $row) : ?>
-                                        <option value="<?php echo $row->nim; ?>"><?php echo $row->nama; ?></option>
-                                    <?php endforeach; ?>
-                                </select>
-                            </div>
+                            <label class="control-label">Nama Mahasiswa</label>
+                            <select class="nim form-control select2bs4" style="width: 100%;" data-live-search="true" data-style="btn-white" id="nim" name="nim" required>
+                                <option>-- Pilih Mahasiswa --</option>
+                                <?php foreach ($mahasiswa->result() as $row) : ?>
+                                    <option value="<?php echo $row->nim; ?>"><?php echo $row->nama; ?></option>
+                                <?php endforeach; ?>
+                            </select>
                         </div>
 
                         <div class="form-group">
                             <label class="col-md-3 control-label">Jadwal</label>
                             <div class="input-group col-md-9">
-                                <div class="input-group-append" data-target="#jadwal" data-toggle="datetimepicker">
-                                    <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                                </div>
-                                <input type="text" name="jadwal_sidang" class="form-control" id="jadwal_sidang" value="<?php echo date("Y-m-d H:i") ?>" readonly>
+                                <input type="date" name="jadwal_wisuda" class="form-control" id="jadwal_wisuda" value="<?php echo date("Y-m-d") ?>">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">Tempat Wisuda</label>
+                            <div class="input-group col-md-9">
+                                <input type="text" name="tempat_wisuda" class="form-control" id="tempat_wisuda">
                             </div>
                         </div>
 

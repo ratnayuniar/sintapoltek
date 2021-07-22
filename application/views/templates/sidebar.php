@@ -387,7 +387,7 @@
                         <?php if (
                             $this->uri->segment(1) == 'bks_wisuda' || $this->uri->segment(1) == 'bks_bahasa'
                             || $this->uri->segment(1) == 'bks_pkl' || $this->uri->segment(1) == 'bks_keterampilan'
-                            || $this->uri->segment(1) == 'bks_prestasi' || $this->uri->segment(2) == 'detaildata_mhs'
+                            || $this->uri->segment(1) == 'bks_prestasi' || $this->uri->segment(2) == 'verif_baak/detaildata_mhs'
                             || $this->uri->segment(1) == 'veri_perpus/detaildata_mhs' || $this->uri->segment(1) == 'verif_keuangan/detaildata_mhs'
                             || $this->uri->segment(1) == 'veri_perpus/detaildata_mhs'
                         ) {

@@ -51,7 +51,7 @@
       <!-- Section Persetujuan -->
 
       <!-- // dibuat pada tanggal 16-07-2021, 01:07 WIB -->
-      <?php if ($cekJumlahBimbingan >= 16) { ?>
+      <?php if ($cekJumlahBimbingan >= 5) { ?>
         <div class="row">
           <div class="col-lg-12">
             <div class="card">
