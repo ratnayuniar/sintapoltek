@@ -258,9 +258,9 @@
             var html = '';
             var i;
             for (i = 0; i < data.length; i++) {
-              html += '<option value="' + data[i].penguji3_sidang + '">' + data[i].nama + '</option>';
+              html += '<option value="' + data[i].penguji3_sempro + '">' + data[i].nama + '</option>';
             }
-            $('.penguji3_sidang').html(html);
+            $('.penguji3_sempro').html(html);
           }
         });
       });

@@ -42,7 +42,7 @@
                                         <?php
                                         $no = 1;
                                         $id_prodi = $this->session->userdata('id_prodi');
-                                        foreach ($this->m_penguji_sidang->tampil_data($id_prodi)->result() as $row) {
+                                        foreach ($this->m_penguji_sidang->tampil_data2($id_prodi)->result() as $row) {
                                             if ($row->id_master_ta != "") {
                                                 $data['user'] = $this->m_penguji_sidang->getmahasiswabyid($row->nim);
                                                 $data['dosen1'] = $this->m_penguji_sidang->getdosen1($row->penguji1_sidang);
@@ -254,75 +254,6 @@
         }
     </script>
     <!-- USER DOSEN -->
-<?php } else if (($this->session->userdata('level') == 3) || ($this->session->userdata('level') == 4)) { ?>
-    <div class="content-wrapper">
-        <section class="content-header">
-            <div class="container-fluid">
-                <div class="row mb-2">
-                    <div class="col-sm-6">
-                        <h1>Data Penguji Sidang</h1>
-                    </div>
-                    <div class="col-sm-6">
-                        <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="<?php echo base_url('Beranda'); ?>">Beranda</a></li>
-                            <li class="breadcrumb-item active">Data Penguji Sidang</li>
-                        </ol>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="content">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="card">
-                            <div class="card-header">
-                                <h3 class="card-title">Data Penguji Sidang</h3>
-                            </div>
-                            <div class="card-body">
-                                <table id="example1" class="table table-bordered table-striped">
-                                    <thead>
-                                        <tr>
-                                            <th>No</th>
-                                            <th>Nama Mahasiswa</th>
-                                            <th>Dosen Penguji 1</th>
-                                            <th>Dosen Penguji 2</th>
-                                            <th>Dosen Penguji 3</th>
-                                            <th>Jadwal</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php
-                                        $no = 1;
-                                        foreach ($query3->result() as $row) {
-                                            $waktu = explode(" ", $row->jadwal_seminar);
-                                            $data['user'] = $this->m_penguji_sidang->getmahasiswabyid($row->nim);
-                                            $data['dosen1'] = $this->m_penguji_sidang->getdosen1($row->penguji1_sidang);
-                                            $data['dosen2'] = $this->m_penguji_sidang->getdosen2($row->penguji2_sidang);
-                                            $data['dosen3'] = $this->m_penguji_sidang->getdosen2($row->penguji3_sidang);
-                                            echo
-                                            "<tr>
-											<td>" . $no . "</td>
-                                        	<td>" . $data['user']->nama   . "</td>
-											<td>" . $data['dosen1']->nama . "</td>
-											<td>" . $data['dosen2']->nama . "</td>
-											<td>" . $data['dosen3']->nama . "</td>
-                                            <td>" . longdate_indo($waktu[0]) . " " . $waktu[1] . "</td>
-																				    </tr>";
-                                            $no++;
-                                        }
-                                        ?>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </div>
-
 <?php } else { ?>
     <!-- USER MAHASISWA -->
     <div class="content-wrapper">
@@ -371,10 +302,10 @@
                                             $no = 1;
                                             foreach ($query2->result() as $row) {
                                                 $waktu = explode(" ", $row->jadwal_sidang);
-                                                $data['user'] = $this->m_penguji->getmahasiswabyid($row->nim);
-                                                $data['dosen1'] = $this->m_penguji->getdosen1($row->penguji1_sidang);
-                                                $data['dosen2'] = $this->m_penguji->getdosen2($row->penguji2_sidang);
-                                                $data['dosen3'] = $this->m_penguji->getdosen3($row->penguji3_sidang);
+                                                $data['user'] = $this->m_penguji_sidang->getmahasiswabyid($row->nim);
+                                                $data['dosen1'] = $this->m_penguji_sidang->getdosen1($row->penguji1_sidang);
+                                                $data['dosen2'] = $this->m_penguji_sidang->getdosen2($row->penguji2_sidang);
+                                                $data['dosen3'] = $this->m_penguji_sidang->getdosen3($row->penguji3_sidang);
                                                 echo
                                                 "<tr>
 											<td>" . $no . "</td>

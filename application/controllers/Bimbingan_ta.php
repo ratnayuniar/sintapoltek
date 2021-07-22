@@ -187,7 +187,7 @@ class Bimbingan_ta extends CI_Controller
         $data['info_judul'] = $this->m_pembimbing->getJudulByNim($nim);
         $data['title'] = 'SINTA PNM';
 
-        $data['cekJumlahBimbingan'] = $this->m_pembimbing->cekJumlahBimbinganSeminarDospem1($nim);
+        $data['cekJumlahBimbingan'] = $this->m_pembimbing->cekJumlahBimbinganTaDospem1($nim);
 
         $data['cekPersetujuanBimbinganTA'] = $this->m_pembimbing->cekPersetujuanBimbinganTA($nim);
 

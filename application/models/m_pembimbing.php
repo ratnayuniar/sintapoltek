@@ -274,6 +274,17 @@ class M_pembimbing extends CI_Model
             ->count_all_results('bimbingan');
     }
 
+    function cekJumlahBimbinganTaDospem1($nim)
+    {
+        return $this->db->select('status')
+            ->where('status', 1)
+            ->where('id_dosen', $this->session->userdata('id_dosen'))
+            ->where('nim', $nim)
+            ->where('status_dosen', 1)
+            ->where('jenis', 'ta')
+            ->count_all_results('bimbingan');
+    }
+
     function cekPersetujuanBimbingan($nim)
     {
         return $this->db->where('nim', $nim)
@@ -317,6 +328,7 @@ class M_pembimbing extends CI_Model
             ->where('id_dosen', $this->session->userdata('id_dosen'))
             ->where('nim', $nim)
             ->where('status_dosen', 2)
+            ->where('jenis', 'ta')
             ->count_all_results('bimbingan');
     }
 }

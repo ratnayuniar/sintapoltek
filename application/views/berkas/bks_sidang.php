@@ -595,14 +595,14 @@
       document.getElementById('tgl_persetujuan').value = today;
     }
 
-    function SetInput3(id_seminar_ta, nim, nama, judul, st_proposal, catatan_proposal, tgl_proposal) {
+    function SetInput3(id_seminar_ta, nim, nama, judul, st_file_ta, catatan_file_ta, tgl_file_ta) {
       document.getElementById('id_seminar_ta').value = id_seminar_ta;
       document.getElementById('nim3').value = nim;
       document.getElementById('nama3').value = nama;
       document.getElementById('judul3').value = judul;
-      document.getElementById('st_proposal').value = st_proposal;
-      document.getElementById('catatan_proposal').value = catatan_proposal;
-      document.getElementById('tgl_proposal').value = today;
+      document.getElementById('st_file_ta').value = st_file_ta;
+      document.getElementById('catatan_file_ta').value = catatan_file_ta;
+      document.getElementById('tgl_file_ta').value = today;
     }
 
     function SetInput4(id_seminar_ta, nim, nama, judul, st_monitoring, catatan_monitoring, tgl_monitoring) {
@@ -683,7 +683,7 @@
       <div class="container-fluid">
         <div class="row">
           <div class="col-12">
-            <?php $cek = $this->db->get_where('persetujuan', array('nim' => $this->session->userdata('email'), 'jenis', 'ta')) ?>
+            <?php $cek = $this->db->get_where('persetujuan', array('nim' => $this->session->userdata('email'), 'jenis' => 'ta')) ?>
             <?php if ($cek->num_rows() < 2) { ?>
               <div class="row">
                 <div class="col-12">

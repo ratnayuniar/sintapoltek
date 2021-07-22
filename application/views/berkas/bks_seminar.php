@@ -579,7 +579,7 @@
       <div class="container-fluid">
         <div class="row">
           <div class="col-12">
-            <?php $cek = $this->db->get_where('persetujuan', array('nim' => $this->session->userdata('email'), 'jenis', 'proposal')) ?>
+            <?php $cek = $this->db->get_where('persetujuan', array('nim' => $this->session->userdata('email'), 'jenis' => 'proposal')) ?>
             <?php if ($cek->num_rows() < 2) { ?>
               <div class="row">
                 <div class="col-12">

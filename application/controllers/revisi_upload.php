@@ -29,7 +29,7 @@ class Revisi_upload extends CI_Controller
         $data['cekRevisi'] = $this->db->get_where('revisi', array('nim' => $this->session->userdata('email'), 'status' => 1, 'jenis' => 'ta'));
 
         // ambil berkas
-        $data['ambilBerkas'] = $this->db->get_where('revisi', array('nim' => $this->session->userdata('email')))->row_array();
+        $data['ambilBerkas'] = $this->db->get_where('revisi', array('nim' => $this->session->userdata('email'), 'jenis' => 'ta'))->row_array();
 
         // ambil data mahasiswa revisi
         $data['getAllMahasiswaRevisiBydIdDosen'] = $this->m_revisi_sidang->getAllMahasiswaRevisiBydIdDosen();
@@ -106,7 +106,7 @@ class Revisi_upload extends CI_Controller
             $error = array('error' => $this->upload->display_error());
             redirect('revisi_upload');
         } else {
-            $this->db->set('file_revisi', $this->upload->data('file_name'))->where('nim', $nim)->update('revisi');
+            $this->db->set('file_revisi', $this->upload->data('file_name'))->where('nim', $nim)->where('jenis', 'ta')->update('revisi');
             redirect('revisi_upload');
         }
     }

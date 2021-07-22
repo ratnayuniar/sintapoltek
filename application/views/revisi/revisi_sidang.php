@@ -34,6 +34,7 @@
                                             <th>Dosen Penguji 1</th>
                                             <th>Dosen Penguji 2</th>
                                             <th>Dosen Penguji 3</th>
+                                            <th>Hasil</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
@@ -41,7 +42,7 @@
                                         <?php
                                         $no = 1;
                                         $id_prodi = $this->session->userdata('id_prodi');
-                                        foreach ($this->m_penguji_sidang->tampil_data($id_prodi)->result() as $row) {
+                                        foreach ($this->m_penguji_sidang->tampil_data2($id_prodi)->result() as $row) {
                                             if ($row->id_master_ta != "") {
                                                 $data['user'] = $this->m_penguji_sidang->getmahasiswabyid($row->nim);
                                                 $data['dosen1'] = $this->m_penguji_sidang->getdosen1($row->penguji1_sidang);
@@ -76,6 +77,7 @@
                                                 <td>" . $dosen1_nama . "</td>
                                                 <td>" . $dosen2_nama . "</td>
                                                 <td>" . $dosen3_nama . "</td>
+                                                <td>" . $row->status_sidang . "</td>
                                                 <td>
                                                 <a href ='#' class ='btn btn-sm btn-primary btn-xs' data-toggle='modal' data-target='#file_ba' onClick=\"SetInput('" . $row->id_master_ta . "','" . $row->nim . "','" . $row->revisi_sidang . "','" . $row->status_sidang . "')\"><i class ='fa fa-file'></i> Hasil Sidang</a>
                                                                                                        
@@ -111,11 +113,11 @@
                             <input type="hidden" id="nim" name="nim">
                         </div>
                         <div class="form-group row">
-                            <label for="berita_acara" class="col-sm-4 col-form-label">File Revisi Seminar</label>
+                            <label for="berita_acara" class="col-sm-4 col-form-label">File Revisi Sidang</label>
                             <input type="file" name="revisi_sidang" required>
                         </div>
                         <div class="form-group row">
-                            <label for="exampleInputjudul1" class="col-sm-4 col-form-label">Hasil Seminar</label>
+                            <label for="exampleInputjudul1" class="col-sm-4 col-form-label">Hasil Sidang</label>
                             <div class="col-sm-4">
                                 <select class="form-control" data-live-search="true" data-style="btn-white" id="status_sidang" name="status_sidang" required>
                                     <option value="Lulus">Lulus</option>
@@ -199,7 +201,7 @@
 											<td>" . $data['dosen2']->nama . "</td>
 											<td>" . $data['dosen3']->nama . "</td>
 											<td>
-                                            <a href='" . base_url('revisi_sidang/detail_revisi_sidang2?id=' . $row->nim) . "' class='on-default edit-row btn btn-primary btn-sm' ><i class='fa fa-search'></i> Input Revisi</a>
+                                            <a href='" . base_url('revisi_sidang/detail_revisi_sidang2?id=' . $row->nim) . "' class='on-default edit-row btn btn-primary btn-sm' >Tambah Revisi</a>
 											</td>
 									    </tr>";
                                             $no++;
@@ -248,7 +250,7 @@
                                             </div>
                                             <div class="card-body">
                                                 <?php
-                                                foreach ($statusseminar->result() as $row) { ?>
+                                                foreach ($statussidang->result() as $row) { ?>
                                                     <div class="form-group row">
                                                         <label for="nama" class="col-sm-2 col-form-label">Hasil</label>
                                                         <div class="col-sm-10">

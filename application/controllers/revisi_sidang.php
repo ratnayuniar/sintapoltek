@@ -25,6 +25,8 @@ class Revisi_sidang extends CI_Controller
         $data['query'] = $this->m_nilai_seminar->tampil_data();
         $data['title'] = 'SINTA PNM';
 
+        $data['statussidang'] = $this->m_revisi_sidang->getStatusSidang();
+
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('revisi/revisi_sidang', $data);
@@ -99,6 +101,9 @@ class Revisi_sidang extends CI_Controller
     }
     public function add()
     {
-        $this->m_revisi_sidang->tambah_data();
+        $id_revisi = $this->input->post('id_revisi');
+
+        if (empty($id_revisi)) $this->m_revisi_sidang->tambah_data();
+        else $this->m_revisi_sidang->ubah_data($id_revisi);
     }
 }

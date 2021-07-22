@@ -4,20 +4,44 @@ class M_penguji_sidang extends CI_Model
 
     function tampil_data($id_prodi)
     {
+
         $this->db->select('*');
         $this->db->join('mahasiswa', 'mahasiswa.nim=master_ta.nim', 'left');
         $this->db->where(array('mahasiswa.id_prodi' => $id_prodi));
+        $this->db->where('master_ta.penguji1_sidang', $this->session->userdata('id_dosen'));
+        $this->db->or_where('master_ta.penguji2_sidang', $this->session->userdata('id_dosen'));
+        $this->db->or_where('master_ta.penguji3_sidang', $this->session->userdata('id_dosen'));
         $query = $this->db->get('master_ta');
         return $query;
+    }
+
+    function tampil_data2($id_prodi)
+    {
+
+        $this->db->join('mahasiswa', 'mahasiswa.nim=master_ta.nim', 'left');
+        //revisi di hide karena bikin tmbah penguji error
+        // $this->db->join('revisi', 'master_ta.penguji1_sempro = revisi.penguji', 'left');
+
+        $this->db->where(array('mahasiswa.id_prodi' => $id_prodi));
+        return $this->db->get('master_ta');
     }
 
     // edit dijoin dengan nilai_sidang
     function bimbingan_dosen()
     {
 
+        // $this->db->select('*');
+        // $this->db->from('master_ta');
+        // $this->db->join('nilai_sidang', 'master_ta.penguji1_sidang = nilai_sidang.id_dosen', 'left');
+        // $this->db->join('dosen', 'dosen.id_dosen=master_ta.penguji1_sidang');
+        // $this->db->where('master_ta.penguji1_sidang', $this->session->userdata('id_dosen'));
+        // $this->db->or_where('master_ta.penguji2_sidang', $this->session->userdata('id_dosen'));
+        // $this->db->or_where('master_ta.penguji3_sidang', $this->session->userdata('id_dosen'));
+        // $query = $this->db->get();
+        // return $query;
+
         $this->db->select('*');
         $this->db->from('master_ta');
-        $this->db->join('nilai_sidang', 'master_ta.penguji1_sidang = nilai_sidang.id_dosen', 'left');
         $this->db->join('dosen', 'dosen.id_dosen=master_ta.penguji1_sidang');
         $this->db->where('master_ta.penguji1_sidang', $this->session->userdata('id_dosen'));
         $this->db->or_where('master_ta.penguji2_sidang', $this->session->userdata('id_dosen'));
@@ -39,8 +63,11 @@ class M_penguji_sidang extends CI_Model
         return $query;
     }
 
+
+
     public function getmahasiswabyid($id)
     {
+
         $this->db->select('*');
         $this->db->from('mahasiswa');
         $this->db->where("mahasiswa.nim", $id);

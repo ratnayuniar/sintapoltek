@@ -34,7 +34,8 @@
                       <tr>
                         <th>No</th>
                         <th>Ruang</th>
-                        <th>Jadwal</th>
+                        <th>Hari</th>
+                        <th>Waktu</th>
                         <th>NIM</th>
                         <th>Nama</th>
                         <th>Aksi</th>
@@ -45,16 +46,17 @@
                       $no = 1;
                       foreach ($query->result() as $row) {
                         $waktu = explode(" ", $row->jadwal_sidang);
-                        echo "
-                      <tr>
-											<td>" . $no . "</td>
-											<td>" . $row->ruang_sidang . "</td>
-											<td>" . longdate_indo($waktu[0]) . " " . $waktu[1] . "</td>
-											<td>" . $row->nim . "</td>
-											<td>" . $row->nama . "</td>
-											<td>
-													<a href='" . base_url('jadwal_sidang/delete2/' . $row->id_master_ta) . "' id='btn-hapus' class='btn btn-sm btn-danger btn-xs' ><i class='fa fa-trash'></i> Hapus</a>
-											</td>									
+                        echo
+                        " <tr>
+											      <td>" . $no . "</td>
+											      <td>" . $row->ruang_sidang . "</td>
+										      	<td>" . longdate_indo($waktu[0]) . "</td>
+                            <td>" . $row->jam . "</td>
+											      <td>" . $row->nim . "</td>
+                            <td>" . $row->nama . "</td>
+										      	<td>
+												  	<a href='" . base_url('jadwal_sidang/delete/' . $row->id_master_ta) . "' id='btn-hapus' class='btn btn-sm btn-danger btn-xs' ><i class='fa fa-trash'></i> Hapus</a> 
+											      </td>									
 									    </tr>";
                         $no++;
                       }
@@ -115,7 +117,7 @@
 
             <div class="form-group">
               <label class="control-label">Jadwal</label>
-              <input type="date" name="jadwal_seminar" class="form-control" id="jadwal_seminar">
+              <input type="date" name="jadwal_sidang" class="form-control" id="jadwal_sidang">
             </div>
 
             <div class="form-group">
@@ -129,7 +131,7 @@
 
             <div class="form-group">
               <label class="control-label">Ruang</label>
-              <input type="text" name="ruang_seminar" class="form-control" id="ruang_seminar">
+              <input type="text" name="ruang_sidang" class="form-control" id="ruang_sidang">
             </div>
 
             <div class="modal-footer">
@@ -185,8 +187,81 @@
     </div>
   </div>
 
-  <link href="<?php echo base_url() ?>assets/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
-  <script type="text/javascript" src="<?php echo base_url() ?>assets/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
+  <!-- <link href="<?php echo base_url() ?>assets/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
+  <script type="text/javascript" src="<?php echo base_url() ?>assets/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js" charset="UTF-8"></script> -->
+
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $('.nim').change(function() {
+        var id = $(this).val();
+        $.ajax({
+          url: "<?= base_url('jadwal_sidang/getDosenPenguji'); ?>",
+          method: "POST",
+          data: {
+            id: id
+          },
+          async: true,
+          dataType: "JSON",
+          success: function(data) {
+            var html = '';
+            var i;
+            for (i = 0; i < data.length; i++) {
+              html += '<option value="' + data[i].penguji1_sidang + '">' + data[i].nama + '</option>';
+            }
+            $('.penguji1_sidang').html(html);
+          }
+        });
+      });
+    });
+  </script>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $('.nim').change(function() {
+        var id = $(this).val();
+        $.ajax({
+          url: "<?= base_url('jadwal_sidang/getDosenPenguji2'); ?>",
+          method: "POST",
+          data: {
+            id: id
+          },
+          async: true,
+          dataType: "JSON",
+          success: function(data) {
+            var html = '';
+            var i;
+            for (i = 0; i < data.length; i++) {
+              html += '<option value="' + data[i].penguji2_sidang + '">' + data[i].nama + '</option>';
+            }
+            $('.penguji2_sidang').html(html);
+          }
+        });
+      });
+    });
+  </script>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $('.nim').change(function() {
+        var id = $(this).val();
+        $.ajax({
+          url: "<?= base_url('jadwal_sidang/getDosenPenguji3'); ?>",
+          method: "POST",
+          data: {
+            id: id
+          },
+          async: true,
+          dataType: "JSON",
+          success: function(data) {
+            var html = '';
+            var i;
+            for (i = 0; i < data.length; i++) {
+              html += '<option value="' + data[i].penguji3_sidang + '">' + data[i].nama + '</option>';
+            }
+            $('.penguji3_sidang').html(html);
+          }
+        });
+      });
+    });
+  </script>
 
   <script type="text/javascript">
     function choose() {
@@ -266,7 +341,7 @@
                     foreach ($jadwal_sidang_user->result() as $row) {
                       $waktu = explode(" ", $row->jadwal_sidang);
                       echo "
-                                        <tr>
+                      <tr>
 											<td>" . $no . "</td>
 											<td>" . $row->nim . "</td>
 											<td>" . $row->nama . "</td>

@@ -210,22 +210,21 @@
                       $data['dosen1'] = $this->m_penguji_sidang->getdosen1($row->penguji1_sidang);
                       $data['dosen2'] = $this->m_penguji_sidang->getdosen2($row->penguji2_sidang);
                       $data['dosen3'] = $this->m_penguji_sidang->getdosen2($row->penguji3_sidang);
-                      $data['rata'] = $this->m_nilai_sidang->tampilRatadanNilai($row->rata);
-                      $data['nilai_akhir'] = $this->m_nilai_sidang->tampilRatadanNilai($row->nilai_akhir);
-                    ?>
-                      <tr>
-                        <td><?= $no ?></td>
-                        <td><?= $data['user']->nama ?></td>
-                        <td><?= $data['dosen1']->nama ?></td>
-                        <td><?= $data['dosen2']->nama ?></td>
-                        <td><?= $data['dosen3']->nama ?></td>
-                        <td><?= $data['rata']->rata ?></td>
-                        <td><?= $data['nilai_akhir']->nilai_akhir ?></td>
-                        <td>
-                          <a href="<?php base_url(' nilai_sidang/detail_nilai_sidang2?id=' . $row->nim) ?>" class="on-default edit-row btn btn-primary btn-sm">Input Nilai</a>
-                        </td>
-                      </tr>
-                    <?php }
+                      echo
+                      "<tr>
+											<td>" . $no . "</td>
+                      <td>" . $data['user']->nama   . "</td>
+											<td>" . $data['dosen1']->nama . "</td>
+											<td>" . $data['dosen2']->nama . "</td>
+											<td>" . $data['dosen3']->nama . "</td>
+                      <td></td>
+                      <td></td>
+                      <td>
+                      <a href='" . base_url('nilai_sidang/detail_nilai_sidang2?id=' . $row->nim) . "' class='on-default edit-row btn btn-primary btn-sm' > Input Nilai</a>
+                      </td>
+											</tr>";
+                      $no++;
+                    }
                     ?>
                   </tbody>
                 </table>

@@ -147,6 +147,7 @@
                                 <?php
                                 $this->db->select('*');
                                 $this->db->from('revisi');
+                                $this->db->where('jenis', 'seminar');
                                 $this->db->where(array('penguji' => $this->session->userdata('id_dosen')));
                                 $result = $this->db->get()->row();
                                 ?>

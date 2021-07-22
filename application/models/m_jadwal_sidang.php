@@ -33,6 +33,16 @@ class M_jadwal_sidang extends CI_Model
 		redirect('/jadwal_sidang');
 	}
 
+	function getmahasiswa()
+	{
+		$this->db->select('*');
+		$this->db->from('master_ta');
+		$this->db->join('mahasiswa', 'master_ta.nim = mahasiswa.nim', 'left');
+		// $this->db->where('master_ta.id_prodi', $this->session->userdata('id_prodi'));
+		$query = $this->db->get();
+		return $query;
+	}
+
 
 	function ubah_data($nim)
 	{
@@ -63,5 +73,26 @@ class M_jadwal_sidang extends CI_Model
 	{
 		$this->db->where('id_jadwal', $id_jadwal);
 		return $this->db->get('jadwal');
+	}
+
+	function getDataDosen1($id)
+	{
+		return $this->db->select('dosen.id_dosen, master_ta.penguji1_sidang, dosen.nama')
+			->join('dosen', 'dosen.id_dosen = master_ta.penguji1_sidang')
+			->get_where('master_ta', ['nim' => $id])->result_array();
+	}
+
+	function getDataDosen2($id)
+	{
+		return $this->db->select('dosen.id_dosen, master_ta.penguji2_sidang, dosen.nama')
+			->join('dosen', 'dosen.id_dosen = master_ta.penguji2_sidang')
+			->get_where('master_ta', ['nim' => $id])->result_array();
+	}
+
+	function getDataDosen3($id)
+	{
+		return $this->db->select('dosen.id_dosen, master_ta.penguji3_sidang, dosen.nama')
+			->join('dosen', 'dosen.id_dosen = master_ta.penguji3_sidang')
+			->get_where('master_ta', ['nim' => $id])->result_array();
 	}
 }
