@@ -38,7 +38,6 @@
                                         <th>Nama Mahasiswa</th>
                                         <th>Judul</th>
                                         <th>Detail</th>
-                                        <th>Status</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -52,7 +51,7 @@
                                             <td><?= $row['nama_mahasiswa']; ?></td>
                                             <td><?= $row['judul']; ?></td>
                                             <td><a class="btn btn-sm btn-info" href="<?= base_url('bimbingan_proposal/mabim2_detail/' . $row['nim']); ?>">Detail</a></td>
-                                            <td>--</td>
+
                                         </tr>
                                     <?php
                                         $no++;
@@ -155,7 +154,7 @@
                                 <div class="card-body">
                                     <div style="text-align:right;margin-bottom: 10px ">
                                         <a href="#" class="on-default edit-row btn btn-info pull-right" data-toggle="modal" pull="right" data-target="#custom-width-modal" onclick="ResetInput()"><i class="fa fa-plus"></i> Ajukan Bimbingan</a>
-                                        <a href="<?= site_url('bimbingan2/cetak_kartu') ?>" target="_blank" type="button" class="btn btn-primary"><i class="fas fa-print"></i> &nbsp;Cetak Lembar Bimbingan</a>
+                                        <a href="<?= site_url('bimbingan_proposal/cetak_kartu2') ?>" target="_blank" type="button" class="btn btn-primary"><i class="fas fa-print"></i> &nbsp;Cetak Lembar Bimbingan</a>
                                         <a href="https://wa.me/<?= $hp->first_row()->hp ?>" target="_blank" class="btn btn-success"> <i class="fab fa-whatsapp"></i></a>
                                     </div>
                                     <table id="example1" class="table table-bordered table-striped">

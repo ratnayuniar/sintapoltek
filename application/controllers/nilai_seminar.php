@@ -17,7 +17,8 @@ class Nilai_seminar extends CI_Controller
 
 	public function index()
 	{
-		$data['query3'] = $this->m_penguji->bimbingan_nilai_dosen();
+		// $data['query3'] = $this->m_penguji->bimbingan_nilai_dosen();
+		$data['query3'] = $this->m_penguji->getNilaiSempro();
 		$data['query2'] = $this->m_penguji->bimbingan_mhs();
 		$data['mahasiswa'] = $this->m_mahasiswa->getmahasiswa();
 		$data['dosen'] = $this->m_mahasiswa->getdosen();

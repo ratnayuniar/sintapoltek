@@ -14,6 +14,7 @@ class M_penguji extends CI_Model
         $query = $this->db->get('master_ta');
         return $query;
     }
+
     function tampil_data2($id_prodi)
     {
 
@@ -24,6 +25,7 @@ class M_penguji extends CI_Model
         $this->db->where(array('mahasiswa.id_prodi' => $id_prodi));
         return $this->db->get('master_ta');
     }
+
 
     function bimbingan_dosen()
     {
@@ -42,13 +44,36 @@ class M_penguji extends CI_Model
         $this->db->select('*');
         $this->db->from('master_ta');
         $this->db->join('dosen', 'dosen.id_dosen=master_ta.penguji1_sempro');
-        $this->db->join('nilai_sempro', 'master_ta.nim = nilai_sempro.nim', 'left');
+        // $this->db->join('nilai_sempro', 'master_ta.nim = nilai_sempro.nim', 'left');
         $this->db->where('master_ta.penguji1_sempro', $this->session->userdata('id_dosen'));
         $this->db->or_where('master_ta.penguji2_sempro', $this->session->userdata('id_dosen'));
         $this->db->or_where('master_ta.penguji3_sempro', $this->session->userdata('id_dosen'));
-        $this->db->where('nilai_sempro.id_dosen', $this->session->userdata('id_dosen'));
+        // $this->db->where('nilai_sempro.id_dosen', $this->session->userdata('id_dosen'));
         $query = $this->db->get();
         return $query;
+    }
+
+    function getNilaiSempro()
+    {
+        $this->db->query('
+        SELECT mahasiswa.nama, mahasiswa.nim, nilai_sempro.id_dosen, dospeng_sempro1.nama AS dospeng_sempro1, dospeng_sempro2.nama AS dospeng_sempro2,
+        dospeng_sempro3.nama AS dospeng_sempro3, nilai_sempro.rata as rata_rata, nilai_sempro.nilai_akhir as nilai_akhir
+
+        FROM master_ta
+
+        JOIN mahasiswa ON master_ta.nim = mahasiswa.nim
+
+        JOIN dosen AS dospeng_sempro1 ON dospeng_sempro1.id_dosen = master_ta.penguji1_sempro
+        JOIN dosen AS dospeng_sempro2 ON dospeng_sempro2.id_dosen = master_ta.penguji2_sempro
+        JOIN dosen AS dospeng_sempro3 ON dospeng_sempro3.id_dosen = master_ta.penguji3_sempro
+
+        LEFT JOIN nilai_sempro ON nilai_sempro.nim = master_ta.nim
+
+        WHERE master_ta.penguji1_sempro = ' . $this->session->userdata('id_dosen') . ' OR master_ta.penguji2_sempro = ' . $this->session->userdata('id_dosen') . '
+        OR master_ta.penguji3_sempro = ' . $this->session->userdata('id_dosen') . '
+        And nilai_sempro.id_dosen = ' . $this->session->userdata('id_dosen') . '
+        ')->result_array();
+        return $this->db->where('',  $this->session->userdata('id_dosen'));
     }
 
 

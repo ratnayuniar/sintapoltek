@@ -47,7 +47,7 @@
                                     <?php
                                     $this->db->select('*');
                                     $this->db->from('nilai_sempro');
-                                    $this->db->where(array('id_dosen' => $this->session->userdata('id_dosen')));
+                                    $this->db->where(array('id_dosen' => $this->session->userdata('id_dosen'), 'nim' => $this->uri->segment(3)));
                                     $result = $this->db->get()->row();
                                     ?>
                                     <input type="hidden" id="nim" name="nim" value="<?php echo $nim; ?>">

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Jul 22, 2021 at 07:29 AM
+-- Generation Time: Jul 22, 2021 at 07:45 PM
 -- Server version: 5.7.31
 -- PHP Version: 7.3.21
 
@@ -44,55 +44,23 @@ CREATE TABLE IF NOT EXISTS `bimbingan` (
   PRIMARY KEY (`id_bimbingan`),
   KEY `fk_bimbingan_dosen1_idx` (`id_dosen`),
   KEY `fk_bimbingan_mahasiswa1_idx` (`nim`)
-) ENGINE=InnoDB AUTO_INCREMENT=50 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=64 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `bimbingan`
 --
 
 INSERT INTO `bimbingan` (`id_bimbingan`, `id_dosen`, `nim`, `masalah`, `solusi`, `tanggal`, `status`, `status_dosen`, `jenis`, `file`, `file_solusi`) VALUES
-(5, 20, 183307019, 'Bimbingan proposal bab 1 latar belakang', 'Lanjutkan pengerjaan rumusan masalah', '2021-07-22', 1, 1, 'seminar', NULL, NULL),
-(6, 20, 183307019, 'Bimbingan proposal', 'Lanjutkan', '2021-07-22', 1, 1, 'seminar', NULL, NULL),
-(7, 20, 183307019, 'Bimbingan BAB 2', 'Lanjutkan', '2021-07-22', 1, 1, 'seminar', NULL, NULL),
-(8, 20, 183307019, 'Bimbingan BAB 3', 'Lanjutkan', '2021-07-22', 1, 1, 'seminar', NULL, NULL),
-(9, 20, 183307019, 'Bimbingan penulisan', 'Lanjutkan', '2021-07-22', 1, 1, 'seminar', NULL, NULL),
-(10, 23, 183307019, 'Bimbingan proposal bab 1', 'Revisi kutipan', '2021-07-22', 1, 2, 'seminar', NULL, NULL),
-(11, 23, 183307019, 'Bimbingan proposal bab 2', 'Lanjutkan', '2021-07-22', 1, 2, 'seminar', NULL, NULL),
-(12, 23, 183307019, 'Bimbingan proposal bab 2 landasan teori', 'Lanjutkan', '2021-07-22', 1, 2, 'seminar', NULL, NULL),
-(13, 23, 183307019, 'Bimbingan proposal bab 3', 'Lanjutkan', '2021-07-22', 1, 2, 'seminar', NULL, NULL),
-(14, 23, 183307019, 'Bimbingan proposal bab 3 perancagan', 'Lanjutkan', '2021-07-22', 1, 2, 'seminar', NULL, NULL),
-(18, 20, 183307019, 's', 'a', '2021-07-22', 1, 1, 'ta', NULL, NULL),
-(19, 20, 183307019, 'a', 'z', '2021-07-22', 1, 1, 'ta', NULL, NULL),
-(20, 20, 183307019, 'q', 'x', '2021-07-22', 1, 1, 'ta', NULL, NULL),
-(21, 20, 183307019, 'r', 'c', '2021-07-22', 1, 1, 'ta', NULL, NULL),
-(22, 20, 183307019, 'g', 'b', '2021-07-22', 1, 1, 'ta', NULL, NULL),
-(23, 20, 183307019, 'b', 'n', '2021-07-22', 1, 1, 'ta', NULL, NULL),
-(24, 20, 183307019, 'q', 't', '2021-07-22', 1, 1, 'ta', NULL, NULL),
-(25, 20, 183307019, 'v', 'u', '2021-07-22', 1, 1, 'ta', NULL, NULL),
-(26, 20, 183307019, 'u', 'p', '2021-07-22', 1, 1, 'ta', NULL, NULL),
-(27, 20, 183307019, 'm', 'l', '2021-07-22', 1, 1, 'ta', NULL, NULL),
-(28, 20, 183307019, 'u', 'm', '2021-07-22', 1, 1, 'ta', NULL, NULL),
-(29, 20, 183307019, 'e', 'q', '2021-07-22', 1, 1, 'ta', NULL, NULL),
-(30, 20, 183307019, 'q', 'z', '2021-07-22', 1, 1, 'ta', NULL, NULL),
-(31, 20, 183307019, 'x', 'a', '2021-07-22', 1, 1, 'ta', NULL, NULL),
-(32, 20, 183307019, 'c', 's', '2021-07-22', 1, 1, 'ta', NULL, NULL),
-(33, 20, 183307019, 'm', 'z', '2021-07-22', 1, 1, 'ta', NULL, NULL),
-(34, 23, 183307019, 'a', 'q', '2021-07-22', 1, 2, 'ta', NULL, NULL),
-(35, 23, 183307019, 's', 'c', '2021-07-22', 1, 2, 'ta', NULL, NULL),
-(36, 23, 183307019, 'c', 'z', '2021-07-22', 1, 2, 'ta', NULL, NULL),
-(37, 23, 183307019, 'e', 'c', '2021-07-22', 1, 2, 'ta', NULL, NULL),
-(38, 23, 183307019, 'r', 'v', '2021-07-22', 1, 2, 'ta', NULL, NULL),
-(39, 23, 183307019, 'b', 'y', '2021-07-22', 1, 2, 'ta', NULL, NULL),
-(40, 23, 183307019, 'q', 'u', '2021-07-22', 1, 2, 'ta', NULL, NULL),
-(41, 23, 183307019, 'e', 'q', '2021-07-22', 1, 2, 'ta', NULL, NULL),
-(42, 23, 183307019, 'w', 't', '2021-07-22', 1, 2, 'ta', NULL, NULL),
-(43, 23, 183307019, 'b', 'd', '2021-07-22', 1, 2, 'ta', NULL, NULL),
-(44, 23, 183307019, 'q', 'r', '2021-07-22', 1, 2, 'ta', NULL, NULL),
-(45, 23, 183307019, 'm', 'm', '2021-07-22', 1, 2, 'ta', NULL, NULL),
-(46, 23, 183307019, 't', 'u', '2021-07-22', 1, 2, 'ta', NULL, NULL),
-(47, 23, 183307019, 'e', 't', '2021-07-22', 1, 2, 'ta', NULL, NULL),
-(48, 23, 183307019, 'w', 'q', '2021-07-22', 1, 2, 'ta', NULL, NULL),
-(49, 23, 183307019, 'm', 'z', '2021-07-22', 1, 2, 'ta', NULL, NULL);
+(51, 24, 183307018, 'Bimbingan 1', 'Solusi bimbingan 1', '2021-07-01', 1, 1, 'seminar', NULL, NULL),
+(52, 24, 183307018, 'Bimbingan 2', 'Solusi bimbingan 2', '2021-07-02', 1, 1, 'seminar', NULL, NULL),
+(53, 24, 183307018, 'Bimbingan 3', 'Solusi bimbingan 3', '2021-07-03', 1, 1, 'seminar', NULL, NULL),
+(54, 24, 183307018, 'Bimbingan 4', 'Solusi bimbingan 2', '2021-07-04', 1, 1, 'seminar', NULL, NULL),
+(55, 24, 183307018, 'Bimbingan 5', 'Solusi bimbingan 1', '2021-07-05', 1, 1, 'seminar', NULL, NULL),
+(57, 25, 183307018, 'Bimbingan 1', 'Solusi bimbingan 1', '2021-07-01', 1, 2, 'seminar', NULL, NULL),
+(60, 25, 183307018, 'Bimbingan 2', 'Solusi bimbingan 2', '2021-07-02', 1, 2, 'seminar', NULL, NULL),
+(61, 25, 183307018, 'Bimbingan 3', 'Solusi bimbingan 3', '2021-07-03', 1, 2, 'seminar', NULL, NULL),
+(62, 25, 183307018, 'Bimbingan 4', 'Solusi bimbingan 4', '2021-07-04', 1, 2, 'seminar', NULL, NULL),
+(63, 25, 183307018, 'Bimbingan 5', 'Solusi bimbingan 5', '2021-07-05', 1, 2, 'seminar', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -247,7 +215,7 @@ CREATE TABLE IF NOT EXISTS `bks_wisuda` (
   `tgl_lap_ta` date DEFAULT NULL,
   PRIMARY KEY (`id_bks_wisuda`),
   KEY `fk_bks_wisuda_mahasiswa1_idx` (`nim`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -382,14 +350,14 @@ CREATE TABLE IF NOT EXISTS `master_ta` (
   KEY `fk_master_ta_dosen8_idx` (`penguji3_sempro`),
   KEY `fk_master_ta_mahasiswa1_idx` (`nim`),
   KEY `fk_master_ta_topik1_idx` (`judul`)
-) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `master_ta`
 --
 
 INSERT INTO `master_ta` (`id_master_ta`, `nim`, `pembimbing1`, `pembimbing2`, `penguji1_sempro`, `penguji2_sempro`, `penguji3_sempro`, `penguji1_sidang`, `penguji2_sidang`, `penguji3_sidang`, `judul`, `jadwal_seminar`, `jadwal_sidang`, `ruang_seminar`, `ruang_sidang`, `revisi_seminar`, `status_seminar`, `revisi_sidang`, `status_sidang`, `jam`, `jam_sidang`, `jadwal_wisuda`, `tempat_wisuda`) VALUES
-(29, 183307019, 20, 23, 20, 25, 24, NULL, NULL, NULL, '2', '2021-07-12', NULL, 'R.1', NULL, 'revisi_seminar-210722.pdf', 'Lulus Dengan Revisi', NULL, NULL, '10:00-11:00', '', NULL, NULL);
+(30, 183307018, 24, 25, 20, 23, 24, NULL, NULL, NULL, '3', '2021-07-12', NULL, 'R.1', NULL, 'revisi_seminar-2107221.pdf', 'Lulus Dengan Revisi', NULL, NULL, '10:00-11:00', '', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -414,15 +382,16 @@ CREATE TABLE IF NOT EXISTS `nilai_sempro` (
   PRIMARY KEY (`id_nilai_sempro`),
   KEY `fk_nilai_sempro_dosen1_idx` (`id_dosen`),
   KEY `fk_nilai_sempro_mahasiswa1_idx` (`nim`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `nilai_sempro`
 --
 
 INSERT INTO `nilai_sempro` (`id_nilai_sempro`, `nim`, `id_dosen`, `perumusan`, `teori`, `pemecahan`, `penulisan`, `pustaka`, `presentasi`, `penguasaan`, `rata`, `nilai_akhir`) VALUES
-(8, 183307019, 20, 90, 98, 89, 87, 85, 89, 90, 90, 628),
-(9, 183307019, 25, 90, 98, 87, 85, 90, 97, 95, 92, 642);
+(10, 183307018, 24, 90, 90, 98, 89, 87, 90, 87, 90, 631),
+(11, 183307018, 20, 97, 89, 80, 85, 87, 80, 85, 86, 603),
+(12, 183307018, 23, 90, 90, 87, 85, 89, 90, 80, 87, 611);
 
 -- --------------------------------------------------------
 
@@ -448,7 +417,7 @@ CREATE TABLE IF NOT EXISTS `nilai_sidang` (
   PRIMARY KEY (`id_nilai_sidang`),
   KEY `fk_nilai_ta_dosen1_idx` (`id_dosen`),
   KEY `fk_nilai_ta_mahasiswa1_idx` (`nim`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -466,17 +435,15 @@ CREATE TABLE IF NOT EXISTS `persetujuan` (
   `tanggal_persetujuan` date NOT NULL,
   `jenis` varchar(20) NOT NULL,
   PRIMARY KEY (`id_persetujuan_seminar`)
-) ENGINE=InnoDB AUTO_INCREMENT=42 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `persetujuan`
 --
 
 INSERT INTO `persetujuan` (`id_persetujuan_seminar`, `nim`, `id_dosen`, `judul`, `status_dosen`, `tanggal_persetujuan`, `jenis`) VALUES
-(38, 183307019, 20, 'Aplikasi Kasir Online Berbasis Mobile Menggunakan QR Code', 1, '2021-07-22', 'proposal'),
-(39, 183307019, 20, 'Aplikasi Kasir Online Berbasis Mobile Menggunakan QR Code', 1, '2021-07-22', 'ta'),
-(40, 183307019, 23, 'Aplikasi Kasir Online Berbasis Mobile Menggunakan QR Code', 2, '2021-07-22', 'ta'),
-(41, 183307019, 23, 'Aplikasi Kasir Online Berbasis Mobile Menggunakan QR Code', 2, '2021-07-22', 'proposal');
+(42, 183307018, 24, 'Sistem informasi penjualan online', 1, '2021-07-22', 'proposal'),
+(43, 183307018, 25, 'Sistem informasi penjualan online', 2, '2021-07-22', 'proposal');
 
 -- --------------------------------------------------------
 
@@ -520,16 +487,14 @@ CREATE TABLE IF NOT EXISTS `proposal` (
   `file_proposal` varchar(30) DEFAULT NULL,
   PRIMARY KEY (`id_proposal`),
   KEY `fk_proposal_mahasiswa1_idx` (`nim`)
-) ENGINE=InnoDB AUTO_INCREMENT=42 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=43 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `proposal`
 --
 
 INSERT INTO `proposal` (`id_proposal`, `nim`, `file_proposal`) VALUES
-(39, 183307019, '183307019_-_Proposal.pdf'),
-(40, 183307019, '183307019_-_Proposal1.pdf'),
-(41, 183307019, '183307019_-_Proposal2.pdf');
+(42, 183307018, '183307018_-_Proposal4.pdf');
 
 -- --------------------------------------------------------
 
@@ -550,16 +515,16 @@ CREATE TABLE IF NOT EXISTS `revisi` (
   PRIMARY KEY (`id_revisi`),
   KEY `nim` (`nim`),
   KEY `penguji` (`penguji`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `revisi`
 --
 
 INSERT INTO `revisi` (`id_revisi`, `nim`, `penguji`, `jenis`, `status`, `file_revisi`, `revisi`, `status_hasil`) VALUES
-(1, 183307019, 25, 'seminar', 1, '183307019_-_Revisi_Seminar.pdf', 'Penulisan tanda baca titik', ''),
-(2, 183307019, 20, 'seminar', 1, '183307019_-_Revisi_Seminar.pdf', 'Halaman', ''),
-(3, 183307019, 24, 'seminar', 1, '183307019_-_Revisi_Seminar.pdf', 'Penomoran', '');
+(4, 183307018, 23, 'seminar', 1, '183307018_-_Revisi_Seminar5.pdf', 'Perbaikan penomoran halaman', ''),
+(5, 183307018, 20, 'seminar', 1, '183307018_-_Revisi_Seminar5.pdf', 'Penataan paragraf dirapikan', ''),
+(6, 183307018, 24, 'seminar', 1, '183307018_-_Revisi_Seminar5.pdf', 'Daftar pustaka', '');
 
 -- --------------------------------------------------------
 
@@ -599,14 +564,14 @@ CREATE TABLE IF NOT EXISTS `seminar_proposal` (
   PRIMARY KEY (`id_seminar_proposal`),
   KEY `fk_seminar_proposal_mahasiswa1_idx` (`nim`),
   KEY `fk_seminar_proposal_nilai_sempro1_idx` (`id_nilai_sempro`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `seminar_proposal`
 --
 
 INSERT INTO `seminar_proposal` (`id_seminar_proposal`, `id_nilai_sempro`, `nim`, `berita_acara`, `persetujuan`, `proposal`, `monitoring`, `status`, `presentasi`, `rata`, `jumlah`, `st_beritaacara`, `st_persetujuan`, `st_proposal`, `st_monitoring`, `st_presentasi`, `catatan_beritaacara`, `catatan_persetujuan`, `catatan_proposal`, `catatan_presentasi`, `catatan_monitoring`, `tgl_beritaacara`, `tgl_persetujuan`, `tgl_proposal`, `tgl_monitoring`, `tgl_presentasi`, `persetujuan_dosen1`) VALUES
-(5, NULL, 183307019, 'bks_seminar-210722.docx', 'bks_seminar-2107221.docx', 'bks_seminar-210722.pdf', 'bks_seminar-2107221.pdf', NULL, 'bks_seminar-210722.pptx', 0, 0, 2, 2, 2, 2, 2, '', '', '', '', '', '2021-07-22', '2021-07-22', '2021-07-22', '2021-07-22', NULL, NULL);
+(6, NULL, 183307018, 'bks_seminar-2107222.docx', 'bks_seminar-2107223.docx', 'bks_seminar-2107222.pdf', 'bks_seminar-2107223.pdf', NULL, 'bks_seminar-2107221.pptx', 0, 0, 2, 2, 2, 2, 2, '', '', '', '', '', '2021-07-22', '2021-07-22', '2021-07-22', '2021-07-22', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -647,7 +612,7 @@ CREATE TABLE IF NOT EXISTS `seminar_ta` (
   PRIMARY KEY (`id_seminar_ta`),
   KEY `fk_seminar_ta_mahasiswa1_idx` (`nim`),
   KEY `fk_seminar_ta_nilai_ta2_idx` (`id_nilai_ta`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -666,14 +631,14 @@ CREATE TABLE IF NOT EXISTS `topik` (
   `komentar` text NOT NULL,
   PRIMARY KEY (`id_topik`),
   KEY `nim` (`nim`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `topik`
 --
 
 INSERT INTO `topik` (`id_topik`, `nim`, `judul`, `lokasi`, `status`, `deskripsi`, `komentar`) VALUES
-(2, 183307019, 'Aplikasi Kasir Online Berbasis Mobile Menggunakan QR Code', 'CV. Makmur Jaya', 3, 'Aplikasi kasir yang digunakan untuk melakukan perhitungan', 'Judul Diterima');
+(3, 183307018, 'Sistem informasi penjualan online', 'CV. Makmur Jaya', 3, 'Sistem yang digunakan untuk melakukan penjualan online', 'Judul diterima');
 
 --
 -- Constraints for dumped tables

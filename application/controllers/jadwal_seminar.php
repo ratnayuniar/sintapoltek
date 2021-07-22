@@ -98,13 +98,13 @@ class Jadwal_seminar extends CI_Controller
 
 
 		if ($waktu_penguji1_sempro > 0) {
-			echo '<script>alert("bentrok dengan dosen penguji 1 sidang")</script>';
+			echo '<script>alert("Dosen Penguji 1 Telah Terjadwal")</script>';
 			redirect('jadwal_seminar', 'refresh');
 		} else if ($waktu_penguji2_sempro > 0) {
-			echo '<script>alert("bentrok dengan dosen penguji 2 sidang")</script>';
+			echo '<script>alert("Dosen Penguji 2 Telah Terjadwal")</script>';
 			redirect('jadwal_seminar', 'refresh');
 		} else if ($waktu_penguji3_sempro > 0) {
-			echo '<script>alert("bentrok dengan dosen penguji 3 sidang")</script>';
+			echo '<script>alert("Dosen Penguji 3 Telah Terjadwal")</script>';
 			redirect('jadwal_seminar', 'refresh');
 		}
 		// else if ($cek_ruangan > 0) {

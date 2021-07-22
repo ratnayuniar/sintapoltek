@@ -692,7 +692,7 @@
                       <h3 class="card-title"><i class="fas fa-exclamation-triangle"></i> Pemberitahuan</h3>
                     </div>
                     <div class="card-body">
-                      Anda belum berhak melakukan registrasi seminar proposal
+                      Anda belum berhak melakukan registrasi sidang tugas akhir
                     </div>
                   </div>
                 </div>

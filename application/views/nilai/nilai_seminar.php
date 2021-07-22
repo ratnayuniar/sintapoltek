@@ -197,29 +197,21 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <?php
-                    $no = 1;
-                    foreach ($query3->result() as $row) {
-                      $data['user'] = $this->m_penguji->getmahasiswabyid($row->nim);
-                      $data['dosen1'] = $this->m_penguji->getdosen1($row->penguji1_sempro);
-                      $data['dosen2'] = $this->m_penguji->getdosen2($row->penguji2_sempro);
-                      $data['dosen3'] = $this->m_penguji->getdosen2($row->penguji3_sempro);
-                      echo
-                      "<tr>
-											<td>" . $no . "</td>
-                      <td>" . $data['user']->nama   . "</td>
-											<td>" . $data['dosen1']->nama . "</td>
-											<td>" . $data['dosen2']->nama . "</td>
-											<td>" . $data['dosen3']->nama . "</td>
-                      <td>" . $row->rata . "</td>
-                      <td></td>
-                      <td>
-                      <a href='" . base_url('nilai_seminar/detail_nilai_seminar2?id=' . $row->nim) . "' class='on-default edit-row btn btn-primary btn-sm' > Input Nilai</a>
-                      </td>
-											</tr>";
-                      $no++;
-                    }
-                    ?>
+                    <?php $i = 1;
+                    foreach ($query3 as $row) : ?>
+                      <tr>
+                        <td><?= $i++; ?></td>
+                        <td><?= $row['nama']; ?></td>
+                        <td><?= $row['dospeng_sempro1']; ?></td>
+                        <td><?= $row['dospeng_sempro2']; ?></td>
+                        <td><?= $row['dospeng_sempro3']; ?></td>
+                        <td><?= $row['rata_rata']; ?></td>
+                        <td><?= $row['nilai_akhir']; ?></td>
+                        <td>
+                          <a href="<?= base_url('nilai_seminar/detail_nilai_seminar2/' . $row['nim']); ?>" class='on-default edit-row btn btn-primary btn-sm'> Input Nilai</a>
+                        </td>
+                      </tr>
+                    <?php endforeach; ?>
                   </tbody>
                 </table>
               </div>

@@ -355,6 +355,19 @@ class Bimbingan_proposal extends CI_Controller
         $this->mypdf->generate('bimbingan/dompdf_seminar', $data, TRUE);
     }
 
+    function cetak_kartu2()
+    {
+        $data['bimbingan_user'] = $this->m_bimbingan2->bimbingan_user();
+        $data['get_dosen'] = $this->m_bimbingan2->get_dosen();
+        $data['get_tanggal'] = $this->m_bimbingan2->get_tanggal();
+        $data['get_mahasiswa'] = $this->m_bimbingan2->get_mahasiswa();
+        $data['topik_user'] = $this->m_profile->topik_user();
+        $this->load->library('mypdf');
+        $this->mypdf->setPaper('A4', 'potrait');
+        $this->mypdf->filename = "laporan";
+        $this->mypdf->generate('bimbingan/dompdf_seminar', $data);
+    }
+
     function delete_bimbingan($id)
     {
         $delete = $this->m_bimbingan1->get_id_bimbingan($id);

@@ -63,13 +63,13 @@ class Jadwal_sidang extends CI_Controller
 
 
 		if ($waktu_penguji1_sidang > 0) {
-			echo '<script>alert("bentrok dengan dosen penguji 1 sidang")</script>';
+			echo '<script>alert("Dosen Penguji 1 Telah Terjadwal")</script>';
 			redirect('jadwal_sidang', 'refresh');
 		} else if ($waktu_penguji2_sidang > 0) {
-			echo '<script>alert("bentrok dengan dosen penguji 2 sidang")</script>';
+			echo '<script>alert("Dosen Penguji 2 Telah Terjadwal")</script>';
 			redirect('jadwal_sidang', 'refresh');
 		} else if ($waktu_penguji3_sidang > 0) {
-			echo '<script>alert("bentrok dengan dosen penguji 3 sidang")</script>';
+			echo '<script>alert("Dosen Penguji 3 Telah Terjadwal")</script>';
 			redirect('jadwal_sidang', 'refresh');
 		}
 		// else if ($cek_ruangan > 0) {
