@@ -100,9 +100,11 @@ class Bks_seminar extends CI_Controller
 
 					if ($cek > 0) {
 						$this->db->where('nim', $data['nim'])->update('seminar_proposal', $data);
+						$this->session->set_flashdata('pesan', 'Berhasil Disimpan');
 						redirect('bks_seminar');
 					} else {
 						$this->db->insert('seminar_proposal', $data);
+						$this->session->set_flashdata('pesan', 'Berhasil Disimpan');
 						redirect('bks_seminar');
 					}
 				}
@@ -150,9 +152,11 @@ class Bks_seminar extends CI_Controller
 
 					if ($cek > 0) {
 						$this->db->where('nim', $data['nim'])->update('seminar_proposal', $data);
+						$this->session->set_flashdata('pesan', 'Berhasil Disimpan');
 						redirect('bks_seminar');
 					} else {
 						$this->db->insert('seminar_proposal', $data);
+						$this->session->set_flashdata('pesan', 'Berhasil Disimpan');
 						redirect('bks_seminar');
 					}
 				}
@@ -200,9 +204,11 @@ class Bks_seminar extends CI_Controller
 
 					if ($cek > 0) {
 						$this->db->where('nim', $data['nim'])->update('seminar_proposal', $data);
+						$this->session->set_flashdata('pesan', 'Berhasil Disimpan');
 						redirect('bks_seminar');
 					} else {
 						$this->db->insert('seminar_proposal', $data);
+						$this->session->set_flashdata('pesan', 'Berhasil Disimpan');
 						redirect('bks_seminar');
 					}
 				}
@@ -250,9 +256,11 @@ class Bks_seminar extends CI_Controller
 
 					if ($cek > 0) {
 						$this->db->where('nim', $data['nim'])->update('seminar_proposal', $data);
+						$this->session->set_flashdata('pesan', 'Berhasil Disimpan');
 						redirect('bks_seminar');
 					} else {
 						$this->db->insert('seminar_ta', $data);
+						$this->session->set_flashdata('pesan', 'Berhasil Disimpan');
 						redirect('bks_seminar');
 					}
 				}
@@ -300,9 +308,11 @@ class Bks_seminar extends CI_Controller
 
 					if ($cek > 0) {
 						$this->db->where('nim', $data['nim'])->update('seminar_proposal', $data);
+						$this->session->set_flashdata('pesan', 'Berhasil Disimpan');
 						redirect('bks_seminar');
 					} else {
 						$this->db->insert('seminar_proposal', $data);
+						$this->session->set_flashdata('pesan', 'Berhasil Disimpan');
 						redirect('bks_seminar');
 					}
 				}

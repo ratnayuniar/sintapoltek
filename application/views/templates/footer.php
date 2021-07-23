@@ -111,6 +111,25 @@
             }
         })
     })
+
+    $(document).on('click', '#btn-konfirmasi', function(e) {
+        e.preventDefault();
+        var link = $(this).attr('href');
+        Swal.fire({
+            title: 'Apakah anda yakin?',
+
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Ya',
+            cancelButtonText: 'Tidak'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location = link;
+            }
+        })
+    })
 </script>
 
 <script>

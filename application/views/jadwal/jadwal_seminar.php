@@ -39,7 +39,6 @@
                         <th>Waktu</th>
                         <th>NIM</th>
                         <th>Nama</th>
-                        <th>Aksi</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -55,9 +54,7 @@
                             <td>" . $row->jam . "</td>
 											      <td>" . $row->nim . "</td>
                             <td>" . $row->nama . "</td>
-										      	<td>
-												  	<a href='" . base_url('jadwal_seminar/delete/' . $row->id_master_ta) . "' id='btn-hapus' class='btn btn-sm btn-danger btn-xs' ><i class='fa fa-trash'></i> Hapus</a> 
-											      </td>									
+												  								
 									    </tr>";
                         $no++;
                       }

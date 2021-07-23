@@ -32,6 +32,9 @@ class M_penguji extends CI_Model
         $this->db->select('*');
         $this->db->from('master_ta');
         $this->db->join('dosen', 'dosen.id_dosen=master_ta.penguji1_sempro');
+        //dijoin dengan nilai
+        // $this->db->join('nilai_sempro', 'master_ta.penguji1_sempro = nilai_sempro.id_dosen', 'left');
+
         $this->db->where('master_ta.penguji1_sempro', $this->session->userdata('id_dosen'));
         $this->db->or_where('master_ta.penguji2_sempro', $this->session->userdata('id_dosen'));
         $this->db->or_where('master_ta.penguji3_sempro', $this->session->userdata('id_dosen'));
@@ -41,16 +44,34 @@ class M_penguji extends CI_Model
 
     function bimbingan_nilai_dosen()
     {
+        // $this->db->select('*');
+        // $this->db->from('master_ta');
+        // $this->db->join('dosen', 'dosen.id_dosen=master_ta.penguji1_sempro');
+        // // $this->db->join('nilai_sempro', 'master_ta.nim = nilai_sempro.nim', 'left');
+        // $this->db->where('master_ta.penguji1_sempro', $this->session->userdata('id_dosen'));
+        // $this->db->or_where('master_ta.penguji2_sempro', $this->session->userdata('id_dosen'));
+        // $this->db->or_where('master_ta.penguji3_sempro', $this->session->userdata('id_dosen'));
+        // // $this->db->where('nilai_sempro.id_dosen', $this->session->userdata('id_dosen'));
+        // $query = $this->db->get();
+        // return $query;
+
+
         $this->db->select('*');
         $this->db->from('master_ta');
         $this->db->join('dosen', 'dosen.id_dosen=master_ta.penguji1_sempro');
-        // $this->db->join('nilai_sempro', 'master_ta.nim = nilai_sempro.nim', 'left');
         $this->db->where('master_ta.penguji1_sempro', $this->session->userdata('id_dosen'));
         $this->db->or_where('master_ta.penguji2_sempro', $this->session->userdata('id_dosen'));
         $this->db->or_where('master_ta.penguji3_sempro', $this->session->userdata('id_dosen'));
-        // $this->db->where('nilai_sempro.id_dosen', $this->session->userdata('id_dosen'));
         $query = $this->db->get();
         return $query;
+    }
+
+    function getrata()
+    {
+        $this->db->select('*');
+        $this->db->from('nilai_sempro');
+        $this->db->where('id_dosen', $this->session->userdata('id_dosen'));
+        return $this->db->get()->row();
     }
 
     function getNilaiSempro()
@@ -69,11 +90,11 @@ class M_penguji extends CI_Model
 
         LEFT JOIN nilai_sempro ON nilai_sempro.nim = master_ta.nim
 
-        WHERE master_ta.penguji1_sempro = ' . $this->session->userdata('id_dosen') . ' OR master_ta.penguji2_sempro = ' . $this->session->userdata('id_dosen') . '
+        WHERE nilai_sempro.id_dosen = ' . $this->session->userdata('id_dosen') . ' AND master_ta.penguji1_sempro = ' . $this->session->userdata('id_dosen') . ' OR master_ta.penguji2_sempro = ' . $this->session->userdata('id_dosen') . '
         OR master_ta.penguji3_sempro = ' . $this->session->userdata('id_dosen') . '
         And nilai_sempro.id_dosen = ' . $this->session->userdata('id_dosen') . '
         ')->result_array();
-        return $this->db->where('',  $this->session->userdata('id_dosen'));
+        return $this->db->get_where('nilai_sempro', array('id_dosen' => $this->session->userdata('id_dosen')),);
     }
 
 

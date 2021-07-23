@@ -169,6 +169,7 @@ class Proposal extends CI_Controller
 
             $this->db->set($array);
             $this->db->insert('proposal');
+            $this->session->set_flashdata('pesan', 'Data Berhasil Disimpan');
             // $this->db->set('file_proposal', $this->upload->data('file_name'))->where('nim', $nim)->insert('proposal');
             redirect('proposal');
         }

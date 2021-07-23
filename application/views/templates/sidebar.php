@@ -203,7 +203,7 @@
                     <?php if (
                         $this->uri->segment(1) == 'topik' || $this->uri->segment(1) == 'pembimbing'
                         || $this->uri->segment(1) == 'proposal' || $this->uri->segment(1) == 'bimbingan1'
-                        || $this->uri->segment(1) == 'bimbingan2' || $this->uri->segment(1) == 'bks_seminar'
+                        || $this->uri->segment(2) == 'bimbingan_proposal/dospem1' || $this->uri->segment(1) == 'bks_seminar'
                         || $this->uri->segment(1) == 'penguji' || $this->uri->segment(1) == 'revisi_seminar'
                     ) {
                         echo "menu-open";
@@ -211,7 +211,7 @@
                         <a href="#" class="nav-link 
                         <?php if (
                             $this->uri->segment(1) == 'topik' || $this->uri->segment(1) == 'pembimbing'
-                            || $this->uri->segment(1) == 'proposal' || $this->uri->segment(1) == 'bimbingan1'
+                            || $this->uri->segment(1) == 'proposal' || $this->uri->segment(2) == 'bimbingan_proposal/dospem1'
                             || $this->uri->segment(1) == 'bimbingan2' || $this->uri->segment(1) == 'bks_seminar'
                             || $this->uri->segment(1) == 'penguji' || $this->uri->segment(1) == 'revisi_seminar'
                         ) {
@@ -243,9 +243,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="<?php echo base_url(''); ?>" class="nav-link 
-                                
-                                ">
+                                <a href="<?php echo base_url(''); ?>" class="nav-link ">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Bimbingan Proposal</p>
                                     <i class="fas fa-angle-left right"></i>
@@ -407,6 +405,12 @@
                                 </a>
                             </li>
                             <li class="nav-item">
+                                <a href="<?php echo base_url('verif_baak/detaildata_mhs'); ?>" class="nav-link <?= activate_menu('verif_baak/detaildata_mhs') ?>">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Data BAAK</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
                                 <a href="<?php echo base_url('bks_bahasa'); ?>" class="nav-link <?= activate_menu('bks_bahasa') ?>">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Data Bahasa</p>
@@ -430,12 +434,7 @@
                                     <p>Data Prestasi</p>
                                 </a>
                             </li>
-                            <li class="nav-item">
-                                <a href="<?php echo base_url('verif_baak/detaildata_mhs'); ?>" class="nav-link <?= activate_menu('verif_baak/detaildata_mhs') ?>">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Data BAAK</p>
-                                </a>
-                            </li>
+
                             <li class="nav-item">
                                 <a href="<?php echo base_url('veri_perpus/detaildata_mhs'); ?>" class="nav-link <?= activate_menu('veri_perpus/detaildata_mhs') ?> ">
                                     <i class="far fa-circle nav-icon"></i>

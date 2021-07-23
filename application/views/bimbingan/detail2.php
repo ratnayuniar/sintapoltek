@@ -51,7 +51,7 @@
             <!-- // dibuat pada tanggal 16-07-2021, 01:07 WIB -->
             <?php $cek = $this->db->get_where('persetujuan', array('id_dosen' => $this->session->userdata('id_dosen'), 'jenis' => 'proposal'))->row_array(); ?>
             <?php if (isset($cek['nim']) == "") { ?>
-                <?php if ($cekJumlahBimbingan2 >= 5) { ?>
+                <?php if ($cekJumlahBimbingan2 >= 8) { ?>
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="card">

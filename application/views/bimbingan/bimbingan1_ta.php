@@ -38,7 +38,6 @@
                                         <th>Nama Mahasiswa</th>
                                         <th>Judul</th>
                                         <th>Detail</th>
-                                        <th>Status</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -52,7 +51,6 @@
                                             <td><?= $row['nama_mahasiswa']; ?></td>
                                             <td><?= $row['judul']; ?></td>
                                             <td><a class="btn btn-sm btn-info" href="<?= base_url('bimbingan_ta/mabim1_detail/' . $row['nim']); ?>">Detail</a></td>
-                                            <td>--</td>
                                         </tr>
                                     <?php
                                         $no++;
@@ -143,7 +141,6 @@
                         </div>
                     </div>
                 </div>
-
                 <?php $cek = $this->db->get_where('revisi', array('nim' => $this->session->userdata('email')))->row_array(); ?>
                 <?php if (isset($cek['file_revisi']) != NULL) { ?>
                     <div class="row">
@@ -217,7 +214,7 @@
                                                     </td>
                                                     <td>
                                                         <?php if ($row->status == '0') {
-                                                            echo "<a onclick='return confirm('Yakin akan hapus?');' href='" . base_url('bimbingan1/delete_bimbingan_ta/' . $row->id_bimbingan) . "' id='btn-hapus' class='btn btn-danger btn-sm'>
+                                                            echo "<a onclick='return confirm('Yakin akan hapus?');' href='" . base_url('bimbingan_ta/delete_bimbingan_ta/' . $row->id_bimbingan) . "' id='btn-hapus' class='btn btn-danger btn-sm'>
                                                             <i class='fa fa-trash'></i>
                                                         </a>";
                                                         } else {

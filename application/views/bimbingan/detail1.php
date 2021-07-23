@@ -53,7 +53,7 @@
       <!-- // dibuat pada tanggal 16-07-2021, 01:07 WIB -->
       <?php $cek = $this->db->get_where('persetujuan', array('id_dosen' => $this->session->userdata('id_dosen'), 'jenis' => 'proposal'))->row_array(); ?>
       <?php if (isset($cek['nim']) == "") { ?>
-        <?php if ($cekJumlahBimbingan >= 5) { ?>
+        <?php if ($cekJumlahBimbingan >= 8) { ?>
           <div class="row">
             <div class="col-lg-12">
               <div class="card">
@@ -62,7 +62,7 @@
                 </div>
                 <div class="card-body">
                   <p class="card-text">Jumlah bimbingan sudah memenuhi syarat untuk pendaftaran seminar. Klik tombol dibawah ini untuk menyetujui <br>
-                    <a href="<?= base_url('bimbingan_proposal/persetujuan/' . $info_judul['nim'] . '/' . $info_judul['judul'] . '/' . $this->session->userdata('id_dosen') . '/' . '1' . '/' . date('Y-m-d')); ?>" onclick="return confirm('Apakah Anda sudah yakin dengan mahasiswa ini?')" class="btn btn-sm btn-success mt-2">Setujui</a>
+                    <a href="<?= base_url('bimbingan_proposal/persetujuan/' . $info_judul['nim'] . '/' . $info_judul['judul'] . '/' . $this->session->userdata('id_dosen') . '/' . '1' . '/' . date('Y-m-d')); ?>" onclick="return confirm('Apakah Anda sudah yakin dengan mahasiswa ini?')" btn="btn-konfirmasi" class="btn btn-sm btn-success mt-2">Setujui</a>
                   </p>
                 </div>
               </div>

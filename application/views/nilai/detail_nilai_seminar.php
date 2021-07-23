@@ -7,10 +7,10 @@
         var pustaka = document.getElementById("pustaka").value;
         var presentasi = document.getElementById("presentasi").value;
         var penguasaan = document.getElementById("penguasaan").value;
-        // var rata = (parseInt(perumusan) + parseInt(teori) + parseInt(pemecahan) + parseInt(penulisan) + parseInt(pustaka)) / 5;
-        // var nilai_akhir = ((parseInt(rata) * 3) + (parseInt(presentasi) * 2) + (parseInt(penguasaan) * 2)) / 7;
-        var nilai_akhir = document.getElementById("nilai_akhir").value;
-        var rata = document.getElementById("rata").value;
+        var rata = (parseInt(perumusan) + parseInt(teori) + parseInt(pemecahan) + parseInt(penulisan) + parseInt(pustaka)) / 5;
+        var nilai_akhir = ((parseInt(rata) * 3) + (parseInt(presentasi) * 2) + (parseInt(penguasaan) * 2)) / 7;
+        // var nilai_akhir = document.getElementById("nilai_akhir").value;
+        // var rata = document.getElementById("rata").value;
         var id_dosen = document.getElementById("id_dosen").value;
         document.getElementById("rata").value = rata.toFixed(1);
         document.getElementById("nilai_akhir").value = nilai_akhir.toFixed(1);
@@ -47,7 +47,7 @@
                                     <?php
                                     $this->db->select('*');
                                     $this->db->from('nilai_sempro');
-                                    $this->db->where(array('id_dosen' => $this->session->userdata('id_dosen'), 'nim' => $this->uri->segment(3)));
+                                    $this->db->where(array('id_dosen' => $this->session->userdata('id_dosen')));
                                     $result = $this->db->get()->row();
                                     ?>
                                     <input type="hidden" id="nim" name="nim" value="<?php echo $nim; ?>">

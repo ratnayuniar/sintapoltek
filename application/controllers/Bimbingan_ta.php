@@ -351,6 +351,7 @@ class Bimbingan_ta extends CI_Controller
         $this->mypdf->filename = "laporan";
         $this->mypdf->generate('bimbingan/dompdf2', $data, TRUE);
     }
+
     function cetak_kartuta2()
     {
         $data['bimbingan_user_ta'] = $this->m_bimbingan2->bimbingan_user_ta();
@@ -362,6 +363,19 @@ class Bimbingan_ta extends CI_Controller
         $this->mypdf->setPaper('A4', 'potrait');
         $this->mypdf->filename = "laporan";
         $this->mypdf->generate('bimbingan/dompdf2', $data, TRUE);
+    }
+
+    function delete_bimbingan_ta($id)
+    {
+        $delete = $this->m_bimbingan1->get_id_bimbingan($id);
+        if ($delete) {
+            $this->m_bimbingan1->delete($id);
+            $this->session->set_flashdata('message', '<div class="alert alert-danger">Data Berhasil di Hapus</div>');
+            redirect('bimbingan_ta/dospem1', 'refresh');
+        } else {
+            $this->session->set_flashdata('message', '<div class="alert alert-danger">Data Tidak ada</div>');
+            redirect('bimbingan_ta/dospem1', 'refresh');
+        }
     }
 }
 

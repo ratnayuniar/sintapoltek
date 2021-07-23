@@ -38,7 +38,6 @@
                                         <th>Nama Mahasiswa</th>
                                         <th>Judul</th>
                                         <th>Detail</th>
-                                        <th>Status</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -52,7 +51,6 @@
                                             <td><?= $row['nama_mahasiswa']; ?></td>
                                             <td><?= $row['judul']; ?></td>
                                             <td><a class="btn btn-sm btn-info" href="<?= base_url('bimbingan_ta/mabim2_detail/' . $row['nim']); ?>">Detail</a></td>
-                                            <td>--</td>
                                         </tr>
                                     <?php
                                         $no++;
