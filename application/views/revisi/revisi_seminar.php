@@ -230,78 +230,79 @@
 
         <section class="content">
             <div class="container-fluid">
-                <div class="row">
-                    <div class="col-12">
-                        <?php $cek = $this->db->get_where('master_ta', array('nim' => $this->session->userdata('email')))->row_array(); ?>
-                        <?php if (isset($cek['revisi_seminar']) != NULL &&  $cek['status_seminar'] != NULL) { ?>
-                            <div class="card">
+                <div id="flash" data-flash="<?= $this->session->flashdata('pesan'); ?>">
+                    <div class="row">
+                        <div class="col-12">
+                            <?php $cek = $this->db->get_where('master_ta', array('nim' => $this->session->userdata('email')))->row_array(); ?>
+                            <?php if (isset($cek['revisi_seminar']) != NULL &&  $cek['status_seminar'] != NULL) { ?>
+                                <div class="card">
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div class="card">
+                                                <div class="card-header">
+                                                    <h5 class="m-0">Revisi Mahasiswa</h5>
+                                                </div>
+                                                <div class="card-body">
+                                                    <?php
+                                                    foreach ($statusseminar->result() as $row) { ?>
+                                                        <div class="form-group row">
+                                                            <label for="nama" class="col-sm-2 col-form-label">Hasil</label>
+                                                            <div class="col-sm-10">
+                                                                <input type="text" class="form-control" id="nama" value="<?= $row->status_seminar ?>" readonly>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <label for="nama" class="col-sm-2 col-form-label">File Revisi</label>
+                                                            <div class="col-sm-10">
+                                                                <a href="<?php echo base_url('assets/berkas/seminar/' . $row->revisi_seminar); ?>" target="_blank"><i class="far fa-file-pdf"> Download File Revisi</i></a>
+                                                            </div>
+                                                        </div>
+                                                </div>
+                                            <?php } ?>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-body">
+                                        <table id="example1" class="table table-bordered table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th>No</th>
+                                                    <th>Dosen Penguji</th>
+                                                    <th>Revisi</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <?php
+                                                $no = 1;
+                                                foreach ($query2->result() as $row) { ?>
+                                                    <tr>
+                                                        <td><?= $no++ ?></td>
+                                                        <td><?= $row->nama_dosen ?></td>
+                                                        <td><?= $row->revisi ?></td>
+                                                    <?php } ?>
+                                                    </tr>
+                                            </tbody>
+                                        </table>
+
+                                    </div>
+                                </div>
+                            <?php } else { ?>
                                 <div class="row">
-                                    <div class="col-lg-12">
-                                        <div class="card">
+                                    <div class="col-12">
+                                        <div class="card card-danger">
                                             <div class="card-header">
-                                                <h5 class="m-0">Revisi Mahasiswa</h5>
+                                                <h3 class="card-title"><i class="fas fa-exclamation-triangle"></i> Pemberitahuan</h3>
                                             </div>
                                             <div class="card-body">
-                                                <?php
-                                                foreach ($statusseminar->result() as $row) { ?>
-                                                    <div class="form-group row">
-                                                        <label for="nama" class="col-sm-2 col-form-label">Hasil</label>
-                                                        <div class="col-sm-10">
-                                                            <input type="text" class="form-control" id="nama" value="<?= $row->status_seminar ?>" readonly>
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group row">
-                                                        <label for="nama" class="col-sm-2 col-form-label">File Revisi</label>
-                                                        <div class="col-sm-10">
-                                                            <a href="<?php echo base_url('assets/berkas/seminar/' . $row->revisi_seminar); ?>" target="_blank"><i class="far fa-file-pdf"> Download File Revisi</i></a>
-                                                        </div>
-                                                    </div>
+                                                Hasil revisi seminar proposal belum tersedia
                                             </div>
-                                        <?php } ?>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="card-body">
-                                    <table id="example1" class="table table-bordered table-striped">
-                                        <thead>
-                                            <tr>
-                                                <th>No</th>
-                                                <th>Dosen Penguji</th>
-                                                <th>Revisi</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <?php
-                                            $no = 1;
-                                            foreach ($query2->result() as $row) { ?>
-                                                <tr>
-                                                    <td><?= $no++ ?></td>
-                                                    <td><?= $row->nama_dosen ?></td>
-                                                    <td><?= $row->revisi ?></td>
-                                                <?php } ?>
-                                                </tr>
-                                        </tbody>
-                                    </table>
-
-                                </div>
-                            </div>
-                        <?php } else { ?>
-                            <div class="row">
-                                <div class="col-12">
-                                    <div class="card card-danger">
-                                        <div class="card-header">
-                                            <h3 class="card-title"><i class="fas fa-exclamation-triangle"></i> Pemberitahuan</h3>
-                                        </div>
-                                        <div class="card-body">
-                                            Hasil revisi seminar proposal belum tersedia
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        <?php } ?>
+                            <?php } ?>
+                        </div>
                     </div>
                 </div>
-            </div>
         </section>
     </div>
 <?php } ?>

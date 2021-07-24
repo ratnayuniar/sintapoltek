@@ -65,18 +65,18 @@ class Verif_baak extends CI_Controller
 
     function save_belum($id)
     {
-        $this->m_bks_wisuda->update($id, ['status_baak' => 1]);
+        $this->m_bks_wisuda->update($id, ['status_baak' => 0]);
         redirect('verif_baak', 'refresh');
     }
     function save_kurang($id)
     {
-        $this->m_bks_wisuda->update($id, ['status_baak' => 2]);
+        $this->m_bks_wisuda->update($id, ['status_baak' => 1]);
         redirect('verif_baak', 'refresh');
     }
 
     function save_lengkap($id)
     {
-        $this->m_bks_wisuda->update($id, ['status_baak' => 3]);
+        $this->m_bks_wisuda->update($id, ['status_baak' => 2]);
         redirect('verif_baak', 'refresh');
     }
 

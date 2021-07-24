@@ -204,7 +204,7 @@
                         $this->uri->segment(1) == 'topik' || $this->uri->segment(1) == 'pembimbing'
                         || $this->uri->segment(1) == 'proposal' || $this->uri->segment(1) == 'bimbingan1'
                         || $this->uri->segment(2) == 'bimbingan_proposal/dospem1' || $this->uri->segment(1) == 'bks_seminar'
-                        || $this->uri->segment(1) == 'penguji' || $this->uri->segment(1) == 'revisi_seminar'
+                        || $this->uri->segment(1) == 'penguji' || $this->uri->segment(1) == 'revisi_seminar'  || $this->uri->segment(1) == 'revisi_upload_seminar'
                     ) {
                         echo "menu-open";
                     } ?> ">
@@ -213,7 +213,7 @@
                             $this->uri->segment(1) == 'topik' || $this->uri->segment(1) == 'pembimbing'
                             || $this->uri->segment(1) == 'proposal' || $this->uri->segment(2) == 'bimbingan_proposal/dospem1'
                             || $this->uri->segment(1) == 'bimbingan2' || $this->uri->segment(1) == 'bks_seminar'
-                            || $this->uri->segment(1) == 'penguji' || $this->uri->segment(1) == 'revisi_seminar'
+                            || $this->uri->segment(1) == 'penguji' || $this->uri->segment(1) == 'revisi_seminar' || $this->uri->segment(1) == 'revisi_upload_seminar'
                         ) {
                             echo "active";
                         } ?>">

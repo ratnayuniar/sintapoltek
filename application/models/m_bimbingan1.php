@@ -73,7 +73,7 @@ class M_bimbingan1 extends CI_Model
         $this->db->where('jenis', 'seminar');
         $this->db->where('bimbingan.nim', $this->session->userdata('email'));
         $this->db->or_where('bimbingan.id_dosen', $this->session->userdata('id_dosen'));
-        $this->db->order_by('tanggal', 'desc');
+        // $this->db->order_by('tanggal', 'desc');
 
         return $this->db->get('bimbingan');
     }
@@ -104,6 +104,11 @@ class M_bimbingan1 extends CI_Model
     function get_tanggal()
     {
         return $this->db->query("SELECT * FROM `bimbingan` ORDER BY id_bimbingan DESC LIMIT 1")->row();
+    }
+
+    function get_tanggal_tabel()
+    {
+        return $this->db->query("SELECT * FROM `bimbingan` ORDER BY id_bimbingan ASC")->result();
     }
 
     function get_mahasiswa()

@@ -43,7 +43,7 @@
                             </div>
                             </form>
                         </div>
-                        <?php if ($ambilBerkas['file_proposal']  != "") { ?>
+                        <?php if (isset($ambilBerkas['file_proposal'])  != "") { ?>
                             <div class="col-8">
                                 <div class="card card-success">
                                     <div class="card-header">

@@ -203,6 +203,13 @@
                     </tr>
                   </thead>
                   <tbody>
+                  <tbody>
+                    <?php
+                    $this->db->select('*');
+                    $this->db->from('nilai_sidang');
+                    $this->db->where(array('id_dosen' => $this->session->userdata('id_dosen')));
+                    $result = $this->db->get()->row();
+                    ?>
                     <?php
                     $no = 1;
                     foreach ($query3->result() as $row) {
@@ -210,22 +217,24 @@
                       $data['dosen1'] = $this->m_penguji_sidang->getdosen1($row->penguji1_sidang);
                       $data['dosen2'] = $this->m_penguji_sidang->getdosen2($row->penguji2_sidang);
                       $data['dosen3'] = $this->m_penguji_sidang->getdosen2($row->penguji3_sidang);
-                      echo
-                      "<tr>
-											<td>" . $no . "</td>
-                      <td>" . $data['user']->nama   . "</td>
-											<td>" . $data['dosen1']->nama . "</td>
-											<td>" . $data['dosen2']->nama . "</td>
-											<td>" . $data['dosen3']->nama . "</td>
-                      <td></td>
-                      <td></td>
-                      <td>
-                      <a href='" . base_url('nilai_sidang/detail_nilai_sidang2?id=' . $row->nim) . "' class='on-default edit-row btn btn-primary btn-sm' > Input Nilai</a>
-                      </td>
-											</tr>";
-                      $no++;
-                    }
                     ?>
+                      <tr>
+                        <td><?= $no  ?></td>
+                        <td><?= $data['user']->nama ?></td>
+                        <td><?= $data['dosen1']->nama ?></td>
+                        <td><?= $data['dosen2']->nama ?></td>
+                        <td><?= $data['dosen3']->nama ?></td>
+                        <td><?php if (empty($result->rata)) echo "";
+                            else echo $result->rata ?></td>
+                        <td><?php if (empty($result->nilai_akhir)) echo "";
+                            else echo $result->nilai_akhir ?></td>
+                        <td>
+
+                          <a href="<?= base_url('nilai_sidang/detail_nilai_sidang2?id=' . $row->nim); ?>" class="on-default edit-row btn btn-primary btn-xs"> Input Nilai</a>
+                        </td>
+                      </tr>
+                    <?php } ?>
+                  </tbody>
                   </tbody>
                 </table>
               </div>

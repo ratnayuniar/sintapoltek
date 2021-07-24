@@ -32,12 +32,14 @@ class M_penguji extends CI_Model
         $this->db->select('*');
         $this->db->from('master_ta');
         $this->db->join('dosen', 'dosen.id_dosen=master_ta.penguji1_sempro');
+        
         //dijoin dengan nilai
         // $this->db->join('nilai_sempro', 'master_ta.penguji1_sempro = nilai_sempro.id_dosen', 'left');
 
         $this->db->where('master_ta.penguji1_sempro', $this->session->userdata('id_dosen'));
         $this->db->or_where('master_ta.penguji2_sempro', $this->session->userdata('id_dosen'));
         $this->db->or_where('master_ta.penguji3_sempro', $this->session->userdata('id_dosen'));
+
         $query = $this->db->get();
         return $query;
     }

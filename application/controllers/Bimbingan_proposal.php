@@ -55,7 +55,7 @@ class Bimbingan_proposal extends CI_Controller
         $filename =  'bks-bimbingan' . '-' . substr(md5(rand()), 0, 10);
 
         $config['upload_path'] = './assets/berkas/bimbingan/';
-        $config['allowed_types'] = 'pdf';
+        $config['allowed_types'] = 'pdf|doc|docx';
         $config['max_size']  = 5000;
         $config['file_name']  = $filename;
         // $config['encrypt_name'] = TRUE;
@@ -121,7 +121,7 @@ class Bimbingan_proposal extends CI_Controller
         $filename =  'bks-bimbingan' . '-' . substr(md5(rand()), 0, 10);
 
         $config['upload_path'] = './assets/berkas/bimbingan/';
-        $config['allowed_types'] = 'pdf';
+        $config['allowed_types'] = 'pdf|doc|docx';
         $config['max_size']  = 5000;
         $config['file_name'] = $filename;
 
@@ -324,6 +324,7 @@ class Bimbingan_proposal extends CI_Controller
         ];
 
         $this->db->insert('persetujuan', $data);
+        
         redirect('bimbingan_proposal/mabim1_detail/' . $nim);
     }
 
@@ -347,6 +348,7 @@ class Bimbingan_proposal extends CI_Controller
         $data['bimbingan_user'] = $this->m_bimbingan1->bimbingan_user();
         $data['get_dosen'] = $this->m_bimbingan1->get_dosen();
         $data['get_tanggal'] = $this->m_bimbingan1->get_tanggal();
+        $data['get_tanggal_tabel'] = $this->m_bimbingan1->get_tanggal_tabel();
         $data['get_mahasiswa'] = $this->m_bimbingan1->get_mahasiswa();
         $data['topik_user'] = $this->m_profile->topik_user();
         $this->load->library('mypdf');

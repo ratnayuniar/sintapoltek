@@ -40,7 +40,7 @@
                                     <tbody>
                                         <?php
                                         $no = 1;
-                                        foreach ($get_mahasiswa as $row) { ?>
+                                        foreach ($get_mahasiswa as $row) { ?> 
                                             <tr>
                                                 <td><?= $no++ ?></td>
                                                 <td><?= $row->nim ?></td>

@@ -64,7 +64,7 @@
                           }
                           ?>
                           <?php if ($row->berita_acara != NULL) {
-                            echo "  <h6><a href='" . base_url('assets/berkas/seminar/' . $row->berita_acara) . "' download><i class='far fa-file-pdf'></i></i></a></h6>";
+                            echo "  <h6><a href='" . base_url('assets/berkas/seminar/' . $row->berita_acara) . "' download><i class='far fa-file-word'></i></i></a></h6>";
                           } else {
                             echo " ";
                           }
@@ -87,7 +87,7 @@
                           }
                           ?>
                           <?php if ($row->persetujuan != NULL) {
-                            echo "  <h6><a href='" . base_url('assets/berkas/seminar/' . $row->persetujuan) . "' download><i class='far fa-file-pdf'></i></i></a></h6>";
+                            echo "  <h6><a href='" . base_url('assets/berkas/seminar/' . $row->persetujuan) . "' download><i class='far fa-file-word'></i></i></a></h6>";
                           } else {
                             echo " ";
                           }
@@ -154,7 +154,7 @@
                           }
                           ?>
                           <?php if ($row->presentasi != NULL) {
-                            echo "  <h6><a href='" . base_url('assets/berkas/seminar/' . $row->presentasi) . "' download><i class='far fa-file-pdf'></i></i></a></h6>";
+                            echo "  <h6><a href='" . base_url('assets/berkas/seminar/' . $row->presentasi) . "' download><i class='far fa-file-powerpoint'></i></i></a></h6>";
                           } else {
                             echo " ";
                           }

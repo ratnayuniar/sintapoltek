@@ -361,7 +361,9 @@
                       <th>Tempat Penelitian</th>
                       <th>Komentar</th>
                       <th>Status</th>
-                      <?php if ($cek['status'] == 4) {
+                      <?php if (isset($cek['status']) == 4) {
+                        // <?php if ($cek['status']) == 4) {
+                        //  <?php if (array($cek) || array($cek['status'] == 4)) {
                         echo " 
                           <th>Aksi</th>";
                       } else {
@@ -395,7 +397,7 @@
                           echo " 
                           <td> <a href ='#' class ='badge badge-success' data-toggle='modal' data-target='#custom-width-modal' onClick=\"SetInput('" . $row->id_topik . "','" . $row->nim . "','" . $row->judul . "','" . $row->deskripsi . "','" . $row->lokasi . "')\"> Edit</a></td>";
                         } else {
-                          echo "";
+                          echo "<td></td>";
                         }
                         ?>
                       </tr>

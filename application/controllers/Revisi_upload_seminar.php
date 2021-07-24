@@ -107,6 +107,7 @@ class Revisi_upload_seminar extends CI_Controller
             redirect('revisi_upload_seminar');
         } else {
             $this->db->set('file_revisi', $this->upload->data('file_name'))->where('nim', $nim)->where('jenis', 'seminar')->update('revisi');
+            $this->session->set_flashdata('pesan', 'Data Berhasil Disimpan');
             redirect('revisi_upload_seminar');
         }
     }

@@ -29,6 +29,8 @@ class Nilai_seminar extends CI_Controller
 		$this->load->view('templates/sidebar', $data);
 		$this->load->view('nilai/nilai_seminar', $data);
 		$this->load->view('templates/footer', $data);
+
+		// echo json_encode($data['query3']->result());
 	}
 
 	function detail_nilai_seminar($nim)
@@ -44,17 +46,21 @@ class Nilai_seminar extends CI_Controller
 			$this->load->view('templates/footer', $data);
 		}
 	}
-	function detail_nilai_seminar2()
+	function detail_nilai_seminar2($nim)
 	{
-		$data['title'] = 'SINTA PNM';
-		$data['nim'] = $this->input->get('id');
-		$data['query'] = $this->m_nilai_seminar->tampil_data2($data['nim']);
-		$data['query3'] = $this->m_penguji->bimbingan_dosen();
-		$this->load->view('templates/header', $data);
-		$this->load->view('templates/sidebar', $data);
-		$this->load->view('nilai/detail_nilai_seminar', $data);
-		$this->load->view('templates/footer', $data);
+	 $data['title'] = 'SINTA PNM';
+	 $data['nim'] = $nim;
+	 $data['query'] = $this->m_nilai_seminar->tampil_data2($nim);
+	 $data['query3'] = $this->m_penguji->bimbingan_dosen();
+   
+	 
+	  $this->load->view('templates/header', $data);
+	  $this->load->view('templates/sidebar', $data);
+	  $this->load->view('nilai/detail_nilai_seminar2', $data);
+	  $this->load->view('templates/footer', $data);
+	 
 	}
+
 	public function add()
 	{
 		$this->m_nilai_seminar->tambah_data();
