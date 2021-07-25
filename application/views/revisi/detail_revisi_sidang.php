@@ -149,6 +149,7 @@
                                 $this->db->from('revisi');
                                 $this->db->where('jenis', 'ta');
                                 $this->db->where(array('penguji' => $this->session->userdata('id_dosen')));
+                                $this->db->where('nim', $this->uri->segment(3));
                                 $result = $this->db->get()->row();
                                 ?>
                                 <div class="card-body">

@@ -61,17 +61,19 @@ class Nilai_sidang extends CI_Controller
 	}
 
 
-	function detail_nilai_sidang2()
+	function detail_nilai_sidang2($nim)
 	{
-		$data['title'] = 'SINTA PNM';
-		$data['nim'] = $this->input->get('id');
-		$data['query'] = $this->m_nilai_sidang->tampil_data2($data['nim']);
-		$data['query3'] = $this->m_penguji_sidang->bimbingan_dosen();
-
-		$this->load->view('templates/header', $data);
-		$this->load->view('templates/sidebar', $data);
-		$this->load->view('nilai/detail_nilai_sidang', $data);
-		$this->load->view('templates/footer', $data);
+	 $data['title'] = 'SINTA PNM';
+	 $data['nim'] = $nim;
+	 $data['query'] = $this->m_nilai_sidang->tampil_data2($nim);
+	 $data['query3'] = $this->m_penguji_sidang->bimbingan_dosen();
+   
+	 
+	  $this->load->view('templates/header', $data);
+	  $this->load->view('templates/sidebar', $data);
+	  $this->load->view('nilai/detail_nilai_sidang2', $data);
+	  $this->load->view('templates/footer', $data);
+	 
 	}
 
 	public function add()

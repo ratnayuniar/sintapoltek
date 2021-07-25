@@ -16,10 +16,10 @@ class Bks_sidang extends CI_Controller
 	public function index()
 	{
 		$data['query'] = $this->m_bks_sidang->tampil_data();
-		$data['bks_sidang_user'] = $this->m_bks_sidang->bks_sidang_user();
+		$data['bks_sidang'] = $this->m_bks_sidang->bks_sidang_user();
 		$data['title'] = 'SINTA PNM';
 		$data['data'] = $this->db->get('seminar_ta')->result();
-		$data['bks_sidang'] = $this->db->query('select * from seminar_ta')->row();
+		// $data['bks_sidang'] = $this->db->query('select * from seminar_ta')->row();
 
 
 

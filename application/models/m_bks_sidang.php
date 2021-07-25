@@ -24,7 +24,7 @@ class M_bks_sidang extends CI_Model
 		$this->db->join('mahasiswa', 'mahasiswa.nim=seminar_ta.nim', 'left');
 		$this->db->where('seminar_ta.nim', $this->session->userdata('email'));
 		// $this->db->or_where('bks_sidang.id_prodi', $this->session->userdata('id_prodi'));
-		return $this->db->get('seminar_ta');
+		return $this->db->get('seminar_ta')->row();
 	}
 
 	function bks_sidang_admin($id_prodi)

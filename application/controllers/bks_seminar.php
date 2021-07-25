@@ -16,10 +16,10 @@ class Bks_seminar extends CI_Controller
 	public function index()
 	{
 		$data['query'] = $this->m_bks_seminar->tampil_data();
-		$data['bks_seminar_user'] = $this->m_bks_seminar->bks_seminar_user();
+		$data['bks_seminar'] = $this->m_bks_seminar->bks_seminar_user();
 		$data['title'] = 'SINTA PNM';
 		$data['data'] = $this->db->get('seminar_proposal')->result();
-		$data['bks_seminar'] = $this->db->query('select * from seminar_proposal')->row();
+		// $data['bks_seminar'] = $this->db->query('select * from seminar_proposal')->row();
 
 		$this->load->view('templates/header', $data);
 		$this->load->view('templates/sidebar', $data);

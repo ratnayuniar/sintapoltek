@@ -676,233 +676,249 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-12">
-                        <?php $cek = $this->db->get_where('persetujuan', array('nim' => $this->session->userdata('email'), 'jenis' => 'ta')) ?>
-                        <?php if ($cek->num_rows() < 2) { ?>
-                            <div class="row">
-                                <div class="col-12">
-                                    <div class="card card-danger">
-                                        <div class="card-header">
-                                            <h3 class="card-title"><i class="fas fa-exclamation-triangle"></i> Pemberitahuan</h3>
-                                        </div>
-                                        <div class="card-body">
-                                            Anda belum berhak melakukan registrasi wisuda
-                                        </div>
+
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">Data Berkas Pendaftaran Wisuda</h3>
+                            </div>
+                            <div class="card-body">
+                                <div id="flash" data-flash="<?= $this->session->flashdata('pesan'); ?>">
+                                    <div id="gagal" data-flash="<?= $this->session->flashdata('gagal'); ?>">
+                                        <form action="<?= base_url('bks_wisuda/create') ?>" method="post" class="form-horizontal" role="form" enctype="multipart/form-data">
+                                            <input type="hidden" id="id_bks_wisuda" name="id_bks_wisuda">
+                                            <table id="example1" class="table table-bordered table-striped">
+                                                <thead>
+                                                    <tr>
+                                                        <th>No</th>
+                                                        <th>Persyaratan</th>
+                                                        <th>Unggah Bukti</th>
+                                                        <th>Status</th>
+                                                        <th>Keterangan</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>1.</td>
+                                                        <td>File TA</td>
+                                                        <td>
+                                                            <a href="#" class="btn btn-info" data-toggle="modal" pull="right" data-target="#file_ta" onclick="ResetInput()"><i class="fa fa-file"></i> Unggah</a>
+                                                        </td>
+                                                        <td>
+                                                            <?php
+                                                            if ($bks_wisuda == "") {
+                                                                echo "";
+                                                            } else {
+                                                                echo "$bks_wisuda->file_ta";
+                                                            }
+                                                            ?>
+                                                        </td>
+                                                        <td align="center">
+                                                            <?php
+                                                            if ($bks_wisuda == "") {
+                                                                echo "";
+                                                            } else {
+                                                                if ($bks_wisuda->status_file_ta == '0') {
+                                                                    echo '<span class="badge badge-warning">Belum Diverifikasi</span>';
+                                                                } else if ($bks_wisuda->status_file_ta == '1') {
+                                                                    echo '<span class="badge badge-info">Kurang Lengkap</span>';
+                                                                } else if ($bks_wisuda->status_file_ta == '2') {
+                                                                    echo '<span class="badge badge-success">Lengkap</span>';
+                                                                }
+                                                            }
+
+                                                            ?>
+                                                        </td>
+
+                                                    </tr>
+                                                    <tr>
+                                                        <td>2.</td>
+                                                        <td>File Jurnal</td>
+                                                        <td>
+                                                            <a href="#" class="btn btn-info" data-toggle="modal" pull="right" data-target="#file_jurnal" onclick="ResetInput()"><i class="fa fa-file"></i> Unggah</a>
+                                                        </td>
+                                                        <td><?php
+                                                            if ($bks_wisuda == "") {
+                                                                echo "";
+                                                            } else {
+                                                                echo "$bks_wisuda->jurnal";
+                                                            }
+                                                            ?></td>
+                                                        <td align="center">
+                                                            <?php
+                                                            if ($bks_wisuda == "") {
+                                                                echo "";
+                                                            } else {
+                                                                if ($bks_wisuda->status_jurnal == '0') {
+                                                                    echo '<span class="badge badge-warning">Belum Diverifikasi</span>';
+                                                                } else if ($bks_wisuda->status_jurnal == '1') {
+                                                                    echo '<span class="badge badge-info">Kurang Lengkap</span>';
+                                                                } else if ($bks_wisuda->status_jurnal == '2') {
+                                                                    echo '<span class="badge badge-success">Lengkap</span>';
+                                                                }
+                                                            }
+
+                                                            ?>
+                                                        </td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td>3.</td>
+                                                        <td>File Aplikasi</td>
+                                                        <td>
+                                                            <a href="#" class="btn btn-info" data-toggle="modal" pull="right" data-target="#file_aplikasi" onclick="ResetInput()"><i class="fa fa-file"></i> Unggah</a>
+                                                        </td>
+                                                        <td><?php
+                                                            if ($bks_wisuda == "") {
+                                                                echo "";
+                                                            } else {
+                                                                echo "$bks_wisuda->aplikasi";
+                                                            }
+                                                            ?></td>
+                                                        <td align="center">
+                                                            <?php
+                                                            if ($bks_wisuda == "") {
+                                                                echo "";
+                                                            } else {
+                                                                if ($bks_wisuda->status_aplikasi == '0') {
+                                                                    echo '<span class="badge badge-warning">Belum Diverifikasi</span>';
+                                                                } else if ($bks_wisuda->status_aplikasi == '1') {
+                                                                    echo '<span class="badge badge-info">Kurang Lengkap</span>';
+                                                                } else if ($bks_wisuda->status_aplikasi == '2') {
+                                                                    echo '<span class="badge badge-success">Lengkap</span>';
+                                                                }
+                                                            }
+
+                                                            ?>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>4.</td>
+                                                        <td>File PPT</td>
+                                                        <td>
+                                                            <a href="#" class="btn btn-info" data-toggle="modal" pull="right" data-target="#file_ppt" onclick="ResetInput()"><i class="fa fa-file"></i> Unggah</a>
+                                                        </td>
+                                                        <td><?php
+                                                            if ($bks_wisuda == "") {
+                                                                echo "";
+                                                            } else {
+                                                                echo "$bks_wisuda->ppt";
+                                                            }
+                                                            ?></td>
+                                                        <td align="center">
+                                                            <?php
+                                                            if ($bks_wisuda == "") {
+                                                                echo "";
+                                                            } else {
+                                                                if ($bks_wisuda->status_ppt == '0') {
+                                                                    echo '<span class="badge badge-warning">Belum Diverifikasi</span>';
+                                                                } else if ($bks_wisuda->status_ppt == '1') {
+                                                                    echo '<span class="badge badge-info">Kurang Lengkap</span>';
+                                                                } else if ($bks_wisuda->status_ppt == '2') {
+                                                                    echo '<span class="badge badge-success">Lengkap</span>';
+                                                                }
+                                                            }
+
+                                                            ?>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>5.</td>
+                                                        <td>File Video</td>
+                                                        <td>
+                                                            <a href="#" class="btn btn-info" data-toggle="modal" pull="right" data-target="#file_video" onclick="ResetInput()"><i class="fa fa-file"></i> Unggah</a>
+                                                        </td>
+                                                        <td><?php
+                                                            if ($bks_wisuda == "") {
+                                                                echo "";
+                                                            } else {
+                                                                echo "$bks_wisuda->video";
+                                                            }
+                                                            ?></td>
+                                                        <td align="center">
+                                                            <?php
+                                                            if ($bks_wisuda == "") {
+                                                                echo "";
+                                                            } else {
+                                                                if ($bks_wisuda->status_video == '0') {
+                                                                    echo '<span class="badge badge-warning">Belum Diverifikasi</span>';
+                                                                } else if ($bks_wisuda->status_video == '1') {
+                                                                    echo '<span class="badge badge-info">Kurang Lengkap</span>';
+                                                                } else if ($bks_wisuda->status_video == '2') {
+                                                                    echo '<span class="badge badge-success">Lengkap</span>';
+                                                                }
+                                                            }
+
+                                                            ?>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>5.</td>
+                                                        <td>Foto</td>
+                                                        <td>
+                                                            <a href="#" class="btn btn-info" data-toggle="modal" pull="right" data-target="#file_foto" onclick="ResetInput()"><i class="fa fa-file"></i> Unggah</a>
+                                                        </td>
+                                                        <td><?php
+                                                            if ($bks_wisuda == "") {
+                                                                echo "";
+                                                            } else {
+                                                                echo "$bks_wisuda->foto_ijazah";
+                                                            }
+                                                            ?></td>
+                                                        <td align="center">
+                                                            <?php
+                                                            if ($bks_wisuda == "") {
+                                                                echo "";
+                                                            } else {
+                                                                if ($bks_wisuda->status_baak == '0') {
+                                                                    echo '<span class="badge badge-warning">Belum Diverifikasi</span>';
+                                                                } else if ($bks_wisuda->status_baak == '1') {
+                                                                    echo '<span class="badge badge-info">Kurang Lengkap</span>';
+                                                                } else if ($bks_wisuda->status_baak == '2') {
+                                                                    echo '<span class="badge badge-success">Lengkap</span>';
+                                                                }
+                                                            }
+
+                                                            ?>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>6.</td>
+                                                        <td>Lap.TA</td>
+                                                        <td>
+                                                            <!-- <a href="#" class="btn btn-info" data-toggle="modal" pull="right" data-target="#lap_ta" onclick="ResetInput()"><i class="fa fa-file"></i> Unggah</a> -->
+                                                        </td>
+                                                        <td><?php
+                                                            if ($bks_wisuda == "") {
+                                                                echo "";
+                                                            } else {
+                                                                echo "<?= $bks_wisuda->file_ta ?>";
+                                                            }
+                                                            ?></td>
+                                                        <td align="center">
+                                                            <?php
+                                                            if ($bks_wisuda == "") {
+                                                                echo "";
+                                                            } else {
+                                                                if ($bks_wisuda->status_lap_ta == '0') {
+                                                                    echo '<span class="badge badge-warning">Belum Diverifikasi</span>';
+                                                                } else if ($bks_wisuda->status_lap_ta == '1') {
+                                                                    echo '<span class="badge badge-info">Kurang Lengkap</span>';
+                                                                } else if ($bks_wisuda->status_lap_ta == '2') {
+                                                                    echo '<span class="badge badge-success">Lengkap</span>';
+                                                                }
+                                                            }
+
+                                                            ?>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </form>
+
                                     </div>
                                 </div>
                             </div>
-                        <?php } else { ?>
-                            <div class="card">
-                                <div class="card-header">
-                                    <h3 class="card-title">Data Berkas Pendaftaran Wisuda</h3>
-                                </div>
-                                <div class="card-body">
-                                    <div id="flash" data-flash="<?= $this->session->flashdata('pesan'); ?>">
-                                        <div id="gagal" data-flash="<?= $this->session->flashdata('gagal'); ?>">
-                                            <form action="<?= base_url('bks_wisuda/create') ?>" method="post" class="form-horizontal" role="form" enctype="multipart/form-data">
-                                                <input type="hidden" id="id_bks_wisuda" name="id_bks_wisuda">
-                                                <table id="example1" class="table table-bordered table-striped">
-                                                    <thead>
-                                                        <tr>
-                                                            <th>No</th>
-                                                            <th>Persyaratan</th>
-                                                            <th>Unggah Bukti</th>
-                                                            <th>Status</th>
-                                                            <th>Keterangan</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <tr>
-                                                            <td>1.</td>
-                                                            <td>File TA</td>
-                                                            <td>
-                                                                <a href="#" class="btn btn-info" data-toggle="modal" pull="right" data-target="#file_ta" onclick="ResetInput()"><i class="fa fa-file"></i> Unggah</a>
-                                                            </td>
-                                                            <td>
-                                                                <?php
-                                                                if ($bks_wisuda == "") {
-                                                                    echo "";
-                                                                } else {
-                                                                    echo "$bks_wisuda->file_ta";
-                                                                }
-                                                                ?>
-                                                            </td>
-                                                            <td align="center">
-                                                                <?php
-                                                                if ($bks_wisuda == "") {
-                                                                    echo "";
-                                                                } else {
-                                                                    if ($bks_wisuda->status_file_ta == '0') {
-                                                                        echo '<span class="badge badge-warning">Belum Diverifikasi</span>';
-                                                                    } else if ($bks_wisuda->status_file_ta == '1') {
-                                                                        echo '<span class="badge badge-info">Kurang Lengkap</span>';
-                                                                    } else if ($bks_wisuda->status_file_ta == '2') {
-                                                                        echo '<span class="badge badge-success">Lengkap</span>';
-                                                                    }
-                                                                }
-
-                                                                ?>
-                                                            </td>
-
-                                                        </tr>
-                                                        <tr>
-                                                            <td>2.</td>
-                                                            <td>File Jurnal</td>
-                                                            <td>
-                                                                <a href="#" class="btn btn-info" data-toggle="modal" pull="right" data-target="#file_jurnal" onclick="ResetInput()"><i class="fa fa-file"></i> Unggah</a>
-                                                            </td>
-                                                            <td><?php
-                                                                if ($bks_wisuda == "") {
-                                                                    echo "";
-                                                                } else {
-                                                                    echo "$bks_wisuda->jurnal";
-                                                                }
-                                                                ?></td>
-                                                            <td align="center">
-                                                                <?php
-                                                                if ($bks_wisuda == "") {
-                                                                    echo "";
-                                                                } else {
-                                                                    if ($bks_wisuda->status_jurnal == '0') {
-                                                                        echo '<span class="badge badge-warning">Belum Diverifikasi</span>';
-                                                                    } else if ($bks_wisuda->status_jurnal == '1') {
-                                                                        echo '<span class="badge badge-info">Kurang Lengkap</span>';
-                                                                    } else if ($bks_wisuda->status_jurnal == '2') {
-                                                                        echo '<span class="badge badge-success">Lengkap</span>';
-                                                                    }
-                                                                }
-
-                                                                ?>
-                                                            </td>
-                                                        </tr>
-
-                                                        <tr>
-                                                            <td>3.</td>
-                                                            <td>File Aplikasi</td>
-                                                            <td>
-                                                                <a href="#" class="btn btn-info" data-toggle="modal" pull="right" data-target="#file_aplikasi" onclick="ResetInput()"><i class="fa fa-file"></i> Unggah</a>
-                                                            </td>
-                                                            <td><?php
-                                                                if ($bks_wisuda == "") {
-                                                                    echo "";
-                                                                } else {
-                                                                    echo "$bks_wisuda->aplikasi";
-                                                                }
-                                                                ?></td>
-                                                            <td align="center">
-                                                                <?php
-                                                                if ($bks_wisuda == "") {
-                                                                    echo "";
-                                                                } else {
-                                                                    if ($bks_wisuda->status_aplikasi == '0') {
-                                                                        echo '<span class="badge badge-warning">Belum Diverifikasi</span>';
-                                                                    } else if ($bks_wisuda->status_aplikasi == '1') {
-                                                                        echo '<span class="badge badge-info">Kurang Lengkap</span>';
-                                                                    } else if ($bks_wisuda->status_aplikasi == '2') {
-                                                                        echo '<span class="badge badge-success">Lengkap</span>';
-                                                                    }
-                                                                }
-
-                                                                ?>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>4.</td>
-                                                            <td>File PPT</td>
-                                                            <td>
-                                                                <a href="#" class="btn btn-info" data-toggle="modal" pull="right" data-target="#file_ppt" onclick="ResetInput()"><i class="fa fa-file"></i> Unggah</a>
-                                                            </td>
-                                                            <td><?php
-                                                                if ($bks_wisuda == "") {
-                                                                    echo "";
-                                                                } else {
-                                                                    echo "$bks_wisuda->ppt";
-                                                                }
-                                                                ?></td>
-                                                            <td align="center">
-                                                                <?php
-                                                                if ($bks_wisuda == "") {
-                                                                    echo "";
-                                                                } else {
-                                                                    if ($bks_wisuda->status_ppt == '0') {
-                                                                        echo '<span class="badge badge-warning">Belum Diverifikasi</span>';
-                                                                    } else if ($bks_wisuda->status_ppt == '1') {
-                                                                        echo '<span class="badge badge-info">Kurang Lengkap</span>';
-                                                                    } else if ($bks_wisuda->status_ppt == '2') {
-                                                                        echo '<span class="badge badge-success">Lengkap</span>';
-                                                                    }
-                                                                }
-
-                                                                ?>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>5.</td>
-                                                            <td>File Video</td>
-                                                            <td>
-                                                                <a href="#" class="btn btn-info" data-toggle="modal" pull="right" data-target="#file_video" onclick="ResetInput()"><i class="fa fa-file"></i> Unggah</a>
-                                                            </td>
-                                                            <td><?php
-                                                                if ($bks_wisuda == "") {
-                                                                    echo "";
-                                                                } else {
-                                                                    echo "$bks_wisuda->video";
-                                                                }
-                                                                ?></td>
-                                                            <td align="center">
-                                                                <?php
-                                                                if ($bks_wisuda == "") {
-                                                                    echo "";
-                                                                } else {
-                                                                    if ($bks_wisuda->status_video == '0') {
-                                                                        echo '<span class="badge badge-warning">Belum Diverifikasi</span>';
-                                                                    } else if ($bks_wisuda->status_video == '1') {
-                                                                        echo '<span class="badge badge-info">Kurang Lengkap</span>';
-                                                                    } else if ($bks_wisuda->status_video == '2') {
-                                                                        echo '<span class="badge badge-success">Lengkap</span>';
-                                                                    }
-                                                                }
-
-                                                                ?>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>6.</td>
-                                                            <td>Lap.TA</td>
-                                                            <td>
-                                                                <!-- <a href="#" class="btn btn-info" data-toggle="modal" pull="right" data-target="#lap_ta" onclick="ResetInput()"><i class="fa fa-file"></i> Unggah</a> -->
-                                                            </td>
-                                                            <td><?php
-                                                                if ($bks_wisuda == "") {
-                                                                    echo "";
-                                                                } else {
-                                                                    echo "<?= $bks_wisuda->file_ta ?>";
-                                                                }
-                                                                ?></td>
-                                                            <td align="center">
-                                                                <?php
-                                                                if ($bks_wisuda == "") {
-                                                                    echo "";
-                                                                } else {
-                                                                    if ($bks_wisuda->status_lap_ta == '0') {
-                                                                        echo '<span class="badge badge-warning">Belum Diverifikasi</span>';
-                                                                    } else if ($bks_wisuda->status_lap_ta == '1') {
-                                                                        echo '<span class="badge badge-info">Kurang Lengkap</span>';
-                                                                    } else if ($bks_wisuda->status_lap_ta == '2') {
-                                                                        echo '<span class="badge badge-success">Lengkap</span>';
-                                                                    }
-                                                                }
-
-                                                                ?>
-                                                            </td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                            </form>
-                                        <?php } ?>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                        </div>
                     </div>
         </section>
     </div>
@@ -1078,6 +1094,36 @@
                         <div class="form-group">
                             <label for="exampleInputjudul1">Video</label><br>
                             <input type="file" name="video" required>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <button type="submit" name="submit" class="btn btn-primary" style="float: right;">Simpan</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div id="file_foto" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="custom-width-modalLabel" aria-hidden="true" style="display: none;">
+        <div class="modal-dialog" style="width:55%;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Berkas Pendaftaran Wisuda</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <form action="<?= base_url('bks_wisuda/upload_foto') ?>" method="post" class="form-horizontal" role="form" enctype="multipart/form-data">
+                    <div class="card-body">
+                        <div class="form-group">
+                            <input type="hidden" id="id_bks_wisuda" name="id_bks_wisuda">
+                            <input type="hidden" value="<?php echo $this->session->userdata('email'); ?>" class="form-control" id="nim" name="nim" placeholder="NIM">
+                            <input type="hidden" value="<?php echo $this->session->userdata('email'); ?>" class="form-control" id="nim2" name="nim2" readonly placeholder="NIM">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="exampleInputjudul1">Foto</label><br>
+                            <input type="file" name="foto_ijazah" required>
                         </div>
                     </div>
                     <div class="card-footer">

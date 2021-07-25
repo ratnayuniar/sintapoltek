@@ -49,17 +49,20 @@ class Revisi_seminar extends CI_Controller
             $this->load->view('templates/footer', $data);
         }
     }
-    function detail_revisi_seminar2()
+
+    function detail_revisi_seminar2($nim)
     {
         $data['title'] = 'SINTA PNM';
-        $data['nim'] = $this->input->get('id');
-        $data['query'] = $this->m_nilai_seminar->tampil_data2($data['nim']);
+       $data['nim'] = $nim;
         $data['query3'] = $this->m_penguji->bimbingan_dosen();
+
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('revisi/detail_revisi_seminar', $data);
         $this->load->view('templates/footer', $data);
     }
+
+    
     public function add()
     {
         $id_revisi = $this->input->post('id_revisi');

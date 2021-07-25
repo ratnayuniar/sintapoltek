@@ -45,6 +45,7 @@
                                         }
                                         ?><br>
                                         <b>Aksi</b> :
+                                        <input type="hidden" id="nim" name="nim" value=<?= $row->nim ?>>
                                         <a href="<?php echo site_url('bks_bahasa/save_bks_valid/' . $row->id_bks_bhs); ?>" id="btn-konfirmasi" class="btn btn-xs btn-success">Valid</a>
                                         <a href="<?php echo site_url('bks_bahasa/save_bks_tidakvalid/' . $row->id_bks_bhs); ?>" id="btn-konfirmasi" class="btn btn-xs btn-danger">Tidak Valid</a>
                                     </div>

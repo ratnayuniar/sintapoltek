@@ -11,17 +11,33 @@ class M_veri_perpus extends CI_Model
 
     public function get_mahasiswa($id)
     {
+        // $this->db->select('*');
+        // $this->db->from('bks_wisuda');
+        // $this->db->join('mahasiswa', 'mahasiswa.nim = bks_wisuda.nim', 'left');
+        // $this->db->join('prodi', 'prodi.id_prodi = mahasiswa.id_prodi', 'left');
+        // $this->db->join('master_ta', 'master_ta.nim = mahasiswa.nim', 'left');
+        // $this->db->where('prodi.id_prodi', $id);
+        // return $this->db->get()->result();
+
+
         $this->db->select('*');
-        $this->db->from('bks_wisuda');
-        $this->db->join('mahasiswa', 'mahasiswa.nim = bks_wisuda.nim', 'left');
-        $this->db->join('prodi', 'prodi.id_prodi = mahasiswa.id_prodi', 'left');
-        $this->db->join('master_ta', 'master_ta.nim = mahasiswa.nim', 'left');
-        $this->db->where('prodi.id_prodi', $id);
-        return $this->db->get()->result();
+        $this->db->join('mahasiswa', 'bks_wisuda.nim=mahasiswa.nim', 'left');
+        $this->db->join('master_ta', 'mahasiswa.nim = master_ta.nim', 'left');
+        $this->db->join('topik', 'master_ta.nim = topik.nim', 'left');
+        $this->db->where(array('mahasiswa.id_prodi' => $id));
+        return $this->db->get('bks_wisuda');
+
+        // $this->db->select('*');
+        // $this->db->join('mahasiswa', 'seminar_proposal.nim=mahasiswa.nim', 'left');
+        // $this->db->join('master_ta', 'mahasiswa.nim = master_ta.nim', 'left');
+        // $this->db->join('topik', 'master_ta.nim = topik.nim', 'left');
+        // $this->db->where(array('mahasiswa.id_prodi' => $id_prodi));
+        // return $this->db->get('seminar_proposal');
     }
 
     function ubah_data($nim)
     {
+        $id_prodi = $this->input->post('id_prodi');
         $data = array(
             'laporan_perpus' => $this->input->post('laporan_perpus'),
             'catatan_laporan_perpus' => $this->input->post('catatan_laporan_perpus'),
@@ -32,11 +48,13 @@ class M_veri_perpus extends CI_Model
 
         $this->db->where(array('nim' => $nim));
         $this->db->update('bks_wisuda', $data);
-        redirect('/veri_perpus');
+        // redirect('/veri_perpus');
+        redirect('veri_perpus/detaildata/' . $id_prodi);
     }
 
     function ubah_data2($nim)
     {
+        $id_prodi = $this->input->post('id_prodi');
         $data = array(
             'tanggungan_perpus' => $this->input->post('tanggungan_perpus'),
             'catatan_tanggungan_perpus' => $this->input->post('catatan_tanggungan_perpus'),
@@ -47,7 +65,7 @@ class M_veri_perpus extends CI_Model
 
         $this->db->where(array('nim' => $nim));
         $this->db->update('bks_wisuda', $data);
-        redirect('/veri_perpus');
+        redirect('veri_perpus/detaildata/' . $id_prodi);
     }
 
 

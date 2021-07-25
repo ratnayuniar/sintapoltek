@@ -36,34 +36,34 @@
                                             <!-- <th>Jurusan</th>
                                         <th>Program Studi</th> -->
                                             <th>Nama</th>
-                                            <th>Status UKT</th>
+                                            <!-- <th>Status UKT</th> -->
                                             <th>Validasi</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <?php
                                         $no = 1;
-                                        foreach ($get_mahasiswa as $row) { ?>
+                                        foreach ($get_mahasiswa->result() as $row) { ?>
                                             <tr>
                                                 <td><?= $no++ ?></td>
                                                 <td><?= $row->nim ?></td>
                                                 <td><?= $row->nama ?></td>
-                                                <td> <?php if ($row->ukt == '0') {
-                                                            echo '<span class="badge badge-info">Belum</span>';
-                                                        } else if ($row->ukt == '1') {
-                                                            echo '<span class="badge badge-primary">Kurang</span>';
-                                                        } else {
-                                                            echo '<span class="badge badge-success">Lengkap</span>';
-                                                        }
-                                                        ?>
-                                                </td>
+                                                <!-- <td> <?php if ($row->ukt == '0') {
+                                                                echo '<span class="badge badge-info">Belum</span>';
+                                                            } else if ($row->ukt == '1') {
+                                                                echo '<span class="badge badge-primary">Kurang</span>';
+                                                            } else {
+                                                                echo '<span class="badge badge-success">Lengkap</span>';
+                                                            }
+                                                            ?>
+                                                </td> -->
                                                 <td>
                                                     <?php if ($row->ukt == '0') {
-                                                        echo " <a href ='#' class ='btn btn-sm btn-warning btn-xs btn-block' data-toggle='modal' data-target='#modal_ukt' onClick=\"SetInput('" . $row->id_bks_wisuda . "','" . $row->nim . "','" . $row->nama . "','" . $row->judul . "','" . $row->ukt . "','" . $row->catatan_ukt . "')\"> Belum</a>";
+                                                        echo " <a href ='#' class ='btn btn-sm btn-warning btn-xs btn-block' data-toggle='modal' data-target='#modal_ukt' onClick=\"SetInput('" . $row->id_prodi . "','" . $row->id_bks_wisuda . "','" . $row->nim . "','" . $row->nama . "','" . $row->judul . "','" . $row->ukt . "','" . $row->catatan_ukt . "')\"> Belum</a>";
                                                     } else if ($row->ukt == '1') {
-                                                        echo " <a href ='#' class ='btn btn-sm btn-info btn-xs btn-block' data-toggle='modal' data-target='#modal_ukt' onClick=\"SetInput('" . $row->id_bks_wisuda . "','" . $row->nim . "','" . $row->nama . "','" . $row->judul . "','" . $row->ukt . "','" . $row->catatan_ukt . "')\"> Kurang</a>";
+                                                        echo " <a href ='#' class ='btn btn-sm btn-info btn-xs btn-block' data-toggle='modal' data-target='#modal_ukt' onClick=\"SetInput('" . $row->id_prodi . "','" . $row->id_bks_wisuda . "','" . $row->nim . "','" . $row->nama . "','" . $row->judul . "','" . $row->ukt . "','" . $row->catatan_ukt . "')\"> Kurang</a>";
                                                     } else {
-                                                        echo " <a href ='#' class ='btn btn-sm btn-success btn-xs btn-block' data-toggle='modal' data-target='#modal_ukt' onClick=\"SetInput('" . $row->id_bks_wisuda . "','" . $row->nim . "','" . $row->nama . "','" . $row->judul . "','" . $row->ukt . "','" . $row->catatan_ukt . "')\"> Lengkap</a>";
+                                                        echo " <a href ='#' class ='btn btn-sm btn-success btn-xs btn-block' data-toggle='modal' data-target='#modal_ukt' onClick=\"SetInput('" . $row->id_prodi . "','" . $row->id_bks_wisuda . "','" . $row->nim . "','" . $row->nama . "','" . $row->judul . "','" . $row->ukt . "','" . $row->catatan_ukt . "')\"> Lengkap</a>";
                                                     }
                                                     ?>
                                                     <?php if ($row->ukt == '0') {
@@ -97,6 +97,7 @@
                 <form action="<?= base_url('verif_keuangan/verify_keuangan') ?>" method="post" class="form-horizontal" role="form" enctype="multipart/form-data">
                     <div class="card-body">
                         <div class="form-group row">
+                            <input type="hidden" id="id_prodi" name="id_prodi">
                             <input type="hidden" id="id_bks_wisuda" name="id_bks_wisuda">
                             <label for="inputEmail3" class="col-sm-3 col-form-label">NIM</label>
                             <div class="col-sm-9">
@@ -253,7 +254,8 @@
 
 
     <script type="text/javascript">
-        function SetInput(id_bks_wisuda, nim, nama, judul, ukt, catatan_ukt) {
+        function SetInput(id_prodi, id_bks_wisuda, nim, nama, judul, ukt, catatan_ukt) {
+            document.getElementById('id_prodi').value = id_prodi;
             document.getElementById('id_bks_wisuda').value = id_bks_wisuda;
             document.getElementById('nim').value = nim;
             document.getElementById('nama').value = nama;

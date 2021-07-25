@@ -48,7 +48,7 @@ class Verif_baak extends CI_Controller
     {
         $data['title'] = 'SINTA PNM';
         // $data['get_mahasiswa'] = $this->m_verif_baak->get_mahasiswa($id);
-        $data['bks_wisuda_user'] = $this->m_bks_wisuda->bks_wisuda_user();
+        $data['bks_baak_user'] = $this->m_bks_wisuda->bks_baak_user();
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('validasi/baak', $data);
@@ -63,21 +63,40 @@ class Verif_baak extends CI_Controller
         else $this->m_verif_baak->ubah_data($id_perpus);
     }
 
+    public function verify_statusbaak()
+    {
+        $nim = $this->input->post('nim');
+
+        if (empty($nim)) $this->m_verif_baak->tambah_data();
+        else $this->m_verif_baak->ubah_data($nim);
+    }
+
+    public function verify_wisuda()
+    {
+        $nim = $this->input->post('nim');
+
+        if (empty($nim)) $this->m_verif_baak->tambah_data();
+        else $this->m_verif_baak->ubah_data2($nim);
+    }
+
+
+
     function save_belum($id)
     {
         $this->m_bks_wisuda->update($id, ['status_baak' => 0]);
-        redirect('verif_baak', 'refresh');
+        redirect($_SERVER['HTTP_REFERER']);
     }
+
     function save_kurang($id)
     {
         $this->m_bks_wisuda->update($id, ['status_baak' => 1]);
-        redirect('verif_baak', 'refresh');
+        redirect($_SERVER['HTTP_REFERER']);
     }
 
     function save_lengkap($id)
     {
         $this->m_bks_wisuda->update($id, ['status_baak' => 2]);
-        redirect('verif_baak', 'refresh');
+        redirect($_SERVER['HTTP_REFERER']);
     }
 
     function save_tg_kurang($id)

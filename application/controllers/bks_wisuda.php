@@ -15,10 +15,10 @@ class Bks_wisuda extends CI_Controller
     public function index()
     {
         $data['query'] = $this->m_bks_wisuda->tampil_data();
-        $data['bks_wisuda_user'] = $this->m_bks_wisuda->bks_wisuda_user();
+        $data['bks_wisuda'] = $this->m_bks_wisuda->bks_wisuda_user();
         $data['title'] = 'SINTA PNM';
         $data['data'] = $this->db->get('bks_wisuda')->result();
-        $data['bks_wisuda'] = $this->db->query('select * from bks_wisuda')->row();
+        // $data['bks_wisuda'] = $this->db->query('select * from bks_wisuda')->row();
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
@@ -186,6 +186,8 @@ class Bks_wisuda extends CI_Controller
                         'pinjaman_alat' => 0,
 
                     ];
+                    // print_r($data);
+                    // exit();
 
                     $cek = $this->db->like('nim', $data['nim'])->from('bks_wisuda')->count_all_results();
 
@@ -337,6 +339,59 @@ class Bks_wisuda extends CI_Controller
                         'status_lap_ta' => 0,
 
                     ];
+
+                    $cek = $this->db->like('nim', $data['nim'])->from('bks_wisuda')->count_all_results();
+
+                    if ($cek > 0) {
+                        $this->db->where('nim', $data['nim'])->update('bks_wisuda', $data);
+                        redirect('bks_wisuda');
+                    } else {
+                        $this->db->insert('bks_wisuda', $data);
+                        redirect('bks_wisuda');
+                    }
+                }
+            } else {
+                $this->index();
+            }
+        } else {
+            $this->index();
+        }
+    }
+
+    public function upload_foto()
+    {
+        if (isset($_POST['submit'])) {
+            $this->form_validation->set_rules('nim', 'NIM', 'required');
+            $config['upload_path'] = './assets/berkas/wisuda/';
+            $config['allowed_types'] = 'jpg|jpeg|png';
+            $config['max_size']  = 50000;
+            $config['file_name'] = 'bks_wisuda-' . date('ymd');
+            $ekstensi =  array('jpg', 'jpeg', 'png');
+
+            $this->load->library('upload', $config);
+
+            if (!empty($_FILES['foto_ijazah'])) {
+                $this->upload->do_upload('foto_ijazah');
+                $data1 = $this->upload->data();
+                $foto_ijazah = $data1['file_name'];
+                $tipe_file = pathinfo($foto_ijazah, PATHINFO_EXTENSION);
+            }
+            // print_r($tipe_file);
+            // exit();
+
+            if ($this->form_validation->run()) {
+                if (!in_array($tipe_file, $ekstensi)) {
+                    $this->session->set_flashdata('gagal', 'Tipe Yang Dimasukkan Salah');
+                    redirect('bks_wisuda');
+                } else {
+                    $nim = $this->input->post('nim', TRUE);
+                    $data = [
+                        'nim' => $nim,
+                        'foto_ijazah' => $foto_ijazah,
+                        'status_baak' => 0,
+
+                    ];
+
 
                     $cek = $this->db->like('nim', $data['nim'])->from('bks_wisuda')->count_all_results();
 

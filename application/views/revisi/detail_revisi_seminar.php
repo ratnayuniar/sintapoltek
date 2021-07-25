@@ -149,6 +149,7 @@
                                 $this->db->from('revisi');
                                 $this->db->where('jenis', 'seminar');
                                 $this->db->where(array('penguji' => $this->session->userdata('id_dosen')));
+                                $this->db->where('nim', $this->uri->segment(3));
                                 $result = $this->db->get()->row();
                                 ?>
                                 <div class="card-body">
@@ -160,7 +161,6 @@
                                     <div class="form-group row">
                                         <label for="inputEmail3" class="col-sm-5 col-form-label">Dosen</label>
                                         <div class="col-sm-5">
-                                            <!-- <input type="text" class="form-control" id="dosen" readonly name="penguji" placeholder="Nama Dosen" value=" <?php echo $this->session->userdata('nama') ?>"></td> -->
                                             <input type="text" class="form-control" id="dosen" readonly placeholder="Nama Dosen" value=" <?php echo $this->session->userdata('nama') ?>">
                                             <input type="hidden" name="penguji" value="<?= $this->session->userdata('id_dosen'); ?>">
                                         </div>

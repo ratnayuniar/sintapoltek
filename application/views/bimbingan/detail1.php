@@ -51,7 +51,9 @@
       <!-- Section Persetujuan -->
 
       <!-- // dibuat pada tanggal 16-07-2021, 01:07 WIB -->
-      <?php $cek = $this->db->get_where('persetujuan', array('id_dosen' => $this->session->userdata('id_dosen'), 'jenis' => 'proposal'))->row_array(); ?>
+      <?php $cek = $this->db->get_where('persetujuan', array(
+        'id_dosen' => $this->session->userdata('id_dosen'), 'jenis' => 'proposal', 'nim' => $this->uri->segment(3)
+      ))->row_array(); ?>
       <?php if (isset($cek['nim']) == "") { ?>
         <?php if ($cekJumlahBimbingan >= 8) { ?>
           <div class="row">

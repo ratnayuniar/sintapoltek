@@ -67,10 +67,8 @@ class Bks_bahasa extends CI_Controller
 
     function save_bks_valid($id)
     {
-        // $data['bks_bahasa'] = $this->m_bks_bahasa->get_nim($nim);
-        $this->m_bks_bahasa->update($id, ['status' => 1]);
 
-        // redirect('bks_bahasa', 'refresh');
+        $this->m_bks_bahasa->update($id, ['status' => 1]);
         $data['bks_bahasa_admin'] = $this->m_bks_bahasa->bks_bahasa_admin();
         redirect('bks_bahasa', 'refresh');
     }

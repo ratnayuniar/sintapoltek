@@ -19,6 +19,7 @@ class Revisi_sidang extends CI_Controller
     public function index()
     {
         $data['query3'] = $this->m_penguji_sidang->bimbingan_dosen();
+        // $data['query3'] = $this->m_penguji_sidang->tampil_data();
         $data['query2'] = $this->m_revisi_sidang->revisi_mhs();
         $data['mahasiswa'] = $this->m_mahasiswa->getmahasiswa();
         $data['dosen'] = $this->m_mahasiswa->getdosen();
@@ -88,12 +89,15 @@ class Revisi_sidang extends CI_Controller
             $this->load->view('templates/footer', $data);
         }
     }
-    function detail_revisi_sidang2()
+
+
+    function detail_revisi_sidang2($nim)
     {
         $data['title'] = 'SINTA PNM';
-        $data['nim'] = $this->input->get('id');
-        $data['query'] = $this->m_nilai_seminar->tampil_data2($data['nim']);
+        $data['nim'] = $nim;
         $data['query3'] = $this->m_penguji_sidang->bimbingan_dosen();
+
+
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('revisi/detail_revisi_sidang', $data);

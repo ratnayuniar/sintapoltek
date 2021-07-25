@@ -184,23 +184,21 @@
                                             $data['dosen1'] = $this->m_penguji->getdosen1($row->penguji1_sempro);
                                             $data['dosen2'] = $this->m_penguji->getdosen2($row->penguji2_sempro);
                                             $data['dosen3'] = $this->m_penguji->getdosen3($row->penguji3_sempro);
-                                            echo
-                                            "<tr>
-											<td>" . $no . "</td>
-                                            <td>" . $data['user']->nim   . "</td>
-                                        	<td>" . $data['user']->nama   . "</td>
-                                            <td>" . $data['dosen1']->nama . "</td>
-											<td>" . $data['dosen2']->nama . "</td>
-											<td>" . $data['dosen3']->nama . "</td>
+                                            
+                                           ?>
+                                            <tr>
+											<td><?= $no ?></td>
+                                            <td><?= $data['user']->nim   ?></td>
+                                        	<td><?= $data['user']->nama   ?></td>
+                                            <td><?= $data['dosen1']->nama ?></td>
+											<td><?= $data['dosen2']->nama ?></td>
+											<td><?= $data['dosen3']->nama ?></td>
 											<td>
-                                            <a href='" . base_url('revisi_seminar/detail_revisi_seminar2?id=' . $row->nim) . "' class='on-default edit-row btn btn-primary btn-sm' >Tambah Revisi</a>
+                                            <a href="<?= base_url('revisi_seminar/detail_revisi_seminar2/' . $row->nim); ?>" class="on-default edit-row btn btn-primary btn-xs">Tambah Revisi</a>
 											</td>
-									    </tr>";
-                                            $no++;
-                                        }
-                                        ?>
+									    </tr>
+                                        <?php } ?>
                                     </tbody>
-
                                 </table>
                             </div>
                         </div>

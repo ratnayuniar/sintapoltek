@@ -2,15 +2,12 @@
     <a href="<?php echo base_url(); ?>" class="brand-link">
         <i class="fas fa-graduation-cap mt-2 ml-3 pb-2"></i>
         <span class="brand-text font-weight-light">SINTA</span><B> PNM</B>
-
     </a>
     <div class="sidebar">
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image">
-                <!-- <img src="<?= base_url('admin/dist/img/') . $session['image']; ?>" class="img-circle elevation-2" alt="User Image"> -->
             </div>
             <div class="info">
-                <!-- <a href="<?php echo base_url('profile'); ?>" class="d-block"><?= $this->session->nama; ?><?= $this->session->nama_mhs; ?></a> -->
                 <a href="#" class="d-block"><?php echo $this->session->userdata('nama') ?></a>
             </div>
         </div>
@@ -26,8 +23,6 @@
         </div>
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                <!-- SEMUA USER -->
-
                 <!-- USER ADMIN -->
                 <?php if ($this->session->userdata('level') == 1) { ?>
                     <li class="nav-item">
@@ -250,7 +245,7 @@
                                 </a>
                                 <ul class="nav nav-treeview">
                                     <li class="nav-item">
-                                        <a href="<?php echo base_url('bimbingan_proposal/dospem1'); ?>" class="nav-link ">
+                                        <a href="<?php echo base_url('bimbingan_proposal/dospem1'); ?>" class="nav-link <?= activate_menu('bimbingan_proposal') ?>">
                                             <i class="far fa-dot-circle nav-icon"></i>
                                             <p>Dosen Pembimbing 1</p>
                                         </a>
@@ -763,125 +758,11 @@
                             </li>
                         </ul>
                     </li>
-                    <!-- <li class="nav-item">
-                        <a href="<?php echo base_url('topik'); ?>" class="nav-link">
-                            <i class="nav-icon fas fa-book-open"></i>
-                            <p>
-                                Topik Tugas Akhir
-                            </p>
-                        </a>
-                    </li> -->
-                    <!-- <li class="nav-item">
-                        <a href="<?php echo base_url('bimbingandosen'); ?>" class="nav-link">
-                            <i class="nav-icon fas fa-chalkboard-teacher"></i>
-                            <p>
-                                Bimbingan
-                            </p>
-                        </a>
-                    </li> -->
-                    <!-- <li class="nav-item">
-                        <a href="#" class="nav-link ">
-                            <i class="nav-icon fas fa-users-cog"></i>
-                            <p>
-                                Penguji & Pembimbing
-                                <i class="fas fa-angle-left right"></i>
-                            </p>
-                        </a>
-                        <ul class="nav nav-treeview">
-                            <li class="nav-item">
-                                <a href="<?php echo base_url('pembimbing'); ?>" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Dosen Pembimbing</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="<?php echo base_url('penguji'); ?>" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Dosen Penguji Seminar</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="<?php echo base_url('penguji_sidang'); ?>" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Dosen Penguji Sidang</p>
-                                </a>
-                            </li>
-                        </ul>
-                    </li> -->
-                    <!-- <li class="nav-item">
-                        <a href="#" class="nav-link ">
-                            <i class="nav-icon fas fa-calendar-alt"></i>
-                            <p>
-                                Jadwal
-                                <i class="fas fa-angle-left right"></i>
-                            </p>
-                        </a>
-                        <ul class="nav nav-treeview">
-                            <li class="nav-item">
-                                <a href="<?php echo base_url('jadwal_seminar'); ?>" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Jadwal Seminar</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="<?php echo base_url('jadwal_sidang'); ?>" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Jadwal Sidang</p>
-                                </a>
-                            </li>
-                        </ul>
-                    </li> -->
-                    <!-- <li class="nav-item">
-                        <a href="#" class="nav-link ">
-                            <i class="nav-icon fas fa-clipboard"></i>
-                            <p>
-                                Nilai
-                                <i class="fas fa-angle-left right"></i>
-                            </p>
-                        </a>
-                        <ul class="nav nav-treeview">
-                            <li class="nav-item">
-                                <a href="<?php echo base_url('nilai_seminar'); ?>" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Nilai Seminar</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="<?php echo base_url('nilai_sidang'); ?>" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Nilai Sidang</p>
-                                </a>
-                            </li>
-                        </ul>
-                    </li> -->
-                    <!-- <li class="nav-item">
-                        <a href="#" class="nav-link ">
-                            <i class="nav-icon fas fa-file-alt"></i>
-                            <p>
-                                Lembar Bimbingan
-                                <i class="fas fa-angle-left right"></i>
-                            </p>
-                        </a>
-                        <ul class="nav nav-treeview">
-                            <li class="nav-item">
-                                <a href="<?php echo base_url('bimbingan1'); ?>" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Dosen Pembimbing 1</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="<?php echo base_url('bimbingan2'); ?>" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Dosen Pembimbing 2</p>
-                                </a>
-                            </li>
-                        </ul>
-                    </li> -->
                 <?php } ?>
                 <!-- USER PERPUSTAKAAN -->
                 <?php if ($this->session->userdata('level') == 6) { ?>
                     <li class="nav-item">
-                        <a href="<?php echo base_url('beranda'); ?>" class="nav-link">
+                        <a href="<?php echo base_url('beranda'); ?>" class="nav-link  <?= activate_menu('beranda') ?>">
                             <i class="nav-icon fas fa-home"></i>
                             <p>
                                 Beranda
@@ -889,7 +770,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="<?php echo base_url('veri_perpus'); ?>" class="nav-link">
+                        <a href="<?php echo base_url('veri_perpus'); ?>" class="nav-link  <?= activate_menu('veri_perpus') ?>">
                             <i class="nav-icon fas fa-user-check"></i>
                             <p>
                                 Verifikasi
@@ -900,7 +781,7 @@
                 <!-- USER LAB -->
                 <?php if ($this->session->userdata('level') == 8) { ?>
                     <li class="nav-item">
-                        <a href="<?php echo base_url('beranda'); ?>" class="nav-link">
+                        <a href="<?php echo base_url('beranda'); ?>" class="nav-link <?= activate_menu('beranda') ?>">
                             <i class="nav-icon fas fa-home"></i>
                             <p>
                                 Beranda
@@ -908,7 +789,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="<?php echo base_url('verif_lab'); ?>" class="nav-link">
+                        <a href="<?php echo base_url('verif_lab'); ?>" class="nav-link <?= activate_menu('verif_lab') ?>">
                             <i class="nav-icon fas fa-user-check"></i>
                             <p>
                                 Verifikasi
@@ -919,7 +800,7 @@
                 <!-- USER BAHASA -->
                 <?php if ($this->session->userdata('level') == 9) { ?>
                     <li class="nav-item">
-                        <a href="<?php echo base_url('beranda'); ?>" class="nav-link">
+                        <a href="<?php echo base_url('beranda'); ?>" class="nav-link <?= activate_menu('beranda') ?> ">
                             <i class="nav-icon fas fa-home"></i>
                             <p>
                                 Beranda
@@ -927,7 +808,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="<?php echo base_url('bks_bahasa/admin'); ?>" class="nav-link">
+                        <a href="<?php echo base_url('bks_bahasa/admin'); ?>" class="nav-link ">
                             <i class="nav-icon fas fa-user-check"></i>
                             <p>
                                 Verifikasi
@@ -938,7 +819,7 @@
                 <!-- USER BAAK -->
                 <?php if ($this->session->userdata('level') == 7) { ?>
                     <li class="nav-item">
-                        <a href="<?php echo base_url('beranda'); ?>" class="nav-link">
+                        <a href="<?php echo base_url('beranda'); ?>" class="nav-link <?= activate_menu('beranda') ?>">
                             <i class="nav-icon fas fa-home"></i>
                             <p>
                                 Beranda
@@ -946,7 +827,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="<?php echo base_url('verif_baak'); ?>" class="nav-link">
+                        <a href="<?php echo base_url('verif_baak'); ?>" class="nav-link <?= activate_menu('verif_baak') ?>">
                             <i class="nav-icon fas fa-user-check"></i>
                             <p>
                                 Verifikasi
@@ -957,7 +838,7 @@
                 <!-- USER KEUANGAN -->
                 <?php if ($this->session->userdata('level') == 5) { ?>
                     <li class="nav-item">
-                        <a href="<?php echo base_url('beranda'); ?>" class="nav-link">
+                        <a href="<?php echo base_url('beranda'); ?>" class="nav-link <?= activate_menu('beranda') ?>">
                             <i class="nav-icon fas fa-home"></i>
                             <p>
                                 Beranda
@@ -965,7 +846,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="<?php echo base_url('verif_keuangan'); ?>" class="nav-link">
+                        <a href="<?php echo base_url('verif_keuangan'); ?>" class="nav-link <?= activate_menu('verif_keuangan') ?> ">
                             <i class="nav-icon fas fa-user-check"></i>
                             <p>
                                 Verifikasi

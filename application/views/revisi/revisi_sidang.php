@@ -175,7 +175,6 @@
                                     <thead>
                                         <tr>
                                             <th>No</th>
-                                            <th>NIM</th>
                                             <th>Nama Mahasiswa</th>
                                             <th>Dosen Penguji 1</th>
                                             <th>Dosen Penguji 2</th>
@@ -183,7 +182,7 @@
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
+                                    <!-- <tbody>
                                         <?php
                                         $no = 1;
                                         $id_prodi = $this->session->userdata('id_prodi');
@@ -207,6 +206,32 @@
                                             $no++;
                                         }
                                         ?>
+                                    </tbody> -->
+                                    <tbody>
+                                        <?php
+                                        $no = 1;
+                                        foreach ($query3->result() as $row) {
+                                            $data['user'] = $this->m_penguji_sidang->getmahasiswabyid($row->nim);
+                                            $data['dosen1'] = $this->m_penguji_sidang->getdosen1($row->penguji1_sidang);
+                                            $data['dosen2'] = $this->m_penguji_sidang->getdosen2($row->penguji2_sidang);
+                                            $data['dosen3'] = $this->m_penguji_sidang->getdosen2($row->penguji3_sidang);
+
+                                            $this->db->select('*');
+                                            $this->db->from('revisi');
+                                            $this->db->where(array('penguji' => $this->session->userdata('id_dosen'), 'nim' => $row->nim, 'jenis' => 'ta'));
+                                            $result = $this->db->get()->row();
+                                        ?>
+                                            <tr>
+                                                <td><?= $no++  ?></td>
+                                                <td><?= $data['user']->nama ?></td>
+                                                <td><?= $data['dosen1']->nama ?></td>
+                                                <td><?= $data['dosen2']->nama ?></td>
+                                                <td><?= $data['dosen3']->nama ?></td>
+                                                <td>
+                                                    <a href="<?= base_url('revisi_sidang/detail_revisi_sidang2/' . $row->nim); ?>" class="on-default edit-row btn btn-primary btn-xs"> Input Nilai</a>
+                                                </td>
+                                            </tr>
+                                        <?php } ?>
                                     </tbody>
                                 </table>
                             </div>

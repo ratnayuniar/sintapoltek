@@ -12,7 +12,7 @@ class M_bks_seminar extends CI_Model
 		$this->db->select('*');
 		$this->db->join('mahasiswa', 'mahasiswa.nim=seminar_proposal.nim', 'left');
 		$this->db->where('seminar_proposal.nim', $this->session->userdata('email'));
-		return $this->db->get('seminar_proposal');
+		return $this->db->get('seminar_proposal')->row();
 	}
 
 	function bks_seminar_admin($id_prodi)

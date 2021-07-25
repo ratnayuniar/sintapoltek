@@ -38,7 +38,7 @@
                                     <tbody>
                                         <?php
                                         $no = 1;
-                                        foreach ($get_mahasiswa as $row) { ?>
+                                        foreach ($get_mahasiswa->result() as $row) { ?>
                                             <tr>
                                                 <td><?= $no++ ?></td>
                                                 <td><?= $row->nim ?></td>
@@ -54,11 +54,11 @@
                                                 </td>
                                                 <td>
                                                     <?php if ($row->pinjaman_alat == '0') {
-                                                        echo " <a href ='#' class ='btn btn-sm btn-warning btn-xs btn-block' data-toggle='modal' data-target='#modal_lab' onClick=\"SetInput('" . $row->id_bks_wisuda . "','" . $row->nim . "','" . $row->nama . "','" . $row->judul . "','" . $row->pinjaman_alat . "','" . $row->catatan_pinjaman_alat . "')\"> Belum</a>";
+                                                        echo " <a href ='#' class ='btn btn-sm btn-warning btn-xs btn-block' data-toggle='modal' data-target='#modal_lab' onClick=\"SetInput('" . $row->id_prodi . "','" . $row->id_bks_wisuda . "','" . $row->nim . "','" . $row->nama . "','" . $row->judul . "','" . $row->pinjaman_alat . "','" . $row->catatan_pinjaman_alat . "')\"> Belum</a>";
                                                     } else if ($row->pinjaman_alat == '1') {
-                                                        echo " <a href ='#' class ='btn btn-sm btn-info btn-xs btn-block' data-toggle='modal' data-target='#modal_lab' onClick=\"SetInput('" . $row->id_bks_wisuda . "','" . $row->nim . "','" . $row->nama . "','" . $row->judul . "','" . $row->pinjaman_alat . "','" . $row->catatan_pinjaman_alat . "')\"> Kurang</a>";
+                                                        echo " <a href ='#' class ='btn btn-sm btn-info btn-xs btn-block' data-toggle='modal' data-target='#modal_lab' onClick=\"SetInput('" . $row->id_prodi . "','" . $row->id_bks_wisuda . "','" . $row->nim . "','" . $row->nama . "','" . $row->judul . "','" . $row->pinjaman_alat . "','" . $row->catatan_pinjaman_alat . "')\"> Kurang</a>";
                                                     } else {
-                                                        echo " <a href ='#' class ='btn btn-sm btn-success btn-xs btn-block' data-toggle='modal' data-target='#modal_lab' onClick=\"SetInput('" . $row->id_bks_wisuda . "','" . $row->nim . "','" . $row->nama . "','" . $row->judul . "','" . $row->pinjaman_alat . "','" . $row->catatan_pinjaman_alat . "')\"> Lengkap</a>";
+                                                        echo " <a href ='#' class ='btn btn-sm btn-success btn-xs btn-block' data-toggle='modal' data-target='#modal_lab' onClick=\"SetInput('" . $row->id_prodi . "','" . $row->id_bks_wisuda . "','" . $row->nim . "','" . $row->nama . "','" . $row->judul . "','" . $row->pinjaman_alat . "','" . $row->catatan_pinjaman_alat . "')\"> Lengkap</a>";
                                                     }
                                                     ?>
                                                     <?php if ($row->pinjaman_alat == '0') {
@@ -92,6 +92,7 @@
                 <form action="<?= base_url('verif_lab/verify_lab') ?>" method="post" class="form-horizontal" role="form" enctype="multipart/form-data">
                     <div class="card-body">
                         <div class="form-group row">
+                            <input type="hidden" id="id_prodi" name="id_prodi">
                             <input type="hidden" id="id_bks_wisuda" name="id_bks_wisuda">
                             <label for="inputEmail3" class="col-sm-3 col-form-label">NIM</label>
                             <div class="col-sm-9">
@@ -247,7 +248,8 @@
 
 
     <script type="text/javascript">
-        function SetInput(id_bks_wisuda, nim, nama, judul, pinjaman_alat, catatan_pinjaman_alat) {
+        function SetInput(id_prodi, id_bks_wisuda, nim, nama, judul, pinjaman_alat, catatan_pinjaman_alat) {
+            document.getElementById('id_prodi').value = id_prodi;
             document.getElementById('id_bks_wisuda').value = id_bks_wisuda;
             document.getElementById('nim').value = nim;
             document.getElementById('nama').value = nama;

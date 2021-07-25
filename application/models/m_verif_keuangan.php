@@ -15,17 +15,25 @@ class M_verif_keuangan extends CI_Model
 
     public function get_mahasiswa($id_prodi)
     {
-        $this->db->select('*');
-        $this->db->from('bks_wisuda');
-        $this->db->join('mahasiswa', 'mahasiswa.nim = bks_wisuda.nim', 'left');
-        $this->db->join('prodi', 'prodi.id_prodi = mahasiswa.id_prodi', 'left');
-        $this->db->join('master_ta', 'master_ta.nim = mahasiswa.nim', 'left');
-        $this->db->where('prodi.id_prodi', $id_prodi);
-        return $this->db->get()->result();
+        // $this->db->select('*');
+        // $this->db->from('bks_wisuda');
+        // $this->db->join('mahasiswa', 'mahasiswa.nim = bks_wisuda.nim', 'left');
+        // $this->db->join('prodi', 'prodi.id_prodi = mahasiswa.id_prodi', 'left');
+        // $this->db->join('master_ta', 'master_ta.nim = mahasiswa.nim', 'left');
+        // $this->db->where('prodi.id_prodi', $id_prodi);
+        // return $this->db->get()->result();
+        // $this->db->select('*');
+        $this->db->join('mahasiswa', 'bks_wisuda.nim=mahasiswa.nim', 'left');
+        $this->db->join('prodi', 'mahasiswa.id_prodi=prodi.id_prodi', 'left');
+        $this->db->join('master_ta', 'mahasiswa.nim = master_ta.nim', 'left');
+        $this->db->join('topik', 'master_ta.nim = topik.nim', 'left');
+        $this->db->where(array('mahasiswa.id_prodi' => $id_prodi));
+        return $this->db->get('bks_wisuda');
     }
 
     function ubah_data($nim)
     {
+        $id_prodi = $this->input->post('id_prodi');
         $data = array(
             'ukt' => $this->input->post('ukt'),
             'catatan_ukt' => $this->input->post('catatan_ukt'),
@@ -33,7 +41,7 @@ class M_verif_keuangan extends CI_Model
         );
         $this->db->where(array('nim' => $nim));
         $this->db->update('bks_wisuda', $data);
-        redirect('/verif_keuangan');
+        redirect('verif_keuangan/detaildata/' . $id_prodi);
     }
 
     function update($id, $data)

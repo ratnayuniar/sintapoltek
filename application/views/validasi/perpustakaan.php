@@ -44,7 +44,7 @@
                                     <tbody>
                                         <?php
                                         $no = 1;
-                                        foreach ($get_mahasiswa as $row) { ?>
+                                        foreach ($get_mahasiswa->result() as $row) { ?>
                                             <tr>
                                                 <td><?= $no++ ?></td>
                                                 <td><?= $row->nim ?></td>
@@ -69,11 +69,11 @@
                                                 </td>
                                                 <td>
                                                     <?php if ($row->laporan_perpus == '0') {
-                                                        echo " <a href ='#' class ='btn btn-sm btn-warning btn-xs btn-block' data-toggle='modal' data-target='#modal_laporan' onClick=\"SetInput('" . $row->id_bks_wisuda . "','" . $row->nim . "','" . $row->nama . "','" . $row->judul . "','" . $row->laporan_perpus . "','" . $row->catatan_laporan_perpus . "')\"> Belum</a>";
+                                                        echo " <a href ='#' class ='btn btn-sm btn-warning btn-xs btn-block' data-toggle='modal' data-target='#modal_laporan' onClick=\"SetInput('" . $row->id_prodi . "','" . $row->id_bks_wisuda . "','" . $row->nim . "','" . $row->nama . "','" . $row->judul . "','" . $row->laporan_perpus . "','" . $row->catatan_laporan_perpus . "')\"> Belum</a>";
                                                     } else if ($row->laporan_perpus == '1') {
-                                                        echo " <a href ='#' class ='btn btn-sm btn-info btn-xs btn-block' data-toggle='modal' data-target='#modal_laporan' onClick=\"SetInput('" . $row->id_bks_wisuda . "','" . $row->nim . "','" . $row->nama . "','" . $row->judul . "','" . $row->laporan_perpus . "','" . $row->catatan_laporan_perpus . "')\"> Kurang</a>";
+                                                        echo " <a href ='#' class ='btn btn-sm btn-info btn-xs btn-block' data-toggle='modal' data-target='#modal_laporan' onClick=\"SetInput('" . $row->id_prodi . "','" . $row->id_bks_wisuda . "','" . $row->nim . "','" . $row->nama . "','" . $row->judul . "','" . $row->laporan_perpus . "','" . $row->catatan_laporan_perpus . "')\"> Kurang</a>";
                                                     } else {
-                                                        echo " <a href ='#' class ='btn btn-sm btn-success btn-xs btn-block' data-toggle='modal' data-target='#modal_laporan' onClick=\"SetInput('" . $row->id_bks_wisuda . "','" . $row->nim . "','" . $row->nama . "','" . $row->judul . "','" . $row->laporan_perpus . "','" . $row->catatan_laporan_perpus . "')\"> Lengkap</a>";
+                                                        echo " <a href ='#' class ='btn btn-sm btn-success btn-xs btn-block' data-toggle='modal' data-target='#modal_laporan' onClick=\"SetInput('" . $row->id_prodi . "','" . $row->id_bks_wisuda . "','" . $row->nim . "','" . $row->nama . "','" . $row->judul . "','" . $row->laporan_perpus . "','" . $row->catatan_laporan_perpus . "')\"> Lengkap</a>";
                                                     }
                                                     ?>
                                                     <?php if ($row->laporan_perpus == '0') {
@@ -85,11 +85,11 @@
                                                 </td>
                                                 <td>
                                                     <?php if ($row->tanggungan_perpus == '0') {
-                                                        echo " <a href ='#' class ='btn btn-sm btn-warning btn-xs btn-block' data-toggle='modal' data-target='#modal_tanggungan' onClick=\"SetInput2('" . $row->id_bks_wisuda . "','" . $row->nim . "','" . $row->nama . "','" . $row->judul . "','" . $row->tanggungan_perpus . "','" . $row->catatan_tanggungan_perpus . "')\"> Belum</a>";
+                                                        echo " <a href ='#' class ='btn btn-sm btn-warning btn-xs btn-block' data-toggle='modal' data-target='#modal_tanggungan' onClick=\"SetInput2('" . $row->id_prodi . "','" . $row->id_bks_wisuda . "','" . $row->nim . "','" . $row->nama . "','" . $row->judul . "','" . $row->tanggungan_perpus . "','" . $row->catatan_tanggungan_perpus . "')\"> Belum</a>";
                                                     } else if ($row->tanggungan_perpus == '1') {
-                                                        echo " <a href ='#' class ='btn btn-sm btn-info btn-xs btn-block' data-toggle='modal' data-target='#modal_tanggungan' onClick=\"SetInput2('" . $row->id_bks_wisuda . "','" . $row->nim . "','" . $row->nama . "','" . $row->judul . "','" . $row->tanggungan_perpus . "','" . $row->catatan_tanggungan_perpus . "')\"> Kurang</a>";
+                                                        echo " <a href ='#' class ='btn btn-sm btn-info btn-xs btn-block' data-toggle='modal' data-target='#modal_tanggungan' onClick=\"SetInput2('" . $row->id_prodi . "','" . $row->id_bks_wisuda . "','" . $row->nim . "','" . $row->nama . "','" . $row->judul . "','" . $row->tanggungan_perpus . "','" . $row->catatan_tanggungan_perpus . "')\"> Kurang</a>";
                                                     } else {
-                                                        echo " <a href ='#' class ='btn btn-sm btn-success btn-xs btn-block' data-toggle='modal' data-target='#modal_tanggungan' onClick=\"SetInput2('" . $row->id_bks_wisuda . "','" . $row->nim . "','" . $row->nama . "','" . $row->judul . "','" . $row->tanggungan_perpus . "','" . $row->catatan_tanggungan_perpus . "')\"> Lengkap</a>";
+                                                        echo " <a href ='#' class ='btn btn-sm btn-success btn-xs btn-block' data-toggle='modal' data-target='#modal_tanggungan' onClick=\"SetInput2('" . $row->id_prodi . "','" . $row->id_bks_wisuda . "','" . $row->nim . "','" . $row->nama . "','" . $row->judul . "','" . $row->tanggungan_perpus . "','" . $row->catatan_tanggungan_perpus . "')\"> Lengkap</a>";
                                                     }
                                                     ?>
                                                     <?php if ($row->tanggungan_perpus == '0') {
@@ -124,6 +124,7 @@
                     <div class="card-body">
                         <div class="form-group row">
                             <input type="hidden" id="id_bks_wisuda" name="id_bks_wisuda">
+                            <input type="hidden" id="id_prodi" name="id_prodi">
                             <label for="inputEmail3" class="col-sm-3 col-form-label">NIM</label>
                             <div class="col-sm-9">
                                 <input type="text" class="form-control" id="nim" name="nim" readonly>
@@ -141,6 +142,7 @@
                                 <input type="text" class="form-control" id="judul" name="judul" readonly>
                             </div>
                         </div>
+
                         <div class="form-group row">
                             <label for="exampleInputjudul1" class="col-sm-3 col-form-label">Keterangan</label>
                             <div class="col-sm-4">
@@ -155,6 +157,12 @@
                             <label for="persetujuan" class="col-sm-3 col-form-label">Catatan</label>
                             <div class="col-sm-9">
                                 <textarea class="form-control" id="catatan_laporan_perpus" name="catatan_laporan_perpus"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="persetujuan" class="col-sm-3 col-form-label">Tanggal</label>
+                            <div class="col-sm-9">
+                                <input type="date" class="form-control" id="tanggal" name="tanggal">
                             </div>
                         </div>
                     </div>
@@ -178,7 +186,8 @@
                 <form action="<?= base_url('veri_perpus/verify_tanggungan') ?>" method="post" class="form-horizontal" role="form" enctype="multipart/form-data">
                     <div class="card-body">
                         <div class="form-group row">
-                            <input type="hidden" id="id_bks_wisuda" name="id_bks_wisuda">
+                            <input type="hidden" id="id_bks_wisuda2" name="id_bks_wisuda">
+                            <input type="hidden" id="id_prodi2" name="id_prodi">
                             <label for="inputEmail3" class="col-sm-3 col-form-label">NIM</label>
                             <div class="col-sm-9">
                                 <input type="text" class="form-control" id="nim2" name="nim" readonly>
@@ -212,6 +221,12 @@
                                 <textarea class="form-control" id="catatan_tanggungan_perpus" name="catatan_tanggungan_perpus"></textarea>
                             </div>
                         </div>
+                        <div class="form-group row">
+                            <label for="persetujuan" class="col-sm-3 col-form-label">Tanggal</label>
+                            <div class="col-sm-9">
+                                <input type="date" class="form-control" id="tanggal_tg" name="tanggal_tg">
+                            </div>
+                        </div>
                     </div>
                     <div class="card-footer">
                         <button type="submit" name="submit" class="btn btn-primary" style="float: right;">Simpan</button>
@@ -224,22 +239,34 @@
 
 
     <script type="text/javascript">
-        function SetInput(id_bks_wisuda, nim, nama, judul, laporan_perpus, catatan_laporan_perpus) {
+        var date = new Date();
+        var day = date.getDate();
+        var month = date.getMonth() + 1;
+        var year = date.getFullYear();
+        if (month < 10) month = "0" + month;
+        if (day < 10) day = "0" + day;
+        var today = year + "-" + month + "-" + day;
+
+        function SetInput(id_prodi, id_bks_wisuda, nim, nama, judul, laporan_perpus, catatan_laporan_perpus, tanggal) {
+            document.getElementById('id_prodi').value = id_prodi;
             document.getElementById('id_bks_wisuda').value = id_bks_wisuda;
             document.getElementById('nim').value = nim;
             document.getElementById('nama').value = nama;
             document.getElementById('judul').value = judul;
             document.getElementById('laporan_perpus').value = laporan_perpus;
             document.getElementById('catatan_laporan_perpus').value = catatan_laporan_perpus;
+            document.getElementById('tanggal').value = today;
         }
 
-        function SetInput2(id_bks_wisuda, nim, nama, judul, tanggungan_perpus, catatan_tanggungan_perpus) {
-            document.getElementById('id_bks_wisuda').value = id_bks_wisuda;
+        function SetInput2(id_prodi, id_bks_wisuda, nim, nama, judul, tanggungan_perpus, catatan_tanggungan_perpus) {
+            document.getElementById('id_prodi2').value = id_prodi;
+            document.getElementById('id_bks_wisuda2').value = id_bks_wisuda;
             document.getElementById('nim2').value = nim;
             document.getElementById('nama2').value = nama;
             document.getElementById('judul2').value = judul;
             document.getElementById('tanggungan_perpus').value = tanggungan_perpus;
             document.getElementById('catatan_tanggungan_perpus').value = catatan_tanggungan_perpus;
+            document.getElementById('tanggal_tg').value = today;
         }
 
         function SetInputs(id_jurusan, id_prodi, nim, nama) {

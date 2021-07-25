@@ -114,31 +114,7 @@
             <!-- /.modal-content -->
         </div>
     </div>
-    <script type="text/javascript">
-        function SetInput(id_topik, nim, bidang, judul, lokasi) {
-            document.getElementById('id_topik').value = id_topik;
-            document.getElementById('nim').value = nim;
-            document.getElementById('bidang').value = bidang;
-            document.getElementById('judul').value = judul;
-            document.getElementById('lokasi').value = lokasi;
-        }
 
-        function SetInputs(id_topik, nim, bidang, judul, lokasi) {
-            document.getElementById('id_topik2').value = id_topik;
-            document.getElementById('nim2').value = nim;
-            document.getElementById('bidang2').value = bidang;
-            document.getElementById('judul2').value = judul;
-            document.getElementById('lokasi2').value = lokasi;
-        }
-
-        function ResetInput(id_topik, nim, bidang, judul, lokasi) {
-            document.getElementById('id_topik').value = "";
-            document.getElementById('nim').value = "";
-            document.getElementById('bidang').value = "";
-            document.getElementById('judul').value = "";
-            document.getElementById('lokasi').value = "";
-        }
-    </script>
 <?php } else { ?>
     <div class="content-wrapper">
         <section class="content-header">
@@ -175,12 +151,6 @@
                             <div class="row invoice-info">
                                 <div class="col-sm-4 invoice-col">
                                     Nama : <strong><?= $bks_bahasa->nama; ?></strong>
-                                    <address>
-                                        <!-- <strong><?= $bks_seminar->nama; ?></strong><br> -->
-                                        <!-- Program Studi : <?= $bks_seminar->nama_prodi; ?><br>
-                                        Jurusan : <?= $bks_seminar->nama_jurusan; ?><br> -->
-                                        <!-- Email : <?= $bks_bahasa->email; ?> -->
-                                    </address>
                                 </div>
                                 <div class="col-sm-4 invoice-col">
                                     <b>Status Pendaftaran</b> :

@@ -49,7 +49,7 @@
             </div>
 
             <!-- Section Persetujuan -->
-            <?php $cek = $this->db->get_where('persetujuan', array('id_dosen' => $this->session->userdata('id_dosen'), 'jenis' => 'ta'))->row_array(); ?>
+            <?php $cek = $this->db->get_where('persetujuan', array('id_dosen' => $this->session->userdata('id_dosen'), 'jenis' => 'ta', 'nim' => $this->uri->segment(3)))->row_array(); ?>
             <?php if (isset($cek['nim']) == "") { ?>
                 <?php if ($cekJumlahBimbingan >= 16) { ?>
                     <div class="row">

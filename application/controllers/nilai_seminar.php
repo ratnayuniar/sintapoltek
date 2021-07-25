@@ -46,7 +46,8 @@ class Nilai_seminar extends CI_Controller
 			$this->load->view('templates/footer', $data);
 		}
 	}
-	function detail_nilai_seminar2($nim)
+	
+	function detail_nilai_seminar2($nim) 
 	{
 	 $data['title'] = 'SINTA PNM';
 	 $data['nim'] = $nim;

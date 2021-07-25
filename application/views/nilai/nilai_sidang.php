@@ -54,8 +54,6 @@
                         <td><?= $rata ?></td>
                         <td><?= $result->nilaiakhir ?></td>
                         <td>
-                          <!-- <a href="<?= base_url('nilai_seminar/detail_nilai_seminar/' . $row->id_mahasiswa) ?>" class="btn btn-primary btn-sm">
-                            <i class="fa fa-search"></i></a>&nbsp; -->
                           <a href="<?= base_url('nilai_sidang/detail_nilai_sidang/' . $row->id_nilai_sidang) ?>" class="on-default edit-row btn btn-info pull-right btn-xs"><i class="fa fa-search"></i> Detail </a>
                         </td>
                       </tr>
@@ -203,13 +201,6 @@
                     </tr>
                   </thead>
                   <tbody>
-                  <tbody>
-                    <?php
-                    $this->db->select('*');
-                    $this->db->from('nilai_sidang');
-                    $this->db->where(array('id_dosen' => $this->session->userdata('id_dosen')));
-                    $result = $this->db->get()->row();
-                    ?>
                     <?php
                     $no = 1;
                     foreach ($query3->result() as $row) {
@@ -217,9 +208,14 @@
                       $data['dosen1'] = $this->m_penguji_sidang->getdosen1($row->penguji1_sidang);
                       $data['dosen2'] = $this->m_penguji_sidang->getdosen2($row->penguji2_sidang);
                       $data['dosen3'] = $this->m_penguji_sidang->getdosen2($row->penguji3_sidang);
+
+                      $this->db->select('*');
+                      $this->db->from('nilai_sidang');
+                      $this->db->where(array('id_dosen' => $this->session->userdata('id_dosen'), 'nim' => $row->nim));
+                      $result = $this->db->get()->row();
                     ?>
                       <tr>
-                        <td><?= $no  ?></td>
+                        <td><?= $no++  ?></td>
                         <td><?= $data['user']->nama ?></td>
                         <td><?= $data['dosen1']->nama ?></td>
                         <td><?= $data['dosen2']->nama ?></td>
@@ -229,12 +225,10 @@
                         <td><?php if (empty($result->nilai_akhir)) echo "";
                             else echo $result->nilai_akhir ?></td>
                         <td>
-
-                          <a href="<?= base_url('nilai_sidang/detail_nilai_sidang2?id=' . $row->nim); ?>" class="on-default edit-row btn btn-primary btn-xs"> Input Nilai</a>
+                          <a href="<?= base_url('nilai_sidang/detail_nilai_sidang2/' . $row->nim); ?>" class="on-default edit-row btn btn-primary btn-xs"> Input Nilai</a>
                         </td>
                       </tr>
                     <?php } ?>
-                  </tbody>
                   </tbody>
                 </table>
               </div>
