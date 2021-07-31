@@ -106,7 +106,7 @@
                                             <th>No</th>
                                             <th>Tanggal</th>
                                             <th>Masalah</th>
-                                            <th>File</th>
+                                            <th>File Mahasiswa</th>
                                             <th>Solusi</th>
                                         </tr>
                                     </thead>

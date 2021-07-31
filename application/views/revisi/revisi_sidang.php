@@ -228,7 +228,7 @@
                                                 <td><?= $data['dosen2']->nama ?></td>
                                                 <td><?= $data['dosen3']->nama ?></td>
                                                 <td>
-                                                    <a href="<?= base_url('revisi_sidang/detail_revisi_sidang2/' . $row->nim); ?>" class="on-default edit-row btn btn-primary btn-xs"> Input Nilai</a>
+                                                    <a href="<?= base_url('revisi_sidang/detail_revisi_sidang2/' . $row->nim); ?>" class="on-default edit-row btn btn-primary btn-xs"> Input Revisi</a>
                                                 </td>
                                             </tr>
                                         <?php } ?>

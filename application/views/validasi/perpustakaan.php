@@ -236,8 +236,6 @@
         </div>
     </div>
 
-
-
     <script type="text/javascript">
         var date = new Date();
         var day = date.getDate();
@@ -268,19 +266,6 @@
             document.getElementById('catatan_tanggungan_perpus').value = catatan_tanggungan_perpus;
             document.getElementById('tanggal_tg').value = today;
         }
-
-        function SetInputs(id_jurusan, id_prodi, nim, nama) {
-
-            document.getElementById('nim2').value = nim;
-            document.getElementById('nama').value = nama;
-        }
-
-        function ResetInput() {
-            document.getElementById('nim').value = "";
-            document.getElementById('nama').value = "";
-            document.getElementById('id_prodi').value = "";
-            document.getElementById('id_jurusan').value = "";
-        }
     </script>
 <?php } else { ?>
     <div class="content-wrapper">
@@ -299,7 +284,6 @@
                 </div>
             </div>
         </section>
-
         <section class="content">
             <div class="container-fluid">
                 <div class="row">
@@ -317,24 +301,18 @@
                                             <th>Nama</th>
                                             <th>Status Laporan</th>
                                             <th>Status Tanggungan</th>
-                                            <!-- <th colspan="2">Validasi</th> -->
                                         </tr>
-                                        <!-- <tr>
-
-                                            <th>Laporan</th>
-                                            <th>Tanggungan</th>
-                                        </tr> -->
                                     </thead>
                                     <tbody>
                                         <?php
                                         $no = 1;
-                                        foreach ($bks_wisuda_user->result() as $row) { ?>
+                                        foreach ($bks_perpus_user->result() as $row) { ?>
                                             <tr>
                                                 <td><?= $no++ ?></td>
                                                 <td><?= $row->nim ?></td>
                                                 <td><?= $row->nama ?></td>
                                                 <td> <?php if ($row->laporan_perpus == '0') {
-                                                            echo '<span class="badge badge-info">Belum</span>';
+                                                            echo '<span class="badge badge-warning">Belum Diverifikasi</span>';
                                                         } else if ($row->laporan_perpus == '1') {
                                                             echo '<span class="badge badge-primary">Kurang</span>';
                                                         } else {
@@ -342,25 +320,15 @@
                                                         }
                                                         ?>
                                                 </td>
-                                                <td> <?php if ($row->tanggungan_perpus == '0') {
-                                                            echo '<span class="badge badge-info">Belum</span>';
-                                                        } else if ($row->tanggungan_perpus  == '1') {
-                                                            echo '<span class="badge badge-primary">Kurang</span>';
-                                                        } else {
-                                                            echo '<span class="badge badge-sucess">Lengkap</span>';
-                                                        }
-                                                        ?>
+                                                <td><?php if ($row->tanggungan_perpus == '0') {
+                                                        echo '<span class="badge badge-warning">Belum Diverifikasi</span>';
+                                                    } else if ($row->tanggungan_perpus == '1') {
+                                                        echo '<span class="badge badge-primary">Kurang</span>';
+                                                    } else {
+                                                        echo '<span class="badge badge-success">Lengkap</span>';
+                                                    }
+                                                    ?>
                                                 </td>
-                                                <!-- <td>
-                                                    <a href="<?php echo site_url('veri_perpus/save_lap_belum/' . $row->nim); ?>" id="btn-konfirmasi" class="btn btn-outline-primary btn-xs">Belum</a>
-                                                    <a href="<?php echo site_url('veri_perpus/save_lap_kurang/' . $row->nim); ?>" id="btn-konfirmasi" class="btn btn-outline-success btn-xs">Kurang</a>
-                                                    <a href="<?php echo site_url('veri_perpus/save_lap_lengkap/' . $row->nim); ?>" id="btn-konfirmasi" class="btn btn-outline-danger btn-xs">Lengkap</a>
-                                                </td> -->
-                                                <!-- <td>
-                                                    <a href="<?php echo site_url('veri_perpus/save_tg_belum/' . $row->nim); ?>" id="btn-konfirmasi" class="btn btn-outline-primary btn-xs">Belum</a>
-                                                    <a href="<?php echo site_url('veri_perpus/save_tg_kurang/' . $row->nim); ?>" id="btn-konfirmasi" class="btn btn-outline-success btn-xs">Kurang</a>
-                                                    <a href="<?php echo site_url('veri_perpus/save_tg_lengkap/' . $row->nim); ?>" id="btn-konfirmasi" class="btn btn-outline-danger btn-xs">Lengkap</a>
-                                                </td> -->
                                             </tr>
                                         <?php } ?>
                                     </tbody>
@@ -392,7 +360,6 @@
                                 <input type="text" class="form-control" id="nim" name="nim" required>
                             </div>
                         </div>
-
                         <div class="form-group">
                             <label class="col-md-5 control-label">Nama Mahasiswa</label>
                             <div class="col-md-9">
@@ -439,8 +406,6 @@
 
         </div>
     </div>
-
-
     <div id="delete-modassl" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="custom-width-modalLabel" aria-hidden="true" style="display: none;">
         <div class="modal-dialog" style="width:55%;">
             <div class="modal-content">

@@ -33,10 +33,7 @@
                                         <tr>
                                             <th>No</th>
                                             <th>NIM</th>
-                                            <!-- <th>Jurusan</th>
-                                        <th>Program Studi</th> -->
                                             <th>Nama</th>
-                                            <!-- <th>Status UKT</th> -->
                                             <th>Validasi</th>
                                         </tr>
                                     </thead>
@@ -310,25 +307,21 @@
                                         <tr>
                                             <th>No</th>
                                             <th>NIM</th>
-                                            <!-- <th>Jurusan</th>
-                                        <th>Program Studi</th> -->
                                             <th>Nama</th>
                                             <th>Status UKT</th>
-                                            <!-- <th>Validasi</th> -->
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <?php
                                         $no = 1;
-                                        foreach ($bks_wisuda_user->result() as $row) { ?>
+                                        foreach ($bks_keuangan_user->result() as $row) { ?>
                                             <tr>
                                                 <td><?= $no++ ?></td>
                                                 <td><?= $row->nim ?></td>
-                                                <!-- <td><?= $row->nama_jurusan ?></td>
-                                            <td><?= $row->nama_prodi ?></td> -->
+                                                <!-- <td><?= $row->nama_prodi ?></td> -->
                                                 <td><?= $row->nama ?></td>
                                                 <td> <?php if ($row->ukt == '0') {
-                                                            echo '<span class="badge badge-info">Belum</span>';
+                                                            echo '<span class="badge badge-warning">Belum Diverifikasi</span>';
                                                         } else if ($row->ukt == '1') {
                                                             echo '<span class="badge badge-primary">Kurang</span>';
                                                         } else {

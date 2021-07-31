@@ -245,7 +245,7 @@
                                 </a>
                                 <ul class="nav nav-treeview">
                                     <li class="nav-item">
-                                        <a href="<?php echo base_url('bimbingan_proposal/dospem1'); ?>" class="nav-link <?= activate_menu('bimbingan_proposal') ?>">
+                                        <a href="<?php echo base_url('bimbingan_proposal/dospem1'); ?>" class="nav-link ">
                                             <i class="far fa-dot-circle nav-icon"></i>
                                             <p>Dosen Pembimbing 1</p>
                                         </a>

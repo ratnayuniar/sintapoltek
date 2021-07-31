@@ -311,13 +311,13 @@
                                     <tbody>
                                         <?php
                                         $no = 1;
-                                        foreach ($bks_wisuda_user->result() as $row) { ?>
+                                        foreach ($bks_keuangan_user->result() as $row) { ?>
                                             <tr>
                                                 <td><?= $no++ ?></td>
                                                 <td><?= $row->nim ?></td>
                                                 <td><?= $row->nama ?></td>
                                                 <td> <?php if ($row->pinjaman_alat == '0') {
-                                                            echo '<span class="badge badge-info">Belum</span>';
+                                                            echo '<span class="badge badge-warning">Belum Diverifikasi</span>';
                                                         } else if ($row->pinjaman_alat == '1') {
                                                             echo '<span class="badge badge-primary">Kurang</span>';
                                                         } else {

@@ -37,7 +37,6 @@
                                                 <th>Nama</th>
                                                 <th>Jadwal</th>
                                                 <th>Tempat</th>
-                                                <th>Aksi</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -52,9 +51,7 @@
 											<td>" . $row->nama . "</td>
 											<td>" . longdate_indo($waktu[0]) . "</td>
                                             <td>" . $row->tempat_wisuda . "</td>
-											<td>
-													<a href='" . base_url('jadwal_sidang/delete2/' . $row->id_master_ta) . "' id='btn-hapus' class='btn btn-sm btn-danger btn-xs' ><i class='fa fa-trash'></i> Hapus</a>
-											</td>									
+																			
 									    </tr>";
                                                 $no++;
                                             }

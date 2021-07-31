@@ -70,6 +70,8 @@
   </div>
 
 
+
+
   <div id="custom-width-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="custom-width-modalLabel" aria-hidden="true" style="display: none;">
     <div class="modal-dialog" style="width:55%;">
       <div class="modal-content">
@@ -81,64 +83,69 @@
         </div>
         <form action="<?php echo base_url() . 'jadwal_seminar/cek_jadwal_seminar'; ?>" method="post" class="form-horizontal" role="form">
           <div class="card-body">
-            <div class="form-group">
-              <input type="hidden" id="id_master_ta" name="id_master_ta">
-              <label class="control-label">Nama Mahasiswa</label>
-              <select class="nim form-control select2bs4" style="width: 100%;" data-live-search="true" data-style="btn-white" id="nim" name="nim" required>
-                <option>-- Pilih Mahasiswa --</option>
-                <?php foreach ($mahasiswa->result() as $row) : ?>
-                  <option value="<?php echo $row->nim; ?>"><?php echo $row->nama; ?></option>
-                <?php endforeach; ?>
-              </select>
-            </div>
+            <div class="row">
+              <div class="form-group col-12">
+                <input type="hidden" id="id_master_ta" name="id_master_ta">
+                <label class="control-label">Nama Mahasiswa</label>
+                <select class="nim form-control select2bs4" style="width: 100%;" data-live-search="true" data-style="btn-white" id="nim" name="nim" required>
+                  <option>-- Pilih Mahasiswa --</option>
+                  <?php foreach ($mahasiswa->result() as $row) : ?>
+                    <option value="<?php echo $row->nim; ?>"><?php echo $row->nama; ?></option>
+                  <?php endforeach; ?>
+                </select>
+              </div>
+              <div class="form-group col-12">
+                <label for="" class="control-label">Penguji 1</label>
+                <select class="penguji1_sempro form-control" name="penguji1_sempro" id="penguji1_sempro" readonly>
+                  <option value="">Pilih Mahasiswa Terlebih Dahulu</option>
+                </select>
+              </div>
 
-            <div class="form-group">
-              <label for="" class="control-label">Penguji 1</label>
-              <select class="penguji1_sempro form-control" name="penguji1_sempro" id="penguji1_sempro" readonly>
-                <option value="">Pilih Mahasiswa Terlebih Dahulu</option>
-              </select>
-            </div>
+              <div class="form-group col-12">
+                <label for="penguji2_sempro" class="ccontrol-label">Penguji 2</label>
+                <select class="penguji2_sempro form-control" name="penguji2_sempro" id="penguji2_sempro" readonly>
+                  <option value="">Pilih Mahasiswa Terlebih Dahulu</option>
+                </select>
+              </div>
 
-            <div class="form-group">
-              <label for="penguji2_sempro" class="ccontrol-label">Penguji 2</label>
-              <select class="penguji2_sempro form-control" name="penguji2_sempro" id="penguji2_sempro" readonly>
-                <option value="">Pilih Mahasiswa Terlebih Dahulu</option>
-              </select>
-            </div>
+              <div class="form-group col-12">
+                <label for="" class="control-label">Penguji 3</label>
+                <select class="penguji3_sempro form-control" name="penguji3_sempro" id="penguji3_sempro" readonly>
+                  <option value="">Pilih Mahasiswa Terlebih Dahulu</option>
+                </select>
+              </div>
 
-            <div class="form-group">
-              <label for="" class="control-label">Penguji 3</label>
-              <select class="penguji3_sempro form-control" name="penguji3_sempro" id="penguji3_sempro" readonly>
-                <option value="">Pilih Mahasiswa Terlebih Dahulu</option>
-              </select>
-            </div>
+              <div class="form-group col-12">
+                <label class="control-label">Jadwal</label>
+                <input type="date" name="jadwal_seminar" class="form-control" id="jadwal_seminar">
+              </div>
 
-            <div class="form-group">
-              <label class="control-label">Jadwal</label>
-              <input type="date" name="jadwal_seminar" class="form-control" id="jadwal_seminar">
-            </div>
+              <div class="form-group col-12">
+                <label class="control-label">Waktu Seminar</label>
+              </div>
 
-            <div class="form-group">
-              <label class="control-label">Waktu</label>
-              <input type="time" name="waktu_mulai" class="form-control col-md-3">
-            </div>
+              <div class="col-4">
+                <input type="time" name="waktu_mulai" class="form-control">
+              </div>
 
-            <div class="form-group">
-              <input type="time" name="waktu_akhir" class="form-control col-md-3">
-            </div>
+              <div class="col-4">
+                <input type="time" name="waktu_akhir" class="form-control">
+              </div>
 
-            <div class="form-group">
-              <label class="control-label">Ruang</label>
-              <input type="text" name="ruang_seminar" class="form-control" id="ruang_seminar">
-            </div>
+              <div class="form-group col-12">
+                <label class="control-label">Ruang</label>
+                <input type="text" name="ruang_seminar" class="form-control" id="ruang_seminar">
+              </div>
 
-            <div class="modal-footer">
-              <button type="submit" class="btn btn-primary" style="float: right;">Simpan</button>
+              <div class="form-group col-12">
+                <button type="submit" class="btn btn-primary" style="float: right;">Simpan</button>
+              </div>
             </div>
           </div>
-        </form>
       </div>
+      </form>
     </div>
+  </div>
   </div>
 
 
